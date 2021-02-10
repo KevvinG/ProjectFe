@@ -1,0 +1,6 @@
+framework module Pods_Fe {
+  umbrella header "Pods-Fe-umbrella.h"
+
+  export *
+  module * { export * }
+}
