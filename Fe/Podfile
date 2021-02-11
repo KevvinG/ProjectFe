@@ -19,7 +19,13 @@ target 'Fe' do
   # https://firebase.google.com/docs/ios/setup#available-pods
   pod 'Firebase/Analytics'
   pod 'Firebase'
+  pod 'FirebaseUI'
   pod 'Firebase/Auth'
+  pod 'FirebaseUI/Google'
+  pod 'GoogleSignIn'
+  pod 'FirebaseUI/Facebook'
+  pod 'FirebaseUI/OAuth' # Used for Sign in with Apple, Twitter, etc
+  pod 'FirebaseUI/Phone'
   pod 'Firebase/Firestore'
   pod 'Firebase/Messaging'
   pod 'Firebase/Database'
