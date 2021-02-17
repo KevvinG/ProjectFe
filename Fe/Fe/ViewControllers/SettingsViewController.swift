@@ -51,4 +51,12 @@ class SettingsViewController: UIViewController {
     @IBAction func editAccountBtnTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToEditUser", sender: self)
     }
+    
+    @IBAction func deleteAccountBtnTapped(_ sender: UIButton) {
+        print("Delete Button tapped")
+        // Insert code here to delete account
+        // Present Alert to confirm deletion first
+        // log out, then delete.
+    }
+    
 }
