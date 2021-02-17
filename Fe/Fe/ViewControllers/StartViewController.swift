@@ -1,20 +1,15 @@
 //
-//  ViewController.swift
+//  StartViewController.swift
 //  Fe
 //
-//  Created by Jayce Merinchuk on 2021-02-10.
+//  Created by Jayce Merinchuk on 2021-02-17.
 //
 
-// Imports
 import UIKit
 import FirebaseUI
 import GoogleSignIn
 
-/*--------------------------------------------------------------------
- - Class: ViewController : UIViewController
- - Description: ViewController logic file for the Start Screen.
- -------------------------------------------------------------------*/
-class ViewController: UIViewController {
+class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +19,7 @@ class ViewController: UIViewController {
      - Function: loginTapped()
      - Description: Shows the different FirebaseUI ways to sign in.
      -------------------------------------------------------------------*/
-    @IBAction func loginTapped(_ sender: UIButton) {
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
         let authUI = FUIAuth.defaultAuthUI()
         
         guard authUI != nil else {
@@ -43,6 +38,8 @@ class ViewController: UIViewController {
         
         present(authViewController, animated: true, completion: nil)
     }
+    
+
     
     /*--------------------------------------------------------------------
      - Function: application()
@@ -63,7 +60,7 @@ class ViewController: UIViewController {
  - Extension: ViewController : FUIAuthDelegate
  - Description: If no errors detected, proceed to the Home Screen.
  -------------------------------------------------------------------*/
-extension ViewController : FUIAuthDelegate {
+extension StartViewController : FUIAuthDelegate {
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
         if error != nil {
             // log error

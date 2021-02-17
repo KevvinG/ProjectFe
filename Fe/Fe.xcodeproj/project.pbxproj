@@ -11,7 +11,6 @@
 		8D08E0BE4BD6883E01DF2495 /* Pods_FeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A5CB4245C317C008295419 /* Pods_FeTests.framework */; };
 		CE01C2D925D438D100A08E2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2D825D438D100A08E2D /* AppDelegate.swift */; };
 		CE01C2DB25D438D100A08E2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2DA25D438D100A08E2D /* SceneDelegate.swift */; };
-		CE01C2DD25D438D100A08E2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2DC25D438D100A08E2D /* ViewController.swift */; };
 		CE01C2E025D438D100A08E2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE01C2DE25D438D100A08E2D /* Main.storyboard */; };
 		CE01C2E325D438D100A08E2D /* Fe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2E125D438D100A08E2D /* Fe.xcdatamodeld */; };
 		CE01C2E525D438D100A08E2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE01C2E425D438D100A08E2D /* Assets.xcassets */; };
@@ -24,6 +23,9 @@
 		CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */; };
 		CE62AF0725D84FDF00AA9665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */; };
 		CE62AF0825D84FDF00AA9665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */; };
+		CE62AF1325DD6B0400AA9665 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF1225DD6B0400AA9665 /* StartViewController.swift */; };
+		CE62AF1425DD6B0400AA9665 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF1225DD6B0400AA9665 /* StartViewController.swift */; };
+		CE62AF1525DD6B0400AA9665 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF1225DD6B0400AA9665 /* StartViewController.swift */; };
 		CE69A27125D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE69A27225D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE69A27325D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
@@ -59,7 +61,6 @@
 		CE01C2D525D438D100A08E2D /* Fe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE01C2D825D438D100A08E2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE01C2DA25D438D100A08E2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE01C2DC25D438D100A08E2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE01C2DF25D438D100A08E2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE01C2E225D438D100A08E2D /* Fe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fe.xcdatamodel; sourceTree = "<group>"; };
 		CE01C2E425D438D100A08E2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		CE01C30E25D4576700A08E2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE1E4A6525D4B6E300342238 /* Fe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fe.entitlements; sourceTree = "<group>"; };
 		CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CE62AF1225DD6B0400AA9665 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		CE69A27025D831A5009E87CB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -177,7 +179,7 @@
 		CE69A26725D81F4A009E87CB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CE01C2DC25D438D100A08E2D /* ViewController.swift */,
+				CE62AF1225DD6B0400AA9665 /* StartViewController.swift */,
 				CE69A27025D831A5009E87CB /* HomeViewController.swift */,
 				CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */,
 			);
@@ -490,7 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE69A27125D831A5009E87CB /* HomeViewController.swift in Sources */,
-				CE01C2DD25D438D100A08E2D /* ViewController.swift in Sources */,
+				CE62AF1325DD6B0400AA9665 /* StartViewController.swift in Sources */,
 				CE01C2D925D438D100A08E2D /* AppDelegate.swift in Sources */,
 				CE01C2E325D438D100A08E2D /* Fe.xcdatamodeld in Sources */,
 				CE01C2DB25D438D100A08E2D /* SceneDelegate.swift in Sources */,
@@ -503,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE01C2F325D438D100A08E2D /* FeTests.swift in Sources */,
+				CE62AF1425DD6B0400AA9665 /* StartViewController.swift in Sources */,
 				CE69A27225D831A5009E87CB /* HomeViewController.swift in Sources */,
 				CE62AF0725D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 			);
@@ -513,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE01C2FE25D438D100A08E2D /* FeUITests.swift in Sources */,
+				CE62AF1525DD6B0400AA9665 /* StartViewController.swift in Sources */,
 				CE69A27325D831A5009E87CB /* HomeViewController.swift in Sources */,
 				CE62AF0825D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 			);
