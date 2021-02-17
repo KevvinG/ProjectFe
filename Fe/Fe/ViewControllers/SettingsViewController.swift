@@ -45,4 +45,10 @@ class SettingsViewController: UIViewController {
         signOutAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(signOutAlert, animated: true, completion: nil)
     }
+    
+    
+    
+    @IBAction func editAccountBtnTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToEditUser", sender: self)
+    }
 }
