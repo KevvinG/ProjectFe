@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 
 class SettingsViewController: UIViewController {
+    
+    let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,17 +57,50 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func deleteAccountBtnTapped(_ sender: UIButton) {
-        print("Delete Button tapped")
+        // TODO: Add a prompt before deleting
         let user = Auth.auth().currentUser
         user?.delete { error in
             if let error = error {
                 // An Error Happened
                 print("There was an error getting the user: \(error)")
             } else {
-                // TODO: Finish writing the logic to delete account
-                // Delete data from users table
-                // Sign the user out
-                // Delete the user from Authentication Table
+                // Search for document ID and Delete it.
+                let usersRef = self.db.collection("users")
+                usersRef.whereField("UID", isEqualTo: user?.uid ?? "-1")
+                    .getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            if querySnapshot!.documents.count == 0 {
+                                print("The user cannot be found")
+                            } else {
+                                print("We found the user.")
+                                for document in querySnapshot!.documents {
+                                    // DELETE THE USER DOCUMENT
+                                    self.db.collection("users").document(document.documentID).delete() { err in
+                                        if let err = err {
+                                            print("Error removing the document: \(err)")
+                                        } else {
+                                            print("Document successfully deleted.")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                }
+                
+                // Sign the User Out
+                do {
+                    try Auth.auth().signOut()
+                } catch let err {
+                    print("Failed to sign out with error: \(err)")
+                }
+                
+                // Redirect the user to the StartViewController
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
+                startViewController.modalPresentationStyle = .fullScreen
+                self.present(startViewController, animated:true, completion:nil)
             }
         }
     }

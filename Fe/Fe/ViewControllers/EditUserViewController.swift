@@ -37,7 +37,7 @@ class EditUserViewController: UIViewController {
                         print("Code here to update user in table")
                         for document in querySnapshot!.documents {
                             print("\(document.documentID) => \(document.data())")
-                            // TODO: Update the user details here using the User Model
+                            // TODO: Update the user details here
                         }
                     }
                 }
