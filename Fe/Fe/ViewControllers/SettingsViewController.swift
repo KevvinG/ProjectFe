@@ -52,11 +52,21 @@ class SettingsViewController: UIViewController {
         performSegue(withIdentifier: "GoToEditUser", sender: self)
     }
     
+    
     @IBAction func deleteAccountBtnTapped(_ sender: UIButton) {
         print("Delete Button tapped")
-        // Insert code here to delete account
-        // Present Alert to confirm deletion first
-        // log out, then delete.
+        let user = Auth.auth().currentUser
+        user?.delete { error in
+            if let error = error {
+                // An Error Happened
+                print("There was an error getting the user: \(error)")
+            } else {
+                // TODO: Finish writing the logic to delete account
+                // Delete data from users table
+                // Sign the user out
+                // Delete the user from Authentication Table
+            }
+        }
     }
     
 }

@@ -20,22 +20,27 @@ class EditUserViewController: UIViewController {
     }
     
     @IBAction func saveChangesBtnTapped(_ sender: UIButton) {
+        print("Updating existing user...")
         let user = Auth.auth().currentUser
-        if let user = user {
-            let uid = user.uid
-            
-        }
-        var ref : DocumentReference? = nil
-        ref = db.collection("users").addDocument(data: [
-            "UID" : user?.uid,
-            "fname" : "Ada",
-            "lname" : "Wong",
-        ]) { err in
-            if let err = err {
-                print("Error adding Document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
+        let usersRef = db.collection("users")
+        usersRef.whereField("UID", isEqualTo: user?.uid ?? "-1")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                        let alert = UIAlertController(title: "ERROR", message: "Your user information does not exist in the user table yet", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        print("Code here to update user in table")
+                        for document in querySnapshot!.documents {
+                            print("\(document.documentID) => \(document.data())")
+                            // TODO: Update the user details here using the User Model
+                        }
+                    }
+                }
         }
     }
     
