@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     func checkIfNewUser() {
         let user = Auth.auth().currentUser
         let usersRef = db.collection("users")
-        usersRef.whereField("UID", isEqualTo: user?.uid ?? "-1")
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
         // TODO: - Change this to use the struct model User
         var ref: DocumentReference? = nil
         ref = db.collection("users").addDocument(data: [
-            "UID": user!.uid,
+            "uid": user!.uid,
             "email": user!.email!,
             "fName": "",
             "lName": "",

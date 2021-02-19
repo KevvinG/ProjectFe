@@ -23,14 +23,14 @@ class EditUserViewController: UIViewController {
         print("Updating existing user...")
         let user = Auth.auth().currentUser
         let usersRef = db.collection("users")
-        usersRef.whereField("UID", isEqualTo: user?.uid ?? "-1")
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
                     if querySnapshot!.documents.count == 0 {
                         print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
-                        let alert = UIAlertController(title: "ERROR", message: "Your user information does not exist in the user table yet", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "ERROR", message: "Unable to fetch your user information form the table", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     } else {
