@@ -5,14 +5,24 @@
 //  Created by Jayce Merinchuk on 2021-02-13.
 //
 
+// Imports
 import UIKit
 import Firebase
 import FirebaseAuth
 
+/*------------------------------------------------------------------------
+ - Extension: SettingsViewController : UIViewController
+ - Description: Holds logic for the Main Settings Screen
+ -----------------------------------------------------------------------*/
 class SettingsViewController: UIViewController {
     
+    // Class Variables
     let db = Firestore.firestore()
 
+    /*--------------------------------------------------------------------
+     - Function: viewDidLoad()
+     - Description: Initialize some logic here if needed
+     -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -20,12 +30,19 @@ class SettingsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logOutButtonTapped))
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    /*--------------------------------------------------------------------
+     - Function: prepare()
+     - Description: Prepare any code before changing scenes.
+     -------------------------------------------------------------------*/
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
     
+    /*--------------------------------------------------------------------
+     - Function: logOutButtonTapped()
+     - Description: Creates Prompt and Logs out of Account if selected.
+     -------------------------------------------------------------------*/
     @objc func logOutButtonTapped() {
         // Set up log out action and check for errors
         let logOutAction = UIAlertAction(title: "Log Out", style: .destructive ) { action in
@@ -50,60 +67,23 @@ class SettingsViewController: UIViewController {
     }
     
     
-    
+    /*--------------------------------------------------------------------
+     - Function: editAccountBtnTapped()
+     - Description: Changes Screen to Edit Settings Story.
+     -------------------------------------------------------------------*/
     @IBAction func editAccountBtnTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToEditUser", sender: self)
     }
     
-    
+    /*--------------------------------------------------------------------
+     - Function: deleteAccountBtnTapped()
+     - Description: Prompt to delete account and redirects to Start Screen.
+     -------------------------------------------------------------------*/
     @IBAction func deleteAccountBtnTapped(_ sender: UIButton) {
         let deleteAction = UIAlertAction(title: "Delete Account", style: .destructive ) { action in
             do {
-                let user = Auth.auth().currentUser
-                user?.delete { error in
-                    if let error = error {
-                        print("There was an error getting the user: \(error)")
-                    } else {
-                        // Search for document ID and Delete it.
-                        let usersRef = self.db.collection("users")
-                        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
-                            .getDocuments() { (querySnapshot, err) in
-                                if let err = err {
-                                    print("Error getting documents: \(err)")
-                                } else {
-                                    if querySnapshot!.documents.count == 0 {
-                                        print("The user cannot be found")
-                                    } else {
-                                        print("We found the user.")
-                                        for document in querySnapshot!.documents {
-                                            print(document)
-                                            // DELETE THE USER DOCUMENT
-                                            self.db.collection("users").document(document.documentID).delete() { err in
-                                                if let err = err {
-                                                    print("Error removing the document: \(err)")
-                                                } else {
-                                                    print("Document successfully deleted.")
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                        }
-                        
-                        // Sign the User Out
-                        do {
-                            try Auth.auth().signOut()
-                        } catch let err {
-                            print("Failed to sign out with error: \(err)")
-                        }
-                        
-                        // Redirect the user to the StartViewController
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                        let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
-                        startViewController.modalPresentationStyle = .fullScreen
-                        self.present(startViewController, animated:true, completion:nil)
-                    }
-                }
+                // Show Prompt for deleting or keeping data
+                self.deleteDataPrompt()
             }
         }
         // Prompt before deleting
@@ -113,4 +93,90 @@ class SettingsViewController: UIViewController {
             deleteAccountAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(deleteAccountAlert, animated: true, completion: nil)
     }
+    
+    /*--------------------------------------------------------------------
+     - Function: deleteDataPrompt()
+     - Description: Ask if user wants to delete data too.
+     -------------------------------------------------------------------*/
+    func deleteDataPrompt() {
+        let deleteAllAction = UIAlertAction(title: "Delete All", style: .destructive ) { action in
+            do {
+                self.deleteData()
+                self.deleteAccount()
+            }
+        }
+        let deleteAccountOnlyAction = UIAlertAction(title: "Delete Account, Keep Data", style: .destructive ) { action in
+            do {
+                self.deleteAccount()
+            }
+        }
+        let msg = "Do you want to delete your data and account?"
+        let deleteDataAlert = UIAlertController(title: "Delete Data", message: msg, preferredStyle: UIAlertController.Style.alert)
+        deleteDataAlert.addAction(deleteAllAction)
+        deleteDataAlert.addAction(deleteAccountOnlyAction)
+        deleteDataAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        self.present(deleteDataAlert, animated: true, completion: nil)
+    }
+    
+    
+    /*--------------------------------------------------------------------
+     - Function: deleteAccount()
+     - Description: Logic to delete account from Firestore.
+     -------------------------------------------------------------------*/
+    func deleteAccount() {
+        let user = Auth.auth().currentUser
+        user?.delete { error in
+            if let error = error {
+                print("There was an error getting the user: \(error)")
+            } else {
+                // Sign the User Out
+                do {
+                    try Auth.auth().signOut()
+                } catch let err {
+                    print("Failed to sign out with error: \(err)")
+                }
+                
+                // Redirect the user to the StartViewController
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
+                startViewController.modalPresentationStyle = .fullScreen
+                self.present(startViewController, animated:true, completion:nil)
+            }
+        }
+    }
+    
+    
+    /*--------------------------------------------------------------------
+     - Function: deleteData()
+     - Description: Logic to delete data from Firestore.
+     -------------------------------------------------------------------*/
+    func deleteData() {
+        let user = Auth.auth().currentUser
+        let usersRef = self.db.collection("users")
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("The user cannot be found")
+                    } else {
+                        print("We found the user.")
+                        for document in querySnapshot!.documents {
+                            print(document)
+                            // DELETE THE USER DOCUMENT
+                            self.db.collection("users").document(document.documentID).delete() { err in
+                                if let err = err {
+                                    print("Error removing the document: \(err)")
+                                } else {
+                                    print("Document successfully deleted.")
+                                }
+                            }
+                        }
+                    }
+                }
+        }
+    }
+    
+    
 }

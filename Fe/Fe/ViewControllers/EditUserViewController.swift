@@ -5,20 +5,32 @@
 //  Created by Jayce Merinchuk on 2021-02-17.
 //
 
+// Imports
 import UIKit
 import Firebase
 
+/*------------------------------------------------------------------------
+ - Extension: EditUserViewController : UIViewController
+ - Description: Holds logic for the User Account Settings Screen
+ -----------------------------------------------------------------------*/
 class EditUserViewController: UIViewController {
     
+    // Class Variables
     let db = Firestore.firestore()
 
+    /*--------------------------------------------------------------------
+     - Function: viewDidLoad()
+     - Description: Initialize some logic here if needed
+     -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        
     }
     
+    /*--------------------------------------------------------------------
+     - Function: saveChangeBtnTapped()
+     - Description: Finds the user information in Firestore then updates.
+     -------------------------------------------------------------------*/
     @IBAction func saveChangesBtnTapped(_ sender: UIButton) {
         print("Updating existing user...")
         let user = Auth.auth().currentUser
@@ -44,15 +56,4 @@ class EditUserViewController: UIViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

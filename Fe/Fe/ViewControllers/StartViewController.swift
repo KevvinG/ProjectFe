@@ -5,12 +5,21 @@
 //  Created by Jayce Merinchuk on 2021-02-17.
 //
 
+// Imports
 import UIKit
 import FirebaseUI
 import GoogleSignIn
 
+/*------------------------------------------------------------------------
+ - Extension: StartViewController : UIViewController
+ - Description: Holds logic for the Main Start Screen
+ -----------------------------------------------------------------------*/
 class StartViewController: UIViewController {
 
+    /*--------------------------------------------------------------------
+     - Function: viewDidLoad()
+     - Description: Initialize some logic here if needed
+     -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -56,10 +65,10 @@ class StartViewController: UIViewController {
     }
 }
 
-/*--------------------------------------------------------------------
+/*------------------------------------------------------------------------
  - Extension: ViewController : FUIAuthDelegate
  - Description: If no errors detected, proceed to the Home Screen.
- -------------------------------------------------------------------*/
+ -----------------------------------------------------------------------*/
 extension StartViewController : FUIAuthDelegate {
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
         if error != nil {
