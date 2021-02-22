@@ -15,6 +15,7 @@ import Firebase
  -----------------------------------------------------------------------*/
 class EditUserViewController: UIViewController {
     
+    @IBOutlet weak var txtEmail: UITextField!
     // Class Variables
     let db = Firestore.firestore()
 
@@ -35,6 +36,7 @@ class EditUserViewController: UIViewController {
         print("Updating existing user...")
         let user = Auth.auth().currentUser
         let usersRef = db.collection("users")
+        let txt_email = txtEmail.text
         usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -50,6 +52,9 @@ class EditUserViewController: UIViewController {
                         for document in querySnapshot!.documents {
                             print("\(document.documentID) => \(document.data())")
                             // TODO: Update the user details here
+                            Auth.auth().currentUser?.updateEmail(to: txt_email!) { (error) in
+                                
+                            }
                         }
                     }
                 }
