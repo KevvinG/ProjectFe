@@ -15,10 +15,24 @@ import Firebase
  -----------------------------------------------------------------------*/
 class EditUserViewController: UIViewController {
     
+    @IBOutlet weak var fName: UITextField!
+    @IBOutlet weak var lName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     // Class Variables
     let db = Firestore.firestore()
 
+    @IBAction func showAlertButtonTapped() {
+
+        // create the alert
+        let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: .alert)
+
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
      - Description: Initialize some logic here if needed
@@ -33,10 +47,35 @@ class EditUserViewController: UIViewController {
      - Description: Finds the user information in Firestore then updates.
      -------------------------------------------------------------------*/
     @IBAction func saveChangesBtnTapped(_ sender: UIButton) {
-        print("Updating existing user...")
-        let user = Auth.auth().currentUser
-        let usersRef = db.collection("users")
         let txt_email = txtEmail.text
+        let first_name = fName.text
+        let last_name = lName.text
+        
+        let confirmationMessage = UIAlertController(title: "Data Confirmation", message: "New information:\nFirst name: \(first_name ?? "First Name")\nLast name: \(last_name ?? "Last Name")\nEmail: \(txt_email ?? "Email")", preferredStyle: .alert)
+        
+        let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { (action) -> Void in
+            // print("Ok button tapped")
+            self.updateUserData(first_name:first_name!, last_name:last_name!, txt_email:txt_email!)
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { (action) -> Void in
+            // print("Ok button tapped")
+        })
+        
+        confirmationMessage.addAction(confirm)
+        confirmationMessage.addAction(cancel)
+        
+        self.present(confirmationMessage, animated: true, completion: nil)
+        
+//        showAlertButtonTapped()
+
+    }
+    
+    func updateUserData(first_name: String, last_name: String, txt_email: String) {
+        print("Updating existing user...")
+        let usersRef = db.collection("users")
+        let user = Auth.auth().currentUser
+
+        
         usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -51,10 +90,18 @@ class EditUserViewController: UIViewController {
                         print("Code here to update user in table")
                         for document in querySnapshot!.documents {
                             print("\(document.documentID) => \(document.data())")
+                            let ref = document.reference
                             // TODO: Update the user details here
-                            Auth.auth().currentUser?.updateEmail(to: txt_email!) { (error) in
+                            
+                            Auth.auth().currentUser?.updateEmail(to: txt_email) { (error) in
                                 
                             }
+                            
+                            ref.updateData([
+                                "fName": first_name,
+                                "lName": last_name,
+                                "email": txt_email
+                            ]);
                         }
                     }
                 }

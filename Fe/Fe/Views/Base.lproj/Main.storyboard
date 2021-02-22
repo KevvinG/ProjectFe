@@ -250,6 +250,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Edit Account Details" id="5vp-pR-dV0"/>
                     <connections>
+                        <outlet property="fName" destination="HR2-wA-1Jn" id="fKy-Ip-wcZ"/>
+                        <outlet property="lName" destination="nZK-SO-Xgq" id="gAP-ld-E2R"/>
                         <outlet property="txtEmail" destination="yiZ-dF-kUu" id="6En-Yw-TAo"/>
                     </connections>
                 </viewController>
