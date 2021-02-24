@@ -35,6 +35,15 @@
 		CE69A27125D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE69A27225D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE69A27325D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
+		EF97E99925E6F3760050F8B5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99725E6F3760050F8B5 /* Interface.storyboard */; };
+		EF97E99B25E6F37A0050F8B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99A25E6F37A0050F8B5 /* Assets.xcassets */; };
+		EF97E9A225E6F37A0050F8B5 /* Fe-Mini Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EF97E9A125E6F37A0050F8B5 /* Fe-Mini Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EF97E9A725E6F37A0050F8B5 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF97E9A625E6F37A0050F8B5 /* InterfaceController.swift */; };
+		EF97E9A925E6F37A0050F8B5 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF97E9A825E6F37A0050F8B5 /* ExtensionDelegate.swift */; };
+		EF97E9AB25E6F37A0050F8B5 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF97E9AA25E6F37A0050F8B5 /* NotificationController.swift */; };
+		EF97E9AD25E6F37A0050F8B5 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF97E9AC25E6F37A0050F8B5 /* ComplicationController.swift */; };
+		EF97E9AF25E6F37C0050F8B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF97E9AE25E6F37C0050F8B5 /* Assets.xcassets */; };
+		EF97E9B425E6F37C0050F8B5 /* Fe-Mini.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = EF97E99525E6F3760050F8B5 /* Fe-Mini.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F163FE6356C9E5C94B56C640 /* Pods_Fe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83804697FA3E96F445B2ED93 /* Pods_Fe.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +62,46 @@
 			remoteGlobalIDString = CE01C2D425D438D100A08E2D;
 			remoteInfo = Fe;
 		};
+		EF97E9A325E6F37A0050F8B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE01C2CD25D438D100A08E2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF97E9A025E6F37A0050F8B5;
+			remoteInfo = "Fe-Mini Extension";
+		};
+		EF97E9B225E6F37C0050F8B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE01C2CD25D438D100A08E2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF97E99425E6F3760050F8B5;
+			remoteInfo = "Fe-Mini";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EF97E9B525E6F37C0050F8B5 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				EF97E9B425E6F37C0050F8B5 /* Fe-Mini.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF97E9B825E6F37C0050F8B5 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EF97E9A225E6F37A0050F8B5 /* Fe-Mini Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2AE1ED544E1B77FC1A25C215 /* Pods-Fe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fe.release.xcconfig"; path = "Target Support Files/Pods-Fe/Pods-Fe.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +134,18 @@
 		CE62B1FD25DDEF6100AA9665 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CE69A27025D831A5009E87CB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF97E99525E6F3760050F8B5 /* Fe-Mini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fe-Mini.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF97E99825E6F3760050F8B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		EF97E99A25E6F37A0050F8B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF97E99C25E6F37A0050F8B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF97E9A125E6F37A0050F8B5 /* Fe-Mini Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Fe-Mini Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF97E9A625E6F37A0050F8B5 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		EF97E9A825E6F37A0050F8B5 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		EF97E9AA25E6F37A0050F8B5 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		EF97E9AC25E6F37A0050F8B5 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		EF97E9AE25E6F37C0050F8B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF97E9B025E6F37C0050F8B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF97E9B125E6F37C0050F8B5 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +173,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EF97E99E25E6F37A0050F8B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -132,6 +199,8 @@
 				CE01C2D725D438D100A08E2D /* Fe */,
 				CE01C2F125D438D100A08E2D /* FeTests */,
 				CE01C2FC25D438D100A08E2D /* FeUITests */,
+				EF97E99625E6F3760050F8B5 /* Fe-Mini */,
+				EF97E9A525E6F37A0050F8B5 /* Fe-Mini Extension */,
 				CE01C2D625D438D100A08E2D /* Products */,
 				D208A80E127F4FAB0E75EF2A /* Pods */,
 				946FFA5C58D265C4D806C469 /* Frameworks */,
@@ -144,6 +213,8 @@
 				CE01C2D525D438D100A08E2D /* Fe.app */,
 				CE01C2EE25D438D100A08E2D /* FeTests.xctest */,
 				CE01C2F925D438D100A08E2D /* FeUITests.xctest */,
+				EF97E99525E6F3760050F8B5 /* Fe-Mini.app */,
+				EF97E9A125E6F37A0050F8B5 /* Fe-Mini Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,6 +295,30 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EF97E99625E6F3760050F8B5 /* Fe-Mini */ = {
+			isa = PBXGroup;
+			children = (
+				EF97E99725E6F3760050F8B5 /* Interface.storyboard */,
+				EF97E99A25E6F37A0050F8B5 /* Assets.xcassets */,
+				EF97E99C25E6F37A0050F8B5 /* Info.plist */,
+			);
+			path = "Fe-Mini";
+			sourceTree = "<group>";
+		};
+		EF97E9A525E6F37A0050F8B5 /* Fe-Mini Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EF97E9A625E6F37A0050F8B5 /* InterfaceController.swift */,
+				EF97E9A825E6F37A0050F8B5 /* ExtensionDelegate.swift */,
+				EF97E9AA25E6F37A0050F8B5 /* NotificationController.swift */,
+				EF97E9AC25E6F37A0050F8B5 /* ComplicationController.swift */,
+				EF97E9AE25E6F37C0050F8B5 /* Assets.xcassets */,
+				EF97E9B025E6F37C0050F8B5 /* Info.plist */,
+				EF97E9B125E6F37C0050F8B5 /* PushNotificationPayload.apns */,
+			);
+			path = "Fe-Mini Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -237,10 +332,12 @@
 				CE01C2D325D438D100A08E2D /* Resources */,
 				8D6E69CF2B3A7E7238397643 /* [CP] Embed Pods Frameworks */,
 				2275866A48707D7514E394DC /* [CP] Copy Pods Resources */,
+				EF97E9B525E6F37C0050F8B5 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EF97E9B325E6F37C0050F8B5 /* PBXTargetDependency */,
 			);
 			name = Fe;
 			productName = Fe;
@@ -287,6 +384,40 @@
 			productReference = CE01C2F925D438D100A08E2D /* FeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		EF97E99425E6F3760050F8B5 /* Fe-Mini */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF97E9BC25E6F37C0050F8B5 /* Build configuration list for PBXNativeTarget "Fe-Mini" */;
+			buildPhases = (
+				EF97E99325E6F3760050F8B5 /* Resources */,
+				EF97E9B825E6F37C0050F8B5 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF97E9A425E6F37A0050F8B5 /* PBXTargetDependency */,
+			);
+			name = "Fe-Mini";
+			productName = "Fe-Mini";
+			productReference = EF97E99525E6F3760050F8B5 /* Fe-Mini.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		EF97E9A025E6F37A0050F8B5 /* Fe-Mini Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF97E9BB25E6F37C0050F8B5 /* Build configuration list for PBXNativeTarget "Fe-Mini Extension" */;
+			buildPhases = (
+				EF97E99D25E6F37A0050F8B5 /* Sources */,
+				EF97E99E25E6F37A0050F8B5 /* Frameworks */,
+				EF97E99F25E6F37A0050F8B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fe-Mini Extension";
+			productName = "Fe-Mini Extension";
+			productReference = EF97E9A125E6F37A0050F8B5 /* Fe-Mini Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -307,6 +438,12 @@
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = CE01C2D425D438D100A08E2D;
 					};
+					EF97E99425E6F3760050F8B5 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					EF97E9A025E6F37A0050F8B5 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 				};
 			};
 			buildConfigurationList = CE01C2D025D438D100A08E2D /* Build configuration list for PBXProject "Fe" */;
@@ -325,6 +462,8 @@
 				CE01C2D425D438D100A08E2D /* Fe */,
 				CE01C2ED25D438D100A08E2D /* FeTests */,
 				CE01C2F825D438D100A08E2D /* FeUITests */,
+				EF97E99425E6F3760050F8B5 /* Fe-Mini */,
+				EF97E9A025E6F37A0050F8B5 /* Fe-Mini Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -354,6 +493,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE01C31125D4576700A08E2D /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF97E99325E6F3760050F8B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF97E99B25E6F37A0050F8B5 /* Assets.xcassets in Resources */,
+				EF97E99925E6F3760050F8B5 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF97E99F25E6F37A0050F8B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF97E9AF25E6F37C0050F8B5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +694,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EF97E99D25E6F37A0050F8B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF97E9AB25E6F37A0050F8B5 /* NotificationController.swift in Sources */,
+				EF97E9AD25E6F37A0050F8B5 /* ComplicationController.swift in Sources */,
+				EF97E9A925E6F37A0050F8B5 /* ExtensionDelegate.swift in Sources */,
+				EF97E9A725E6F37A0050F8B5 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -550,6 +717,16 @@
 			isa = PBXTargetDependency;
 			target = CE01C2D425D438D100A08E2D /* Fe */;
 			targetProxy = CE01C2FA25D438D100A08E2D /* PBXContainerItemProxy */;
+		};
+		EF97E9A425E6F37A0050F8B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF97E9A025E6F37A0050F8B5 /* Fe-Mini Extension */;
+			targetProxy = EF97E9A325E6F37A0050F8B5 /* PBXContainerItemProxy */;
+		};
+		EF97E9B325E6F37C0050F8B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF97E99425E6F3760050F8B5 /* Fe-Mini */;
+			targetProxy = EF97E9B225E6F37C0050F8B5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -568,6 +745,14 @@
 				CE01C2E725D438D100A08E2D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		EF97E99725E6F3760050F8B5 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF97E99825E6F3760050F8B5 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -821,6 +1006,90 @@
 			};
 			name = Release;
 		};
+		EF97E9B625E6F37C0050F8B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X46PTT568J;
+				IBSC_MODULE = Fe_Mini_Extension;
+				INFOPLIST_FILE = "Fe-Mini/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		EF97E9B725E6F37C0050F8B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X46PTT568J;
+				IBSC_MODULE = Fe_Mini_Extension;
+				INFOPLIST_FILE = "Fe-Mini/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+		EF97E9B925E6F37C0050F8B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7R65VE73FD;
+				INFOPLIST_FILE = "Fe-Mini Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		EF97E9BA25E6F37C0050F8B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7R65VE73FD;
+				INFOPLIST_FILE = "Fe-Mini Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -856,6 +1125,24 @@
 			buildConfigurations = (
 				CE01C30925D438D100A08E2D /* Debug */,
 				CE01C30A25D438D100A08E2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF97E9BB25E6F37C0050F8B5 /* Build configuration list for PBXNativeTarget "Fe-Mini Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF97E9B925E6F37C0050F8B5 /* Debug */,
+				EF97E9BA25E6F37C0050F8B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF97E9BC25E6F37C0050F8B5 /* Build configuration list for PBXNativeTarget "Fe-Mini" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF97E9B625E6F37C0050F8B5 /* Debug */,
+				EF97E9B725E6F37C0050F8B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
