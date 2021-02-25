@@ -115,14 +115,12 @@ class SensorCustomButton : UIButton {
      -------------------------------------------------------------------*/
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         /*
          [     title      ]
          [     image      ]
          [    current     ]
          [    average     ]
          */
-        
         sensorTitleLabel.frame = CGRect(x:0, y:-20, width: frame.width, height: (frame.height/2)).integral
         sensorImage.frame = CGRect(x:50, y:40, width: 50, height: 50 ).integral
         sensorCurrentLabel.frame = CGRect(x:0, y:95, width: frame.width, height: (frame.height)/4).integral
@@ -141,4 +139,3 @@ struct SensorCustomButtonViewModel {
     let averageSubtitle : String
     let imageName : String
 }
-

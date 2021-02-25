@@ -14,37 +14,24 @@ import Firebase
  - Class: HomeViewController : UIViewController, UITableViewDataSource
  - Description: Holds logic for the the User Home Screen
  -----------------------------------------------------------------------*/
-class HomeViewController: UIViewController, UITableViewDataSource {
+class HomeViewController: UIViewController {
     
-    // Class Variables
-    let data = ["HR", "BldOx", "Alt", "ViewDoc", "CheckSymp", "UploadDoc"]
-    @IBOutlet var table : UITableView!
-    
-    /*--------------------------------------------------------------------
-     - Function: tableView(number of rows)
-     - Description: Initialize some logic here if needed
-     -------------------------------------------------------------------*/
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+    func sensorButton(mainTitle: String, currentSubtitle: String, averageSubtitle: String, imageName: String) -> SensorCustomButton {
+        let button = SensorCustomButton(frame: CGRect(x:0, y:0, width:150, height:150))
+        button.addTarget(self, action: #selector(heartRateBtnTapped), for: .touchUpInside)
+        return button
     }
-    
-    /*--------------------------------------------------------------------
-     - Function: tableview(cellforRowAt)
-     - Description: creates and configures the cell
-     -------------------------------------------------------------------*/
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identfier, for: indexPath) as! HomeTableViewCell
-        cell.configure(with: data[indexPath.row])
-        cell.delegate = self
-        return cell
-    }
-    
+
     // Set up button on screen. To be removed.
     private let hrbutton : SensorCustomButton = {
         let button = SensorCustomButton(frame: CGRect(x:0, y:0, width:150, height:150))
-        button.isUserInteractionEnabled = true
+        button.addTarget(self, action: #selector(heartRateBtnTapped), for: .touchUpInside)
         return button
     }()
+    
+    @objc func heartRateBtnTapped(sender: UIButton!) {
+        print("Tapped")
+    }
     
     // Class Variables
     let db = Firestore.firestore()
@@ -55,18 +42,26 @@ class HomeViewController: UIViewController, UITableViewDataSource {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        table.register(HomeTableViewCell.nib(), forCellReuseIdentifier: HomeTableViewCell.identfier)
-        table.dataSource = self
         self.checkIfNewUser() // Add User to Firebase Table if New
         
         // Create Custom button
-        let viewModel = SensorCustomButtonViewModel(mainTitle: "Heart Rate", currentSubtitle: "Current: 75 BPM", averageSubtitle: "Average: 82 BPM", imageName: "cart")
-        let hrButton = SensorCustomButton(with: viewModel)
-        hrButton.frame = CGRect(x:0, y:0, width:200, height:200)
+        let vmHrBtn = SensorCustomButtonViewModel(mainTitle: "Heart Rate", currentSubtitle: "Current: 75 BPM", averageSubtitle: "Average: 82 BPM", imageName: "heart")
         view.addSubview(hrbutton)
         hrbutton.center = view.center
-        hrButton.layer.cornerRadius = 10
-        hrbutton.configure(with: viewModel)
+        hrbutton.configure(with: vmHrBtn)
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: createButton()
+     - Description: Prepare any code before changing scenes.
+     -------------------------------------------------------------------*/
+    func createButton(buttonName: String, title: String, currentSubtitle: String, averageSubtitle: String, imageName: String) {
+        let viewModel = SensorCustomButtonViewModel(mainTitle: title, currentSubtitle: currentSubtitle, averageSubtitle: averageSubtitle, imageName: imageName)
+        let buttonName = SensorCustomButton(with: viewModel)
+        buttonName.frame = CGRect(x:0, y:0, width:200, height:200)
+        view.addSubview(buttonName)
+        buttonName.layer.cornerRadius = 10
+        buttonName.configure(with: viewModel)
     }
     
     /*--------------------------------------------------------------------
@@ -127,20 +122,4 @@ class HomeViewController: UIViewController, UITableViewDataSource {
             }
         }
     }
-}
-
-/*------------------------------------------------------------------------
- - Extension: HomeViewController : HomeTableViewCellDelegate
- - Description: Decides which function to call based on Cell Tapped
- -----------------------------------------------------------------------*/
-extension HomeViewController : HomeTableViewCellDelegate {
-    func didTapButton(with title: String) {
-        print("\(title)")
-    }
-    // If title == HR, segue
-    // If title == Alt, segue
-    // If title == BldOx, segue
-    // If title == Docs, segue
-    // If title == upload, segue
-    // If title == moreInf, segue
 }
