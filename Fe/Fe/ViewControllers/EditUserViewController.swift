@@ -21,17 +21,6 @@ class EditUserViewController: UIViewController {
     // Class Variables
     let db = Firestore.firestore()
 
-    @IBAction func showAlertButtonTapped() {
-
-        // create the alert
-        let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: .alert)
-
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
-    }
     
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()

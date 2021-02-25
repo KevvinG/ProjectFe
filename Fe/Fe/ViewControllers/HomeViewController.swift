@@ -9,11 +9,35 @@
 import UIKit
 import Firebase
 
+
 /*------------------------------------------------------------------------
  - Extension: HomeViewController : UIViewController
  - Description: Holds logic for the the User Home Screen
  -----------------------------------------------------------------------*/
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDataSource {
+    
+    @IBOutlet var table : UITableView!
+    
+    let data = ["HR", "BldOx", "Alt", "ViewDoc", "CheckSymp", "UploadDoc"]
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identfier, for: indexPath) as! HomeTableViewCell
+        cell.configure(with: data[indexPath.row])
+        cell.delegate = self
+        return cell
+    }
+    
+    
+    private let hrbutton : SensorCustomButton = {
+        let button = SensorCustomButton(frame: CGRect(x:0, y:0, width:150, height:150))
+        button.backgroundColor = .systemGray
+        button.isUserInteractionEnabled = true
+        return button
+    }()
     
     // Class Variables
     let db = Firestore.firestore()
@@ -24,7 +48,17 @@ class HomeViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        table.register(HomeTableViewCell.nib(), forCellReuseIdentifier: HomeTableViewCell.identfier)
+        table.dataSource = self
         self.checkIfNewUser() // Add User to Firebase Table if New
+        
+        // Create Custom button
+        let viewModel = SensorCustomButtonViewModel(mainTitle: "Heart Rate", currentSubtitle: "Current: 75 BPM", averageSubtitle: "Average: 82 BPM", imageName: "cart")
+        let hrButton = SensorCustomButton(with: viewModel)
+        hrButton.frame = CGRect(x:0, y:0, width:200, height:200)
+        view.addSubview(hrbutton)
+        hrbutton.center = view.center
+        hrbutton.configure(with: viewModel)
     }
     
     /*--------------------------------------------------------------------
@@ -85,4 +119,17 @@ class HomeViewController: UIViewController {
             }
         }
     }
+}
+
+
+extension HomeViewController : HomeTableViewCellDelegate {
+    func didTapButton(with title: String) {
+        print("\(title)")
+    }
+    // If title == HR, segue
+    // If title == Alt, segue
+    // If title == BldOx, segue
+    // If title == Docs, segue
+    // If title == upload, segue
+    // If title == moreInf, segue
 }
