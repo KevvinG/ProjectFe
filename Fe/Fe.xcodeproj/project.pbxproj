@@ -42,6 +42,10 @@
 		CE62B27125E83B0700AA9665 /* SensorButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE62B26F25E83B0700AA9665 /* SensorButton.xib */; };
 		CE62B27225E83B0700AA9665 /* SensorButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE62B26F25E83B0700AA9665 /* SensorButton.xib */; };
 		CE62B28825E84F5C00AA9665 /* WebMoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B28725E84F5C00AA9665 /* WebMoreInfoViewController.swift */; };
+		CE62B28F25E8521900AA9665 /* Symptom1DizzyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B28E25E8521900AA9665 /* Symptom1DizzyViewController.swift */; };
+		CE62B2A125E8566100AA9665 /* Symptom2BreathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2A025E8566100AA9665 /* Symptom2BreathViewController.swift */; };
+		CE62B2A825E856B800AA9665 /* CallDoctorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2A725E856B800AA9665 /* CallDoctorViewController.swift */; };
+		CE62B2AF25E856CE00AA9665 /* AOKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2AE25E856CE00AA9665 /* AOKViewController.swift */; };
 		CE69A27125D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE69A27225D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE69A27325D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
@@ -146,6 +150,10 @@
 		CE62B26425E8395B00AA9665 /* SensorButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorButtonView.swift; sourceTree = "<group>"; };
 		CE62B26F25E83B0700AA9665 /* SensorButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorButton.xib; sourceTree = "<group>"; };
 		CE62B28725E84F5C00AA9665 /* WebMoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMoreInfoViewController.swift; sourceTree = "<group>"; };
+		CE62B28E25E8521900AA9665 /* Symptom1DizzyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptom1DizzyViewController.swift; sourceTree = "<group>"; };
+		CE62B2A025E8566100AA9665 /* Symptom2BreathViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptom2BreathViewController.swift; sourceTree = "<group>"; };
+		CE62B2A725E856B800AA9665 /* CallDoctorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDoctorViewController.swift; sourceTree = "<group>"; };
+		CE62B2AE25E856CE00AA9665 /* AOKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AOKViewController.swift; sourceTree = "<group>"; };
 		CE69A27025D831A5009E87CB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF97E99525E6F3760050F8B5 /* Fe-Mini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fe-Mini.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -285,9 +293,21 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		CE62B29525E8522200AA9665 /* SymptomVCs */ = {
+			isa = PBXGroup;
+			children = (
+				CE62B28E25E8521900AA9665 /* Symptom1DizzyViewController.swift */,
+				CE62B2A025E8566100AA9665 /* Symptom2BreathViewController.swift */,
+				CE62B2A725E856B800AA9665 /* CallDoctorViewController.swift */,
+				CE62B2AE25E856CE00AA9665 /* AOKViewController.swift */,
+			);
+			path = SymptomVCs;
+			sourceTree = "<group>";
+		};
 		CE69A26725D81F4A009E87CB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE62B29525E8522200AA9665 /* SymptomVCs */,
 				CE62AF1225DD6B0400AA9665 /* StartViewController.swift */,
 				CE69A27025D831A5009E87CB /* HomeViewController.swift */,
 				CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */,
@@ -695,6 +715,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE69A27125D831A5009E87CB /* HomeViewController.swift in Sources */,
+				CE62B2AF25E856CE00AA9665 /* AOKViewController.swift in Sources */,
+				CE62B2A825E856B800AA9665 /* CallDoctorViewController.swift in Sources */,
 				CE62AF1325DD6B0400AA9665 /* StartViewController.swift in Sources */,
 				CE01C2D925D438D100A08E2D /* AppDelegate.swift in Sources */,
 				CE62B28825E84F5C00AA9665 /* WebMoreInfoViewController.swift in Sources */,
@@ -703,8 +725,10 @@
 				CE62B1FE25DDEF6100AA9665 /* User.swift in Sources */,
 				CE01C2DB25D438D100A08E2D /* SceneDelegate.swift in Sources */,
 				CE62B25525E72C8100AA9665 /* SensorCustomButton.swift in Sources */,
+				CE62B28F25E8521900AA9665 /* Symptom1DizzyViewController.swift in Sources */,
 				CE62AF2225DDC13600AA9665 /* EditUserViewController.swift in Sources */,
 				CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
+				CE62B2A125E8566100AA9665 /* Symptom2BreathViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

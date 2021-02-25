@@ -148,7 +148,7 @@ class HomeViewController: UIViewController {
      - Description: Segue to symptom Checking view
      -------------------------------------------------------------------*/
     @IBAction func checkSymptomsBtnTapped(_ sender: UIButton) {
-       
+        performSegue(withIdentifier: "GoToSymptomDizzy", sender: self)
     }
     
     /*--------------------------------------------------------------------
