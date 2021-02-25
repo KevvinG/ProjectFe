@@ -148,6 +148,15 @@ class HomeViewController: UIViewController {
      - Description: Segue to symptom Checking view
      -------------------------------------------------------------------*/
     @IBAction func checkSymptomsBtnTapped(_ sender: UIButton) {
+       
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: moreInformationBtnTapped()
+     - Description: Segue to more Information Webpage
+     -------------------------------------------------------------------*/
+    @IBAction func moreInformationBtnTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToMoreInfoScreen", sender: self)
     }
+    
 }

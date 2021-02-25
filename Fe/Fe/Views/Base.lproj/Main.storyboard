@@ -108,6 +108,9 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="moreInformationBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="oU7-6C-CJT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6VP-Br-cD4">
                                 <rect key="frame" x="40" y="211" width="150" height="150"/>
