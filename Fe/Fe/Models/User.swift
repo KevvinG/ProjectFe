@@ -5,10 +5,15 @@
 //  Created by Jayce Merinchuk on 2021-02-17.
 //
 
+// Imports
 import Foundation
 
+/*------------------------------------------------------------------------
+ - Struct: User : Codable
+ - Description: For use when fetching Users from Firestore
+ -----------------------------------------------------------------------*/
 public struct User : Codable {
-    let UID : String?
+    let uid : String?
     let email : String?
     let fName : String?
     let lName : String?

@@ -15,9 +15,11 @@ import Firebase
  -----------------------------------------------------------------------*/
 class EditUserViewController: UIViewController {
     
+    // UI Interactions
     @IBOutlet weak var fName: UITextField!
     @IBOutlet weak var lName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
+    
     // Class Variables
     let db = Firestore.firestore()
 
@@ -54,11 +56,12 @@ class EditUserViewController: UIViewController {
         confirmationMessage.addAction(cancel)
         
         self.present(confirmationMessage, animated: true, completion: nil)
-        
-//        showAlertButtonTapped()
-
     }
     
+    /*--------------------------------------------------------------------
+     - Function:updateUserData()
+     - Description: Gets user from Firestore using email and updates data.
+     -------------------------------------------------------------------*/
     func updateUserData(first_name: String, last_name: String, txt_email: String) {
         print("Updating existing user...")
         let usersRef = db.collection("users")

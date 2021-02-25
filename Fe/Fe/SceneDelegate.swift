@@ -5,6 +5,7 @@
 //  Created by Jayce Merinchuk on 2021-02-10.
 //
 
+// Imports
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

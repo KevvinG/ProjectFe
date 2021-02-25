@@ -11,19 +11,27 @@ import Firebase
 
 
 /*------------------------------------------------------------------------
- - Extension: HomeViewController : UIViewController
+ - Class: HomeViewController : UIViewController, UITableViewDataSource
  - Description: Holds logic for the the User Home Screen
  -----------------------------------------------------------------------*/
 class HomeViewController: UIViewController, UITableViewDataSource {
     
+    // Class Variables
+    let data = ["HR", "BldOx", "Alt", "ViewDoc", "CheckSymp", "UploadDoc"]
     @IBOutlet var table : UITableView!
     
-    let data = ["HR", "BldOx", "Alt", "ViewDoc", "CheckSymp", "UploadDoc"]
-    
+    /*--------------------------------------------------------------------
+     - Function: tableView(number of rows)
+     - Description: Initialize some logic here if needed
+     -------------------------------------------------------------------*/
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
+    /*--------------------------------------------------------------------
+     - Function: tableview(cellforRowAt)
+     - Description: creates and configures the cell
+     -------------------------------------------------------------------*/
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identfier, for: indexPath) as! HomeTableViewCell
         cell.configure(with: data[indexPath.row])
@@ -31,10 +39,9 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
-    
+    // Set up button on screen. To be removed.
     private let hrbutton : SensorCustomButton = {
         let button = SensorCustomButton(frame: CGRect(x:0, y:0, width:150, height:150))
-        button.backgroundColor = .systemGray
         button.isUserInteractionEnabled = true
         return button
     }()
@@ -58,6 +65,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         hrButton.frame = CGRect(x:0, y:0, width:200, height:200)
         view.addSubview(hrbutton)
         hrbutton.center = view.center
+        hrButton.layer.cornerRadius = 10
         hrbutton.configure(with: viewModel)
     }
     
@@ -121,7 +129,10 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     }
 }
 
-
+/*------------------------------------------------------------------------
+ - Extension: HomeViewController : HomeTableViewCellDelegate
+ - Description: Decides which function to call based on Cell Tapped
+ -----------------------------------------------------------------------*/
 extension HomeViewController : HomeTableViewCellDelegate {
     func didTapButton(with title: String) {
         print("\(title)")
