@@ -15,23 +15,17 @@ import Firebase
  - Description: Holds logic for the the User Home Screen
  -----------------------------------------------------------------------*/
 class HomeViewController: UIViewController {
-    
-    func sensorButton(mainTitle: String, currentSubtitle: String, averageSubtitle: String, imageName: String) -> SensorCustomButton {
-        let button = SensorCustomButton(frame: CGRect(x:0, y:0, width:150, height:150))
-        button.addTarget(self, action: #selector(heartRateBtnTapped), for: .touchUpInside)
-        return button
-    }
 
     // Set up button on screen. To be removed.
-    private let hrbutton : SensorCustomButton = {
-        let button = SensorCustomButton(frame: CGRect(x:0, y:0, width:150, height:150))
-        button.addTarget(self, action: #selector(heartRateBtnTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    @objc func heartRateBtnTapped(sender: UIButton!) {
-        print("Tapped")
-    }
+//    private let hrbutton : SensorCustomButton = {
+//        let button = SensorCustomButton(frame: CGRect(x:0, y:0, width:150, height:150))
+//        button.addTarget(self, action: #selector(heartRateBtnTapped), for: .touchUpInside)
+//        return button
+//    }()
+//
+//    @objc func heartRateBtnTapped(sender: UIButton!) {
+//        print("Tapped")
+//    }
     
     // Class Variables
     let db = Firestore.firestore()
@@ -45,23 +39,9 @@ class HomeViewController: UIViewController {
         self.checkIfNewUser() // Add User to Firebase Table if New
         
         // Create Custom button
-        let vmHrBtn = SensorCustomButtonViewModel(mainTitle: "Heart Rate", currentSubtitle: "Current: 75 BPM", averageSubtitle: "Average: 82 BPM", imageName: "heart")
-        view.addSubview(hrbutton)
-        hrbutton.center = view.center
-        hrbutton.configure(with: vmHrBtn)
-    }
-    
-    /*--------------------------------------------------------------------
-     - Function: createButton()
-     - Description: Prepare any code before changing scenes.
-     -------------------------------------------------------------------*/
-    func createButton(buttonName: String, title: String, currentSubtitle: String, averageSubtitle: String, imageName: String) {
-        let viewModel = SensorCustomButtonViewModel(mainTitle: title, currentSubtitle: currentSubtitle, averageSubtitle: averageSubtitle, imageName: imageName)
-        let buttonName = SensorCustomButton(with: viewModel)
-        buttonName.frame = CGRect(x:0, y:0, width:200, height:200)
-        view.addSubview(buttonName)
-        buttonName.layer.cornerRadius = 10
-        buttonName.configure(with: viewModel)
+//        let vmHrBtn = SensorCustomButton(mainTitle: "Heart Rate", currentSubtitle: "Current: 75 BPM", averageSubtitle: "Average: 82 BPM", imageName: "heart")
+//        view.addSubview(hrbutton)
+//        hrbutton.center = view.center
     }
     
     /*--------------------------------------------------------------------
@@ -121,5 +101,53 @@ class HomeViewController: UIViewController {
                 print("Document added with ID: \(ref!.documentID)")
             }
         }
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: heartRateBtnTapped()
+     - Description: Segue to heartRate Data View
+     -------------------------------------------------------------------*/
+    @IBAction func heartRateBtnTapped(_ sender: UIButton) {
+        
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: bloodOxygenBtnTapped()
+     - Description: Segue to blood oxygen Data View
+     -------------------------------------------------------------------*/
+    @IBAction func bloodOxygenBtnTapped(_ sender: UIButton) {
+        
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: altitudeBtnTapped()
+     - Description: Segue to altitude Data View
+     -------------------------------------------------------------------*/
+    @IBAction func altitudeBtnTapped(_ sender: UIButton) {
+        
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: viewDocumentsBtnTapped()
+     - Description: Segue to viewDocuments table View
+     -------------------------------------------------------------------*/
+    @IBAction func viewDocumentsBtnTapped(_ sender: UIButton) {
+        
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: uploadDocumentBtnTapped()
+     - Description: Segue to upload document view
+     -------------------------------------------------------------------*/
+    @IBAction func uploadDocumentBtnTapped(_ sender: UIButton) {
+        
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: checkSymptomsBtnTapped()
+     - Description: Segue to symptom Checking view
+     -------------------------------------------------------------------*/
+    @IBAction func checkSymptomsBtnTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToMoreInfoScreen", sender: self)
     }
 }

@@ -9,6 +9,56 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Web More Info View Controller-->
+        <scene sceneID="VfC-sh-eCA">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="yw4-UD-Z7u" customClass="WebMoreInfoViewController" customModule="Fe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lLL-KU-1HD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhl-da-fLZ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="O2n-MP-OBh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rhl-da-fLZ" firstAttribute="leading" secondItem="O2n-MP-OBh" secondAttribute="leading" id="0fy-ne-Qas"/>
+                            <constraint firstItem="O2n-MP-OBh" firstAttribute="bottom" secondItem="rhl-da-fLZ" secondAttribute="bottom" id="SFB-Ij-RY6"/>
+                            <constraint firstItem="rhl-da-fLZ" firstAttribute="top" secondItem="O2n-MP-OBh" secondAttribute="top" id="T8h-TL-7Le"/>
+                            <constraint firstItem="O2n-MP-OBh" firstAttribute="trailing" secondItem="rhl-da-fLZ" secondAttribute="trailing" id="zhf-qb-7WS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dBU-ou-88Z"/>
+                    <connections>
+                        <outlet property="mWebView" destination="rhl-da-fLZ" id="tzl-X3-HJb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Xo-ua-XF6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-887" y="-1294"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2J9-tJ-dEl">
+            <objects>
+                <viewController id="nvo-d2-GEQ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7kO-Ym-X0q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="UUS-6a-QAf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vJZ-IL-wf2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="19" y="-1294"/>
+        </scene>
         <!--Home-->
         <scene sceneID="b4l-VF-5Bm">
             <objects>
@@ -59,23 +109,164 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6VP-Br-cD4">
+                                <rect key="frame" x="40" y="211" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="C5E-dQ-wiB"/>
+                                    <constraint firstAttribute="height" constant="150" id="G4u-dl-q5U"/>
+                                </constraints>
+                                <state key="normal" title="Heart Rate"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="heartRateBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="Wq5-89-E0H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1h-0b-cpE">
+                                <rect key="frame" x="224" y="211" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Et9-fF-tR1"/>
+                                    <constraint firstAttribute="width" constant="150" id="puf-Ge-BsC"/>
+                                </constraints>
+                                <state key="normal" title="Blood Oxygen"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="bloodOxygenBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="fho-bN-BMG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfR-rk-Ple">
+                                <rect key="frame" x="40" y="381" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="8cA-ou-30I"/>
+                                    <constraint firstAttribute="width" constant="150" id="uhb-Tj-Jg8"/>
+                                </constraints>
+                                <state key="normal" title="Altitude"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="altitudeBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="MKc-Te-dAS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBz-Up-6KM">
+                                <rect key="frame" x="224" y="381" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="5oE-E2-JFS"/>
+                                    <constraint firstAttribute="height" constant="150" id="nNI-oc-AEz"/>
+                                </constraints>
+                                <state key="normal" title="View Documents"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="viewDocumentsBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="DE2-9m-5AD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYN-IO-QJS">
+                                <rect key="frame" x="40" y="551" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Tg7-iP-Fru"/>
+                                    <constraint firstAttribute="height" constant="150" id="azT-lP-vjM"/>
+                                </constraints>
+                                <state key="normal" title="Check Symptoms"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="checkSymptomsBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="hfh-yb-B9l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYT-yX-mHA">
+                                <rect key="frame" x="224" y="551" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="aNW-1W-8c6"/>
+                                    <constraint firstAttribute="width" constant="150" id="hI7-FU-DCE"/>
+                                </constraints>
+                                <state key="normal" title="Upload Documents"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="uploadDocumentBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="fb9-Dw-eFV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g4e-BK-ogr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="g4e-BK-ogr" firstAttribute="trailing" secondItem="Ism-hU-Zbv" secondAttribute="trailing" constant="10" id="37V-Iq-HdH"/>
+                            <constraint firstItem="g4e-BK-ogr" firstAttribute="trailing" secondItem="yYT-yX-mHA" secondAttribute="trailing" constant="40" id="3W8-Yt-GXE"/>
+                            <constraint firstItem="nYN-IO-QJS" firstAttribute="top" secondItem="FfR-rk-Ple" secondAttribute="bottom" constant="20" id="4cG-UO-z3E"/>
+                            <constraint firstItem="6VP-Br-cD4" firstAttribute="top" secondItem="9ua-ya-1dQ" secondAttribute="bottom" constant="50" id="6Y8-hq-JDp"/>
                             <constraint firstItem="9ua-ya-1dQ" firstAttribute="leading" secondItem="g4e-BK-ogr" secondAttribute="leading" constant="10" id="8HU-gJ-BVl"/>
+                            <constraint firstItem="FfR-rk-Ple" firstAttribute="top" secondItem="6VP-Br-cD4" secondAttribute="bottom" constant="20" id="INk-LN-FY8"/>
+                            <constraint firstItem="yYT-yX-mHA" firstAttribute="top" secondItem="XBz-Up-6KM" secondAttribute="bottom" constant="20" id="L2s-Xd-FXU"/>
+                            <constraint firstItem="g4e-BK-ogr" firstAttribute="trailing" secondItem="V1h-0b-cpE" secondAttribute="trailing" constant="40" id="N5X-If-6WR"/>
                             <constraint firstItem="d0Q-L7-uuz" firstAttribute="top" secondItem="g4e-BK-ogr" secondAttribute="top" constant="10" id="Tqv-Fk-VNi"/>
+                            <constraint firstItem="6VP-Br-cD4" firstAttribute="leading" secondItem="g4e-BK-ogr" secondAttribute="leading" constant="40" id="VRG-xb-JSO"/>
                             <constraint firstItem="g4e-BK-ogr" firstAttribute="trailing" secondItem="9ua-ya-1dQ" secondAttribute="trailing" constant="10" id="eNV-fz-8au"/>
+                            <constraint firstItem="V1h-0b-cpE" firstAttribute="top" secondItem="9ua-ya-1dQ" secondAttribute="bottom" constant="50" id="fMr-QW-qzk"/>
+                            <constraint firstItem="g4e-BK-ogr" firstAttribute="trailing" secondItem="XBz-Up-6KM" secondAttribute="trailing" constant="40" id="fg6-0P-aOY"/>
                             <constraint firstItem="g4e-BK-ogr" firstAttribute="bottom" secondItem="Ism-hU-Zbv" secondAttribute="bottom" constant="10" id="i7w-Ki-xkK"/>
                             <constraint firstItem="g4e-BK-ogr" firstAttribute="trailing" secondItem="d0Q-L7-uuz" secondAttribute="trailing" constant="10" id="lSL-kU-MO5"/>
+                            <constraint firstItem="FfR-rk-Ple" firstAttribute="leading" secondItem="g4e-BK-ogr" secondAttribute="leading" constant="40" id="mA8-X1-hGM"/>
                             <constraint firstItem="d0Q-L7-uuz" firstAttribute="leading" secondItem="g4e-BK-ogr" secondAttribute="leading" constant="10" id="qUJ-09-3yo"/>
+                            <constraint firstItem="XBz-Up-6KM" firstAttribute="top" secondItem="V1h-0b-cpE" secondAttribute="bottom" constant="20" id="rDj-Lb-lqe"/>
                             <constraint firstItem="Ism-hU-Zbv" firstAttribute="leading" secondItem="g4e-BK-ogr" secondAttribute="leading" constant="10" id="tne-b2-zM4"/>
                             <constraint firstItem="9ua-ya-1dQ" firstAttribute="top" secondItem="d0Q-L7-uuz" secondAttribute="bottom" constant="10" id="vWp-MB-f1L"/>
+                            <constraint firstItem="nYN-IO-QJS" firstAttribute="leading" secondItem="g4e-BK-ogr" secondAttribute="leading" constant="40" id="wR5-Md-emc"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="gTj-YQ-TgZ"/>
                     <navigationItem key="navigationItem" title="Home" id="a9u-kb-Oqk"/>
+                    <connections>
+                        <segue destination="yw4-UD-Z7u" kind="show" identifier="GoToMoreInfoScreen" id="9Gg-LW-X18"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H3S-4Q-AwF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
