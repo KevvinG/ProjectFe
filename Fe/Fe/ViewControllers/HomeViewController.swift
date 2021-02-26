@@ -11,7 +11,7 @@ import Firebase
 
 
 /*------------------------------------------------------------------------
- - Class: HomeViewController : UIViewController, UITableViewDataSource
+ - Class: HomeViewController : UIViewController
  - Description: Holds logic for the the User Home Screen
  -----------------------------------------------------------------------*/
 class HomeViewController: UIViewController {
@@ -108,7 +108,7 @@ class HomeViewController: UIViewController {
      - Description: Segue to heartRate Data View
      -------------------------------------------------------------------*/
     @IBAction func heartRateBtnTapped(_ sender: UIButton) {
-        
+        performSegue(withIdentifier: "GoToHeartRateScreen", sender: self)
     }
     
     /*--------------------------------------------------------------------
@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
      - Description: Segue to blood oxygen Data View
      -------------------------------------------------------------------*/
     @IBAction func bloodOxygenBtnTapped(_ sender: UIButton) {
-        
+        performSegue(withIdentifier: "GoToBloodOxygenScreen", sender: self)
     }
     
     /*--------------------------------------------------------------------
@@ -124,7 +124,7 @@ class HomeViewController: UIViewController {
      - Description: Segue to altitude Data View
      -------------------------------------------------------------------*/
     @IBAction func altitudeBtnTapped(_ sender: UIButton) {
-        
+        performSegue(withIdentifier: "GoToAltitudeScreen", sender: self)
     }
     
     /*--------------------------------------------------------------------
@@ -132,7 +132,7 @@ class HomeViewController: UIViewController {
      - Description: Segue to viewDocuments table View
      -------------------------------------------------------------------*/
     @IBAction func viewDocumentsBtnTapped(_ sender: UIButton) {
-        
+        performSegue(withIdentifier: "GoToDocumentsScreen", sender: self)
     }
     
     /*--------------------------------------------------------------------
@@ -140,7 +140,7 @@ class HomeViewController: UIViewController {
      - Description: Segue to upload document view
      -------------------------------------------------------------------*/
     @IBAction func uploadDocumentBtnTapped(_ sender: UIButton) {
-        
+        performSegue(withIdentifier: "GoToUploadDocumentScreen", sender: self)
     }
     
     /*--------------------------------------------------------------------

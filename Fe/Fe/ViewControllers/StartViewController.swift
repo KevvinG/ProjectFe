@@ -48,8 +48,6 @@ class StartViewController: UIViewController {
         present(authViewController, animated: true, completion: nil)
     }
     
-
-    
     /*--------------------------------------------------------------------
      - Function: application()
      - Description: Handler for result of Google Sign Up.

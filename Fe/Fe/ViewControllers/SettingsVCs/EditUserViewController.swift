@@ -22,7 +22,6 @@ class EditUserViewController: UIViewController {
     
     // Class Variables
     let db = Firestore.firestore()
-
     
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()

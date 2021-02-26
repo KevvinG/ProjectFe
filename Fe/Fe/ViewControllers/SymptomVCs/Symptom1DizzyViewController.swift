@@ -13,7 +13,6 @@ class Symptom1DizzyViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    
     @IBAction func yesBtnTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "Symptom1ToDoctorScreen", sender: self)
     }

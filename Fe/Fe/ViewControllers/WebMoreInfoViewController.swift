@@ -9,10 +9,15 @@
 import UIKit
 import WebKit
 
+/*------------------------------------------------------------------------
+ - Class: WebMoreInfoViewController : UIViewController, WKUIDelegate
+ - Description: Showss the Web Page for Canadian Cancer Society
+ -----------------------------------------------------------------------*/
 class WebMoreInfoViewController: UIViewController, WKUIDelegate {
 
     @IBOutlet var mWebView : WKWebView!
     
+    // Set up screen before showing it.
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWeb()

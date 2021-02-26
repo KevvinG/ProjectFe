@@ -66,7 +66,6 @@ class SettingsViewController: UIViewController {
         self.present(signOutAlert, animated: true, completion: nil)
     }
     
-    
     /*--------------------------------------------------------------------
      - Function: editAccountBtnTapped()
      - Description: Changes Screen to Edit Settings Story.
@@ -101,7 +100,6 @@ class SettingsViewController: UIViewController {
             deleteAccountAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(deleteAccountAlert, animated: true, completion: nil)
     }
-    
     
     /*--------------------------------------------------------------------
      - Function: deleteAccountBtnTapped()
@@ -146,7 +144,6 @@ class SettingsViewController: UIViewController {
         self.present(deleteDataAlert, animated: true, completion: nil)
     }
     
-    
     /*--------------------------------------------------------------------
      - Function: deleteAccount()
      - Description: Logic to delete account from Firestore.
@@ -172,7 +169,6 @@ class SettingsViewController: UIViewController {
             }
         }
     }
-    
     
     /*--------------------------------------------------------------------
      - Function: deleteData()
