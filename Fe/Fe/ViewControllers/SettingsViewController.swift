@@ -84,6 +84,26 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
+     - Function: deleteDataBtnTapped()
+     - Description: Prompt to delete all your data
+     -------------------------------------------------------------------*/
+    @IBAction func deleteDataBtnTapped(_ sender: UIButton) {
+        let deleteAction = UIAlertAction(title: "Delete Data", style: .destructive ) { action in
+            do {
+                // Delete Data
+                self.deleteSensorData()
+            }
+        }
+        // Prompt before deleting
+        let msg = "Are you sure you want to delete your data?"
+        let deleteAccountAlert = UIAlertController(title: "Delete Data", message: msg, preferredStyle: UIAlertController.Style.alert)
+            deleteAccountAlert.addAction(deleteAction)
+            deleteAccountAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        self.present(deleteAccountAlert, animated: true, completion: nil)
+    }
+    
+    
+    /*--------------------------------------------------------------------
      - Function: deleteAccountBtnTapped()
      - Description: Prompt to delete account and redirects to Start Screen.
      -------------------------------------------------------------------*/
@@ -95,7 +115,7 @@ class SettingsViewController: UIViewController {
             }
         }
         // Prompt before deleting
-        let msg = "Are you sure you Want to delete your account?"
+        let msg = "Are you sure you want to delete your account?"
         let deleteAccountAlert = UIAlertController(title: "Delete Account", message: msg, preferredStyle: UIAlertController.Style.alert)
             deleteAccountAlert.addAction(deleteAction)
             deleteAccountAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
@@ -186,5 +206,28 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    
+    /*--------------------------------------------------------------------
+     - Function: deleteSensorData()
+     - Description: Logic to delete sensor data from Firestore.
+     -------------------------------------------------------------------*/
+    func deleteSensorData() {
+        let user = Auth.auth().currentUser
+        let usersRef = self.db.collection("users")
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("The user cannot be found")
+                    } else {
+                        print("We found the user.")
+                        for document in querySnapshot!.documents {
+                            print(document)
+                            //TODO: Delete the Sensor Data once established in firestore
+                        }
+                    }
+                }
+            }
+    }
 }

@@ -14,12 +14,10 @@ class Symptom2BreathViewController: UIViewController {
     }
     
     @IBAction func yesBtnTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "GoToCallDoctorScreen", sender: self)
+        performSegue(withIdentifier: "Symptom2ToDoctorScreen", sender: self)
     }
-    
     
     @IBAction func noBtnTapped(_ sender: UIButton) {
-        // Segue to next symptom
+        performSegue(withIdentifier: "GoToSymptomBlood", sender: self)
     }
-    
 }
