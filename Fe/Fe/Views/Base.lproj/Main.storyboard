@@ -821,6 +821,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0dh-fV-1HJ" customClass="CPTGraphHostingView">
+                                <rect key="frame" x="42" y="133" width="317" height="266"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNI-pu-NGz">
+                                <rect key="frame" x="157" y="618" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Generate Data"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2cq-hQ-Whb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -831,10 +841,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hHl-qW-vb9"/>
+                    <connections>
+                        <outlet property="dataButton" destination="nNI-pu-NGz" id="WKD-5L-3bs"/>
+                        <outlet property="hostView" destination="0dh-fV-1HJ" id="gVd-ES-CTV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjU-bE-9mZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3890" y="-2008"/>
+            <point key="canvasLocation" x="3889.8550724637685" y="-2008.2589285714284"/>
         </scene>
         <!--Settings-->
         <scene sceneID="oG0-SV-1za">
