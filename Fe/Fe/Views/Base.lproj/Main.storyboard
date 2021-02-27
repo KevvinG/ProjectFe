@@ -706,6 +706,16 @@
                                     <action selector="uploadDocumentBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="fb9-Dw-eFV"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="42h-fa-rdK" customClass="CPTGraphHostingView">
+                                <rect key="frame" x="40" y="674" width="150" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mGS-5g-q7h" customClass="CPTGraphHostingView">
+                                <rect key="frame" x="224" y="674" width="150" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g4e-BK-ogr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -736,6 +746,8 @@
                     <tabBarItem key="tabBarItem" title="Home" id="gTj-YQ-TgZ"/>
                     <navigationItem key="navigationItem" title="Home" id="a9u-kb-Oqk"/>
                     <connections>
+                        <outlet property="graph1" destination="42h-fa-rdK" id="Vpg-s0-nQE"/>
+                        <outlet property="graph2" destination="mGS-5g-q7h" id="SsS-76-IL2"/>
                         <segue destination="yw4-UD-Z7u" kind="show" identifier="GoToMoreInfoScreen" id="9Gg-LW-X18"/>
                         <segue destination="nvo-d2-GEQ" kind="show" identifier="GoToSymptomDizzy" id="EBz-Zy-cNc"/>
                         <segue destination="TvE-pJ-KAB" kind="show" identifier="GoToHeartRateScreen" id="vDR-Qe-kof"/>
@@ -1290,6 +1302,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="EBz-Zy-cNc"/>
         <segue reference="qeZ-Of-omU"/>
         <segue reference="Sjb-x0-ZcP"/>
     </inferredMetricsTieBreakers>
