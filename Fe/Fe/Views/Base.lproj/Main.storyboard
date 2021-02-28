@@ -761,10 +761,10 @@
             </objects>
             <point key="canvasLocation" x="2334.7826086956525" y="-624.10714285714278"/>
         </scene>
-        <!--View Controller-->
+        <!--Altitude View Controller-->
         <scene sceneID="pKY-vb-WJI">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="WHJ-HQ-UE0" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Altitude Scene" modalPresentationStyle="fullScreen" id="WHJ-HQ-UE0" customClass="AltitudeViewController" customModule="Fe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sXm-7B-yy3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -775,6 +775,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52R-DI-PMx" customClass="CPTGraphHostingView">
+                                <rect key="frame" x="87" y="132" width="240" height="189"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9S5-rn-3Jm">
+                                <rect key="frame" x="55" y="462" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeR-Ye-gID">
+                                <rect key="frame" x="299" y="462" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jr4-v8-ZR0">
+                                <rect key="frame" x="157" y="596" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Generate Data"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kvj-zm-xrh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -785,10 +809,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HP5-dN-3Ok"/>
+                    <connections>
+                        <outlet property="dataButton" destination="jr4-v8-ZR0" id="YW6-wW-JGs"/>
+                        <outlet property="hostView" destination="52R-DI-PMx" id="3Y7-GM-Q9a"/>
+                        <outlet property="xLabel" destination="9S5-rn-3Jm" id="MMr-LZ-GNm"/>
+                        <outlet property="yLabel" destination="UeR-Ye-gID" id="ehw-EC-zJ2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m3W-wG-2iq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3890" y="-624"/>
+            <point key="canvasLocation" x="3889.8550724637685" y="-624.10714285714278"/>
         </scene>
         <!--Blood Oxygen View Controller-->
         <scene sceneID="chi-ZU-fJG">
@@ -804,6 +834,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wds-Dt-fI9" customClass="CPTGraphHostingView">
+                                <rect key="frame" x="87" y="150" width="240" height="202"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2b-0X-xIa">
+                                <rect key="frame" x="68" y="462" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyh-6b-Ud8">
+                                <rect key="frame" x="285" y="462" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Cm-vs-6Ae">
+                                <rect key="frame" x="157" y="582" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Generate Data"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pNq-zN-YOF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -814,10 +868,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="70W-2a-r1W"/>
+                    <connections>
+                        <outlet property="dataButton" destination="4Cm-vs-6Ae" id="Iom-iC-WrS"/>
+                        <outlet property="hostView" destination="Wds-Dt-fI9" id="cvG-oU-eOi"/>
+                        <outlet property="xLabel" destination="O2b-0X-xIa" id="BKL-dz-SHv"/>
+                        <outlet property="yLabel" destination="Xyh-6b-Ud8" id="BPu-rO-PS2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcw-To-4yH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3890" y="-1337"/>
+            <point key="canvasLocation" x="3889.8550724637685" y="-1337.2767857142856"/>
         </scene>
         <!--Heart Rate View Controller-->
         <scene sceneID="Va2-bn-cgy">
@@ -843,6 +903,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Generate Data"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQL-Xb-RXv">
+                                <rect key="frame" x="58" y="499" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4R-94-OaF">
+                                <rect key="frame" x="306" y="499" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2cq-hQ-Whb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -856,6 +930,8 @@
                     <connections>
                         <outlet property="dataButton" destination="nNI-pu-NGz" id="WKD-5L-3bs"/>
                         <outlet property="hostView" destination="0dh-fV-1HJ" id="gVd-ES-CTV"/>
+                        <outlet property="xValue" destination="yQL-Xb-RXv" id="y6t-qL-Apm"/>
+                        <outlet property="yValue" destination="m4R-94-OaF" id="Nhu-dz-Kti"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjU-bE-9mZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1302,7 +1378,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EBz-Zy-cNc"/>
         <segue reference="qeZ-Of-omU"/>
         <segue reference="Sjb-x0-ZcP"/>
     </inferredMetricsTieBreakers>
