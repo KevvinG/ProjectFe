@@ -267,7 +267,6 @@
 		CE01C2D725D438D100A08E2D /* Fe */ = {
 			isa = PBXGroup;
 			children = (
-				CE62B23525E71F4300AA9665 /* New Group */,
 				CE62B20425E6F23D00AA9665 /* ViewModels */,
 				CE69A26925D81F56009E87CB /* Views */,
 				CE69A26825D81F51009E87CB /* Models */,
@@ -307,13 +306,6 @@
 			children = (
 			);
 			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		CE62B23525E71F4300AA9665 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		CE62B29525E8522200AA9665 /* SymptomVCs */ = {

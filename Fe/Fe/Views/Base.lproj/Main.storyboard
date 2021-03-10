@@ -752,73 +752,14 @@
                         <segue destination="nvo-d2-GEQ" kind="show" identifier="GoToSymptomDizzy" id="EBz-Zy-cNc"/>
                         <segue destination="TvE-pJ-KAB" kind="show" identifier="GoToHeartRateScreen" id="vDR-Qe-kof"/>
                         <segue destination="fTQ-J8-9mD" kind="show" identifier="GoToBloodOxygenScreen" id="bDL-Yv-Mks"/>
-                        <segue destination="WHJ-HQ-UE0" kind="show" identifier="GoToAltitudeScreen" id="cSZ-xL-12o"/>
                         <segue destination="BHn-Bc-hsq" kind="show" identifier="GoToDocumentsScreen" id="xba-28-fVf"/>
                         <segue destination="XvI-IW-70E" kind="show" identifier="GoToUploadDocumentScreen" id="gQS-Er-MNw"/>
+                        <segue destination="qQE-ig-zOR" kind="show" identifier="GoToAltitudeScreen" id="xwP-iS-61T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H3S-4Q-AwF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2334.7826086956525" y="-624.10714285714278"/>
-        </scene>
-        <!--Altitude View Controller-->
-        <scene sceneID="pKY-vb-WJI">
-            <objects>
-                <viewController storyboardIdentifier="Altitude Scene" modalPresentationStyle="fullScreen" id="WHJ-HQ-UE0" customClass="AltitudeViewController" customModule="Fe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sXm-7B-yy3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5SE-A7-YOm">
-                                <rect key="frame" x="10" y="54" width="394" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52R-DI-PMx" customClass="CPTGraphHostingView">
-                                <rect key="frame" x="87" y="132" width="240" height="189"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9S5-rn-3Jm">
-                                <rect key="frame" x="55" y="462" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeR-Ye-gID">
-                                <rect key="frame" x="299" y="462" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jr4-v8-ZR0">
-                                <rect key="frame" x="157" y="596" width="100" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Generate Data"/>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="kvj-zm-xrh"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="5SE-A7-YOm" firstAttribute="leading" secondItem="kvj-zm-xrh" secondAttribute="leading" constant="10" id="Obp-Kt-u8M"/>
-                            <constraint firstItem="5SE-A7-YOm" firstAttribute="top" secondItem="kvj-zm-xrh" secondAttribute="top" constant="10" id="tkl-Zm-0XZ"/>
-                            <constraint firstItem="kvj-zm-xrh" firstAttribute="trailing" secondItem="5SE-A7-YOm" secondAttribute="trailing" constant="10" id="vwg-pP-eDd"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="HP5-dN-3Ok"/>
-                    <connections>
-                        <outlet property="dataButton" destination="jr4-v8-ZR0" id="YW6-wW-JGs"/>
-                        <outlet property="hostView" destination="52R-DI-PMx" id="3Y7-GM-Q9a"/>
-                        <outlet property="xLabel" destination="9S5-rn-3Jm" id="MMr-LZ-GNm"/>
-                        <outlet property="yLabel" destination="UeR-Ye-gID" id="ehw-EC-zJ2"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="m3W-wG-2iq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3889.8550724637685" y="-624.10714285714278"/>
         </scene>
         <!--Blood Oxygen View Controller-->
         <scene sceneID="chi-ZU-fJG">
@@ -1041,6 +982,22 @@
                 <exit id="xlJ-CY-MNc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2336" y="69"/>
+        </scene>
+        <!--Altitude View Controller-->
+        <scene sceneID="FFd-ji-uzk">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="qQE-ig-zOR" customClass="AltitudeViewController" customModule="Fe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RBW-r3-rk5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="SoO-oW-qw6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9lq-aK-qIw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kzi-wy-cxJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3878" y="-610"/>
         </scene>
         <!--Document Table Table View Controller-->
         <scene sceneID="Y7Z-QT-Gla">
@@ -1378,6 +1335,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="EBz-Zy-cNc"/>
         <segue reference="qeZ-Of-omU"/>
         <segue reference="Sjb-x0-ZcP"/>
     </inferredMetricsTieBreakers>
