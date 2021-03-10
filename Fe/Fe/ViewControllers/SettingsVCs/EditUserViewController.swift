@@ -16,16 +16,26 @@ import Firebase
 class EditUserViewController: UIViewController {
     
     // UI Interactions
-    @IBOutlet weak var fName: UITextField!
-    @IBOutlet weak var lName: UITextField!
+    @IBOutlet weak var txtfName: UITextField!
+    @IBOutlet weak var txtlName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
-    @IBOutlet weak var txtStAddress: UITextField!
+    @IBOutlet weak var txtphoneNo: UITextField!
+    @IBOutlet weak var txtStAddress1: UITextField!
+    @IBOutlet weak var txtStAddress2: UITextField!
     @IBOutlet weak var txtCity: UITextField!
+    @IBOutlet weak var txtProvince: UITextField!
     @IBOutlet weak var txtPostal: UITextField!
+    @IBOutlet weak var txtCountry: UITextField!
     
     // Class Variables
     let db = Firestore.firestore()
+    
+    let provinces = [
+        "BC", "AB", "MB", "NB", "NL",
+        "NS", "NT", "NU", "ON", "PE",
+        "QC", "SK", "YT"
+    ]
+
     
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
@@ -34,31 +44,32 @@ class EditUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserData()
-        // Do any additional setup after loading the view.
     }
+
     
     /*--------------------------------------------------------------------
      - Function: saveChangeBtnTapped()
      - Description: Finds the user information in Firestore then updates.
      -------------------------------------------------------------------*/
     @IBAction func saveChangesBtnTapped(_ sender: UIButton) {
-        let txt_email = txtEmail.text
-        let first_name = fName.text
-        let last_name = lName.text
-        let txt_password = txtPassword.text
-        let txt_st_address = txtStAddress.text
-        let txt_city = txtCity.text
-        let txt_postal = txtPostal.text
         
-        let confirmationMessage = UIAlertController(title: "Data Confirmation", message: "New information:\nFirst name: \(first_name ?? "First Name")\nLast name: \(last_name ?? "Last Name")\nEmail: \(txt_email ?? "Email")", preferredStyle: .alert)
+        let txt_fname = txtfName.text
+        let txt_lname = txtlName.text
+        let txt_email = txtEmail.text
+        let txt_phone = txtphoneNo.text
+        let txt_st_address1 = txtStAddress1.text
+        let txt_st_address2 = txtStAddress2.text
+        let txt_city = txtCity.text
+        let txt_province = txtProvince.text
+        let txt_postal = txtPostal.text
+        let txt_country = txtCountry.text
+        
+        let confirmationMessage = UIAlertController(title: "Data Confirmation", message: "New information:\nFirst Name: \(txt_fname ?? "First Name")\nLast Name: \(txt_lname ?? "Last Name")\nEmail: \(txt_email ?? "Email")\nPhone: \(txt_phone ?? "Phone")\nStreet 1: \(txt_st_address1 ?? "Street1")\nStreet2: \(txt_st_address2 ?? "Street2")\nCity: \(txt_city ?? "City")\nProvince: \(txt_province ?? "Province")\nPostal: \(txt_postal ?? "Postal")\nCity: \(txt_country ?? "country")", preferredStyle: .alert)
         
         let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { (action) -> Void in
-            // print("Ok button tapped")
-            self.updateUserData(first_name:first_name!, last_name:last_name!, txt_email:txt_email!, txt_st_address: txt_st_address!, txt_postal: txt_postal!, txt_city: txt_city!)
+            self.updateUserData(txt_fname:txt_fname!, txt_lname: txt_lname!, txt_email:txt_email!, txt_phone: txt_phone!, txt_st_address1: txt_st_address1!, txt_st_address2: txt_st_address2!, txt_postal: txt_postal!, txt_province: txt_province!, txt_city: txt_city!, txt_country: txt_country!)
         })
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { (action) -> Void in
-            // print("Ok button tapped")
-        })
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         
         confirmationMessage.addAction(confirm)
         confirmationMessage.addAction(cancel)
@@ -70,7 +81,6 @@ class EditUserViewController: UIViewController {
         let usersRef = db.collection("users")
         let user = Auth.auth().currentUser
         
-        var lblPostal = ""
         usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -83,17 +93,17 @@ class EditUserViewController: UIViewController {
                         self.present(alert, animated: true, completion: nil)
                     } else {
                         for document in querySnapshot!.documents {
-                            print("getUserData \n")
-                            print("\(document.documentID) => \(document.data())")
-                            let ref = document.reference
-                            lblPostal = document.data()["postal"] as! String
-                            self.txtPostal.text = lblPostal
-                            self.fName.text = document.data()["fName"] as? String
-                            self.lName.text = document.data()["lName"] as? String
+                            //print("\(document.documentID) => \(document.data())")
+                            self.txtfName.text = document.data()["fName"] as? String
+                            self.txtlName.text = document.data()["lName"] as? String
                             self.txtEmail.text = document.data()["email"] as? String
-                            self.txtStAddress.text = document.data()["street1"] as? String
+                            self.txtphoneNo.text = document.data()["phone"] as? String
+                            self.txtStAddress1.text = document.data()["street1"] as? String
+                            self.txtStAddress2.text = document.data()["street2"] as? String
                             self.txtCity.text = document.data()["city"] as? String
-
+                            self.txtProvince.text = document.data()["province"] as? String
+                            self.txtPostal.text = document.data()["postal"] as? String
+                            self.txtCountry.text = document.data()["country"] as? String
                         }
                     }
                 }
@@ -105,7 +115,7 @@ class EditUserViewController: UIViewController {
      - Function:updateUserData()
      - Description: Gets user from Firestore using email and updates data.
      -------------------------------------------------------------------*/
-    func updateUserData(first_name: String, last_name: String, txt_email: String, txt_st_address: String, txt_postal: String, txt_city: String) {
+    func updateUserData(txt_fname: String, txt_lname: String, txt_email: String, txt_phone: String, txt_st_address1: String, txt_st_address2: String, txt_postal: String, txt_province: String, txt_city: String, txt_country: String) {
         print("Updating existing user...")
         let usersRef = db.collection("users")
         let user = Auth.auth().currentUser
@@ -122,7 +132,6 @@ class EditUserViewController: UIViewController {
                         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     } else {
-                        print("Code here to update user in table")
                         for document in querySnapshot!.documents {
                             print("\(document.documentID) => \(document.data())")
                             let ref = document.reference
@@ -133,12 +142,16 @@ class EditUserViewController: UIViewController {
                             }
                             
                             ref.updateData([
-                                "fName": first_name,
-                                "lName": last_name,
+                                "fName": txt_fname,
+                                "lName": txt_lname,
                                 "email": txt_email,
-                                "street1": txt_st_address,
+                                "phone": txt_phone,
+                                "street1": txt_st_address1,
+                                "street2": txt_st_address2,
+                                "city": txt_city,
                                 "postal": txt_postal,
-                                "city": txt_city
+                                "province": txt_province,
+                                "country": txt_country
                             ]);
                         }
                     }

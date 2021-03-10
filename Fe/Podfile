@@ -21,6 +21,7 @@ target 'Fe' do
   pod 'Firebase/Functions'
   pod 'Firebase/Storage'
   pod 'CorePlot'
+  pod 'iOSDropDown'
 
   target 'FeTests' do
     inherit! :search_paths
