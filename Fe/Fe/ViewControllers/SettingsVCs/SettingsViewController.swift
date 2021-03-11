@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 
 /*------------------------------------------------------------------------
- - Extension: SettingsViewController : UIViewController
+ - Class: SettingsViewController : UIViewController
  - Description: Holds logic for the Main Settings Screen
  -----------------------------------------------------------------------*/
 class SettingsViewController: UIViewController {

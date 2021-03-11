@@ -10,12 +10,15 @@ import UIKit
 import Firebase
 
 /*------------------------------------------------------------------------
- - Extension: EditUserViewController : UIViewController
+ - Class: EditUserViewController : UIViewController
  - Description: Holds logic for the User Account Settings Screen
  -----------------------------------------------------------------------*/
 class EditUserViewController: UIViewController {
     
-    // UI Interactions
+    // Class Variables
+    let db = Firestore.firestore()
+    
+    // UI Variables
     @IBOutlet weak var txtfName: UITextField!
     @IBOutlet weak var txtlName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
@@ -27,15 +30,11 @@ class EditUserViewController: UIViewController {
     @IBOutlet weak var txtPostal: UITextField!
     @IBOutlet weak var txtCountry: UITextField!
     
-    // Class Variables
-    let db = Firestore.firestore()
-    
     let provinces = [
         "BC", "AB", "MB", "NB", "NL",
         "NS", "NT", "NU", "ON", "PE",
         "QC", "SK", "YT"
     ]
-
     
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
@@ -45,7 +44,6 @@ class EditUserViewController: UIViewController {
         super.viewDidLoad()
         getUserData()
     }
-
     
     /*--------------------------------------------------------------------
      - Function: saveChangeBtnTapped()
@@ -77,6 +75,11 @@ class EditUserViewController: UIViewController {
         self.present(confirmationMessage, animated: true, completion: nil)
     }
     
+    /*--------------------------------------------------------------------
+     - Function: getUserData()
+     - Description: Obtains current user data from Firebase and displays in
+     - each of the appropriate TextViews.
+     -------------------------------------------------------------------*/
     func getUserData() {
         let usersRef = db.collection("users")
         let user = Auth.auth().currentUser
@@ -135,8 +138,7 @@ class EditUserViewController: UIViewController {
                         for document in querySnapshot!.documents {
                             print("\(document.documentID) => \(document.data())")
                             let ref = document.reference
-                            // TODO: Update the user details here
-                            
+ 
                             Auth.auth().currentUser?.updateEmail(to: txt_email) { (error) in
                                 
                             }
@@ -158,5 +160,4 @@ class EditUserViewController: UIViewController {
                 }
         }
     }
-    
 }

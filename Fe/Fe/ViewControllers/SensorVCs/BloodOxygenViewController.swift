@@ -16,38 +16,56 @@ import CorePlot
  -----------------------------------------------------------------------*/
 class BloodOxygenViewController: UIViewController {
     
+    // Class variables
     var plotData = [Double](repeating: 0.0, count: 1000)
     var plot: CPTScatterPlot!
     var maxDataPoints = 100
     var frameRate = 5.0
     var alphaValue = 0.25
-  
     var timer : Timer?
     var currentIndex: Int!
     var timeDuration:Double = 0.1
     
+    // UI Variables
     @IBOutlet var hostView: CPTGraphHostingView!
     @IBOutlet var xLabel: UILabel!
     @IBOutlet var yLabel: UILabel!
     @IBOutlet var dataButton: UIButton!
     
+    /*--------------------------------------------------------------------
+     - Function: viewDidLoad()
+     - Description: Initialize code before showing screen
+     -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         dataButton.addGestureRecognizer(tap)
         initPlot()
     }
+    
+    /*--------------------------------------------------------------------
+     - Function: initPlot()
+     - Description:
+     -------------------------------------------------------------------*/
     func initPlot(){
         configureGraphtView()
         configureGraphAxis()
         configurePlot()
     }
     
+    /*--------------------------------------------------------------------
+     - Function: handleTap()
+     - Description:
+     -------------------------------------------------------------------*/
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil){
         timer?.invalidate()
         timer = Timer.scheduledTimer(timeInterval: self.timeDuration, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     }
     
+    /*--------------------------------------------------------------------
+     - Function: fireTimer()
+     - Description:
+     -------------------------------------------------------------------*/
     @objc func fireTimer(){
         let graph = self.hostView.hostedGraph
         let plot = graph?.plot(withIdentifier: "mindful-graph" as NSCopying)
@@ -87,12 +105,20 @@ class BloodOxygenViewController: UIViewController {
         plot?.insertData(at: UInt(self.plotData.count-1), numberOfRecords: 1)
     }
     
+    /*--------------------------------------------------------------------
+     - Function: configureGraphView()
+     - Description:
+     -------------------------------------------------------------------*/
     func configureGraphtView(){
         hostView.allowPinchScaling = false
         self.plotData.removeAll()
         self.currentIndex = 0
     }
     
+    /*--------------------------------------------------------------------
+     - Function: configureGraphAxis()
+     - Description:
+     -------------------------------------------------------------------*/
     func configureGraphAxis(){
         
         let graph = CPTXYGraph(frame: hostView.bounds)
@@ -165,6 +191,10 @@ class BloodOxygenViewController: UIViewController {
         
     }
     
+    /*--------------------------------------------------------------------
+     - Function: configurePlot()
+     - Description:
+     -------------------------------------------------------------------*/
     func configurePlot(){
         plot = CPTScatterPlot()
         let plotLineStile = CPTMutableLineStyle()
@@ -181,19 +211,34 @@ class BloodOxygenViewController: UIViewController {
         plot.delegate = (self as CALayerDelegate)
         graph.add(plot, to: graph.defaultPlotSpace)
     }
-
-
 }
 
+/*------------------------------------------------------------------------
+ - Extension: BloodOxygenViewController : CPTScatterPlotDataSource, CPTScatterPlotDelegate
+ - Description: 
+ -----------------------------------------------------------------------*/
 extension BloodOxygenViewController: CPTScatterPlotDataSource, CPTScatterPlotDelegate {
+    
+    /*--------------------------------------------------------------------
+     - Function: numberOfRecords()
+     - Description:
+     -------------------------------------------------------------------*/
     func numberOfRecords(for plot: CPTPlot) -> UInt {
         return UInt(self.plotData.count)
     }
 
+    /*--------------------------------------------------------------------
+     - Function: scatterPlot()
+     - Description:
+     -------------------------------------------------------------------*/
     func scatterPlot(_ plot: CPTScatterPlot, plotSymbolWasSelectedAtRecord idx: UInt, with event: UIEvent) {
     }
 
-     func number(for plot: CPTPlot, field: UInt, record: UInt) -> Any? {
+    /*--------------------------------------------------------------------
+     - Function: number()
+     - Description:
+     -------------------------------------------------------------------*/
+    func number(for plot: CPTPlot, field: UInt, record: UInt) -> Any? {
         
        switch CPTScatterPlotField(rawValue: Int(field))! {
         
@@ -205,9 +250,7 @@ extension BloodOxygenViewController: CPTScatterPlotDataSource, CPTScatterPlotDel
             
             default:
                 return 0
-        
         }
-        
     }
 }
 

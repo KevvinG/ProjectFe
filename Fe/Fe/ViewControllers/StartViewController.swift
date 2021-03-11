@@ -11,7 +11,7 @@ import FirebaseUI
 import GoogleSignIn
 
 /*------------------------------------------------------------------------
- - Extension: StartViewController : UIViewController
+ - Class: StartViewController : UIViewController
  - Description: Holds logic for the Main Start Screen
  -----------------------------------------------------------------------*/
 class StartViewController: UIViewController {

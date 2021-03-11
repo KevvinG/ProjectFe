@@ -54,6 +54,7 @@
 		CE62B2E925E88AAC00AA9665 /* DocumentTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2E825E88AAC00AA9665 /* DocumentTableTableViewController.swift */; };
 		CE62B2F025E88AC800AA9665 /* DocumentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2EF25E88AC800AA9665 /* DocumentTableViewCell.swift */; };
 		CE62B2FE25E88BCB00AA9665 /* UploadDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2FD25E88BCB00AA9665 /* UploadDocumentViewController.swift */; };
+		CE62B3F725F980FF00AA9665 /* UpdateEmailPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B3F625F980FF00AA9665 /* UpdateEmailPasswordViewController.swift */; };
 		CE69A27125D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE69A27225D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE69A27325D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
@@ -170,6 +171,7 @@
 		CE62B2E825E88AAC00AA9665 /* DocumentTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTableTableViewController.swift; sourceTree = "<group>"; };
 		CE62B2EF25E88AC800AA9665 /* DocumentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTableViewCell.swift; sourceTree = "<group>"; };
 		CE62B2FD25E88BCB00AA9665 /* UploadDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentViewController.swift; sourceTree = "<group>"; };
+		CE62B3F625F980FF00AA9665 /* UpdateEmailPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmailPasswordViewController.swift; sourceTree = "<group>"; };
 		CE69A27025D831A5009E87CB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF97E99525E6F3760050F8B5 /* Fe-Mini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fe-Mini.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -346,6 +348,7 @@
 			children = (
 				CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */,
 				CE62AF2125DDC13600AA9665 /* EditUserViewController.swift */,
+				CE62B3F625F980FF00AA9665 /* UpdateEmailPasswordViewController.swift */,
 			);
 			path = SettingsVCs;
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 				CE62B2D425E885F100AA9665 /* HeartRateViewController.swift in Sources */,
 				CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 				CE62B2A125E8566100AA9665 /* Symptom2BreathViewController.swift in Sources */,
+				CE62B3F725F980FF00AA9665 /* UpdateEmailPasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,7 +1141,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1156,6 +1160,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1280,7 +1285,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
