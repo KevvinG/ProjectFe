@@ -68,7 +68,7 @@ class SettingsViewController: UIViewController {
     
     /*--------------------------------------------------------------------
      - Function: editAccountBtnTapped()
-     - Description: Changes Screen to Edit Settings Story.
+     - Description: Changes Screen to Edit Settings Screen.
      -------------------------------------------------------------------*/
     @IBAction func editAccountBtnTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToEditUserSettings", sender: self)
@@ -76,10 +76,18 @@ class SettingsViewController: UIViewController {
     
     /*--------------------------------------------------------------------
      - Function: notificationSettingsBtnTapped()
-     - Description: Changes Screen to Notification Settings Story.
+     - Description: Changes Screen to Notification Settings Screen.
      -------------------------------------------------------------------*/
     @IBAction func notificationSettingsBtnTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToNotificationSettings", sender: self)
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: appPermissionsBtnTapped()
+     - Description: Changes Screen to Application Settings Screen.
+     -------------------------------------------------------------------*/
+    @IBAction func appPermissionsBtnTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToAppPermissions", sender: self)
     }
     
     /*--------------------------------------------------------------------

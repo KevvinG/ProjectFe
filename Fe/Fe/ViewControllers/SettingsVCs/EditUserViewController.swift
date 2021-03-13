@@ -21,7 +21,9 @@ class EditUserViewController: UIViewController {
     // UI Variables
     @IBOutlet weak var txtfName: UITextField!
     @IBOutlet weak var txtlName: UITextField!
+    @IBOutlet weak var txtAge: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtphoneNo: UITextField!
     @IBOutlet weak var txtStAddress1: UITextField!
     @IBOutlet weak var txtStAddress2: UITextField!
@@ -29,6 +31,7 @@ class EditUserViewController: UIViewController {
     @IBOutlet weak var txtProvince: UITextField!
     @IBOutlet weak var txtPostal: UITextField!
     @IBOutlet weak var txtCountry: UITextField!
+    @IBOutlet weak var txtExistingSymptoms: UITextField!
     
     let provinces = [
         "BC", "AB", "MB", "NB", "NL",
@@ -53,7 +56,9 @@ class EditUserViewController: UIViewController {
         
         let txt_fname = txtfName.text
         let txt_lname = txtlName.text
+        let txt_age = txtAge.text
         let txt_email = txtEmail.text
+        let txt_password = txtPassword.text
         let txt_phone = txtphoneNo.text
         let txt_st_address1 = txtStAddress1.text
         let txt_st_address2 = txtStAddress2.text
@@ -61,11 +66,12 @@ class EditUserViewController: UIViewController {
         let txt_province = txtProvince.text
         let txt_postal = txtPostal.text
         let txt_country = txtCountry.text
+        let txt_ex_symptoms = txtExistingSymptoms.text
         
-        let confirmationMessage = UIAlertController(title: "Data Confirmation", message: "New information:\nFirst Name: \(txt_fname ?? "First Name")\nLast Name: \(txt_lname ?? "Last Name")\nEmail: \(txt_email ?? "Email")\nPhone: \(txt_phone ?? "Phone")\nStreet 1: \(txt_st_address1 ?? "Street1")\nStreet2: \(txt_st_address2 ?? "Street2")\nCity: \(txt_city ?? "City")\nProvince: \(txt_province ?? "Province")\nPostal: \(txt_postal ?? "Postal")\nCity: \(txt_country ?? "country")", preferredStyle: .alert)
+        let confirmationMessage = UIAlertController(title: "Data Confirmation", message: "New information:\nFirst Name: \(txt_fname ?? "First Name")\nLast Name: \(txt_lname ?? "Last Name")\nAge: \(txt_age ?? "Age")\nEmail: \(txt_email ?? "Email")\nPassword: \(txt_password ?? "Password")\nPhone: \(txt_phone ?? "Phone")\nStreet 1: \(txt_st_address1 ?? "Street1")\nStreet2: \(txt_st_address2 ?? "Street2")\nCity: \(txt_city ?? "City")\nProvince: \(txt_province ?? "Province")\nPostal: \(txt_postal ?? "Postal")\nCity: \(txt_country ?? "country")\nSymptoms: \(txt_ex_symptoms ?? "Symptoms")", preferredStyle: .alert)
         
         let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { (action) -> Void in
-            self.updateUserData(txt_fname:txt_fname!, txt_lname: txt_lname!, txt_email:txt_email!, txt_phone: txt_phone!, txt_st_address1: txt_st_address1!, txt_st_address2: txt_st_address2!, txt_postal: txt_postal!, txt_province: txt_province!, txt_city: txt_city!, txt_country: txt_country!)
+            self.updateUserData(fname: txt_fname!, lname: txt_lname!, age: txt_age!, email: txt_email!, password: txt_password!, phone: txt_phone!, st_address1: txt_st_address1!, st_address2: txt_st_address2!, postal: txt_postal!, province: txt_province!, city: txt_city!, country: txt_country!, symptoms: txt_ex_symptoms!)
         })
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         
@@ -99,7 +105,9 @@ class EditUserViewController: UIViewController {
                             //print("\(document.documentID) => \(document.data())")
                             self.txtfName.text = document.data()["fName"] as? String
                             self.txtlName.text = document.data()["lName"] as? String
+                            self.txtAge.text = document.data()["age"] as? String
                             self.txtEmail.text = document.data()["email"] as? String
+                            self.txtPassword.text = document.data()["password"] as? String
                             self.txtphoneNo.text = document.data()["phone"] as? String
                             self.txtStAddress1.text = document.data()["street1"] as? String
                             self.txtStAddress2.text = document.data()["street2"] as? String
@@ -107,6 +115,7 @@ class EditUserViewController: UIViewController {
                             self.txtProvince.text = document.data()["province"] as? String
                             self.txtPostal.text = document.data()["postal"] as? String
                             self.txtCountry.text = document.data()["country"] as? String
+                            self.txtExistingSymptoms.text = document.data()["existingSymptoms"] as? String
                         }
                     }
                 }
@@ -118,7 +127,7 @@ class EditUserViewController: UIViewController {
      - Function:updateUserData()
      - Description: Gets user from Firestore using email and updates data.
      -------------------------------------------------------------------*/
-    func updateUserData(txt_fname: String, txt_lname: String, txt_email: String, txt_phone: String, txt_st_address1: String, txt_st_address2: String, txt_postal: String, txt_province: String, txt_city: String, txt_country: String) {
+    func updateUserData(fname: String, lname: String, age: String, email: String, password: String, phone: String, st_address1: String, st_address2: String, postal: String, province: String, city: String, country: String, symptoms: String) {
         print("Updating existing user...")
         let usersRef = db.collection("users")
         let user = Auth.auth().currentUser
@@ -139,21 +148,24 @@ class EditUserViewController: UIViewController {
                             print("\(document.documentID) => \(document.data())")
                             let ref = document.reference
  
-                            Auth.auth().currentUser?.updateEmail(to: txt_email) { (error) in
+                            Auth.auth().currentUser?.updateEmail(to: email) { (error) in
                                 
                             }
                             
                             ref.updateData([
-                                "fName": txt_fname,
-                                "lName": txt_lname,
-                                "email": txt_email,
-                                "phone": txt_phone,
-                                "street1": txt_st_address1,
-                                "street2": txt_st_address2,
-                                "city": txt_city,
-                                "postal": txt_postal,
-                                "province": txt_province,
-                                "country": txt_country
+                                "fName": fname,
+                                "lName": lname,
+                                "age": age,
+                                "email": email,
+                                "password": password,
+                                "phone": phone,
+                                "street1": st_address1,
+                                "street2": st_address2,
+                                "city": city,
+                                "postal": postal,
+                                "province": province,
+                                "country": country,
+                                "existingSymptoms": symptoms
                             ]);
                         }
                     }

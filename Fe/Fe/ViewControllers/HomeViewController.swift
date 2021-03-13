@@ -101,15 +101,19 @@ class HomeViewController: UIViewController {
         var ref: DocumentReference? = nil
         ref = db.collection("users").addDocument(data: [
             "uid": user!.uid,
-            "email": user!.email!,
+            
             "fName": "",
             "lName": "",
+            "age": "",
+            "email": user!.email!,
+            "password": "",
             "street1": "",
             "street2": "",
             "city": "",
             "postal": "",
             "province": "",
-            "country": ""
+            "country": "",
+            "existingSymptoms": ""
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
