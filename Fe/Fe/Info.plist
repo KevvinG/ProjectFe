@@ -73,5 +73,7 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>The application requires your permission to take a picture</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The application requires your permission to access the photo library</string>
 </dict>
 </plist>
