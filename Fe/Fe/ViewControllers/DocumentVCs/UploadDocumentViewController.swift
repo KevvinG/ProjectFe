@@ -60,6 +60,17 @@ class UploadDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
+     - Function: getMetadata()
+     - Description: gets all the textbox data and returns NSDictionary
+     //TODO: Store other variables as metadata in Firebase Storage
+     -------------------------------------------------------------------*/
+    func getMetadata() {
+        // Store doctor name
+        // Store test results
+        // Store notes
+    }
+    
+    /*--------------------------------------------------------------------
      - Function: takePictureBtnTapped()
      - Description: Opens phonoe camera if available.
      -------------------------------------------------------------------*/
