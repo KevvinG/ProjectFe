@@ -26,8 +26,6 @@ class UploadDocumentViewController: UIViewController {
     @IBOutlet var Notes: UITextField!
     @IBOutlet var imagePicked: UIImageView!
     
-    
-    
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
      - Description: Initialize some code beforee showing screen.
@@ -56,15 +54,14 @@ class UploadDocumentViewController: UIViewController {
      -------------------------------------------------------------------*/
     func getDatePickerString() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.medium
-        dateFormatter.timeStyle = DateFormatter.Style.medium
-        let strDate = dateFormatter.string(from: docDatePicker.date)
-        return strDate
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        let selectedDate = dateFormatter.string(from: docDatePicker.date)
+        return selectedDate
     }
     
     /*--------------------------------------------------------------------
-     - Function: getDatePickerString()
-     - Description: gets the string of the datePicker
+     - Function: takePictureBtnTapped()
+     - Description: Opens phonoe camera if available.
      -------------------------------------------------------------------*/
     @IBAction func takePictureBtnTapped() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -80,7 +77,7 @@ class UploadDocumentViewController: UIViewController {
     
     /*--------------------------------------------------------------------
      - Function: findFileBtnTapped()
-     - Description: Opens photo library to pick image
+     - Description: Opens photo library to pick image if available.
      -------------------------------------------------------------------*/
     @IBAction func findFileBtnTapped(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
@@ -96,7 +93,7 @@ class UploadDocumentViewController: UIViewController {
     
     /*--------------------------------------------------------------------
      - Function: uploadBtnTapped()
-     - Description: 
+     - Description: uploads image to Firebase Storage
      -------------------------------------------------------------------*/
     @IBAction func uploadBtnTapped(_ sender: Any) {
         if imagePicked.image == nil {
@@ -109,13 +106,20 @@ class UploadDocumentViewController: UIViewController {
             // Get the user email and check if they are already in the storage system
             let user = Auth.auth().currentUser
             let usersRef = db.collection("users")
-            usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            usersRef.whereField("email", isEqualTo: user!.email!)
             
             // Get DatePicker date
             let date = getDatePickerString()
             
-            let uploadRef = Storage.storage().reference(withPath: "\(String(describing: user?.email))/\(date)/\(String(describing: txtTestName.text)).jpg")
+            // Get test Name for file path
+            var fileName = ""
+            if txtTestName.text == "" || txtTestName.text == nil {
+                    fileName = "NOFILENAME"
+            } else {
+                fileName = (txtTestName.text)!
+            }
             
+            let uploadRef = Storage.storage().reference(withPath: "\(String(describing: user!.email!))/\(date)/\(fileName).jpg")
             guard let imageData = imagePicked.image?.jpegData(compressionQuality: 0.75) else { return }
             
             let uploadMetadata = StorageMetadata.init()
