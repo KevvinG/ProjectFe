@@ -28,6 +28,10 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.title = "Settings"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logOutButtonTapped))
+        
+        // Tap Gesture to close the onscreen keyboard
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     /*--------------------------------------------------------------------

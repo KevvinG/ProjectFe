@@ -33,6 +33,10 @@ class UploadDocumentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
+        
+        // Tap Gesture to close the onscreen keyboard
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     /*--------------------------------------------------------------------
