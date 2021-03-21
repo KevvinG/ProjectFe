@@ -7,16 +7,12 @@
 
 // Imports
 import UIKit
-import Firebase
 
 /*------------------------------------------------------------------------
  - Class: UploadDocumentViewController : UIViewController
  - Description: Screen to upload Document to system
  -----------------------------------------------------------------------*/
 class UploadDocumentViewController: UIViewController {
-
-    // Class Variables
-    let db = Firestore.firestore()
     
     // UI Variables
     @IBOutlet var txtTestName: UITextField!
@@ -64,17 +60,6 @@ class UploadDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getMetadata()
-     - Description: gets all the textbox data and returns NSDictionary
-     //TODO: Store other variables as metadata in Firebase Storage
-     -------------------------------------------------------------------*/
-    func getMetadata() {
-        // Store doctor name
-        // Store test results
-        // Store notes
-    }
-    
-    /*--------------------------------------------------------------------
      - Function: takePictureBtnTapped()
      - Description: Opens phonoe camera if available.
      -------------------------------------------------------------------*/
@@ -118,41 +103,24 @@ class UploadDocumentViewController: UIViewController {
             errorMessage.addAction(confirm)
             self.present(errorMessage, animated: true, completion: nil)
         } else {
-            // Get the user email and check if they are already in the storage system
-            let user = Auth.auth().currentUser
-            let usersRef = db.collection("users")
-            usersRef.whereField("email", isEqualTo: user!.email!)
+            // Try to upload the picture to Firebase
+            let objFB = FirebaseAccessObject()
+            let success = objFB.uploadFile(testName: txtTestName.text!, imagePicked: imagePicked, date: getDatePickerString())
             
-            // Get DatePicker date
-            let date = getDatePickerString()
-            
-            // Get test Name for file path
-            var fileName = ""
-            if txtTestName.text == "" || txtTestName.text == nil {
-                    fileName = "NOFILENAME"
+            if success {
+                // Show Alert that image was saved
+                let confirmationMessage = UIAlertController(title: "Picture Saved!", message: "Your picture has beed saved", preferredStyle: .alert)
+                let confirm = UIAlertAction(title: "OK", style: .default, handler: nil)
+                confirmationMessage.addAction(confirm)
+                self.present(confirmationMessage, animated: true, completion: nil)
             } else {
-                fileName = (txtTestName.text)!
+                // Error dialog
+                let errorMessage = UIAlertController(title: "Upload Unsuccessful!", message: "Your picture could not be uploaded", preferredStyle: .alert)
+                let confirm = UIAlertAction(title: "OK", style: .default, handler: nil)
+                errorMessage.addAction(confirm)
+                self.present(errorMessage, animated: true, completion: nil)
             }
-            
-            let uploadRef = Storage.storage().reference(withPath: "\(String(describing: user!.email!))/\(date)/\(fileName).jpg")
-            guard let imageData = imagePicked.image?.jpegData(compressionQuality: 0.75) else { return }
-            
-            let uploadMetadata = StorageMetadata.init()
-            uploadMetadata.contentType = "image/jpeg"
-            
-            uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
-                if let error = error {
-                    print("Error uploading picture: \(error.localizedDescription)")
-                    return
-                }
-                print("Put is complete and i got this back: \(String(describing: downloadMetadata))")
-            }
-            
-            // Show Alert that image was saved
-            let confirmationMessage = UIAlertController(title: "Picture Saved!", message: "Your picture has beed saved", preferredStyle: .alert)
-            let confirm = UIAlertAction(title: "OK", style: .default, handler: nil)
-            confirmationMessage.addAction(confirm)
-            self.present(confirmationMessage, animated: true, completion: nil)
+                
         }
     }
 }

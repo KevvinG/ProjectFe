@@ -7,6 +7,7 @@
 
 // Imports
 import UIKit
+import Firebase
 
 /*------------------------------------------------------------------------
  - Class: DocumentTableTableViewController : UITableViewController
@@ -22,6 +23,31 @@ class DocumentTableTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
+        let user = Auth.auth().currentUser
+        let storage = Storage.storage()
+        let storageReference = storage.reference().child((user?.email!)!)
+        storageReference.listAll { (result, error) in
+            if let error = error {
+                print("There was an error in emails: ", error)
+            }
+            for prefix in result.prefixes {
+                print(prefix.name)
+                
+                let storageReference = storage.reference().child("\((user?.email!)!)/\(prefix.name)")
+                storageReference.listAll { (result, error) in
+                    if let error = error {
+                        print("There was an error in date folder: ", error)
+                    }
+                    for item in result.items {
+                      // The items under storageReference.
+                        print(item.name)
+                    }
+                }
+            }
+
+        }
     }
 
     // MARK: - Table view data source
