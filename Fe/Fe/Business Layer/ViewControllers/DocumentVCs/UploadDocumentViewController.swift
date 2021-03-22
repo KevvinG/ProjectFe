@@ -105,7 +105,7 @@ class UploadDocumentViewController: UIViewController {
         } else {
             // Try to upload the picture to Firebase
             let objFB = FirebaseAccessObject()
-            let success = objFB.uploadFile(testName: txtTestName.text!, imagePicked: imagePicked, date: getDatePickerString())
+            let success = objFB.uploadFile(testName: txtTestName.text!, imagePicked: imagePicked, date: getDatePickerString(), doctor: txtDoctorName.text!, results: txtTestResults.text!, notes: Notes.text!)
             
             if success {
                 // Show Alert that image was saved
@@ -131,6 +131,10 @@ class UploadDocumentViewController: UIViewController {
  -----------------------------------------------------------------------*/
 extension UploadDocumentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    /*--------------------------------------------------------------------
+     - Function: imagePickerControllerDidCancel()
+     - Description: Dismiss the picker controller.
+     -------------------------------------------------------------------*/
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }

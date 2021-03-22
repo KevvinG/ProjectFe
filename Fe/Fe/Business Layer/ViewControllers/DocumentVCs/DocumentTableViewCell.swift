@@ -13,23 +13,25 @@ import UIKit
  - Description: Holds the logic for each cell click
  -----------------------------------------------------------------------*/
 class DocumentTableViewCell: UITableViewCell {
+    
+    // UI Variables
+    @IBOutlet var lblTitle : UILabel!
+    @IBOutlet var lblDate : UILabel!
 
     /*--------------------------------------------------------------------
      - Function: awakeFromNib()
-     - Description:
+     - Description: Initialization code
      -------------------------------------------------------------------*/
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     /*--------------------------------------------------------------------
      - Function: setSelected()
-     - Description:
+     - Description: Set up Cell.
      -------------------------------------------------------------------*/
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
 
 }

@@ -16,7 +16,7 @@ import Firebase
 class FirebaseAccessObject {
     
     // Class Variables
-    let db = Firestore.firestore()
+    let db = Firestore.firestore() // Access to Firestore Database
     
     /*--------------------------------------------------------------------
      - Function: checkIfNewUser()
@@ -51,7 +51,6 @@ class FirebaseAccessObject {
         var ref: DocumentReference? = nil
         ref = db.collection("users").addDocument(data: [
             "uid": user!.uid,
-            
             "fName": "",
             "lName": "",
             "age": "",
@@ -77,17 +76,14 @@ class FirebaseAccessObject {
      - Function: uploadFile()
      - Description: Logic to upload image to Firebase.
      -------------------------------------------------------------------*/
-    func uploadFile(testName:String, imagePicked:UIImageView, date:String) -> Bool {
-        
-        var success = false // Return true if uploaded picture success.
+    func uploadFile(testName:String, imagePicked:UIImageView, date:String, doctor:String, results:String, notes:String) -> Bool {
         
         // Get the user email and check if they are already in the storage system
         let user = Auth.auth().currentUser
         let usersRef = db.collection("users")
         usersRef.whereField("email", isEqualTo: user!.email!)
         
-        // Get DatePicker date
-        let date = date
+        let date = date // Get DatePicker date
         
         // Get test Name for file path
         var fileName = ""
@@ -100,18 +96,69 @@ class FirebaseAccessObject {
         let uploadRef = Storage.storage().reference(withPath: "\(String(describing: user!.email!))/\(date)/\(fileName).jpg")
         let imageData = (imagePicked.image?.jpegData(compressionQuality: 0.75))!
         
+        let metadata = [
+            "date" : "\(date)",
+            "doctor" : "\(doctor)",
+            "testResults" : "\(results)",
+            "notes" : "\(notes)"
+        ]
+        
         let uploadMetadata = StorageMetadata.init()
         uploadMetadata.contentType = "image/jpeg"
+        uploadMetadata.customMetadata = metadata
         
+        var err = 0
         uploadRef.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
             if let error = error {
                 print("Error uploading picture: \(error.localizedDescription)")
-                success = false
+                err += 1
             }
             // print("Put is complete and i got this back: \(String(describing: downloadMetadata))")
-            success = true
         }
-        return success
+        if err == 0 {
+            return true
+        } else {
+            return false
+        }
     }
+    
+    /*--------------------------------------------------------------------
+     - Function: countAllDocuments()
+     - Description: returns number of pictures uploaded.
+     -------------------------------------------------------------------*/
+    func countAllDocuments() -> Int {
+        var counter = 0
+        
+        let user = Auth.auth().currentUser
+        let storage = Storage.storage()
+        let storageReference = storage.reference().child((user?.email!)!)
+        storageReference.listAll { (result, error) in
+            if let error = error {
+                print("There was an error retrieving list of emails: ", error)
+            }
+            for prefix in result.prefixes {
+                // print(prefix.name)
+                let storageRef = storage.reference().child("\((user?.email!)!)/\(prefix.name)")
+                
+                storageRef.listAll { (result, error) in
+                    if let error = error {
+                        print("There was an error retrieving files in date folder: ", error)
+                    }
+//                    for item in result.items {
+//                        print(item.name)
+//                    }
+                    print("Counter: \(result.items.count)")
+                    counter = counter + result.items.count
+                }
+            }
+        }
+        print("Final Count: \(counter)")
+        return counter
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function:
+     - Description:
+     -------------------------------------------------------------------*/
     
 }
