@@ -16,7 +16,7 @@ import Firebase
 class EditUserViewController: UIViewController {
     
     // Class Variables
-    let db = Firestore.firestore()
+    let db = Firestore.firestore() // Access to Firestore Database
     
     // UI Variables
     @IBOutlet weak var txtfName: UITextField!
@@ -45,7 +45,7 @@ class EditUserViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserData()
+        self.getUserData()
         
         // Tap Gesture to close the onscreen keyboard
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
@@ -91,40 +91,21 @@ class EditUserViewController: UIViewController {
      - each of the appropriate TextViews.
      -------------------------------------------------------------------*/
     func getUserData() {
-        let usersRef = db.collection("users")
-        let user = Auth.auth().currentUser
-        
-        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
-            .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    if querySnapshot!.documents.count == 0 {
-                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
-                        let alert = UIAlertController(title: "ERROR", message: "Unable to fetch your user information form the table", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
-                    } else {
-                        for document in querySnapshot!.documents {
-                            //print("\(document.documentID) => \(document.data())")
-                            self.txtfName.text = document.data()["fName"] as? String
-                            self.txtlName.text = document.data()["lName"] as? String
-                            self.txtAge.text = document.data()["age"] as? String
-                            self.txtEmail.text = document.data()["email"] as? String
-                            self.txtPassword.text = document.data()["password"] as? String
-                            self.txtphoneNo.text = document.data()["phone"] as? String
-                            self.txtStAddress1.text = document.data()["street1"] as? String
-                            self.txtStAddress2.text = document.data()["street2"] as? String
-                            self.txtCity.text = document.data()["city"] as? String
-                            self.txtProvince.text = document.data()["province"] as? String
-                            self.txtPostal.text = document.data()["postal"] as? String
-                            self.txtCountry.text = document.data()["country"] as? String
-                            self.txtExistingSymptoms.text = document.data()["existingSymptoms"] as? String
-                        }
-                    }
-                }
-        }
-        
+        FirebaseAccessObject().getUserData(completion: { userData in
+            self.txtfName.text = userData["fName"]
+            self.txtlName.text = userData["lName"]
+            self.txtAge.text = userData["age"]
+            self.txtEmail.text = userData["email"]
+            self.txtPassword.text = userData["password"]
+            self.txtphoneNo.text = userData["phone"]
+            self.txtStAddress1.text = userData["street1"]
+            self.txtStAddress2.text = userData["street2"]
+            self.txtCity.text = userData["city"]
+            self.txtProvince.text = userData["province"]
+            self.txtPostal.text = userData["postal"]
+            self.txtCountry.text = userData["country"]
+            self.txtExistingSymptoms.text = userData["existingSymptoms"]
+         })
     }
     
     /*--------------------------------------------------------------------

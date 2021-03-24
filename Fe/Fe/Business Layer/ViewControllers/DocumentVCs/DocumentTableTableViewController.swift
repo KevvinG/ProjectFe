@@ -7,7 +7,6 @@
 
 // Imports
 import UIKit
-import Firebase
 
 /*------------------------------------------------------------------------
  - Class: DocumentTableTableViewController : UITableViewController

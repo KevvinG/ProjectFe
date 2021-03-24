@@ -7,7 +7,6 @@
 
 // Imports
 import UIKit
-import Firebase
 import FirebaseAuth
 
 /*------------------------------------------------------------------------
@@ -15,9 +14,6 @@ import FirebaseAuth
  - Description: Holds logic for the Main Settings Screen
  -----------------------------------------------------------------------*/
 class SettingsViewController: UIViewController {
-    
-    // Class Variables
-    let db = Firestore.firestore()
 
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
@@ -166,13 +162,7 @@ class SettingsViewController: UIViewController {
             if let error = error {
                 print("There was an error getting the user: \(error)")
             } else {
-                // Sign the User Out
-                do {
-                    try Auth.auth().signOut()
-                } catch let err {
-                    print("Failed to sign out with error: \(err)")
-                }
-                
+                FirebaseAccessObject().signOut()
                 // Redirect the user to the StartViewController
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
@@ -187,31 +177,8 @@ class SettingsViewController: UIViewController {
      - Description: Logic to delete data from Firestore.
      -------------------------------------------------------------------*/
     func deleteData() {
-        let user = Auth.auth().currentUser
-        let usersRef = self.db.collection("users")
-        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
-            .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    if querySnapshot!.documents.count == 0 {
-                        print("The user cannot be found")
-                    } else {
-                        print("We found the user.")
-                        for document in querySnapshot!.documents {
-                            print(document)
-                            // DELETE THE USER DOCUMENT
-                            self.db.collection("users").document(document.documentID).delete() { err in
-                                if let err = err {
-                                    print("Error removing the document: \(err)")
-                                } else {
-                                    print("Document successfully deleted.")
-                                }
-                            }
-                        }
-                    }
-                }
-        }
+        let objFB = FirebaseAccessObject()
+        objFB.deleteData()
     }
     
     /*--------------------------------------------------------------------
@@ -219,23 +186,7 @@ class SettingsViewController: UIViewController {
      - Description: Logic to delete sensor data from Firestore.
      -------------------------------------------------------------------*/
     func deleteSensorData() {
-        let user = Auth.auth().currentUser
-        let usersRef = self.db.collection("users")
-        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
-            .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    if querySnapshot!.documents.count == 0 {
-                        print("The user cannot be found")
-                    } else {
-                        print("We found the user.")
-                        for document in querySnapshot!.documents {
-                            print(document)
-                            //TODO: Delete the Sensor Data once established in firestore
-                        }
-                    }
-                }
-            }
+        let objFB = FirebaseAccessObject()
+        objFB.deleteSensorData()
     }
 }

@@ -8,6 +8,7 @@
 // Imports
 import Foundation
 import Firebase
+import FirebaseAuth
 
 /*------------------------------------------------------------------------
  - Class: FirebaseAccessObject
@@ -17,6 +18,19 @@ class FirebaseAccessObject {
     
     // Class Variables
     let db = Firestore.firestore() // Access to Firestore Database
+    
+    
+    /*--------------------------------------------------------------------
+     - Function: signOut()
+     - Description: Signs out current User.
+     -------------------------------------------------------------------*/
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch let err {
+            print("Failed to sign out with error: \(err)")
+        }
+    }
     
     /*--------------------------------------------------------------------
      - Function: checkIfNewUser()
@@ -157,8 +171,101 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function:
-     - Description:
+     - Function: deleteData()
+     - Description: Logic to delete data from Firestore.
      -------------------------------------------------------------------*/
+    func deleteData() {
+        let user = Auth.auth().currentUser
+        let usersRef = self.db.collection("users")
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("The user cannot be found")
+                    } else {
+                        print("We found the user.")
+                        for document in querySnapshot!.documents {
+                            print(document)
+                            // DELETE THE USER DOCUMENT
+                            self.db.collection("users").document(document.documentID).delete() { err in
+                                if let err = err {
+                                    print("Error removing the document: \(err)")
+                                } else {
+                                    print("Document successfully deleted.")
+                                }
+                            }
+                        }
+                    }
+                }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: deleteSensorData()
+     - Description: Logic to delete sensor data from Firestore.
+     -------------------------------------------------------------------*/
+    func deleteSensorData() {
+        let user = Auth.auth().currentUser
+        let usersRef = self.db.collection("users")
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("The user cannot be found")
+                    } else {
+                        print("We found the user.")
+                        for document in querySnapshot!.documents {
+                            print(document)
+                            //TODO: Delete the Sensor Data once established in firestore
+                        }
+                    }
+                }
+            }
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: getUserData()
+     - Description: Obtains current user data from Firebase and displays in
+     - each of the appropriate TextViews.
+     -------------------------------------------------------------------*/
+    func getUserData(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
+        var dataDict = [String:String]()
+        let usersRef = db.collection("users")
+        let user = Auth.auth().currentUser
+        
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            //print("\(document.documentID) => \(document.data())")
+                            dataDict["fName"] = document.data()["fName"] as? String
+                            dataDict["lName"] = document.data()["lName"] as? String
+                            dataDict["age"] = document.data()["age"] as? String
+                            dataDict["email"] = document.data()["email"] as? String
+                            dataDict["password"] = document.data()["password"] as? String
+                            dataDict["phone"] = document.data()["phone"] as? String
+                            dataDict["street1"] = document.data()["street1"] as? String
+                            dataDict["street2"] = document.data()["street2"] as? String
+                            dataDict["city"] = document.data()["city"] as? String
+                            dataDict["province"] = document.data()["province"] as? String
+                            dataDict["postal"] = document.data()["postal"] as? String
+                            dataDict["country"] = document.data()["country"] as? String
+                            dataDict["existingSymptoms"] = document.data()["existingSymptoms"] as? String
+                        }
+                    }
+                }
+                completion(dataDict)
+        }
+    }
+    
     
 }
