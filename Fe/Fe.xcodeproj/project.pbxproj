@@ -54,7 +54,6 @@
 		CE69A27225D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE69A27325D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */; };
-		CE6D7AEA2607B83000835756 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE6D7AE92607B83000835756 /* GoogleService-Info.plist */; };
 		CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */; };
 		CE6D7B072607E83000835756 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7B062607E83000835756 /* Document.swift */; };
 		EF97E99925E6F3760050F8B5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99725E6F3760050F8B5 /* Interface.storyboard */; };
@@ -66,6 +65,9 @@
 		EF97E9AD25E6F37A0050F8B5 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF97E9AC25E6F37A0050F8B5 /* ComplicationController.swift */; };
 		EF97E9AF25E6F37C0050F8B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF97E9AE25E6F37C0050F8B5 /* Assets.xcassets */; };
 		EF97E9B425E6F37C0050F8B5 /* Fe-Mini.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = EF97E99525E6F3760050F8B5 /* Fe-Mini.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EF9CBD57260C2703002360E2 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9CBD56260C2703002360E2 /* HealthKit.framework */; };
+		EF9CBD63260C441A002360E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF9CBD62260C441A002360E2 /* GoogleService-Info.plist */; };
+		EF9CBD6F260C456E002360E2 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9CBD6E260C456E002360E2 /* HealthKit.framework */; };
 		F163FE6356C9E5C94B56C640 /* Pods_Fe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83804697FA3E96F445B2ED93 /* Pods_Fe.framework */; };
 /* End PBXBuildFile section */
 
@@ -172,7 +174,6 @@
 		CE62B2FD25E88BCB00AA9665 /* UploadDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentViewController.swift; sourceTree = "<group>"; };
 		CE69A27025D831A5009E87CB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAccessObject.swift; sourceTree = "<group>"; };
-		CE6D7AE92607B83000835756 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentviewViewController.swift; sourceTree = "<group>"; };
 		CE6D7B062607E83000835756 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +189,10 @@
 		EF97E9AE25E6F37C0050F8B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF97E9B025E6F37C0050F8B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF97E9B125E6F37C0050F8B5 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		EF9CBD55260C2703002360E2 /* Fe-Mini Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fe-Mini Extension.entitlements"; sourceTree = "<group>"; };
+		EF9CBD56260C2703002360E2 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		EF9CBD62260C441A002360E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EF9CBD6E260C456E002360E2 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F163FE6356C9E5C94B56C640 /* Pods_Fe.framework in Frameworks */,
+				EF9CBD6F260C456E002360E2 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +232,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF9CBD57260C2703002360E2 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +242,8 @@
 		946FFA5C58D265C4D806C469 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF9CBD6E260C456E002360E2 /* HealthKit.framework */,
+				EF9CBD56260C2703002360E2 /* HealthKit.framework */,
 				83804697FA3E96F445B2ED93 /* Pods_Fe.framework */,
 				CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */,
 				B1A5CB4245C317C008295419 /* Pods_FeTests.framework */,
@@ -271,6 +280,7 @@
 		CE01C2D725D438D100A08E2D /* Fe */ = {
 			isa = PBXGroup;
 			children = (
+				EF9CBD62260C441A002360E2 /* GoogleService-Info.plist */,
 				CE6D7AC32607AF3D00835756 /* Interaction Layer */,
 				CE6D7AC22607AEF800835756 /* Business Layer */,
 				CE6D7AC42607AF4400835756 /* Persistance Layer */,
@@ -282,7 +292,6 @@
 				CE01C2E625D438D100A08E2D /* LaunchScreen.storyboard */,
 				CE01C2E925D438D100A08E2D /* Info.plist */,
 				CE01C2E125D438D100A08E2D /* Fe.xcdatamodeld */,
-				CE6D7AE92607B83000835756 /* GoogleService-Info.plist */,
 			);
 			path = Fe;
 			sourceTree = "<group>";
@@ -425,6 +434,7 @@
 		EF97E9A525E6F37A0050F8B5 /* Fe-Mini Extension */ = {
 			isa = PBXGroup;
 			children = (
+				EF9CBD55260C2703002360E2 /* Fe-Mini Extension.entitlements */,
 				EF97E9A625E6F37A0050F8B5 /* InterfaceController.swift */,
 				EF97E9A825E6F37A0050F8B5 /* ExtensionDelegate.swift */,
 				EF97E9AA25E6F37A0050F8B5 /* NotificationController.swift */,
@@ -593,7 +603,7 @@
 			files = (
 				CE01C2E825D438D100A08E2D /* LaunchScreen.storyboard in Resources */,
 				CE62B27025E83B0700AA9665 /* SensorButton.xib in Resources */,
-				CE6D7AEA2607B83000835756 /* GoogleService-Info.plist in Resources */,
+				EF9CBD63260C441A002360E2 /* GoogleService-Info.plist in Resources */,
 				CE01C2E525D438D100A08E2D /* Assets.xcassets in Resources */,
 				CE01C2E025D438D100A08E2D /* Main.storyboard in Resources */,
 			);
@@ -1446,6 +1456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Fe-Mini Extension/Fe-Mini Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X46PTT568J;
@@ -1470,6 +1481,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Fe-Mini Extension/Fe-Mini Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7R65VE73FD;
 				INFOPLIST_FILE = "Fe-Mini Extension/Info.plist";
