@@ -60,7 +60,12 @@ class DocumentTableTableViewController: UITableViewController {
      - Description: Returns number of documents in Firebase for user.
      -------------------------------------------------------------------*/
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FirebaseAccessObject().countAllDocuments()
+        
+        FirebaseAccessObject().countAllDocuments(completion: { count in
+            print("Count Received: \(count)")
+            //TODO: RETURN THIS NUMBER
+        })
+        return 0
     }
     
     /*--------------------------------------------------------------------

@@ -7,16 +7,12 @@
 
 // Imports
 import UIKit
-import Firebase
 
 /*------------------------------------------------------------------------
  - Class: EditUserViewController : UIViewController
  - Description: Holds logic for the User Account Settings Screen
  -----------------------------------------------------------------------*/
 class EditUserViewController: UIViewController {
-    
-    // Class Variables
-    let db = Firestore.firestore() // Access to Firestore Database
     
     // UI Variables
     @IBOutlet weak var txtfName: UITextField!
@@ -87,7 +83,7 @@ class EditUserViewController: UIViewController {
     
     /*--------------------------------------------------------------------
      - Function: getUserData()
-     - Description: Obtains current user data from Firebase and displays in
+     - Description: Calls Firebase method and displays data iin
      - each of the appropriate TextViews.
      -------------------------------------------------------------------*/
     func getUserData() {
@@ -110,51 +106,9 @@ class EditUserViewController: UIViewController {
     
     /*--------------------------------------------------------------------
      - Function:updateUserData()
-     - Description: Gets user from Firestore using email and updates data.
+     - Description: Calls method in Firestore to update database
      -------------------------------------------------------------------*/
     func updateUserData(fname: String, lname: String, age: String, email: String, password: String, phone: String, st_address1: String, st_address2: String, postal: String, province: String, city: String, country: String, symptoms: String) {
-        print("Updating existing user...")
-        let usersRef = db.collection("users")
-        let user = Auth.auth().currentUser
-
-        
-        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
-            .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    if querySnapshot!.documents.count == 0 {
-                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
-                        let alert = UIAlertController(title: "ERROR", message: "Unable to fetch your user information form the table", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
-                    } else {
-                        for document in querySnapshot!.documents {
-                            print("\(document.documentID) => \(document.data())")
-                            let ref = document.reference
- 
-                            Auth.auth().currentUser?.updateEmail(to: email) { (error) in
-                                
-                            }
-                            
-                            ref.updateData([
-                                "fName": fname,
-                                "lName": lname,
-                                "age": age,
-                                "email": email,
-                                "password": password,
-                                "phone": phone,
-                                "street1": st_address1,
-                                "street2": st_address2,
-                                "city": city,
-                                "postal": postal,
-                                "province": province,
-                                "country": country,
-                                "existingSymptoms": symptoms
-                            ]);
-                        }
-                    }
-                }
-        }
+        FirebaseAccessObject().updateUserData(fname: fname, lname: lname, age: age, email: email, password: password, phone: phone, st_address1: st_address1, st_address2: st_address2, postal: postal, province: province, city: city, country: country, symptoms: symptoms)
     }
 }

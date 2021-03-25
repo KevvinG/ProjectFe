@@ -7,7 +7,6 @@
 
 // Imports
 import UIKit
-import FirebaseAuth
 
 /*------------------------------------------------------------------------
  - Class: SettingsViewController : UIViewController
@@ -47,7 +46,7 @@ class SettingsViewController: UIViewController {
         // Set up log out action and check for errors
         let logOutAction = UIAlertAction(title: "Log Out", style: .destructive ) { action in
             do {
-                try Auth.auth().signOut()
+                FirebaseAccessObject().signOut()
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
                 startViewController.modalPresentationStyle = .fullScreen
@@ -157,19 +156,12 @@ class SettingsViewController: UIViewController {
      - Description: Logic to delete account from Firestore.
      -------------------------------------------------------------------*/
     func deleteAccount() {
-        let user = Auth.auth().currentUser
-        user?.delete { error in
-            if let error = error {
-                print("There was an error getting the user: \(error)")
-            } else {
-                FirebaseAccessObject().signOut()
-                // Redirect the user to the StartViewController
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
-                startViewController.modalPresentationStyle = .fullScreen
-                self.present(startViewController, animated:true, completion:nil)
-            }
-        }
+        FirebaseAccessObject().deleteAccount()
+        // Redirect the user to the StartViewController
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
+        startViewController.modalPresentationStyle = .fullScreen
+        self.present(startViewController, animated:true, completion:nil)
     }
     
     /*--------------------------------------------------------------------

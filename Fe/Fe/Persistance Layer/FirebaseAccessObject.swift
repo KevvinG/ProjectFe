@@ -140,8 +140,8 @@ class FirebaseAccessObject {
      - Function: countAllDocuments()
      - Description: returns number of pictures uploaded.
      -------------------------------------------------------------------*/
-    func countAllDocuments() -> Int {
-        var counter = 0
+    func countAllDocuments(completion: @escaping (_ count: Int) -> Void) {
+        var count = 0
         
         let user = Auth.auth().currentUser
         let storage = Storage.storage()
@@ -161,13 +161,28 @@ class FirebaseAccessObject {
 //                    for item in result.items {
 //                        print(item.name)
 //                    }
-                    print("Counter: \(result.items.count)")
-                    counter = counter + result.items.count
+                    count = count + result.items.count
+                    print("COUNT: \(count)") // Value prints here
+                    completion(count)
                 }
             }
+            completion(count)
         }
-        print("Final Count: \(counter)")
-        return counter
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: deleteAccount()
+     - Description: Logic to delete account from Firestore.
+     -------------------------------------------------------------------*/
+    func deleteAccount() {
+        let user = Auth.auth().currentUser
+        user?.delete { error in
+            if let error = error {
+                print("There was an error getting the user: \(error)")
+            } else {
+                self.signOut()
+            }
+        }
     }
     
     /*--------------------------------------------------------------------
@@ -267,5 +282,46 @@ class FirebaseAccessObject {
         }
     }
     
+    /*--------------------------------------------------------------------
+     - Function:updateUserData()
+     - Description: Gets user from Firestore using email and updates data.
+     -------------------------------------------------------------------*/
+    func updateUserData(fname: String, lname: String, age: String, email: String, password: String, phone: String, st_address1: String, st_address2: String, postal: String, province: String, city: String, country: String, symptoms: String) {
+        print("Updating existing user...")
+        let usersRef = db.collection("users")
+        let user = Auth.auth().currentUser
+        
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            print("\(document.documentID) => \(document.data())")
+                            let ref = document.reference
+                            
+                            ref.updateData([
+                                "fName": fname,
+                                "lName": lname,
+                                "age": age,
+                                "email": email,
+                                "password": password,
+                                "phone": phone,
+                                "street1": st_address1,
+                                "street2": st_address2,
+                                "city": city,
+                                "postal": postal,
+                                "province": province,
+                                "country": country,
+                                "existingSymptoms": symptoms
+                            ]);
+                        }
+                    }
+                }
+        }
+    }
     
 }
