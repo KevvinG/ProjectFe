@@ -19,7 +19,6 @@ class FirebaseAccessObject {
     // Class Variables
     let db = Firestore.firestore() // Access to Firestore Database
     
-    
     /*--------------------------------------------------------------------
      - Function: signOut()
      - Description: Signs out current User.
@@ -137,15 +136,16 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: countAllDocuments()
+     - Function: iterateDocuments()
      - Description: returns number of pictures uploaded.
      -------------------------------------------------------------------*/
-    func countAllDocuments(completion: @escaping (_ count: Int) -> Void) {
-        var count = 0
+    func iterateDocuments(completion: @escaping (_ docArray: [Document]) -> Void) {
+        var docArray = [Document]()
         
         let user = Auth.auth().currentUser
         let storage = Storage.storage()
         let storageReference = storage.reference().child((user?.email!)!)
+        
         storageReference.listAll { (result, error) in
             if let error = error {
                 print("There was an error retrieving list of emails: ", error)
@@ -158,15 +158,31 @@ class FirebaseAccessObject {
                     if let error = error {
                         print("There was an error retrieving files in date folder: ", error)
                     }
-//                    for item in result.items {
+                    for item in result.items {
 //                        print(item.name)
-//                    }
-                    count = count + result.items.count
-                    print("COUNT: \(count)") // Value prints here
-                    completion(count)
+                        
+                        item.getMetadata { metadata, error in
+                            if let error = error {
+                                print("There was an error in metadata: \(error)")
+                            } else {
+                                // Metadata now contains the metadata for 'images/forest.jpg'
+                                let doc = Document(
+                                    name: item.name,
+                                    size: String(metadata?.size ?? 0),
+                                    type: String(metadata?.contentType ?? "NA"),
+                                    testResults: String(metadata?.customMetadata?["testRestults"] ?? "NA"),
+                                    doctor: String(metadata?.customMetadata?["doctor"] ?? "NA"),
+                                    date: String(metadata?.customMetadata?["date"] ?? "NA"),
+                                    notes: String(metadata?.customMetadata?["notes"] ?? "NA"),
+                                    location: String(item.fullPath)
+                                )
+                                docArray.append(doc)
+                                completion(docArray)
+                            }
+                        }
+                    }
                 }
             }
-            completion(count)
         }
     }
     

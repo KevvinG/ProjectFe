@@ -13,9 +13,18 @@ import UIKit
  - Description: Shows the image downloaded from Firebase.
  -----------------------------------------------------------------------*/
 class DocumentviewViewController: UIViewController {
+    
+    // UI Variables
+    @IBOutlet var imgView: UIImageView!
+    
+    // Class Variables
+    var document : Document?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("TODO: Display Image")
+//        imgView.image = document?.location
     }
 
 }

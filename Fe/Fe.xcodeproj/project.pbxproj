@@ -56,6 +56,7 @@
 		CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */; };
 		CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */; };
 		CE6D7B072607E83000835756 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7B062607E83000835756 /* Document.swift */; };
+		CE6D7C8E260D6F2B00835756 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE6D7C8D260D6F2B00835756 /* GoogleService-Info.plist */; };
 		EF97E99925E6F3760050F8B5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99725E6F3760050F8B5 /* Interface.storyboard */; };
 		EF97E99B25E6F37A0050F8B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99A25E6F37A0050F8B5 /* Assets.xcassets */; };
 		EF97E9A225E6F37A0050F8B5 /* Fe-Mini Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EF97E9A125E6F37A0050F8B5 /* Fe-Mini Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -66,7 +67,6 @@
 		EF97E9AF25E6F37C0050F8B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF97E9AE25E6F37C0050F8B5 /* Assets.xcassets */; };
 		EF97E9B425E6F37C0050F8B5 /* Fe-Mini.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = EF97E99525E6F3760050F8B5 /* Fe-Mini.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EF9CBD57260C2703002360E2 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9CBD56260C2703002360E2 /* HealthKit.framework */; };
-		EF9CBD63260C441A002360E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF9CBD62260C441A002360E2 /* GoogleService-Info.plist */; };
 		EF9CBD6F260C456E002360E2 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9CBD6E260C456E002360E2 /* HealthKit.framework */; };
 		F163FE6356C9E5C94B56C640 /* Pods_Fe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83804697FA3E96F445B2ED93 /* Pods_Fe.framework */; };
 /* End PBXBuildFile section */
@@ -176,6 +176,7 @@
 		CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAccessObject.swift; sourceTree = "<group>"; };
 		CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentviewViewController.swift; sourceTree = "<group>"; };
 		CE6D7B062607E83000835756 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		CE6D7C8D260D6F2B00835756 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF97E99525E6F3760050F8B5 /* Fe-Mini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fe-Mini.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF97E99825E6F3760050F8B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -191,7 +192,6 @@
 		EF97E9B125E6F37C0050F8B5 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		EF9CBD55260C2703002360E2 /* Fe-Mini Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fe-Mini Extension.entitlements"; sourceTree = "<group>"; };
 		EF9CBD56260C2703002360E2 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
-		EF9CBD62260C441A002360E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF9CBD6E260C456E002360E2 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -280,12 +280,13 @@
 		CE01C2D725D438D100A08E2D /* Fe */ = {
 			isa = PBXGroup;
 			children = (
-				EF9CBD62260C441A002360E2 /* GoogleService-Info.plist */,
+				CE01C2DE25D438D100A08E2D /* Main.storyboard */,
 				CE6D7AC32607AF3D00835756 /* Interaction Layer */,
 				CE6D7AC22607AEF800835756 /* Business Layer */,
 				CE6D7AC42607AF4400835756 /* Persistance Layer */,
 				CE69A26825D81F51009E87CB /* Models */,
 				CE1E4A6525D4B6E300342238 /* Fe.entitlements */,
+				CE6D7C8D260D6F2B00835756 /* GoogleService-Info.plist */,
 				CE01C2D825D438D100A08E2D /* AppDelegate.swift */,
 				CE01C2DA25D438D100A08E2D /* SceneDelegate.swift */,
 				CE01C2E425D438D100A08E2D /* Assets.xcassets */,
@@ -395,7 +396,6 @@
 		CE6D7AC32607AF3D00835756 /* Interaction Layer */ = {
 			isa = PBXGroup;
 			children = (
-				CE01C2DE25D438D100A08E2D /* Main.storyboard */,
 			);
 			path = "Interaction Layer";
 			sourceTree = "<group>";
@@ -603,7 +603,7 @@
 			files = (
 				CE01C2E825D438D100A08E2D /* LaunchScreen.storyboard in Resources */,
 				CE62B27025E83B0700AA9665 /* SensorButton.xib in Resources */,
-				EF9CBD63260C441A002360E2 /* GoogleService-Info.plist in Resources */,
+				CE6D7C8E260D6F2B00835756 /* GoogleService-Info.plist in Resources */,
 				CE01C2E525D438D100A08E2D /* Assets.xcassets in Resources */,
 				CE01C2E025D438D100A08E2D /* Main.storyboard in Resources */,
 			);

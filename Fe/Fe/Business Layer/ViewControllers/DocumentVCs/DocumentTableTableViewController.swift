@@ -13,6 +13,9 @@ import UIKit
  - Description: Holds the logic to show the whole table of documents
  -----------------------------------------------------------------------*/
 class DocumentTableTableViewController: UITableViewController {
+    
+    // Class Variables
+    var documentArray = [Document]()
 
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
@@ -20,6 +23,12 @@ class DocumentTableTableViewController: UITableViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FirebaseAccessObject().iterateDocuments(completion: { docArray in
+            self.documentArray = docArray
+            self.tableView.reloadData()
+        })
+        self.tableView.reloadData()
         
         let pressGesture : UITapGestureRecognizer = UITapGestureRecognizer(target : self, action: #selector(self.handleDocumentTapped))
         self.tableView.addGestureRecognizer(pressGesture)
@@ -60,12 +69,7 @@ class DocumentTableTableViewController: UITableViewController {
      - Description: Returns number of documents in Firebase for user.
      -------------------------------------------------------------------*/
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        FirebaseAccessObject().countAllDocuments(completion: { count in
-            print("Count Received: \(count)")
-            //TODO: RETURN THIS NUMBER
-        })
-        return 0
+        return documentArray.count
     }
     
     /*--------------------------------------------------------------------
@@ -73,62 +77,48 @@ class DocumentTableTableViewController: UITableViewController {
      - Description: Prevents User from Editing Row.
      -------------------------------------------------------------------*/
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return false
+        return true
     }
     
     /*--------------------------------------------------------------------
      - Function: tableView()
      - Description:
      -------------------------------------------------------------------*/
-
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell_document", for: indexPath) as! DocumentTableViewCell
+        if indexPath.row < documentArray.count {
+            let document = documentArray[indexPath.row]
+            cell.lblTitle?.text = document.name
+            cell.lblDate?.text = document.date
+        }
+        return cell
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: tableView()
+     - Description: Call function to delete Document from Storage
+     -------------------------------------------------------------------*/
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if indexPath.row < documentArray.count {
+            print("TODO: Write logic to delete from Firebase")
+            // remove document from Array
+            documentArray.remove(at: indexPath.row)
+            // Call FirebaseAccessObject()  and delete Document(withPath:)
+            tableView.reloadData()
+        }
+    }
     
     /*--------------------------------------------------------------------
      - Function: displayViewDocument()
      - Description: Shows New View Controller with specified document.
      -------------------------------------------------------------------*/
     private func displayViewDocument(indexPath: IndexPath) {
-//        let nsObj = ReceiptController.getAllReceipts()![ReceiptController.getAllReceipts()!.count - 1 - indexPath.row]
-//        let receipt = ReceiptController.receiptFromNSManagedObject(obj: nsObj)
-//
-//        let mainSB : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let documentviewVC = mainSB.instantiateViewController(withIdentifier: "ViewDocument") as! ViewReceiptVC
-//        documentviewVC.document = document
-//        navigationController?.pushViewController(documentviewVC, animated: true)
+        let document = documentArray[indexPath.row]
+
+        let mainSB : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let documentviewVC = mainSB.instantiateViewController(withIdentifier: "ViewDocument") as! DocumentviewViewController
+        documentviewVC.document = document
+        navigationController?.pushViewController(documentviewVC, animated: true)
     }
-    
-
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        //TODO: Configure cell
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell_document", for: indexPath) as! DocumentTableViewCell
-//
-//        return cell
-//    }
-    
-
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
