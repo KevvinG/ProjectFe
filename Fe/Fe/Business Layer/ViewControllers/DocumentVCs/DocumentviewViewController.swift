@@ -7,6 +7,7 @@
 
 // Imports
 import UIKit
+import Firebase
 
 /*------------------------------------------------------------------------
  - Class: DocumentviewViewController : UIViewController
@@ -22,9 +23,10 @@ class DocumentviewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("TODO: Display Image")
-//        imgView.image = document?.location
-    }
 
+        //TODO: MOVE TO FIREBASEACCESSOBJECT.GETIMAGE(doc: Document) -> ?
+        let pathReference = Storage.storage().reference(withPath: document!.location)
+        let placeholderImage = UIImage(named: "placeholder.jpg") // Placeholder
+        imgView.sd_setImage(with: pathReference, placeholderImage: placeholderImage) // load Image
+    }
 }

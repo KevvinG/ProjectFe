@@ -187,6 +187,15 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
+     - Function: getImage()
+     - Description: Fetches and returns image from Firebase
+     -------------------------------------------------------------------*/
+    func getImage(doc: Document?) -> StorageReference {
+        return Storage.storage().reference(withPath: doc!.location)
+    }
+    
+    
+    /*--------------------------------------------------------------------
      - Function: deleteAccount()
      - Description: Logic to delete account from Firestore.
      -------------------------------------------------------------------*/
