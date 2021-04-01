@@ -48,7 +48,8 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
         
         // The quantity types to read from the health store.
         let typesToRead: Set = [
-            HKQuantityType.quantityType(forIdentifier: .heartRate)!
+            HKQuantityType.quantityType(forIdentifier: .heartRate)!,
+            HKQuantityType.quantityType(forIdentifier: .oxygenSaturation)!
         ]
         
         // Request authorization for those quantity types.
@@ -62,6 +63,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
     func initWorkout() {
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .crossTraining
+        
         configuration.locationType = .indoor
         
         do {
@@ -119,6 +121,14 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
                 let stringValue = String(Int(Double(round(1 * value!) / 1)))
                 bpmLabel.setText(stringValue)
                 print("[workoutBuilder] Heart Rate: \(stringValue)")
+                
+            case HKQuantityType.quantityType(forIdentifier: .oxygenSaturation):
+                let statistics = workoutBuilder.statistics(for: quantityType)
+                let oSatUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
+                let value = statistics!.mostRecentQuantity()?.doubleValue(for: oSatUnit)
+                let stringValue = String(Int(Double(round(1 * value!) / 1)))
+                //bpmLabel.setText(stringValue)
+                print("[workoutBuilder] Oxygen Saturation: \(stringValue)")
             default:
                 return
             }

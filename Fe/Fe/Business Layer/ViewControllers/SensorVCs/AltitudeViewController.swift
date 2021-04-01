@@ -8,6 +8,7 @@
 // Imports
 import UIKit
 import CoreLocation
+import CoreMotion
 
 /*------------------------------------------------------------------------
  - Class: AltitudeViewController : UIViewController
@@ -17,6 +18,8 @@ class AltitudeViewController: UIViewController {
     @IBOutlet var lblAlt: UILabel!
     @IBOutlet var btnCapture: UIButton!
     private let locationManager = CLLocationManager()
+    let altimeter = CMAltimeter()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,21 @@ class AltitudeViewController: UIViewController {
 //        self.locationManager.distanceFilter = kCLDistanceFilterNone
 //        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
 //        self.locationManager.startUpdatingLocation()
+        if CMAltimeter.isRelativeAltitudeAvailable() {
+            // 2
+            altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main, withHandler: { data, error in
+                // 3
+                if (error == nil) {
+                    print("Relative Altitude: \(data?.relativeAltitude)")
+                    print("Pressure: \(data?.pressure)")
+                    self.lblAlt.text = ("Relative Altitude: \(data?.relativeAltitude)")
+                } else {
+                    print("ERR \(error)")
+                }
+            })
+        } else {
+            print("No altitude available")
+        }
     }
     
 //    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
