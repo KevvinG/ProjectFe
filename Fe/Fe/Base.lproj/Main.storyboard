@@ -748,6 +748,7 @@
                     <connections>
                         <outlet property="graph1" destination="42h-fa-rdK" id="Vpg-s0-nQE"/>
                         <outlet property="graph2" destination="mGS-5g-q7h" id="SsS-76-IL2"/>
+                        <outlet property="txtWelcomeMsg" destination="d0Q-L7-uuz" id="ftN-ju-NBQ"/>
                         <segue destination="yw4-UD-Z7u" kind="show" identifier="GoToMoreInfoScreen" id="9Gg-LW-X18"/>
                         <segue destination="nvo-d2-GEQ" kind="show" identifier="GoToSymptomDizzy" id="EBz-Zy-cNc"/>
                         <segue destination="TvE-pJ-KAB" kind="show" identifier="GoToHeartRateScreen" id="vDR-Qe-kof"/>
@@ -1806,6 +1807,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="EBz-Zy-cNc"/>
         <segue reference="qeZ-Of-omU"/>
         <segue reference="Sjb-x0-ZcP"/>
     </inferredMetricsTieBreakers>
