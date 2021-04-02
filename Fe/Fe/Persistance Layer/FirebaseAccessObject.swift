@@ -55,6 +55,33 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
+     - Function: getUserName() -> String
+     - Description: fetches user name from Fireebase
+     -------------------------------------------------------------------*/
+    func getUserName(completion: @escaping (_ name: String) -> Void) {
+        let user = Auth.auth().currentUser
+        let userRef = db.collection("users")
+        
+        userRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("No user found.")
+                    } else {
+                        print("This user already exists.")
+                        for document in querySnapshot!.documents {
+                            print("\(document.documentID) => \(document.data())")
+                            let fName = document.get("fName")
+                            completion(fName as! String)
+                        }
+                    }
+                }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
      - Function: addNewUser()
      - Description: Logic to add user to Firebase Firestore
      -------------------------------------------------------------------*/
@@ -136,6 +163,25 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
+     - Function: deleteDocument()
+     - Description: Deletes specific document from Firebase
+     -------------------------------------------------------------------*/
+    func deleteDocument(doc:Document?) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference().child(doc!.location)
+
+        // Delete the file
+        storageRef.delete { error in
+            if let error = error {
+                print("There was an error deleting the document: \(error)")
+            } else {
+                // File deleted successfully
+                // print("File Deleted Successfully.")
+            }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
      - Function: iterateDocuments()
      - Description: returns number of pictures uploaded.
      -------------------------------------------------------------------*/
@@ -185,6 +231,15 @@ class FirebaseAccessObject {
             }
         }
     }
+    
+    /*--------------------------------------------------------------------
+     - Function: getImage()
+     - Description: Fetches and returns image from Firebase
+     -------------------------------------------------------------------*/
+    func getImage(doc: Document?) -> StorageReference {
+        return Storage.storage().reference(withPath: doc!.location)
+    }
+    
     
     /*--------------------------------------------------------------------
      - Function: deleteAccount()

@@ -15,6 +15,10 @@ import CorePlot
  - Description: Holds logic for the the User Home Screen
  -----------------------------------------------------------------------*/
 class HomeViewController: UIViewController {
+    
+    // UI Variables
+    @IBOutlet var txtWelcomeMsg: UILabel!
+    
     var plotData = [Double](repeating: 0.0, count: 1000)
     var plot: CPTScatterPlot!
     var maxDataPoints = 100
@@ -49,6 +53,10 @@ class HomeViewController: UIViewController {
         let objFB = FirebaseAccessObject()
         objFB.checkIfNewUser() // Check if user already exists and add new user if not.
         
+        // Set Name at top of UI
+        FirebaseAccessObject().getUserName(completion: { name in
+            self.txtWelcomeMsg.text = "Welcome back, \(name)!"
+        })
         
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))

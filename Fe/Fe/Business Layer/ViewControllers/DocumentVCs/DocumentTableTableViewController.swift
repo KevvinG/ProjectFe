@@ -24,8 +24,12 @@ class DocumentTableTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FirebaseAccessObject().iterateDocuments(completion: { docArray in
+        FirebaseAccessObject().iterateDocuments(completion: { [self] docArray in
             self.documentArray = docArray
+            
+            documentArray.sort {
+                $1.date < $0.date
+            }
             self.tableView.reloadData()
         })
         self.tableView.reloadData()
@@ -102,9 +106,12 @@ class DocumentTableTableViewController: UITableViewController {
         
         if indexPath.row < documentArray.count {
             print("TODO: Write logic to delete from Firebase")
-            // remove document from Array
+            let document = documentArray[indexPath.row]
+            // Remove document from Array
             documentArray.remove(at: indexPath.row)
-            // Call FirebaseAccessObject()  and delete Document(withPath:)
+            // Remove document from Firebase
+            FirebaseAccessObject().deleteDocument(doc: document)
+            
             tableView.reloadData()
         }
     }
