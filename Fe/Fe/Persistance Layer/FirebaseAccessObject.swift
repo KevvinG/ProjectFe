@@ -211,9 +211,17 @@ class FirebaseAccessObject {
                             if let error = error {
                                 print("There was an error in metadata: \(error)")
                             } else {
+                                // Remove .jpg from file name
+                                var fileName = item.name
+                                var components = fileName.components(separatedBy: ".")
+                                if components.count > 1 { // If there is a file extension
+                                    components.removeLast()
+                                    fileName = components[0]
+                                }
+                                
                                 // Metadata now contains the metadata for 'images/forest.jpg'
                                 let doc = Document(
-                                    name: item.name,
+                                    name: fileName,
                                     size: String(metadata?.size ?? 0),
                                     type: String(metadata?.contentType ?? "NA"),
                                     testResults: String(metadata?.customMetadata?["testRestults"] ?? "NA"),
@@ -231,15 +239,6 @@ class FirebaseAccessObject {
             }
         }
     }
-    
-    /*--------------------------------------------------------------------
-     - Function: getImage()
-     - Description: Fetches and returns image from Firebase
-     -------------------------------------------------------------------*/
-    func getImage(doc: Document?) -> StorageReference {
-        return Storage.storage().reference(withPath: doc!.location)
-    }
-    
     
     /*--------------------------------------------------------------------
      - Function: deleteAccount()

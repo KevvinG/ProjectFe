@@ -57,6 +57,7 @@
 		CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */; };
 		CE6D7B072607E83000835756 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7B062607E83000835756 /* Document.swift */; };
 		CE6D7C8E260D6F2B00835756 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE6D7C8D260D6F2B00835756 /* GoogleService-Info.plist */; };
+		CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
 		EF97E99925E6F3760050F8B5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99725E6F3760050F8B5 /* Interface.storyboard */; };
 		EF97E99B25E6F37A0050F8B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99A25E6F37A0050F8B5 /* Assets.xcassets */; };
 		EF97E9A225E6F37A0050F8B5 /* Fe-Mini Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EF97E9A125E6F37A0050F8B5 /* Fe-Mini Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -177,6 +178,7 @@
 		CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentviewViewController.swift; sourceTree = "<group>"; };
 		CE6D7B062607E83000835756 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		CE6D7C8D260D6F2B00835756 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDocumentViewController.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF97E99525E6F3760050F8B5 /* Fe-Mini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fe-Mini.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF97E99825E6F3760050F8B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				CE62B2EF25E88AC800AA9665 /* DocumentTableViewCell.swift */,
 				CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */,
 				CE62B2FD25E88BCB00AA9665 /* UploadDocumentViewController.swift */,
+				CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */,
 			);
 			path = DocumentVCs;
 			sourceTree = "<group>";
@@ -396,6 +399,9 @@
 		CE6D7AC32607AF3D00835756 /* Interaction Layer */ = {
 			isa = PBXGroup;
 			children = (
+				CEC56BC6261A1B14000AC6E9 /* SensorScreens */,
+				CEC56BBB261A1B09000AC6E9 /* SettingsScreens */,
+				CEBB35F4261926B700993137 /* DocumentScreens */,
 			);
 			path = "Interaction Layer";
 			sourceTree = "<group>";
@@ -406,6 +412,27 @@
 				CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */,
 			);
 			path = "Persistance Layer";
+			sourceTree = "<group>";
+		};
+		CEBB35F4261926B700993137 /* DocumentScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DocumentScreens;
+			sourceTree = "<group>";
+		};
+		CEC56BBB261A1B09000AC6E9 /* SettingsScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SettingsScreens;
+			sourceTree = "<group>";
+		};
+		CEC56BC6261A1B14000AC6E9 /* SensorScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SensorScreens;
 			sourceTree = "<group>";
 		};
 		D208A80E127F4FAB0E75EF2A /* Pods */ = {
@@ -800,6 +827,7 @@
 				CE01C2E325D438D100A08E2D /* Fe.xcdatamodeld in Sources */,
 				CE62B26525E8395B00AA9665 /* SensorButtonView.swift in Sources */,
 				CE01C2DB25D438D100A08E2D /* SceneDelegate.swift in Sources */,
+				CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */,
 				CE6D7B072607E83000835756 /* Document.swift in Sources */,
 				CE62B25525E72C8100AA9665 /* SensorCustomButton.swift in Sources */,
 				CE62B28F25E8521900AA9665 /* Symptom1DizzyViewController.swift in Sources */,
