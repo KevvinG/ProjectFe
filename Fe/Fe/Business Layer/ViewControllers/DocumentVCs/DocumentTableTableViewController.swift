@@ -32,10 +32,14 @@ class DocumentTableTableViewController: UITableViewController {
             }
             self.tableView.reloadData()
         })
-        self.tableView.reloadData()
         
-        let pressGesture : UITapGestureRecognizer = UITapGestureRecognizer(target : self, action: #selector(self.handleDocumentTapped))
+        let pressGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleDocumentTapped))
         self.tableView.addGestureRecognizer(pressGesture)
+        
+        let longPressGesture : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.handleDocumentLongPress))
+        self.tableView.addGestureRecognizer(longPressGesture)
+        
+        self.tableView.reloadData()
     }
     
     /*--------------------------------------------------------------------
@@ -59,6 +63,20 @@ class DocumentTableTableViewController: UITableViewController {
             }
         }
     }
+    
+    /*--------------------------------------------------------------------
+     - Function: handleDocumentPress()
+     - Description: Called when the view is shown to the user.
+     - If long press on document, opens Edit Document Screen.
+     -------------------------------------------------------------------*/
+    @objc func handleDocumentLongPress(_ gestureRecognizer: UILongPressGestureRecognizer){
+        if gestureRecognizer.state == .ended {
+            let touchPoint = gestureRecognizer.location(in: self.tableView)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                self.displayUpdateDocument(indexPath : indexPath)
+            }
+        }
+    }
 
     /*--------------------------------------------------------------------
      - Function: numberOfSections()
@@ -78,7 +96,7 @@ class DocumentTableTableViewController: UITableViewController {
     
     /*--------------------------------------------------------------------
      - Function: tableView()
-     - Description: Prevents User from Editing Row.
+     - Description: Allows User to Edit/Delete Row.
      -------------------------------------------------------------------*/
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -122,10 +140,21 @@ class DocumentTableTableViewController: UITableViewController {
      -------------------------------------------------------------------*/
     private func displayViewDocument(indexPath: IndexPath) {
         let document = documentArray[indexPath.row]
-
         let mainSB : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let documentviewVC = mainSB.instantiateViewController(withIdentifier: "ViewDocument") as! DocumentviewViewController
         documentviewVC.document = document
         navigationController?.pushViewController(documentviewVC, animated: true)
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: displayEditDocument()
+     - Description: Shows Edit Document screen with specified document.
+     -------------------------------------------------------------------*/
+    private func displayUpdateDocument(indexPath: IndexPath) {
+        let document = documentArray[indexPath.row]
+        let mainSB : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let editDocVC = mainSB.instantiateViewController(withIdentifier: "UpdateDocument") as! UpdateDocumentViewController
+        editDocVC.document = document
+        navigationController?.pushViewController(editDocVC, animated: true)
     }
 }

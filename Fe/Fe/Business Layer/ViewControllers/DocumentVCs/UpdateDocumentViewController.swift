@@ -1,38 +1,41 @@
 //
-//  UploadDocumentViewController.swift
+//  UpdateDocumentViewController.swift
 //  Fe
 //
-//  Created by Jayce Merinchuk on 2021-02-25.
+//  Created by Jayce Merinchuk on 2021-04-03.
 //
 
 // Imports
 import UIKit
+import Firebase
 
 /*------------------------------------------------------------------------
- - Class: UploadDocumentViewController : UIViewController
- - Description: Screen to upload Document to system
+ - Class: UpdateDocumentViewController : UIViewController
+ - Description: Screen to update Document
  -----------------------------------------------------------------------*/
-class UploadDocumentViewController: UIViewController {
+class UpdateDocumentViewController: UIViewController {
     
     // UI Variables
-    @IBOutlet var txtTestName: UITextField!
+    @IBOutlet var lblTitle: UILabel!
+    @IBOutlet var lblSubtitle: UILabel!
+    @IBOutlet var imgView: UIImageView!
     @IBOutlet var docDatePicker: UIDatePicker!
-    @IBOutlet var txtDoctorName: UITextField!
-    @IBOutlet var txtTestResults: UITextField!
-    @IBOutlet var Notes: UITextField!
-    @IBOutlet var imagePicked: UIImageView!
+    @IBOutlet var txtTestName: UITextField!
+    @IBOutlet var txtDrName: UITextField!
+    @IBOutlet var txtResults: UITextField!
+    @IBOutlet var txtNotes: UITextField!
+    
+    // Class Variables
+    var document : Document?
     
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
-     - Description: Initialize some code beforee showing screen.
+     - Description: Initialize some code before showing screen.
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
-        
-        // Tap Gesture to close the onscreen keyboard
-        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
+        setDocumentDetails()
     }
     
     /*--------------------------------------------------------------------
@@ -59,10 +62,41 @@ class UploadDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: takePictureBtnTapped()
-     - Description: Opens phonoe camera if available.
+     - Function: setDocumentDetails()
+     - Description: sets Document Details from passed document.
      -------------------------------------------------------------------*/
-    @IBAction func takePictureBtnTapped() {
+    func setDocumentDetails() {
+        //TODO: MOVE TO FIREBASEACCESSOBJECT.GETIMAGE(doc: Document) -> ?
+        let pathReference = Storage.storage().reference(withPath: document!.location)
+        let placeholderImage = UIImage(named: "placeholder.jpg") // Placeholder
+        imgView.sd_setImage(with: pathReference, placeholderImage: placeholderImage) // load Image
+        
+        // Grab Date from Document
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        let date = dateFormatter.date(from: document!.date)
+        print(document!.date)
+        
+        // Remove .jpg from file name
+        var fileName = document!.name
+        var components = fileName.components(separatedBy: ".")
+        if components.count > 1 { // If there is a file extension
+            components.removeLast()
+            fileName = components[0]
+        }
+
+        docDatePicker.setDate(date!, animated: false)
+        txtTestName.text = fileName
+        txtDrName.text = self.document?.doctor
+        txtResults.text = document?.testResults
+        txtNotes.text = document?.notes
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: takePictureBtnTapped()
+     - Description: Opens Camera to take picture.
+     -------------------------------------------------------------------*/
+    @IBAction func takePictureBtnTapped(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let picker = UIImagePickerController()
             picker.sourceType = .camera
@@ -75,10 +109,10 @@ class UploadDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: findFileBtnTapped()
-     - Description: Opens photo library to pick image if available.
+     - Function: findPictureBtnTapped()
+     - Description: Opens Gallery to choose picture.
      -------------------------------------------------------------------*/
-    @IBAction func findDocumentBtnTapped(_ sender: Any) {
+    @IBAction func findPictureBtnTapped(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let image = UIImagePickerController()
             image.delegate = self
@@ -91,20 +125,22 @@ class UploadDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: uploadBtnTapped()
-     - Description: uploads image to Firebase Storage
+     - Function: updateDocumentBtnTapped()
+     - Description: Updates document in Firebase
      -------------------------------------------------------------------*/
-    @IBAction func uploadBtnTapped(_ sender: Any) {
-        if imagePicked.image == nil {
+    @IBAction func updateDocumentBtnTapped(_ sender: Any) {
+        if imgView.image == nil {
             // Show Alert to pick an image first
             let errorMessage = UIAlertController(title: "Error!", message: "Please take a picture or select one from the gallery first!", preferredStyle: .alert)
             let confirm = UIAlertAction(title: "OK", style: .default, handler: nil)
             errorMessage.addAction(confirm)
             self.present(errorMessage, animated: true, completion: nil)
         } else {
-            // Try to upload the picture to Firebase
             let objFB = FirebaseAccessObject()
-            let success = objFB.uploadFile(testName: txtTestName.text!, imagePicked: imagePicked, date: getDatePickerString(), doctor: txtDoctorName.text!, results: txtTestResults.text!, notes: Notes.text!)
+            // Delete Old Document, then upload new one.
+            objFB.deleteDocument(doc: self.document)
+            // Upload New Document
+            let success = objFB.uploadFile(testName: txtTestName.text!, imagePicked: imgView, date: getDatePickerString(), doctor: txtDrName.text!, results: txtResults.text!, notes: txtNotes.text!)
             if success {
                 // Show Alert that image was saved
                 let confirmationMessage = UIAlertController(title: "Picture Saved!", message: "Your picture has beed saved", preferredStyle: .alert)
@@ -126,7 +162,7 @@ class UploadDocumentViewController: UIViewController {
  - Class: UploadDocumentViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate
  - Description: Functions to handle image picker.
  -----------------------------------------------------------------------*/
-extension UploadDocumentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension UpdateDocumentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     /*--------------------------------------------------------------------
      - Function: imagePickerControllerDidCancel()
@@ -142,7 +178,7 @@ extension UploadDocumentViewController: UIImagePickerControllerDelegate, UINavig
      -------------------------------------------------------------------*/
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as! UIImage
-        imagePicked.image = image
+        imgView.image = image
         dismiss(animated: true, completion: nil)
     }
 }
