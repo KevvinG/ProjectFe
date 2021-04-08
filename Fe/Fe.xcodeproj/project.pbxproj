@@ -58,6 +58,7 @@
 		CE6D7B072607E83000835756 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7B062607E83000835756 /* Document.swift */; };
 		CE6D7C8E260D6F2B00835756 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE6D7C8D260D6F2B00835756 /* GoogleService-Info.plist */; };
 		CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
+		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF97E99925E6F3760050F8B5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99725E6F3760050F8B5 /* Interface.storyboard */; };
 		EF97E99B25E6F37A0050F8B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99A25E6F37A0050F8B5 /* Assets.xcassets */; };
 		EF97E9A225E6F37A0050F8B5 /* Fe-Mini Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EF97E9A125E6F37A0050F8B5 /* Fe-Mini Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -180,6 +181,7 @@
 		CE6D7C8D260D6F2B00835756 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDocumentViewController.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF2544EF261F22E800069308 /* HKAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKAccessObject.swift; sourceTree = "<group>"; };
 		EF97E99525E6F3760050F8B5 /* Fe-Mini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fe-Mini.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF97E99825E6F3760050F8B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		EF97E99A25E6F37A0050F8B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */,
+				EF2544EF261F22E800069308 /* HKAccessObject.swift */,
 			);
 			path = "Persistance Layer";
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				CE62B2AF25E856CE00AA9665 /* AOKViewController.swift in Sources */,
 				CE62B2A825E856B800AA9665 /* CallDoctorViewController.swift in Sources */,
 				CE26589425FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift in Sources */,
+				EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */,
 				CE62AF1325DD6B0400AA9665 /* StartViewController.swift in Sources */,
 				CE01C2D925D438D100A08E2D /* AppDelegate.swift in Sources */,
 				CE62B28825E84F5C00AA9665 /* WebMoreInfoViewController.swift in Sources */,

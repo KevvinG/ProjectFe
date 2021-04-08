@@ -85,13 +85,17 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
     func startWorkout() {
         // Initialize our workout
         initWorkout()
-        
+        let o2Unit = HKUnit(from: "mL/min*kg")
+        let oxySatType = HKQuantityType.quantityType(forIdentifier: .oxygenSaturation)!
+        let oxySatQuantity = HKQuantity(unit: o2Unit, doubleValue: 1)
+
         // Start the workout session and begin data collection
         session.startActivity(with: Date())
         builder.beginCollection(withStart: Date()) { (succ, error) in
             if !succ {
                 fatalError("Error beginning collection from builder: \(String(describing: error)))")
             }
+            //let oxySat = HKQuantitySample(type: oxySatType, quantity: oxySatQuantity, start: Date(), end: end)
         }
     }
     
@@ -109,6 +113,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
     }
     
     func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
+        
         for type in collectedTypes {
             guard let quantityType = type as? HKQuantityType else {
                 return
