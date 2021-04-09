@@ -296,7 +296,34 @@ class FirebaseAccessObject {
                         }
                     }
                 }
-                completion(dataDict)
+            completion(dataDict)
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: fetchDoctorPhoneNumber()
+     - Description: returns the doctor's phone number for call function.
+     -------------------------------------------------------------------*/
+    func fetchDoctorPhoneNumber(completion: @escaping (_ doctorPhone: String) -> Void) {
+        var doctorPhone =  String()
+        let usersRef = db.collection("users")
+        let user = Auth.auth().currentUser
+        
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            //print("\(document.documentID) => \(document.data())")
+                            doctorPhone = document.data()["doctorPhone"] as? String ?? ""
+                        }
+                    }
+                }
+            completion(doctorPhone)
         }
     }
     
