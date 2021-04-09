@@ -63,6 +63,10 @@ class HomeViewController: UIViewController {
             self.hrButton.setTitle(String(test), for: .normal)
             print(Int(test))
         }
+        
+        self.HKObj.getLatestOxySat{ (oxy) in
+            print(Int(oxy))
+        }
     }
     /*--------------------------------------------------------------------
      - Function: prepare()

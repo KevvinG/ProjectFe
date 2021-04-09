@@ -109,7 +109,7 @@ class HKAccessObject{
     func getLatestHR(completion: @escaping (Double) -> Void) {
         guard let discreteHeartRate =
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate) else {
-            fatalError("*** Unable to create a step count type ***") }
+            fatalError("*** Unable to create a HR Type ***") }
         
         let discreteQuery = HKStatisticsQuery(quantityType: discreteHeartRate,
                                               quantitySamplePredicate: nil,
@@ -126,5 +126,27 @@ class HKAccessObject{
         
         healthStore.execute(discreteQuery)
 
+    }
+    
+    func getLatestOxySat(completion: @escaping (Double) -> Void) {
+        print("Oxy func called")
+        
+        guard let discreteOxySat = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.oxygenSaturation) else {
+            fatalError("*** Unable to create O2 Type ***")
+        }
+        
+        let discreteQuery = HKStatisticsQuery(quantityType: discreteOxySat,
+                                              quantitySamplePredicate: nil,
+                                              options: .mostRecent) {
+                                                    query, statistics, error in
+            if let val = statistics?.mostRecentQuantity(){
+                let oxyVal = val.doubleValue(for: HKUnit(from: "percent"))
+                
+                DispatchQueue.main.async {
+                    completion(oxyVal)
+                }
+            }
+        }
+        healthStore.execute(discreteQuery)
     }
 }
