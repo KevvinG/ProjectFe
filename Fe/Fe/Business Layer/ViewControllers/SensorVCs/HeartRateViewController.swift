@@ -44,7 +44,7 @@ class HeartRateViewController: UIViewController {
             self.lblCurrentHR.text = "Current Heart Rate: \(String(hrVal))"
         })
         
-        HKObj.fetchHealthData(completion: { [self] bpmDict in
+        HKObj.fetchHealthData(dateRange: "day", completion: { [self] bpmDict in
             DispatchQueue.main.async {
                 self.dataDict = bpmDict
                 let dateArray = Array(self.dataDict.keys)
@@ -67,10 +67,14 @@ class HeartRateViewController: UIViewController {
             let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
             dataEntries.append(dataEntry)
         }
+        
+
       
         let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
         lineChartView.data = lineChartData
+        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
+        lineChartView.xAxis.granularity = 1
     }
     
 }

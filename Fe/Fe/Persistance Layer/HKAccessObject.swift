@@ -21,7 +21,7 @@ class HKAccessObject {
      - Function: fetchHealthData()
      - Description:
      -------------------------------------------------------------------*/
-    func fetchHealthData(completion: @escaping (_ bpmDict: [String:Double]) -> Void) {
+    func fetchHealthData(dateRange: String, completion: @escaping (_ bpmDict: [String:Double]) -> Void) {
         var bpmDict : [String:Double] = [:]
         
         // Check if Health Data is available
@@ -45,13 +45,38 @@ class HKAccessObject {
                     }
                     
                     let interval = NSDateComponents()
-                    interval.minute = 30
+                    switch dateRange {
+                    
+                    case "day":
+                        interval.minute = 1
+                    
+                    default:
+                        interval.minute = 30
+                    }
+                    
                                         
                     let endDate = Date()
-                                                
-                    guard let startDate = calendar.date(byAdding: .month, value: -1, to: endDate) else {
+                    
+                    guard var startDate = calendar.date(byAdding: .month, value: -1, to: endDate) else {
                         fatalError("*** Unable to calculate the start date ***")
                     }
+                    
+                    switch dateRange {
+                    
+                    case "month":
+                        startDate = calendar.date(byAdding: .month, value: -1, to: endDate) ?? Date()
+                        break
+                    case "day":
+                        startDate = calendar.date(byAdding: .day, value: -1, to: endDate) ?? Date()
+                        break
+                        
+                    default:
+                        print("No DR Selected, default to month")
+                        startDate = calendar.date(byAdding: .month, value: -1, to: endDate) ?? Date()
+                    }
+//                    guard let startDate = calendar.date(byAdding: DR, value: -1, to: endDate) else {
+//                        fatalError("*** Unable to calculate the start date ***")
+//                    }
                                         
                     guard let quantityType = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate) else {
                         fatalError("*** Unable to create a step count type ***")
