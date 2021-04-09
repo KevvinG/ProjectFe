@@ -17,6 +17,7 @@
 		CE01C2E825D438D100A08E2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE01C2E625D438D100A08E2D /* LaunchScreen.storyboard */; };
 		CE01C2F325D438D100A08E2D /* FeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2F225D438D100A08E2D /* FeTests.swift */; };
 		CE01C2FE25D438D100A08E2D /* FeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2FD25D438D100A08E2D /* FeUITests.swift */; };
+		CE082552261FAE3500558A32 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE082551261FAE3500558A32 /* GoogleService-Info.plist */; };
 		CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */; };
 		CE26589425FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */; };
 		CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */; };
@@ -56,7 +57,6 @@
 		CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */; };
 		CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */; };
 		CE6D7B072607E83000835756 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7B062607E83000835756 /* Document.swift */; };
-		CE6D7C8E260D6F2B00835756 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE6D7C8D260D6F2B00835756 /* GoogleService-Info.plist */; };
 		CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF97E99925E6F3760050F8B5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99725E6F3760050F8B5 /* Interface.storyboard */; };
@@ -152,6 +152,7 @@
 		CE01C2F925D438D100A08E2D /* FeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE01C2FD25D438D100A08E2D /* FeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeUITests.swift; sourceTree = "<group>"; };
 		CE01C2FF25D438D100A08E2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE082551261FAE3500558A32 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE1E4A6525D4B6E300342238 /* Fe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fe.entitlements; sourceTree = "<group>"; };
 		CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppPermissionsViewController.swift; sourceTree = "<group>"; };
 		CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationPermissionsViewController.swift; sourceTree = "<group>"; };
@@ -178,7 +179,6 @@
 		CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAccessObject.swift; sourceTree = "<group>"; };
 		CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentviewViewController.swift; sourceTree = "<group>"; };
 		CE6D7B062607E83000835756 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		CE6D7C8D260D6F2B00835756 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDocumentViewController.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2544EF261F22E800069308 /* HKAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKAccessObject.swift; sourceTree = "<group>"; };
@@ -285,12 +285,12 @@
 			isa = PBXGroup;
 			children = (
 				CE01C2DE25D438D100A08E2D /* Main.storyboard */,
-				CE6D7AC32607AF3D00835756 /* Interaction Layer */,
+				CE082558261FAE4100558A32 /* Interaction Layer */,
 				CE6D7AC22607AEF800835756 /* Business Layer */,
 				CE6D7AC42607AF4400835756 /* Persistance Layer */,
 				CE69A26825D81F51009E87CB /* Models */,
 				CE1E4A6525D4B6E300342238 /* Fe.entitlements */,
-				CE6D7C8D260D6F2B00835756 /* GoogleService-Info.plist */,
+				CE082551261FAE3500558A32 /* GoogleService-Info.plist */,
 				CE01C2D825D438D100A08E2D /* AppDelegate.swift */,
 				CE01C2DA25D438D100A08E2D /* SceneDelegate.swift */,
 				CE01C2E425D438D100A08E2D /* Assets.xcassets */,
@@ -317,6 +317,37 @@
 				CE01C2FF25D438D100A08E2D /* Info.plist */,
 			);
 			path = FeUITests;
+			sourceTree = "<group>";
+		};
+		CE082558261FAE4100558A32 /* Interaction Layer */ = {
+			isa = PBXGroup;
+			children = (
+				CE082560261FAE5800558A32 /* DocumentScreens */,
+				CE08255F261FAE4E00558A32 /* SetttingsScreens */,
+				CE08255E261FAE4800558A32 /* SensorScreens */,
+			);
+			path = "Interaction Layer";
+			sourceTree = "<group>";
+		};
+		CE08255E261FAE4800558A32 /* SensorScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SensorScreens;
+			sourceTree = "<group>";
+		};
+		CE08255F261FAE4E00558A32 /* SetttingsScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SetttingsScreens;
+			sourceTree = "<group>";
+		};
+		CE082560261FAE5800558A32 /* DocumentScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DocumentScreens;
 			sourceTree = "<group>";
 		};
 		CE62B29525E8522200AA9665 /* SymptomVCs */ = {
@@ -398,16 +429,6 @@
 			path = "Business Layer";
 			sourceTree = "<group>";
 		};
-		CE6D7AC32607AF3D00835756 /* Interaction Layer */ = {
-			isa = PBXGroup;
-			children = (
-				CEC56BC6261A1B14000AC6E9 /* SensorScreens */,
-				CEC56BBB261A1B09000AC6E9 /* SettingsScreens */,
-				CEBB35F4261926B700993137 /* DocumentScreens */,
-			);
-			path = "Interaction Layer";
-			sourceTree = "<group>";
-		};
 		CE6D7AC42607AF4400835756 /* Persistance Layer */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,27 +436,6 @@
 				EF2544EF261F22E800069308 /* HKAccessObject.swift */,
 			);
 			path = "Persistance Layer";
-			sourceTree = "<group>";
-		};
-		CEBB35F4261926B700993137 /* DocumentScreens */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DocumentScreens;
-			sourceTree = "<group>";
-		};
-		CEC56BBB261A1B09000AC6E9 /* SettingsScreens */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SettingsScreens;
-			sourceTree = "<group>";
-		};
-		CEC56BC6261A1B14000AC6E9 /* SensorScreens */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SensorScreens;
 			sourceTree = "<group>";
 		};
 		D208A80E127F4FAB0E75EF2A /* Pods */ = {
@@ -633,9 +633,9 @@
 			files = (
 				CE01C2E825D438D100A08E2D /* LaunchScreen.storyboard in Resources */,
 				CE62B27025E83B0700AA9665 /* SensorButton.xib in Resources */,
-				CE6D7C8E260D6F2B00835756 /* GoogleService-Info.plist in Resources */,
 				CE01C2E525D438D100A08E2D /* Assets.xcassets in Resources */,
 				CE01C2E025D438D100A08E2D /* Main.storyboard in Resources */,
+				CE082552261FAE3500558A32 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

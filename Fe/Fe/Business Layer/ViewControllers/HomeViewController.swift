@@ -7,33 +7,21 @@
 
 // Imports
 import UIKit
-import CorePlot
-
 
 /*------------------------------------------------------------------------
  - Class: HomeViewController : UIViewController
  - Description: Holds logic for the the User Home Screen
  -----------------------------------------------------------------------*/
 class HomeViewController: UIViewController {
+    // Class Variables
+    let HKObj = HKAccessObject()
+    let FBObj = FirebaseAccessObject()
+    var counter = 0
     
     // UI Variables
     @IBOutlet var txtWelcomeMsg: UILabel!
     @IBOutlet var txtTestMsg: UILabel!
     @IBOutlet var hrButton: UIButton!
-    
-    let HKObj = HKAccessObject()
-  var counter = 0
-    // Set up button on screen. To be removed.
-//    private let hrbutton : SensorCustomButton = {
-//        let button = SensorCustomButton(frame: CGRect(x:0, y:0, width:150, height:150))
-//        button.addTarget(self, action: #selector(heartRateBtnTapped), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    @objc func heartRateBtnTapped(sender: UIButton!) {
-//        print("Tapped")
-//    }
-    
 
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
@@ -42,37 +30,27 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
-        let objFB = FirebaseAccessObject()
-        objFB.checkIfNewUser() // Check if user already exists and add new user if not.
+        
+        FBObj.checkIfNewUser() // Check if user already exists and add new user if not.
         
         // Set Name at top of UI
-        FirebaseAccessObject().getUserName(completion: { name in
+        FBObj.getUserName(completion: { name in
             self.txtWelcomeMsg.text = "Welcome back, \(name)!"
         })
-        
-        // Create Custom button
-//        let vmHrBtn = SensorCustomButton(mainTitle: "Heart Rate", currentSubtitle: "Current: 75 BPM", averageSubtitle: "Average: 82 BPM", imageName: "heart")
-//        view.addSubview(hrbutton)
-//        hrbutton.center = view.center
     }
 
-
+    /*--------------------------------------------------------------------
+     - Function: fire()
+     - Description: Starts Timer.
+     -------------------------------------------------------------------*/
     @objc func fire()
     {
         self.HKObj.getLatestHR{ (test) in
             self.hrButton.setTitle(String(test), for: .normal)
-            print(Int(test))
+            print("HR: \(Int(test))")
         }
     }
-    /*--------------------------------------------------------------------
-     - Function: prepare()
-     - Description: Prepare any code before changing scenes.
-     -------------------------------------------------------------------*/
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         //Get the new view controller using segue.destination.
-         //Pass the selected object to the new view controller.
-    }
-    
+
     /*--------------------------------------------------------------------
      - Function: heartRateBtnTapped()
      - Description: Segue to heartRate Data View
@@ -128,5 +106,4 @@ class HomeViewController: UIViewController {
     @IBAction func moreInformationBtnTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToMoreInfoScreen", sender: self)
     }
-    
 }

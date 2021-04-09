@@ -16,7 +16,7 @@ import CorePlot
  -----------------------------------------------------------------------*/
 class BloodOxygenViewController: UIViewController {
     
-    // Class variables
+    // Class Variables
     var plotData = [Double](repeating: 0.0, count: 1000)
     var plot: CPTScatterPlot!
     var maxDataPoints = 100
