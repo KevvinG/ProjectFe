@@ -322,18 +322,11 @@
 		CE082558261FAE4100558A32 /* Interaction Layer */ = {
 			isa = PBXGroup;
 			children = (
-				CE082560261FAE5800558A32 /* DocumentScreens */,
+				CE0825712620936A00558A32 /* SensorScreens */,
+				CE0825702620936300558A32 /* DocumentScreens */,
 				CE08255F261FAE4E00558A32 /* SetttingsScreens */,
-				CE08255E261FAE4800558A32 /* SensorScreens */,
 			);
 			path = "Interaction Layer";
-			sourceTree = "<group>";
-		};
-		CE08255E261FAE4800558A32 /* SensorScreens */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SensorScreens;
 			sourceTree = "<group>";
 		};
 		CE08255F261FAE4E00558A32 /* SetttingsScreens */ = {
@@ -343,11 +336,18 @@
 			path = SetttingsScreens;
 			sourceTree = "<group>";
 		};
-		CE082560261FAE5800558A32 /* DocumentScreens */ = {
+		CE0825702620936300558A32 /* DocumentScreens */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = DocumentScreens;
+			sourceTree = "<group>";
+		};
+		CE0825712620936A00558A32 /* SensorScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SensorScreens;
 			sourceTree = "<group>";
 		};
 		CE62B29525E8522200AA9665 /* SymptomVCs */ = {
