@@ -41,16 +41,16 @@ class FirebaseAccessObject {
         let usersRef = db.collection("users")
         usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
             .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count == 0 {
+                    //print("Adding new user.")
+                    self.addNewUser()
                 } else {
-                    if querySnapshot!.documents.count == 0 {
-                        print("Adding new user.")
-                        self.addNewUser()
-                    } else {
-                        print("This user already exists.")
-                    }
+                    //print("This user already exists.")
                 }
+            }
         }
     }
     
@@ -64,20 +64,19 @@ class FirebaseAccessObject {
         
         userRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
             .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count == 0 {
+                    print("No user found.")
                 } else {
-                    if querySnapshot!.documents.count == 0 {
-                        print("No user found.")
-                    } else {
-                        print("This user already exists.")
-                        for document in querySnapshot!.documents {
-                            print("\(document.documentID) => \(document.data())")
-                            let fName = document.get("fName")
-                            completion(fName as! String)
-                        }
+                    for document in querySnapshot!.documents {
+                        //print("\(document.documentID) => \(document.data())")
+                        let fName = document.get("fName")
+                        completion(fName as! String)
                     }
                 }
+            }
         }
     }
     
@@ -87,9 +86,7 @@ class FirebaseAccessObject {
      -------------------------------------------------------------------*/
     func addNewUser() {
         let user = Auth.auth().currentUser
-        // TODO: - Change this to use the struct model User
-        var ref: DocumentReference? = nil
-        ref = db.collection("users").addDocument(data: [
+        db.collection("users").addDocument(data: [
             "uid": user!.uid,
             "fName": "",
             "lName": "",
@@ -102,12 +99,15 @@ class FirebaseAccessObject {
             "postal": "",
             "province": "",
             "country": "",
-            "existingSymptoms": ""
+            "existingSymptoms": "",
+            "doctorPhone": "",
+            "emergencyName": "",
+            "emergencyPhone": ""
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                //print("Document added with ID: \(ref!.documentID)")
             }
         }
     }
@@ -241,6 +241,93 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
+     - Function: updateEmergencyContactData()
+     - Description: Logic to update EmergencyContact Data.
+     -------------------------------------------------------------------*/
+    func updateEmergencyContactData(doctorPhone: String, emergencyName: String, emergencyPhone: String, completion: @escaping (_ successful: Bool) -> Void) {
+        let user = Auth.auth().currentUser
+        let userRef = db.collection("users").whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+        
+        userRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count == 0 {
+                    print("No user found.")
+                    completion(false)
+                } else {
+                    for document in querySnapshot!.documents {
+                        let ref = document.reference
+                        ref.updateData([
+                            "doctorPhone": doctorPhone,
+                            "emergencyName": emergencyName,
+                            "emergencyPhone": emergencyPhone
+                        ]);
+                        completion(true)
+                    }
+                }
+            }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: getEmergencyContactData()
+     - Description: Obtains emergency contact data from Firebase and displays in
+     - each of the appropriate TextViews.
+     -------------------------------------------------------------------*/
+    func getEmergencyContactData(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
+        var dataDict = [String:String]()
+        let usersRef = db.collection("users")
+        let user = Auth.auth().currentUser
+        
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            //print("\(document.documentID) => \(document.data())")
+                            dataDict["doctorPhone"] = document.data()["doctorPhone"] as? String
+                            dataDict["emergencyName"] = document.data()["emergencyName"] as? String
+                            dataDict["emergencyPhone"] = document.data()["emergencyPhone"] as? String
+                        }
+                    }
+                }
+            completion(dataDict)
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: fetchDoctorPhoneNumber()
+     - Description: returns the doctor's phone number for call function.
+     -------------------------------------------------------------------*/
+    func fetchDoctorPhoneNumber(completion: @escaping (_ doctorPhone: String) -> Void) {
+        var doctorPhone =  String()
+        let usersRef = db.collection("users")
+        let user = Auth.auth().currentUser
+        
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            //print("\(document.documentID) => \(document.data())")
+                            doctorPhone = document.data()["doctorPhone"] as? String ?? ""
+                        }
+                    }
+                }
+            completion(doctorPhone)
+        }
+    }
+    
+    /*--------------------------------------------------------------------
      - Function: deleteAccount()
      - Description: Logic to delete account from Firestore.
      -------------------------------------------------------------------*/
@@ -348,7 +435,7 @@ class FirebaseAccessObject {
                         }
                     }
                 }
-                completion(dataDict)
+            completion(dataDict)
         }
     }
     

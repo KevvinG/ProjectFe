@@ -13,6 +13,11 @@ import UIKit
  - Description: Holds logic for the Main Settings Screen
  -----------------------------------------------------------------------*/
 class SettingsViewController: UIViewController {
+    // UI Variables
+    @IBOutlet var txtDoctorPhone: UITextField!
+    @IBOutlet var txtEmergencyName: UITextField!
+    @IBOutlet var txtEmergencyPhone: UITextField!
+    
 
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
@@ -20,6 +25,8 @@ class SettingsViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getEmergencyContactData()
+        
         view.backgroundColor = .white
         navigationItem.title = "Settings"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logOutButtonTapped))
@@ -56,6 +63,42 @@ class SettingsViewController: UIViewController {
         signOutAlert.addAction(logOutAction)
         signOutAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(signOutAlert, animated: true, completion: nil)
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: updateEmergencyBtnTapped()
+     - Description: updates Emergency contact information.
+     -------------------------------------------------------------------*/
+    @IBAction func updateEmergencyBtnTapped(_ sender: Any) {
+        // Get values from Text boxes
+        let doctorPhone = txtDoctorPhone.text ?? ""
+        let emergencyName = txtEmergencyName.text ?? ""
+        let emergencyPhone = txtEmergencyPhone.text ?? ""
+        
+        FirebaseAccessObject().updateEmergencyContactData(doctorPhone: doctorPhone, emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: { success in
+            var msg = ""
+            if success {
+                msg = "Successfully updated emergency contact details"
+            } else {
+                msg = "Update Not Successful"
+            }
+            let updateAlert = UIAlertController(title: "Updating Data", message: msg, preferredStyle: UIAlertController.Style.alert)
+            updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(updateAlert, animated: true, completion: nil)
+        })
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: getEmergencyContactData()
+     - Description: Fetches emergency contact data from firestore and
+     fills values in text boxes
+     -------------------------------------------------------------------*/
+    private func getEmergencyContactData() {
+        FirebaseAccessObject().getEmergencyContactData(completion: { userData in
+            self.txtDoctorPhone.text = userData["doctorPhone"]
+            self.txtEmergencyName.text = userData["emergencyName"]
+            self.txtEmergencyPhone.text = userData["emergencyPhone"]
+         })
     }
     
     /*--------------------------------------------------------------------
