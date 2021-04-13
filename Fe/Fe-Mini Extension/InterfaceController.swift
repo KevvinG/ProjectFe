@@ -8,9 +8,10 @@
 import WatchKit
 import Foundation
 import HealthKit
+import WatchConnectivity
 
-class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLiveWorkoutBuilderDelegate {
-
+class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLiveWorkoutBuilderDelegate, WCSessionDelegate {
+    
    
     @IBOutlet var startStopButton: WKInterfaceButton!
     @IBOutlet var deviceLabel: WKInterfaceLabel!
@@ -24,6 +25,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
     var workingOut = false
     // Access point for all data managed by HealthKit.
     let healthStore = HKHealthStore()
+    var timerRunning : Bool = true
     
     @IBAction func startStopTapped() {
         if !workingOut {
@@ -58,7 +60,51 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
                 fatalError("Error requesting authorization from health store: \(String(describing: error)))")
             }
         }
+        
+        if (WCSession.isSupported()) {
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
+        
+        self.timerRunning = true
+        customTimer()
+        
+        //_ = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
     }
+    
+    //@objc func fire()
+    func fire()
+    {
+        print("Fired")
+        if !workingOut {
+            print("Start WO")
+            startWorkout()
+            workingOut = true
+            startStopButton!.setTitle("Stop")
+            deviceLabel!.setText(builder!.device!.name)
+        } else {
+            print("Stop WO")
+            stopWorkout()
+            workingOut = false
+            bpmLabel!.setText("---")
+            startStopButton!.setTitle("Start")
+            deviceLabel!.setText("Device Info")
+        }
+    }
+    
+    private func customTimer(){
+        if (self.timerRunning){
+                DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .milliseconds(9000)) {
+                    self.customTimer()
+                    print("Timer loop")
+                }
+
+                fire()
+
+            }
+
+        }
     
     func initWorkout() {
         let configuration = HKWorkoutConfiguration()
@@ -127,6 +173,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
                 let statistics = workoutBuilder.statistics(for: quantityType)
                 let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
                 let value = statistics!.mostRecentQuantity()?.doubleValue(for: heartRateUnit)
+                sendHRMessage(hrVal: value ?? 0.00)
                 let stringValue = String(Int(Double(round(1 * value!) / 1)))
                 bpmLabel.setText(stringValue)
                 print("[workoutBuilder] Heart Rate: \(stringValue)")
@@ -144,6 +191,16 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
         }
     }
     
+    func sendHRMessage(hrVal: Double) {
+        if (WCSession.default.isReachable) {
+            let message = String(hrVal)
+            WCSession.default.sendMessage(["heartRate": message], replyHandler: nil)
+            print("message sent \(message)")
+        } else {
+            print("message failed")
+        }
+    }
+    
     func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
         // Retreive the workout event.
         guard let workoutEventType = workoutBuilder.workoutEvents.last?.type else { return }
@@ -157,4 +214,16 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
         print("[workoutSession] Encountered an error: \(error)")
     }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+
+    }
+
+//    func sessionDidBecomeInactive(_ session: WCSession) {
+//
+//    }
+//
+//    func sessionDidDeactivate(_ session: WCSession) {
+//
+//    }
 }

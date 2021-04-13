@@ -18,6 +18,7 @@ class HeartRateViewController: UIViewController {
     // Class Variables
     let HKObj = HKAccessObject()
     var dataDict : [String:Double] = [:]
+    var testDataDict : [Date:Double] = [:]
     
 //    var plotData = [Double](repeating: 0.0, count: 1000)
 //    var maxDataPoints = 100
@@ -75,6 +76,11 @@ class HeartRateViewController: UIViewController {
         lineChartView.data = lineChartData
         lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
         lineChartView.xAxis.granularity = 1
+    }
+    
+    func receiveData(hrVal: Double) {
+        testDataDict[Date()] = hrVal
+        
     }
     
 }
