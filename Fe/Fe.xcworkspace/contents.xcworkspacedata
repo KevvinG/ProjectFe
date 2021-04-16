@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/jaycemerinchuk/Documents/IOS Programs/fe/Fe/Fe/GoogleService-Info.plist">
+   </FileRef>
+   <FileRef
       location = "group:Fe.xcodeproj">
    </FileRef>
    <FileRef
