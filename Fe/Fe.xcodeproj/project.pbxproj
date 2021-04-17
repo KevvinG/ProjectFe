@@ -60,6 +60,8 @@
 		CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
+		EF9168EF262A5D3500DCCEEC /* CoreDataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */; };
+		EF916902262A6F3400DCCEEC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF916901262A6F3400DCCEEC /* GoogleService-Info.plist */; };
 		EF97E99925E6F3760050F8B5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99725E6F3760050F8B5 /* Interface.storyboard */; };
 		EF97E99B25E6F37A0050F8B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF97E99A25E6F37A0050F8B5 /* Assets.xcassets */; };
 		EF97E9A225E6F37A0050F8B5 /* Fe-Mini Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EF97E9A125E6F37A0050F8B5 /* Fe-Mini Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -154,7 +156,6 @@
 		CE01C2FD25D438D100A08E2D /* FeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeUITests.swift; sourceTree = "<group>"; };
 		CE01C2FF25D438D100A08E2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE082721262A4DE700558A32 /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
-		CE082732262A55AD00558A32 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/jaycemerinchuk/Documents/IOS Programs/fe/Fe/Fe/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
 		CE1E4A6525D4B6E300342238 /* Fe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fe.entitlements; sourceTree = "<group>"; };
 		CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppPermissionsViewController.swift; sourceTree = "<group>"; };
 		CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationPermissionsViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +186,8 @@
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2544EF261F22E800069308 /* HKAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKAccessObject.swift; sourceTree = "<group>"; };
 		EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchKitConnection.swift; sourceTree = "<group>"; };
+		EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAccessObject.swift; sourceTree = "<group>"; };
+		EF916901262A6F3400DCCEEC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF97E99525E6F3760050F8B5 /* Fe-Mini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fe-Mini.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF97E99825E6F3760050F8B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		EF97E99A25E6F37A0050F8B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -293,7 +296,7 @@
 				CE6D7AC42607AF4400835756 /* Persistance Layer */,
 				CE69A26825D81F51009E87CB /* Models */,
 				CE1E4A6525D4B6E300342238 /* Fe.entitlements */,
-				CE082732262A55AD00558A32 /* GoogleService-Info.plist */,
+				EF916901262A6F3400DCCEEC /* GoogleService-Info.plist */,
 				CE01C2D825D438D100A08E2D /* AppDelegate.swift */,
 				CE01C2DA25D438D100A08E2D /* SceneDelegate.swift */,
 				CE01C2E425D438D100A08E2D /* Assets.xcassets */,
@@ -487,6 +490,7 @@
 				CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */,
 				EF2544EF261F22E800069308 /* HKAccessObject.swift */,
 				EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */,
+				EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */,
 			);
 			path = "Persistance Layer";
 			sourceTree = "<group>";
@@ -686,6 +690,7 @@
 			files = (
 				CE01C2E825D438D100A08E2D /* LaunchScreen.storyboard in Resources */,
 				CE62B27025E83B0700AA9665 /* SensorButton.xib in Resources */,
+				EF916902262A6F3400DCCEEC /* GoogleService-Info.plist in Resources */,
 				CE01C2E525D438D100A08E2D /* Assets.xcassets in Resources */,
 				CE01C2E025D438D100A08E2D /* Main.storyboard in Resources */,
 			);
@@ -869,6 +874,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE69A27125D831A5009E87CB /* HomeViewController.swift in Sources */,
+				EF9168EF262A5D3500DCCEEC /* CoreDataAccessObject.swift in Sources */,
 				CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */,
 				CE62B2DB25E8870900AA9665 /* BloodOxygenViewController.swift in Sources */,
 				CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */,

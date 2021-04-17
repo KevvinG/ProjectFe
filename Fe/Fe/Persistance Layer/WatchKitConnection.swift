@@ -20,9 +20,13 @@ protocol WatchKitConnectionProtocol {
 class WatchKitConnection: NSObject {
     static let shared = WatchKitConnection()
     weak var delegate: WatchKitConnectionDelegate?
-    
+    //var CDAO : CoreDataAccessObject
+//    var moc:NSManagedObjectContext!
+//    let appDelegate = UIApplication.shared.delegate as? AppDelegate
     private override init() {
         super.init()
+//        moc = appDelegate?.persistentContainer.viewContext
+        //self.CDAO = CoreDataAccessObject()
     }
     
     private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
@@ -81,17 +85,29 @@ extension WatchKitConnection: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("didReceiveMessage")
         print(message)
+        guard let heartReate = message.values.first as? String else {
+            print("error1")
+            return
+        }
+        CoreDataAccessObject().save(heartRate: heartReate)
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         print("didReceiveMessage with reply")
         print(message)
         guard let heartReate = message.values.first as? String else {
+            print("error1")
             return
         }
         guard let heartReateDouble = Double(heartReate) else {
+            print("error2")
             return
         }
-        print("New HR! \(heartReateDouble)")
+        //print("New HR! \(heartReateDouble)")
+        //CDAO.save(heartRate: heartReate)
+        print("CDAO Call Started")
+        CoreDataAccessObject().save(heartRate: heartReate)
+        print("CDAO Call done")
+        //var data = [NSManagedObject] = []
     }
 }
