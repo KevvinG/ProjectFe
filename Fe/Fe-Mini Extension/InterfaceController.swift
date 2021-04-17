@@ -67,8 +67,8 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
             session.activate()
         }
         
-        self.timerRunning = true
-        customTimer()
+      //  self.timerRunning = true
+      //  customTimer()
         
         //_ = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
     }
