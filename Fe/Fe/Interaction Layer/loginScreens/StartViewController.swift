@@ -38,9 +38,9 @@ class StartViewController: UIViewController {
         }
         authUI?.delegate = self
         
-        let providers : [FUIAuthProvider] = [
-            FUIEmailAuth(),
-            FUIGoogleAuth()
+        let providers: [FUIAuthProvider] = [
+          FUIEmailAuth(),
+          FUIGoogleAuth()
         ]
         authUI?.providers = providers
         let authViewController = authUI!.authViewController()
