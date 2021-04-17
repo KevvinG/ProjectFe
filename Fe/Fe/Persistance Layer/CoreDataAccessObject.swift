@@ -45,7 +45,7 @@ class CoreDataAccessObject {
         } catch {
             print("Could not load data")
         }
-        
+
         if (healthMetricItems.count > 0) {
         print("Pulled value \(healthMetricItems[0].heartRate)")
         print("Pulled date \(healthMetricItems[0].dateTime)")
@@ -54,7 +54,6 @@ class CoreDataAccessObject {
         } else {
             print("Empty coredata")
             return 0
-            
         }
     }
 }
