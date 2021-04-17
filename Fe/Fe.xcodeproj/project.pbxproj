@@ -73,6 +73,15 @@
 		EF97E9B425E6F37C0050F8B5 /* Fe-Mini.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = EF97E99525E6F3760050F8B5 /* Fe-Mini.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EF9CBD57260C2703002360E2 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9CBD56260C2703002360E2 /* HealthKit.framework */; };
 		EF9CBD6F260C456E002360E2 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9CBD6E260C456E002360E2 /* HealthKit.framework */; };
+		EFF95573262B56860013E006 /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95572262B56860013E006 /* LoginLogic.swift */; };
+		EFF9557F262B56B60013E006 /* HomeScreenLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9557E262B56B60013E006 /* HomeScreenLogic.swift */; };
+		EFF95586262B56D50013E006 /* HeartRateViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95585262B56D50013E006 /* HeartRateViewLogic.swift */; };
+		EFF9558D262B56F00013E006 /* BloodOxygenViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558C262B56F00013E006 /* BloodOxygenViewLogic.swift */; };
+		EFF9558F262B56FE0013E006 /* AltitudeViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558E262B56FE0013E006 /* AltitudeViewLogic.swift */; };
+		EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9559F262B573F0013E006 /* SettingsViewLogic.swift */; };
+		EFF955A7262B574E0013E006 /* EditUserViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955A6262B574E0013E006 /* EditUserViewLogic.swift */; };
+		EFF955AE262B575B0013E006 /* AppPermissionsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955AD262B575B0013E006 /* AppPermissionsLogic.swift */; };
+		EFF955B0262B57740013E006 /* NotificationPermissionsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955AF262B57740013E006 /* NotificationPermissionsLogic.swift */; };
 		F163FE6356C9E5C94B56C640 /* Pods_Fe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83804697FA3E96F445B2ED93 /* Pods_Fe.framework */; };
 /* End PBXBuildFile section */
 
@@ -203,6 +212,15 @@
 		EF9CBD55260C2703002360E2 /* Fe-Mini Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fe-Mini Extension.entitlements"; sourceTree = "<group>"; };
 		EF9CBD56260C2703002360E2 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		EF9CBD6E260C456E002360E2 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		EFF95572262B56860013E006 /* LoginLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginLogic.swift; path = "Fe/Business Layer/LoginLogic/LoginLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF9557E262B56B60013E006 /* HomeScreenLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenLogic.swift; path = "Fe/Business Layer/HomeLogic/HomeScreenLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF95585262B56D50013E006 /* HeartRateViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HeartRateViewLogic.swift; path = "Fe/Business Layer/SensorLogic/HeartRateViewLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF9558C262B56F00013E006 /* BloodOxygenViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BloodOxygenViewLogic.swift; path = "Fe/Business Layer/SensorLogic/BloodOxygenViewLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF9558E262B56FE0013E006 /* AltitudeViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AltitudeViewLogic.swift; path = "Fe/Business Layer/SensorLogic/AltitudeViewLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF9559F262B573F0013E006 /* SettingsViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewLogic.swift; path = "Fe/Business Layer/SettingsLogic/SettingsViewLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF955A6262B574E0013E006 /* EditUserViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditUserViewLogic.swift; path = "Fe/Business Layer/SettingsLogic/EditUserViewLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF955AD262B575B0013E006 /* AppPermissionsLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppPermissionsLogic.swift; path = "Fe/Business Layer/SettingsLogic/AppPermissionsLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF955AF262B57740013E006 /* NotificationPermissionsLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationPermissionsLogic.swift; path = "Fe/Business Layer/SettingsLogic/NotificationPermissionsLogic.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,12 +352,12 @@
 				CE0825702620936300558A32 /* DocumentScreens */,
 				CE082711262A3F4800558A32 /* QuestionnaireScreens */,
 				CE08271E262A3FFF00558A32 /* MoreInfoScreen */,
-				CE08255F261FAE4E00558A32 /* SetttingsScreens */,
+				CE08255F261FAE4E00558A32 /* SettingsScreens */,
 			);
 			path = "Interaction Layer";
 			sourceTree = "<group>";
 		};
-		CE08255F261FAE4E00558A32 /* SetttingsScreens */ = {
+		CE08255F261FAE4E00558A32 /* SettingsScreens */ = {
 			isa = PBXGroup;
 			children = (
 				CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */,
@@ -347,7 +365,7 @@
 				CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */,
 				CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */,
 			);
-			path = SetttingsScreens;
+			path = SettingsScreens;
 			sourceTree = "<group>";
 		};
 		CE0825702620936300558A32 /* DocumentScreens */ = {
@@ -396,6 +414,9 @@
 		CE082718262A3FC500558A32 /* SensorLogic */ = {
 			isa = PBXGroup;
 			children = (
+				EFF95585262B56D50013E006 /* HeartRateViewLogic.swift */,
+				EFF9558C262B56F00013E006 /* BloodOxygenViewLogic.swift */,
+				EFF9558E262B56FE0013E006 /* AltitudeViewLogic.swift */,
 			);
 			path = SensorLogic;
 			sourceTree = "<group>";
@@ -410,6 +431,7 @@
 		CE08271A262A3FD400558A32 /* HomeLogic */ = {
 			isa = PBXGroup;
 			children = (
+				EFF9557E262B56B60013E006 /* HomeScreenLogic.swift */,
 			);
 			path = HomeLogic;
 			sourceTree = "<group>";
@@ -417,6 +439,7 @@
 		CE08271B262A3FDB00558A32 /* LoginLogic */ = {
 			isa = PBXGroup;
 			children = (
+				EFF95572262B56860013E006 /* LoginLogic.swift */,
 			);
 			path = LoginLogic;
 			sourceTree = "<group>";
@@ -448,6 +471,10 @@
 		CE08271F262A404300558A32 /* SettingsLogic */ = {
 			isa = PBXGroup;
 			children = (
+				EFF9559F262B573F0013E006 /* SettingsViewLogic.swift */,
+				EFF955A6262B574E0013E006 /* EditUserViewLogic.swift */,
+				EFF955AD262B575B0013E006 /* AppPermissionsLogic.swift */,
+				EFF955AF262B57740013E006 /* NotificationPermissionsLogic.swift */,
 			);
 			path = SettingsLogic;
 			sourceTree = "<group>";
@@ -877,7 +904,11 @@
 				EF9168EF262A5D3500DCCEEC /* CoreDataAccessObject.swift in Sources */,
 				CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */,
 				CE62B2DB25E8870900AA9665 /* BloodOxygenViewController.swift in Sources */,
+				EFF9558F262B56FE0013E006 /* AltitudeViewLogic.swift in Sources */,
+				EFF955A7262B574E0013E006 /* EditUserViewLogic.swift in Sources */,
 				CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */,
+				EFF955AE262B575B0013E006 /* AppPermissionsLogic.swift in Sources */,
+				EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */,
 				CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */,
 				CE62B2AF25E856CE00AA9665 /* AOKViewController.swift in Sources */,
 				CE082722262A4DE700558A32 /* Questionnaire.swift in Sources */,
@@ -885,6 +916,7 @@
 				CE26589425FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift in Sources */,
 				EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */,
 				CE62AF1325DD6B0400AA9665 /* StartViewController.swift in Sources */,
+				EFF95573262B56860013E006 /* LoginLogic.swift in Sources */,
 				EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */,
 				CE01C2D925D438D100A08E2D /* AppDelegate.swift in Sources */,
 				CE62B28825E84F5C00AA9665 /* WebMoreInfoViewController.swift in Sources */,
@@ -895,13 +927,17 @@
 				CE6D7B072607E83000835756 /* Document.swift in Sources */,
 				CE62B25525E72C8100AA9665 /* SensorCustomButton.swift in Sources */,
 				CE62B28F25E8521900AA9665 /* Symptom1DizzyViewController.swift in Sources */,
+				EFF955B0262B57740013E006 /* NotificationPermissionsLogic.swift in Sources */,
 				CE62B2E925E88AAC00AA9665 /* DocumentTableTableViewController.swift in Sources */,
 				CE62B2FE25E88BCB00AA9665 /* UploadDocumentViewController.swift in Sources */,
 				CE62AF2225DDC13600AA9665 /* EditUserViewController.swift in Sources */,
 				CE62B2E225E8887800AA9665 /* AltitudeViewController.swift in Sources */,
 				CE62B2C225E871A100AA9665 /* Symptom4BlackStoolViewController.swift in Sources */,
 				CE62B2B625E8718E00AA9665 /* Symptom3BloodStoolViewController.swift in Sources */,
+				EFF95586262B56D50013E006 /* HeartRateViewLogic.swift in Sources */,
+				EFF9557F262B56B60013E006 /* HomeScreenLogic.swift in Sources */,
 				CE62B2F025E88AC800AA9665 /* DocumentTableViewCell.swift in Sources */,
+				EFF9558D262B56F00013E006 /* BloodOxygenViewLogic.swift in Sources */,
 				CE62B2D425E885F100AA9665 /* HeartRateViewController.swift in Sources */,
 				CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 				CE62B2A125E8566100AA9665 /* Symptom2BreathViewController.swift in Sources */,
