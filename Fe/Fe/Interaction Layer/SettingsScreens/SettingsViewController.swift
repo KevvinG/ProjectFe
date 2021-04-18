@@ -54,7 +54,6 @@ class SettingsViewController: UIViewController {
         // Set up log out action and check for errors
         let logOutAction = UIAlertAction(title: "Log Out", style: .destructive ) { action in
             self.settingsLogic.logOut()
-//            FirebaseAccessObject().signOut()
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
             startViewController.modalPresentationStyle = .fullScreen
@@ -76,18 +75,7 @@ class SettingsViewController: UIViewController {
         let doctorPhone = txtDoctorPhone.text ?? ""
         let emergencyName = txtEmergencyName.text ?? ""
         let emergencyPhone = txtEmergencyPhone.text ?? ""
-//
-//        FirebaseAccessObject().updateEmergencyContactData(doctorPhone: doctorPhone, emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: { success in
-//            var msg = ""
-//            if success {
-//                msg = "Successfully updated emergency contact details"
-//            } else {
-//                msg = "Update Not Successful"
-//            }
-//            let updateAlert = UIAlertController(title: "Updating Data", message: msg, preferredStyle: UIAlertController.Style.alert)
-//            updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
-//            self.present(updateAlert, animated: true, completion: nil)
-//        })
+
         settingsLogic.updateEmergencyContact(doctorPhone : doctorPhone, emergencyName : emergencyName, emergencyPhone : emergencyPhone, completion: {success in
                 var msg = ""
                 if success {
@@ -107,11 +95,12 @@ class SettingsViewController: UIViewController {
      fills values in text boxes
      -------------------------------------------------------------------*/
     private func getEmergencyContactData() {
-        FirebaseAccessObject().getEmergencyContactData(completion: { userData in
+        settingsLogic.getEmergencyContactData(completion: {
+            userData in
             self.txtDoctorPhone.text = userData["doctorPhone"]
             self.txtEmergencyName.text = userData["emergencyName"]
             self.txtEmergencyPhone.text = userData["emergencyPhone"]
-         })
+        })
     }
     
     /*--------------------------------------------------------------------
@@ -184,10 +173,8 @@ class SettingsViewController: UIViewController {
     func deleteDataPrompt() {
         let deleteAllAction = UIAlertAction(title: "Delete All", style: .destructive ) { action in
             do {
-                //self.deleteData()
                 self.settingsLogic.deleteFBData()
                 self.settingsLogic.deleteAccount()
-                //self.deleteAccount()
             }
         }
         let deleteAccountOnlyAction = UIAlertAction(title: "Delete Account, Keep Data", style: .destructive ) { action in
@@ -218,19 +205,5 @@ class SettingsViewController: UIViewController {
         self.present(startViewController, animated:true, completion:nil)
     }
     
-    /*--------------------------------------------------------------------
-     - Function: deleteData()
-     - Description: Logic to delete data from Firestore.
-     -------------------------------------------------------------------*/
-//    func deleteData() {
-//        settingsLogic.deleteFBData()
-//    }
-    
-    /*--------------------------------------------------------------------
-     - Function: deleteSensorData()
-     - Description: Logic to delete sensor data from Firestore.
-     -------------------------------------------------------------------*/
-//    func deleteSensorData() {
-//        settingsLogic.deleteFBSensorData()
-//    }
+
 }
