@@ -34,31 +34,13 @@ class BloodOxygenViewController: UIViewController {
         })
         HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMix in
             
-            self.customizeChart(dataPoints: dateArray, values: bpmArray)
-            self.lblMaxO2.text = "Maximum HR: \(Int(bpmArray.max() ?? 0)) BPM"
-            self.lblMinO2.text = "Minimum HR: \(Int(bpmArray.min() ?? 0)) BPM"
+            lineChartView.data = HRLogic.chartData(dataPoints: dateArray, values: bpmArray)
+            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+            lineChartView.xAxis.granularity = 1
+            self.lblMaxO2.text = "Maximum O2: \(Int(bpmArray.max() ?? 0))"
+            self.lblMinO2.text = "Minimum O2: \(Int(bpmArray.min() ?? 0))"
         })
         
     }
     
-    /*--------------------------------------------------------------------
-     - Function: customizeChart()
-     - Description: Creates Line Chart on screen with Heart Rate Data.
-     -------------------------------------------------------------------*/
-    func customizeChart(dataPoints: [String], values: [Double]) {
-        var dataEntries: [ChartDataEntry] = []
-      
-        for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
-            dataEntries.append(dataEntry)
-        }
-        
-
-      
-        let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
-        let lineChartData = LineChartData(dataSet: lineChartDataSet)
-        lineChartView.data = lineChartData
-        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
-        lineChartView.xAxis.granularity = 1
-    }
 }

@@ -6,20 +6,19 @@
 //
 
 import Foundation
+import Charts
 
 class BloodOxygenViewLogic {
     let HKObj = HKAccessObject()
-    var dataDict : [String:Double] = [:]
-    //var testDataDict : [Date:Double] = [:]
     
     func fetchLatestO2(completion: @escaping (_ o2Val: Int) -> Void) {
         HKObj.getLatestO2( completion: { (o2Val) -> Void in
-            completion(o2Val)
+            completion(Int(o2Val))
         })
     }
     
     func fetchHrWithRange(dateRange: String, completion: @escaping (_ dateArray: [String], _ o2Array: [Double], _ maxo2: Int, _ mino2: Int) -> Void) {
-        HKObj.fetchHRData(dateRange: dateRange, completion: { bpmDict in
+        HKObj.fetchHRData(dateRange: dateRange, completion: { o2Dict in
             DispatchQueue.main.async {
                 let dateArray = Array(o2Dict.keys)
                 let o2Array = Array(o2Dict.values)
@@ -30,6 +29,15 @@ class BloodOxygenViewLogic {
         })
     }
     
-    
+    func chartData(dataPoints: [String], values: [Double]) -> LineChartData {
+        var dataEntries : [ChartDataEntry] = []
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
+            dataEntries.append(dataEntry)
+        }
+        let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
+        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        return lineChartData
+    }
     
 }

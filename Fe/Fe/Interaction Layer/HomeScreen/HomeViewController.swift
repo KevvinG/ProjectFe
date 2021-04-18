@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
     // Class Variables
     let HKObj = HKAccessObject()
     let FBObj = FirebaseAccessObject()
+    let HSLogic = HomeScreenLogic()
     var counter = 0
     var container : NSPersistentContainer!
     
@@ -35,14 +36,6 @@ class HomeViewController: UIViewController {
         
         FBObj.checkIfNewUser() // Check if user already exists and add new user if not.
         
-        //Setting up the Managed Object Context
-       // moc = appDelegate?.persistentContainer.viewContext
-        
-        //CoreData code (likely going to be unused)
-//        guard container != nil else {
-//            fatalError("This view is missing a persistent container.")
-//        }
-        
         // Set Name at top of UI
         FBObj.getUserName(completion: { name in
             self.txtWelcomeMsg.text = "Welcome back, \(name)!"
@@ -55,16 +48,7 @@ class HomeViewController: UIViewController {
      -------------------------------------------------------------------*/
     @objc func fire()
     {
-//        self.HKObj.getLatestHR{ (test) in
-//            self.hrButton.setTitle(String(test), for: .normal)
-//            //print("HR: \(Int(test))")
-//        }
-        let test = CoreDataAccessObject().fetchLatestHR()
-        self.hrButton.setTitle(String(test), for: .normal)
-        
-        self.HKObj.getLatestOxySat{ (oxy) in
-            //print(Int(oxy))
-        }
+        self.hrButton.setTitle(HSLogic.getLatestInfo(), for: .normal)
     }
 
     //Below functions stay within VC, not moving to logic

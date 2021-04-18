@@ -13,6 +13,7 @@ import UIKit
  - Description: Holds logic for the Main Settings Screen
  -----------------------------------------------------------------------*/
 class SettingsViewController: UIViewController {
+    let settingsLogic = SettingsViewLogic()
     // UI Variables
     @IBOutlet var txtDoctorPhone: UITextField!
     @IBOutlet var txtEmergencyName: UITextField!
@@ -52,7 +53,8 @@ class SettingsViewController: UIViewController {
     @objc func logOutButtonTapped() {
         // Set up log out action and check for errors
         let logOutAction = UIAlertAction(title: "Log Out", style: .destructive ) { action in
-            FirebaseAccessObject().signOut()
+            self.settingsLogic.logOut()
+//            FirebaseAccessObject().signOut()
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
             startViewController.modalPresentationStyle = .fullScreen
@@ -74,17 +76,28 @@ class SettingsViewController: UIViewController {
         let doctorPhone = txtDoctorPhone.text ?? ""
         let emergencyName = txtEmergencyName.text ?? ""
         let emergencyPhone = txtEmergencyPhone.text ?? ""
-        
-        FirebaseAccessObject().updateEmergencyContactData(doctorPhone: doctorPhone, emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: { success in
-            var msg = ""
-            if success {
-                msg = "Successfully updated emergency contact details"
-            } else {
-                msg = "Update Not Successful"
-            }
-            let updateAlert = UIAlertController(title: "Updating Data", message: msg, preferredStyle: UIAlertController.Style.alert)
-            updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
-            self.present(updateAlert, animated: true, completion: nil)
+//
+//        FirebaseAccessObject().updateEmergencyContactData(doctorPhone: doctorPhone, emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: { success in
+//            var msg = ""
+//            if success {
+//                msg = "Successfully updated emergency contact details"
+//            } else {
+//                msg = "Update Not Successful"
+//            }
+//            let updateAlert = UIAlertController(title: "Updating Data", message: msg, preferredStyle: UIAlertController.Style.alert)
+//            updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+//            self.present(updateAlert, animated: true, completion: nil)
+//        })
+        settingsLogic.updateEmergencyContact(doctorPhone : doctorPhone, emergencyName : emergencyName, emergencyPhone : emergencyPhone, completion: {success in
+                var msg = ""
+                if success {
+                    msg = "Successfully updated emergency contact details"
+                } else {
+                    msg = "Update Not Successful"
+                }
+                let updateAlert = UIAlertController(title: "Updating Data", message: msg, preferredStyle: UIAlertController.Style.alert)
+                updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+                self.present(updateAlert, animated: true, completion: nil)
         })
     }
     
@@ -133,7 +146,8 @@ class SettingsViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete Data", style: .destructive ) { action in
             do {
                 // Delete Data
-                self.deleteSensorData()
+                self.settingsLogic.deleteFBSensorData()
+//                self.deleteSensorData()
             }
         }
         // Prompt before deleting
@@ -170,15 +184,19 @@ class SettingsViewController: UIViewController {
     func deleteDataPrompt() {
         let deleteAllAction = UIAlertAction(title: "Delete All", style: .destructive ) { action in
             do {
-                self.deleteData()
-                self.deleteAccount()
+                //self.deleteData()
+                self.settingsLogic.deleteFBData()
+                self.settingsLogic.deleteAccount()
+                //self.deleteAccount()
             }
         }
         let deleteAccountOnlyAction = UIAlertAction(title: "Delete Account, Keep Data", style: .destructive ) { action in
             do {
-                self.deleteAccount()
+                self.settingsLogic.deleteAccount()
+//                self.deleteAccount()
             }
         }
+        //Leaving this logic in VC as it is just interaction logic
         let msg = "Do you want to delete your data and account?"
         let deleteDataAlert = UIAlertController(title: "Delete Data", message: msg, preferredStyle: UIAlertController.Style.alert)
         deleteDataAlert.addAction(deleteAllAction)
@@ -192,7 +210,7 @@ class SettingsViewController: UIViewController {
      - Description: Logic to delete account from Firestore.
      -------------------------------------------------------------------*/
     func deleteAccount() {
-        FirebaseAccessObject().deleteAccount()
+        settingsLogic.deleteAccount()
         // Redirect the user to the StartViewController
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
@@ -204,17 +222,15 @@ class SettingsViewController: UIViewController {
      - Function: deleteData()
      - Description: Logic to delete data from Firestore.
      -------------------------------------------------------------------*/
-    func deleteData() {
-        let objFB = FirebaseAccessObject()
-        objFB.deleteData()
-    }
+//    func deleteData() {
+//        settingsLogic.deleteFBData()
+//    }
     
     /*--------------------------------------------------------------------
      - Function: deleteSensorData()
      - Description: Logic to delete sensor data from Firestore.
      -------------------------------------------------------------------*/
-    func deleteSensorData() {
-        let objFB = FirebaseAccessObject()
-        objFB.deleteSensorData()
-    }
+//    func deleteSensorData() {
+//        settingsLogic.deleteFBSensorData()
+//    }
 }
