@@ -67,6 +67,7 @@ class HomeViewController: UIViewController {
         }
     }
 
+    //Below functions stay within VC, not moving to logic
     /*--------------------------------------------------------------------
      - Function: heartRateBtnTapped()
      - Description: Segue to heartRate Data View

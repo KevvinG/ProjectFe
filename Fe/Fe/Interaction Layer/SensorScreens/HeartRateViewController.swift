@@ -16,9 +16,9 @@ import Charts
  -----------------------------------------------------------------------*/
 class HeartRateViewController: UIViewController {
     // Class Variables
-    let HKObj = HKAccessObject()
-    var dataDict : [String:Double] = [:]
-    var testDataDict : [Date:Double] = [:]
+//    let HKObj = HKAccessObject()
+//    var dataDict : [String:Double] = [:]
+//    var testDataDict : [Date:Double] = [:]
     
 //    var plotData = [Double](repeating: 0.0, count: 1000)
 //    var maxDataPoints = 100
@@ -27,6 +27,8 @@ class HeartRateViewController: UIViewController {
 //    var timer : Timer?
 //    var currentIndex: Int!
 //    var timeDuration:Double = 0.1
+    let HRLogic = HeartRateViewLogic()
+
     
     // UI Variables
     @IBOutlet var lblCurrentHR: UILabel!
@@ -41,20 +43,30 @@ class HeartRateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        HKObj.getLatestHR(completion: { hrVal in
+        HRLogic.fetchLatestHR(completion: {hrVal in
             self.lblCurrentHR.text = "Current Heart Rate: \(String(hrVal))"
         })
+//        HKObj.getLatestHR(completion: { hrVal in
+//            self.lblCurrentHR.text = "Current Heart Rate: \(String(hrVal))"
+//        })
         
-        HKObj.fetchHealthData(dateRange: "day", completion: { [self] bpmDict in
-            DispatchQueue.main.async {
-                self.dataDict = bpmDict
-                let dateArray = Array(self.dataDict.keys)
-                let bpmArray = Array(self.dataDict.values)
-                self.customizeChart(dataPoints: dateArray, values: bpmArray)
-                self.lblMaxHR.text = "Maximum HR: \(Int(bpmArray.max() ?? 0)) BPM"
-                self.lblMinHR.text = "Minimum HR: \(Int(bpmArray.min() ?? 0)) BPM"
-            }
+        HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMix in
+            
+            self.customizeChart(dataPoints: dateArray, values: bpmArray)
+            self.lblMaxHR.text = "Maximum HR: \(Int(bpmArray.max() ?? 0)) BPM"
+            self.lblMinHR.text = "Minimum HR: \(Int(bpmArray.min() ?? 0)) BPM"
         })
+        
+//        HKObj.fetchHealthData(dateRange: "day", completion: { [self] bpmDict in
+//            DispatchQueue.main.async {
+//                self.dataDict = bpmDict
+//                let dateArray = Array(self.dataDict.keys)
+//                let bpmArray = Array(self.dataDict.values)
+//                self.customizeChart(dataPoints: dateArray, values: bpmArray)
+//                self.lblMaxHR.text = "Maximum HR: \(Int(bpmArray.max() ?? 0)) BPM"
+//                self.lblMinHR.text = "Minimum HR: \(Int(bpmArray.min() ?? 0)) BPM"
+//            }
+//        })
     }
     
     /*--------------------------------------------------------------------
@@ -78,9 +90,10 @@ class HeartRateViewController: UIViewController {
         lineChartView.xAxis.granularity = 1
     }
     
-    func receiveData(hrVal: Double) {
-        testDataDict[Date()] = hrVal
-        
-    }
+//    func receiveData(hrVal: Double) {
+//        testDataDict[Date()] = hrVal
+//        
+//    }
     
 }
+
