@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Charts
 
 class HeartRateViewLogic {
     let HKObj = HKAccessObject()
@@ -19,7 +20,7 @@ class HeartRateViewLogic {
     }
     
     func fetchHrWithRange(dateRange: String, completion: @escaping (_ dateArray: [String], _ bpmArray: [Double], _ maxBPM: Int, _ minBPM: Int) -> Void) {
-        HKObj.fetchHealthData(dateRange: dateRange, completion: { bpmDict in
+        HKObj.fetchHRData(dateRange: dateRange, completion: { bpmDict in
             DispatchQueue.main.async {
                 //self.dataDict = bpmDict
                 let dateArray = Array(bpmDict.keys)
@@ -34,6 +35,15 @@ class HeartRateViewLogic {
         })
     }
     
-    
+    func chartData(dataPoints: [String], values: [Double]) -> LineChartData {
+        var dataEntries : [ChartDataEntry] = []
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
+            dataEntries.append(dataEntry)
+        }
+        let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
+        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        return lineChartData
+    }
     
 }
