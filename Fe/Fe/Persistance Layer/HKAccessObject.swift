@@ -21,7 +21,7 @@ class HKAccessObject {
      - Function: fetchHealthData()
      - Description:
      -------------------------------------------------------------------*/
-    func fetchHealthData(dateRange: String, completion: @escaping (_ bpmDict: [String:Double]) -> Void) {
+    func fetchHRData(dateRange: String, completion: @escaping (_ bpmDict: [String:Double]) -> Void) {
         var bpmDict : [String:Double] = [:]
         
         // Check if Health Data is available
@@ -116,7 +116,100 @@ class HKAccessObject {
         }
     }
     
-    
+    func fetchO2Data(dateRange: String, completion: @escaping (_ o2Dict: [String:Double]) -> Void) {
+        var o2Dict : [String:Double] = [:]
+        
+        // Check if Health Data is available
+        if HKHealthStore.isHealthDataAvailable() {
+            let readData = Set([
+                HKObjectType.quantityType(forIdentifier: .oxygenSaturation)!
+            ])
+            
+            // Ask for authorization to read data
+            healthStore.requestAuthorization(toShare: [], read: readData) { (success, error) in
+                if success {
+                    let calendar = NSCalendar.current
+                    var anchorComponents = calendar.dateComponents([.day, .month, .year, .weekday], from: NSDate() as Date)
+                    let offset = (7 + anchorComponents.weekday! - 2) % 7
+                    
+                    anchorComponents.day! -= offset
+                    anchorComponents.hour = 2
+                    
+                    guard let anchorDate = Calendar.current.date(from: anchorComponents) else {
+                        fatalError("*** unable to create a valid date from the given components ***")
+                    }
+                    
+                    let interval = NSDateComponents()
+                    switch dateRange {
+                    
+                    case "day":
+                        interval.minute = 1
+                    
+                    default:
+                        interval.minute = 30
+                    }
+                    
+                                        
+                    let endDate = Date()
+                    
+                    guard var startDate = calendar.date(byAdding: .month, value: -1, to: endDate) else {
+                        fatalError("*** Unable to calculate the start date ***")
+                    }
+                    
+                    switch dateRange {
+                    
+                    case "month":
+                        startDate = calendar.date(byAdding: .month, value: -1, to: endDate) ?? Date()
+                        break
+                    case "day":
+                        startDate = calendar.date(byAdding: .day, value: -1, to: endDate) ?? Date()
+                        break
+                        
+                    default:
+                        print("No DR Selected, default to month")
+                        startDate = calendar.date(byAdding: .month, value: -1, to: endDate) ?? Date()
+                    }
+//                    guard let startDate = calendar.date(byAdding: DR, value: -1, to: endDate) else {
+//                        fatalError("*** Unable to calculate the start date ***")
+//                    }
+                                        
+                    guard let quantityType = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.oxygenSaturation) else {
+                        fatalError("*** Unable to create a o2 Type ***")
+                    }
+
+                    let query = HKStatisticsCollectionQuery(quantityType: quantityType,
+                                                            quantitySamplePredicate: nil,
+                                                                options: .discreteAverage,
+                                                                anchorDate: anchorDate,
+                                                                intervalComponents: interval as DateComponents)
+                    query.initialResultsHandler = {
+                        query, results, error in
+                        
+                        guard let statsCollection = results else {
+                            fatalError("*** An error occurred while calculating the statistics: \(String(describing: error?.localizedDescription)) ***")
+                        }
+                                            
+                        statsCollection.enumerateStatistics(from: startDate, to: endDate) { statistics, stop in
+                            if let quantity = statistics.averageQuantity() {
+                                let value = quantity.doubleValue(for: HKUnit(from: "count/min"))
+                                let date = statistics.startDate
+                                let formatter3 = DateFormatter()
+                                formatter3.dateFormat = "HH:mm E, d MMM y"
+                                o2Dict[formatter3.string(from: date)] = value
+                            }
+                        }
+                        completion(o2Dict)
+                    }
+                    self.healthStore.execute(query)
+                    
+                } else {
+                    print("Authorization failed")
+                }
+            }
+        } else {
+            print("Healthkit not available.")
+        }
+    }
     /*--------------------------------------------------------------------
      - Function: getLatestHR()
      - Description: returns latest Heart Rate Number
@@ -138,7 +231,7 @@ class HKAccessObject {
         healthStore.execute(discreteQuery)
     }
     
-    func getLatestOxySat(completion: @escaping (Double) -> Void) {
+    func getLatestO2(completion: @escaping (Double) -> Void) {
         print("Oxy func called")
         
         guard let discreteOxySat = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.oxygenSaturation) else {

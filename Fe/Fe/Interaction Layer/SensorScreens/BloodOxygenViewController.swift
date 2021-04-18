@@ -8,7 +8,7 @@
 
 // Imports
 import UIKit
-import CorePlot
+import Charts
 
 /*------------------------------------------------------------------------
  - Class: BloodOxygenViewController : UIViewController
@@ -17,240 +17,48 @@ import CorePlot
 class BloodOxygenViewController: UIViewController {
     
     // Class Variables
-    var plotData = [Double](repeating: 0.0, count: 1000)
-    var plot: CPTScatterPlot!
-    var maxDataPoints = 100
-    var frameRate = 5.0
-    var alphaValue = 0.25
-    var timer : Timer?
-    var currentIndex: Int!
-    var timeDuration:Double = 0.1
+    let HRLogic = HeartRateViewLogic()
     
     // UI Variables
-    @IBOutlet var hostView: CPTGraphHostingView!
-    @IBOutlet var xLabel: UILabel!
-    @IBOutlet var yLabel: UILabel!
-    @IBOutlet var dataButton: UIButton!
+    @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet var lblMaxO2: UILabel!
+    @IBOutlet var lblMinO2: UILabel!
+    @IBOutlet var lblCurrentO2: UILabel!
     
-    /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
-     - Description: Initialize code before showing screen
-     -------------------------------------------------------------------*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        dataButton.addGestureRecognizer(tap)
-        initPlot()
-    }
-    
-    /*--------------------------------------------------------------------
-     - Function: initPlot()
-     - Description:
-     -------------------------------------------------------------------*/
-    func initPlot(){
-        configureGraphtView()
-        configureGraphAxis()
-        configurePlot()
-    }
-    
-    /*--------------------------------------------------------------------
-     - Function: handleTap()
-     - Description:
-     -------------------------------------------------------------------*/
-    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil){
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: self.timeDuration, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
-    }
-    
-    /*--------------------------------------------------------------------
-     - Function: fireTimer()
-     - Description:
-     -------------------------------------------------------------------*/
-    @objc func fireTimer(){
-        let graph = self.hostView.hostedGraph
-        let plot = graph?.plot(withIdentifier: "mindful-graph" as NSCopying)
-        if((plot) != nil){
-            if(self.plotData.count >= maxDataPoints){
-                self.plotData.removeFirst()
-                plot?.deleteData(inIndexRange:NSRange(location: 0, length: 1))
-            }
-        }
-        guard let plotSpace = graph?.defaultPlotSpace as? CPTXYPlotSpace else { return }
         
-        let location: NSInteger
-        if self.currentIndex >= maxDataPoints {
-            location = self.currentIndex - maxDataPoints + 2
-        } else {
-            location = 0
-        }
-        
-        let range: NSInteger
-        
-        if location > 0 {
-            range = location-1
-        } else {
-            range = 0
-        }
-        
-        let oldRange =  CPTPlotRange(locationDecimal: CPTDecimalFromDouble(Double(range)), lengthDecimal: CPTDecimalFromDouble(Double(maxDataPoints-2)))
-        let newRange =  CPTPlotRange(locationDecimal: CPTDecimalFromDouble(Double(location)), lengthDecimal: CPTDecimalFromDouble(Double(maxDataPoints-2)))
-    
-        CPTAnimation.animate(plotSpace, property: "xRange", from: oldRange, to: newRange, duration:0.3)
-        
-        self.currentIndex += 1;
-        let point = Double.random(in: 75...85)
-        self.plotData.append(point)
-        xLabel.text = #"X: \#(String(format:"%.2f",Double(self.plotData.last!)))"#
-        yLabel.text = #"Y: \#(UInt(self.currentIndex!)) Sec"#
-        plot?.insertData(at: UInt(self.plotData.count-1), numberOfRecords: 1)
-    }
-    
-    /*--------------------------------------------------------------------
-     - Function: configureGraphView()
-     - Description:
-     -------------------------------------------------------------------*/
-    func configureGraphtView(){
-        hostView.allowPinchScaling = false
-        self.plotData.removeAll()
-        self.currentIndex = 0
-    }
-    
-    /*--------------------------------------------------------------------
-     - Function: configureGraphAxis()
-     - Description:
-     -------------------------------------------------------------------*/
-    func configureGraphAxis(){
-        
-        let graph = CPTXYGraph(frame: hostView.bounds)
-        graph.plotAreaFrame?.masksToBorder = false
-        hostView.hostedGraph = graph
-        graph.backgroundColor = UIColor.black.cgColor
-        graph.paddingBottom = 40.0
-        graph.paddingLeft = 40.0
-        graph.paddingTop = 30.0
-        graph.paddingRight = 15.0
-        
-
-        //Set title for graph
-        let titleStyle = CPTMutableTextStyle()
-        titleStyle.color = CPTColor.white()
-        titleStyle.fontName = "HelveticaNeue-Bold"
-        titleStyle.fontSize = 20.0
-        titleStyle.textAlignment = .center
-        graph.titleTextStyle = titleStyle
-
-        let title = "CorePlot"
-        graph.title = title
-        graph.titlePlotAreaFrameAnchor = .top
-        graph.titleDisplacement = CGPoint(x: 0.0, y: 0.0)
-        
-        let axisSet = graph.axisSet as! CPTXYAxisSet
-        
-        let axisTextStyle = CPTMutableTextStyle()
-        axisTextStyle.color = CPTColor.white()
-        axisTextStyle.fontName = "HelveticaNeue-Bold"
-        axisTextStyle.fontSize = 10.0
-        axisTextStyle.textAlignment = .center
-        let lineStyle = CPTMutableLineStyle()
-        lineStyle.lineColor = CPTColor.white()
-        lineStyle.lineWidth = 5
-        let gridLineStyle = CPTMutableLineStyle()
-        gridLineStyle.lineColor = CPTColor.gray()
-        gridLineStyle.lineWidth = 0.5
-       
-
-        if let x = axisSet.xAxis {
-            x.majorIntervalLength   = 20
-            x.minorTicksPerInterval = 5
-            x.labelTextStyle = axisTextStyle
-            x.minorGridLineStyle = gridLineStyle
-            x.axisLineStyle = lineStyle
-            x.axisConstraints = CPTConstraints(lowerOffset: 0.0)
-            x.delegate = self
-        }
-
-        if let y = axisSet.yAxis {
-            y.majorIntervalLength   = 5
-            y.minorTicksPerInterval = 5
-            y.minorGridLineStyle = gridLineStyle
-            y.labelTextStyle = axisTextStyle
-            y.alternatingBandFills = [CPTFill(color: CPTColor.init(componentRed: 255, green: 255, blue: 255, alpha: 0.03)),CPTFill(color: CPTColor.black())]
-            y.axisLineStyle = lineStyle
-            y.axisConstraints = CPTConstraints(lowerOffset: 0.0)
-            y.delegate = self
-        }
-
-        // Set plot space
-        let xMin = 0.0
-        let xMax = 100.0
-        let yMin = 65.0
-        let yMax = 95.0
-        guard let plotSpace = graph.defaultPlotSpace as? CPTXYPlotSpace else { return }
-        plotSpace.xRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(xMin), lengthDecimal: CPTDecimalFromDouble(xMax - xMin))
-        plotSpace.yRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(yMin), lengthDecimal: CPTDecimalFromDouble(yMax - yMin))
-        
-    }
-    
-    /*--------------------------------------------------------------------
-     - Function: configurePlot()
-     - Description:
-     -------------------------------------------------------------------*/
-    func configurePlot(){
-        plot = CPTScatterPlot()
-        let plotLineStile = CPTMutableLineStyle()
-        plotLineStile.lineJoin = .round
-        plotLineStile.lineCap = .round
-        plotLineStile.lineWidth = 2
-        plotLineStile.lineColor = CPTColor.white()
-        plot.dataLineStyle = plotLineStile
-        plot.curvedInterpolationOption = .catmullCustomAlpha
-        plot.interpolation = .curved
-        plot.identifier = "mindful-graph" as NSCoding & NSCopying & NSObjectProtocol
-        guard let graph = hostView.hostedGraph else { return }
-        plot.dataSource = (self as CPTPlotDataSource)
-        plot.delegate = (self as CALayerDelegate)
-        graph.add(plot, to: graph.defaultPlotSpace)
-    }
-}
-
-/*------------------------------------------------------------------------
- - Extension: BloodOxygenViewController : CPTScatterPlotDataSource, CPTScatterPlotDelegate
- - Description: 
- -----------------------------------------------------------------------*/
-extension BloodOxygenViewController: CPTScatterPlotDataSource, CPTScatterPlotDelegate {
-    
-    /*--------------------------------------------------------------------
-     - Function: numberOfRecords()
-     - Description:
-     -------------------------------------------------------------------*/
-    func numberOfRecords(for plot: CPTPlot) -> UInt {
-        return UInt(self.plotData.count)
-    }
-
-    /*--------------------------------------------------------------------
-     - Function: scatterPlot()
-     - Description:
-     -------------------------------------------------------------------*/
-    func scatterPlot(_ plot: CPTScatterPlot, plotSymbolWasSelectedAtRecord idx: UInt, with event: UIEvent) {
-    }
-
-    /*--------------------------------------------------------------------
-     - Function: number()
-     - Description:
-     -------------------------------------------------------------------*/
-    func number(for plot: CPTPlot, field: UInt, record: UInt) -> Any? {
-        
-       switch CPTScatterPlotField(rawValue: Int(field))! {
-        
-            case .X:
-                return NSNumber(value: Int(record) + self.currentIndex-self.plotData.count)
-
-            case .Y:
-                return self.plotData[Int(record)] as NSNumber
+        HRLogic.fetchLatestHR(completion: {hrVal in
+            self.lblCurrentO2.text = "Current Oxygen Saturation Rate: \(String(hrVal))"
+        })
+        HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMix in
             
-            default:
-                return 0
+            self.customizeChart(dataPoints: dateArray, values: bpmArray)
+            self.lblMaxO2.text = "Maximum HR: \(Int(bpmArray.max() ?? 0)) BPM"
+            self.lblMinO2.text = "Minimum HR: \(Int(bpmArray.min() ?? 0)) BPM"
+        })
+        
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: customizeChart()
+     - Description: Creates Line Chart on screen with Heart Rate Data.
+     -------------------------------------------------------------------*/
+    func customizeChart(dataPoints: [String], values: [Double]) {
+        var dataEntries: [ChartDataEntry] = []
+      
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
+            dataEntries.append(dataEntry)
         }
+        
+
+      
+        let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
+        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        lineChartView.data = lineChartData
+        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
+        lineChartView.xAxis.granularity = 1
     }
 }
-

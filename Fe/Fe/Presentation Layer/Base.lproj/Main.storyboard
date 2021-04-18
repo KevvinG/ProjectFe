@@ -761,49 +761,47 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wds-Dt-fI9" customClass="CPTGraphHostingView">
-                                <rect key="frame" x="87" y="150" width="240" height="202"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cLD-4w-YTI" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="87" y="173" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2b-0X-xIa">
-                                <rect key="frame" x="68" y="462" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Minimum Heart Rate:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdX-0l-hQX">
+                                <rect key="frame" x="127" y="357" width="161" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyh-6b-Ud8">
-                                <rect key="frame" x="285" y="462" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Maximum Heart Rate:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcD-gD-rYx">
+                                <rect key="frame" x="127" y="395" width="165" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Cm-vs-6Ae">
-                                <rect key="frame" x="157" y="479" width="100" height="30"/>
-                                <state key="normal" title="Generate Data"/>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Oxy Saturation: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTa-no-83I">
+                                <rect key="frame" x="117" y="104" width="184" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pNq-zN-YOF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Wds-Dt-fI9" secondAttribute="bottom" constant="490" id="30Y-GH-7gA"/>
                             <constraint firstItem="H9J-Zr-ry5" firstAttribute="top" secondItem="pNq-zN-YOF" secondAttribute="top" constant="10" id="5tp-5q-7Ur"/>
-                            <constraint firstItem="pNq-zN-YOF" firstAttribute="bottom" secondItem="4Cm-vs-6Ae" secondAttribute="bottom" constant="250" id="8Li-Pe-bZG"/>
-                            <constraint firstItem="Wds-Dt-fI9" firstAttribute="leading" secondItem="pNq-zN-YOF" secondAttribute="leading" constant="87" id="AZ8-oB-E7n"/>
-                            <constraint firstItem="Wds-Dt-fI9" firstAttribute="top" secondItem="H9J-Zr-ry5" secondAttribute="bottom" constant="54" id="RQ1-dy-zOD"/>
                             <constraint firstItem="pNq-zN-YOF" firstAttribute="trailing" secondItem="H9J-Zr-ry5" secondAttribute="trailing" constant="10" id="STZ-RL-WcE"/>
                             <constraint firstItem="H9J-Zr-ry5" firstAttribute="leading" secondItem="pNq-zN-YOF" secondAttribute="leading" constant="10" id="dnt-i5-yxV"/>
-                            <constraint firstItem="4Cm-vs-6Ae" firstAttribute="centerX" secondItem="H9J-Zr-ry5" secondAttribute="centerX" id="j7q-T4-C5h"/>
-                            <constraint firstItem="4Cm-vs-6Ae" firstAttribute="centerX" secondItem="Wds-Dt-fI9" secondAttribute="centerX" id="mLQ-dy-9EB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="70W-2a-r1W"/>
                     <connections>
-                        <outlet property="dataButton" destination="4Cm-vs-6Ae" id="Iom-iC-WrS"/>
-                        <outlet property="hostView" destination="Wds-Dt-fI9" id="cvG-oU-eOi"/>
-                        <outlet property="xLabel" destination="O2b-0X-xIa" id="BKL-dz-SHv"/>
-                        <outlet property="yLabel" destination="Xyh-6b-Ud8" id="BPu-rO-PS2"/>
+                        <outlet property="lblCurrentO2" destination="KTa-no-83I" id="TcK-nS-abu"/>
+                        <outlet property="lblMaxO2" destination="NcD-gD-rYx" id="peL-XJ-YdS"/>
+                        <outlet property="lblMinO2" destination="TdX-0l-hQX" id="0xG-BI-zTw"/>
+                        <outlet property="lineChartView" destination="cLD-4w-YTI" id="XQS-aI-Lhd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcw-To-4yH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1161,20 +1159,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_document" id="rIB-mZ-29H" customClass="DocumentTableViewCell" customModule="Fe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="41.5"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="41"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rIB-mZ-29H" id="oRC-t5-GNB">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyT-kL-KrN">
-                                            <rect key="frame" x="10" y="10" width="33" height="21.5"/>
+                                            <rect key="frame" x="10" y="10" width="33" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkt-ar-2W3">
-                                            <rect key="frame" x="368" y="10" width="36" height="21.5"/>
+                                            <rect key="frame" x="368" y="10" width="36" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1459,7 +1457,7 @@
                                                         </connections>
                                                     </button>
                                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="aFJ-Gd-ecS">
-                                                        <rect key="frame" x="153" y="402" width="132" height="73"/>
+                                                        <rect key="frame" x="153" y="401.5" width="132" height="73.5"/>
                                                     </datePicker>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1644,7 +1642,7 @@
                                                         </connections>
                                                     </button>
                                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="uUC-CE-jde">
-                                                        <rect key="frame" x="153" y="402" width="132" height="80"/>
+                                                        <rect key="frame" x="153" y="401.5" width="132" height="80"/>
                                                     </datePicker>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
