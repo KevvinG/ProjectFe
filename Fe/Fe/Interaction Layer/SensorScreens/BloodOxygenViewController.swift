@@ -25,11 +25,14 @@ class BloodOxygenViewController: UIViewController {
     @IBOutlet var lblMinO2: UILabel!
     @IBOutlet var lblCurrentO2: UILabel!
     
-    
+    /*--------------------------------------------------------------------
+     - Function: viewDidLoad()
+     - Description: Initialize variables and screen before it loads
+     -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        HRLogic.fetchLatestHR(completion: {hrVal in
+        HRLogic.fetchLatestHR(completion: { hrVal in
             self.lblCurrentO2.text = "Current Oxygen Saturation Rate: \(String(hrVal))"
         })
         HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMix in
@@ -40,7 +43,5 @@ class BloodOxygenViewController: UIViewController {
             self.lblMaxO2.text = "Maximum O2: \(Int(bpmArray.max() ?? 0))"
             self.lblMinO2.text = "Minimum O2: \(Int(bpmArray.min() ?? 0))"
         })
-        
     }
-    
 }

@@ -14,6 +14,7 @@ import CoreData
  - Description: Holds logic for the the User Home Screen
  -----------------------------------------------------------------------*/
 class HomeViewController: UIViewController {
+    
     // Class Variables
     let HKObj = HKAccessObject()
     let FBObj = FirebaseAccessObject()
@@ -22,9 +23,15 @@ class HomeViewController: UIViewController {
     var container : NSPersistentContainer!
     
     // UI Variables
-    @IBOutlet var txtWelcomeMsg: UILabel!
-    @IBOutlet var txtTestMsg: UILabel!
-    @IBOutlet var hrButton: UIButton!
+    @IBOutlet var lblTitle: UILabel!
+    @IBOutlet var lblSubTitle: UILabel!
+    @IBOutlet var btnHeartRate: UIButton!
+    @IBOutlet var lblHeartRateValue: UILabel!
+    @IBOutlet var btnBloodOx: UIButton!
+    @IBOutlet var btnAltiitude: UIButton!
+    @IBOutlet var btnCheckSymptoms: UIButton!
+    @IBOutlet var btnMoreInfo: UIButton!
+    
 
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
@@ -32,13 +39,13 @@ class HomeViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
         
         FBObj.checkIfNewUser() // Check if user already exists and add new user if not.
         
         // Set Name at top of UI
         FBObj.getUserName(completion: { name in
-            self.txtWelcomeMsg.text = "Welcome back, \(name)!"
+            self.lblTitle.text = "Welcome back, \(name)!"
         })
     }
 
@@ -48,7 +55,7 @@ class HomeViewController: UIViewController {
      -------------------------------------------------------------------*/
     @objc func fire()
     {
-        self.hrButton.setTitle(HSLogic.getLatestInfo(), for: .normal)
+        self.lblHeartRateValue.text = HSLogic.getLatestInfo()
     }
 
     //Below functions stay within VC, not moving to logic
@@ -107,4 +114,5 @@ class HomeViewController: UIViewController {
     @IBAction func moreInformationBtnTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToMoreInfoScreen", sender: self)
     }
+    
 }

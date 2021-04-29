@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Will be using location for altitude</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Will be using location for altitude</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Access to updating health records</string>
-	<key>NSHealthShareUsageDescription</key>
-	<string>Access to sharing health records</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -39,6 +31,18 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>The application requires your permission to take a picture</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Access to sharing health records</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Access to updating health records</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Will be using location for altitude</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Will be using location for altitude</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The application requires your permission to access the photo library</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -79,9 +83,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>The application requires your permission to take a picture</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>The application requires your permission to access the photo library</string>
 </dict>
 </plist>

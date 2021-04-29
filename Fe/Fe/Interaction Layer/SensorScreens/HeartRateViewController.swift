@@ -15,6 +15,8 @@ import Charts
  - Description: Holds logic for the Heart Rate Screen
  -----------------------------------------------------------------------*/
 class HeartRateViewController: UIViewController {
+    
+    // Class Variables
     let HRLogic = HeartRateViewLogic()
 
     // UI Variables

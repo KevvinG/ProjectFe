@@ -5,10 +5,17 @@
 //  Created by Kevin Grzela on 2021-04-17.
 //
 
+// Imports
 import Foundation
 import Charts
 
+/*------------------------------------------------------------------------
+ - Class: HeartRateViewLogic
+ - Description: Holds logic for the Heart Rate
+ -----------------------------------------------------------------------*/
 class HeartRateViewLogic {
+    
+    // Class Variables
     let HKObj = HKAccessObject()
     var dataDict : [String:Double] = [:]
     

@@ -5,9 +5,11 @@
 //  Created by Kevin Grzela on 2021-04-16.
 //
 
+// Imports
 import Foundation
 import CoreData
 import UIKit
+
 
 class CoreDataAccessObject {
     
@@ -48,7 +50,7 @@ class CoreDataAccessObject {
 
         if (healthMetricItems.count > 0) {
         print("Pulled value \(healthMetricItems[0].heartRate)")
-        print("Pulled date \(healthMetricItems[0].dateTime)")
+        print("Pulled date \(healthMetricItems[0].dateTime!)")
         print("Pulled count \(healthMetricItems.count)")
         return Int(healthMetricItems[0].heartRate)
         } else {

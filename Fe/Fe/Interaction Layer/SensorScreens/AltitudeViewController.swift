@@ -15,22 +15,33 @@ import CoreMotion
  - Description: Shows data for Blood Oxygen Sensor (past and current)
  -----------------------------------------------------------------------*/
 class AltitudeViewController: UIViewController {
+    
+    // UI Variables
     @IBOutlet var lblAlt: UILabel!
-    @IBOutlet var btnCapture: UIButton!
+    
+    // Class Variables
     private let locationManager = CLLocationManager()
     let altimeter = CMAltimeter()
 
-
+    /*--------------------------------------------------------------------
+     - Function: viewDidLoad()
+     - Description: Initialize variables and screen before it loads
+     -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        obtainAltitude()
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: obtainAltitude()
+     - Description:
+     -------------------------------------------------------------------*/
+    func obtainAltitude() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
-    }
-    
-    @IBAction func btnPressCapture(_ sender: Any) {
 //        self.locationManager = CLLocationManager()
 //        locationManager.requestWhenInUseAuthorization()
 //        self.locationManager.delegate = self
