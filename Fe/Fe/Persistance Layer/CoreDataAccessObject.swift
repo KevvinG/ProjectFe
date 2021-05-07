@@ -10,7 +10,10 @@ import Foundation
 import CoreData
 import UIKit
 
-
+/*------------------------------------------------------------------------
+ - Class: CoreDataAccessObject
+ - Description:
+ -----------------------------------------------------------------------*/
 class CoreDataAccessObject {
     
     // CoreData config

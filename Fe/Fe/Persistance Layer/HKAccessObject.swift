@@ -14,6 +14,7 @@ import HealthKit
  - Description: Holds methods for accessing HealtthKit Data
  -----------------------------------------------------------------------*/
 class HKAccessObject {
+    
     // Class Variables
     let healthStore = HKHealthStore()
 
@@ -115,6 +116,7 @@ class HKAccessObject {
             print("Healthkit not available.")
         }
     }
+    
     
     func fetchO2Data(dateRange: String, completion: @escaping (_ o2Dict: [String:Double]) -> Void) {
         var o2Dict : [String:Double] = [:]

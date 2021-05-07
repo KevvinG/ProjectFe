@@ -38,9 +38,9 @@
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Access to updating health records</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Will be using location for altitude</string>
+	<string>We require access to your location for obtaining your current altitude</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Will be using location for altitude</string>
+	<string>We require access to your location for obtaining your current altitude</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>The application requires your permission to access the photo library</string>
 	<key>UIApplicationSceneManifest</key>
@@ -83,5 +83,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key></key>
+	<string></string>
 </dict>
 </plist>

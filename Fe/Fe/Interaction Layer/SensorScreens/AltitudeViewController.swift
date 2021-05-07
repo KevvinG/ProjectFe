@@ -8,7 +8,6 @@
 // Imports
 import UIKit
 import CoreLocation
-import CoreMotion
 
 /*------------------------------------------------------------------------
  - Class: AltitudeViewController : UIViewController
@@ -17,11 +16,15 @@ import CoreMotion
 class AltitudeViewController: UIViewController {
     
     // UI Variables
-    @IBOutlet var lblAlt: UILabel!
+    @IBOutlet var lblScreenTitle: UILabel!
+    @IBOutlet var imgMountainAlt: UIImageView!
+    @IBOutlet var lblCurrPressure: UILabel!
+    @IBOutlet var lblCurrElevation: UILabel!
+    
     
     // Class Variables
-    private let locationManager = CLLocationManager()
-    let altimeter = CMAltimeter()
+    let AltLogic = AltitudeViewLogic()
+    let locationManager = CLLocationManager()
 
     /*--------------------------------------------------------------------
      - Function: viewDidLoad()
@@ -29,47 +32,40 @@ class AltitudeViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        obtainAltitude()
+        obtainLocationAuth()
+        fetchPressure()
+        fetchAltitude()
+        
     }
     
     /*--------------------------------------------------------------------
-     - Function: obtainAltitude()
+     - Function: fetchPressure()
+     - Description: Obtains current air pressure from business layer.
+     -------------------------------------------------------------------*/
+    func fetchPressure() {
+        AltLogic.fetchPressureReading(completion: { (pressure) in
+            self.lblCurrPressure.text = "Current Pressure: \(pressure) hPa"
+        })
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: fetchAltitude()
      - Description:
      -------------------------------------------------------------------*/
-    func obtainAltitude() {
+    func fetchAltitude() {
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: obtainLocationAuth()
+     - Description: Requests access to location.
+     -------------------------------------------------------------------*/
+    func obtainLocationAuth() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
-//        self.locationManager = CLLocationManager()
-//        locationManager.requestWhenInUseAuthorization()
-//        self.locationManager.delegate = self
-//        self.locationManager.distanceFilter = kCLDistanceFilterNone
-//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        self.locationManager.startUpdatingLocation()
-        if CMAltimeter.isRelativeAltitudeAvailable() {
-            // 2
-            altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main, withHandler: { data, error in
-                // 3
-                if (error == nil) {
-                    print("Relative Altitude: \(data?.relativeAltitude)")
-                    print("Pressure: \(data?.pressure)")
-                    self.lblAlt.text = ("Relative Altitude: \(data?.relativeAltitude)")
-                } else {
-                    print("ERR \(error)")
-                }
-            })
-        } else {
-            print("No altitude available")
-        }
     }
-    
-//    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
-//       var alt = newLocation.altitude
-//       print("\(alt)")
-//       manager.stopUpdatingLocation()
-//    }
 }
 
 
@@ -77,8 +73,8 @@ extension AltitudeViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let lastLocation = locations.last {
-            let altitude = lastLocation.altitude
-            lblAlt.text = String(format: "My altitude is\n%.1f m", altitude)
+            let elevation = round(lastLocation.altitude)
+            lblCurrElevation.text = String(format: "Current Elevation: \(elevation) meters")
         }
     }
 }

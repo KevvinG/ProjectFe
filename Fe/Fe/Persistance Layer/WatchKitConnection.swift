@@ -5,18 +5,31 @@
 //  Created by Kevin Grzela on 2021-04-13.
 //
 
+// Imports
 import Foundation
 import WatchConnectivity
 
-protocol WatchKitConnectionDelegate: class {
+/*------------------------------------------------------------------------
+ - Protocol: WatchKitConnectionDelegate : class
+ - Description:
+ -----------------------------------------------------------------------*/
+protocol WatchKitConnectionDelegate: AnyObject {
     func didFinishedActiveSession()
 }
 
+/*------------------------------------------------------------------------
+ - Protocol: WatchKitConnectionProtocol
+ - Description:
+ -----------------------------------------------------------------------*/
 protocol WatchKitConnectionProtocol {
     func startSession()
     func sendMessage(message: [String : AnyObject], replyHandler: (([String : AnyObject]) -> Void)?, errorHandler: ((NSError) -> Void)?)
 }
 
+/*------------------------------------------------------------------------
+ - Class: WatchKitConnection : NSObject
+ - Description: Holds methods for accessing HealtthKit Data
+ -----------------------------------------------------------------------*/
 class WatchKitConnection: NSObject {
     static let shared = WatchKitConnection()
     weak var delegate: WatchKitConnectionDelegate?

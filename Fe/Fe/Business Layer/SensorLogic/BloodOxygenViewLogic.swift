@@ -5,9 +5,14 @@
 //  Created by Kevin Grzela on 2021-04-17.
 //
 
+// Imports
 import Foundation
 import Charts
 
+/*------------------------------------------------------------------------
+ - Class: BloodOxygenViewLogic
+ - Description: Holds logic for the Blood Oxygen
+ -----------------------------------------------------------------------*/
 class BloodOxygenViewLogic {
     let HKObj = HKAccessObject()
     

@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     // Class Variables
     let HKObj = HKAccessObject()
     let FBObj = FirebaseAccessObject()
+    let AltObj = AltitudeViewLogic()
     let HSLogic = HomeScreenLogic()
     var counter = 0
     var container : NSPersistentContainer!
@@ -28,7 +29,9 @@ class HomeViewController: UIViewController {
     @IBOutlet var btnHeartRate: UIButton!
     @IBOutlet var lblHeartRateValue: UILabel!
     @IBOutlet var btnBloodOx: UIButton!
-    @IBOutlet var btnAltiitude: UIButton!
+    @IBOutlet var lblBloodOx: UILabel!
+    @IBOutlet var btnAltitude: UIButton!
+    @IBOutlet var lblAltitude: UILabel!
     @IBOutlet var btnCheckSymptoms: UIButton!
     @IBOutlet var btnMoreInfo: UIButton!
     
@@ -39,23 +42,40 @@ class HomeViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
-        
-        FBObj.checkIfNewUser() // Check if user already exists and add new user if not.
         
         // Set Name at top of UI
         FBObj.getUserName(completion: { name in
             self.lblTitle.text = "Welcome back, \(name)!"
         })
+        FBObj.checkIfNewUser() // Check if user already exists and add new user if not.
+       
+        // Heart Rate and Blood Oxygen Timer
+        let HRBOTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(HRTimerfire), userInfo: nil, repeats: true)
+        
+        // Altitude Timer
+        AltTimerFire() // fire the first one to fill a value on screen.
+        let AltTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(AltTimerFire), userInfo: nil, repeats: true)
     }
 
     /*--------------------------------------------------------------------
-     - Function: fire()
-     - Description: Starts Timer.
+     - Function: HRTimerfire()
+     - Description: Starts Timer for gathering HR and Blood Oxygen
      -------------------------------------------------------------------*/
-    @objc func fire()
+    @objc func HRTimerfire()
     {
-        self.lblHeartRateValue.text = HSLogic.getLatestInfo()
+        self.lblHeartRateValue.text = HSLogic.getLatestHR()
+        // Call Blood Ox Funcion Here
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: AltTimerFire()
+     - Description: Starts Timer for gathering Altitude.
+     -------------------------------------------------------------------*/
+    @objc func AltTimerFire()
+    {
+        AltObj.fetchPressureReading(completion: { pressure in
+            self.lblAltitude.text = "\(pressure) hPa"
+        })
     }
 
     //Below functions stay within VC, not moving to logic

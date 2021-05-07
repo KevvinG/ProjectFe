@@ -21,6 +21,7 @@
 		CE082756262A96EE00558A32 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE082755262A96EE00558A32 /* GoogleService-Info.plist */; };
 		CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */; };
 		CE26589425FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */; };
+		CE4D26F6264570B6004629CC /* PhoneSensorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */; };
 		CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */; };
 		CE62AF0725D84FDF00AA9665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */; };
 		CE62AF0825D84FDF00AA9665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */; };
@@ -169,6 +170,7 @@
 		CE1E4A6525D4B6E300342238 /* Fe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fe.entitlements; sourceTree = "<group>"; };
 		CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppPermissionsViewController.swift; sourceTree = "<group>"; };
 		CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationPermissionsViewController.swift; sourceTree = "<group>"; };
+		CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSensorObject.swift; sourceTree = "<group>"; };
 		CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CE62AF1225DD6B0400AA9665 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		CE62AF2125DDC13600AA9665 /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				EF2544EF261F22E800069308 /* HKAccessObject.swift */,
 				EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */,
 				EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */,
+				CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */,
 			);
 			path = "Persistance Layer";
 			sourceTree = "<group>";
@@ -941,6 +944,7 @@
 				CE62B2D425E885F100AA9665 /* HeartRateViewController.swift in Sources */,
 				CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 				CE62B2A125E8566100AA9665 /* Symptom2BreathViewController.swift in Sources */,
+				CE4D26F6264570B6004629CC /* PhoneSensorObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
