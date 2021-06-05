@@ -17,7 +17,7 @@ import Charts
 class BloodOxygenViewController: UIViewController {
     
     // Class Variables
-    let HRLogic = HeartRateViewLogic()
+    let BldOxObj = BloodOxygenLogic()
     
     // UI Variables
     @IBOutlet weak var lineChartView: LineChartView!
@@ -32,16 +32,16 @@ class BloodOxygenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        HRLogic.fetchLatestHR(completion: { hrVal in
-            self.lblCurrentO2.text = "Current Oxygen Saturation Rate: \(String(hrVal))"
+        BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxValue in
+            self.lblCurrentO2.text = "Current Blood Oxygen: \(String(bloodOxValue)) %"
         })
-        HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMix in
-            
-            lineChartView.data = HRLogic.chartData(dataPoints: dateArray, values: bpmArray)
+        
+        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin in
+            lineChartView.data = BldOxObj.chartData(dataPoints: dateArray, values: bldOxArray)
             lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
             lineChartView.xAxis.granularity = 1
-            self.lblMaxO2.text = "Maximum O2: \(Int(bpmArray.max() ?? 0))"
-            self.lblMinO2.text = "Minimum O2: \(Int(bpmArray.min() ?? 0))"
+            self.lblMaxO2.text = "Maximum Blood Oxygen: \(Int(bldOxArray.max() ?? 0))"
+            self.lblMinO2.text = "Minimum Blood Oxygen: \(Int(bldOxArray.min() ?? 0))"
         })
     }
 }

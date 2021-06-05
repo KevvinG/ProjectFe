@@ -17,6 +17,14 @@
 		CE01C2E825D438D100A08E2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE01C2E625D438D100A08E2D /* LaunchScreen.storyboard */; };
 		CE01C2F325D438D100A08E2D /* FeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2F225D438D100A08E2D /* FeTests.swift */; };
 		CE01C2FE25D438D100A08E2D /* FeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2FD25D438D100A08E2D /* FeUITests.swift */; };
+		CE07433526699CB000B97853 /* HeartRateData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07432D26699CB000B97853 /* HeartRateData+CoreDataClass.swift */; };
+		CE07433626699CB000B97853 /* HeartRateData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07432E26699CB000B97853 /* HeartRateData+CoreDataProperties.swift */; };
+		CE07433726699CB000B97853 /* AirPressureData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07432F26699CB000B97853 /* AirPressureData+CoreDataClass.swift */; };
+		CE07433826699CB000B97853 /* AirPressureData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433026699CB000B97853 /* AirPressureData+CoreDataProperties.swift */; };
+		CE07433926699CB000B97853 /* BloodOxygenData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433126699CB000B97853 /* BloodOxygenData+CoreDataClass.swift */; };
+		CE07433A26699CB000B97853 /* BloodOxygenData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433226699CB000B97853 /* BloodOxygenData+CoreDataProperties.swift */; };
+		CE07433B26699CB000B97853 /* ElevationData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433326699CB000B97853 /* ElevationData+CoreDataClass.swift */; };
+		CE07433C26699CB000B97853 /* ElevationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433426699CB000B97853 /* ElevationData+CoreDataProperties.swift */; };
 		CE082722262A4DE700558A32 /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE082721262A4DE700558A32 /* Questionnaire.swift */; };
 		CE082756262A96EE00558A32 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE082755262A96EE00558A32 /* GoogleService-Info.plist */; };
 		CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */; };
@@ -31,15 +39,6 @@
 		CE62AF2225DDC13600AA9665 /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF2125DDC13600AA9665 /* EditUserViewController.swift */; };
 		CE62AF2325DDC13600AA9665 /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF2125DDC13600AA9665 /* EditUserViewController.swift */; };
 		CE62AF2425DDC13600AA9665 /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF2125DDC13600AA9665 /* EditUserViewController.swift */; };
-		CE62B25525E72C8100AA9665 /* SensorCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B25425E72C8100AA9665 /* SensorCustomButton.swift */; };
-		CE62B25625E72C8100AA9665 /* SensorCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B25425E72C8100AA9665 /* SensorCustomButton.swift */; };
-		CE62B25725E72C8100AA9665 /* SensorCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B25425E72C8100AA9665 /* SensorCustomButton.swift */; };
-		CE62B26525E8395B00AA9665 /* SensorButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B26425E8395B00AA9665 /* SensorButtonView.swift */; };
-		CE62B26625E8395B00AA9665 /* SensorButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B26425E8395B00AA9665 /* SensorButtonView.swift */; };
-		CE62B26725E8395B00AA9665 /* SensorButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B26425E8395B00AA9665 /* SensorButtonView.swift */; };
-		CE62B27025E83B0700AA9665 /* SensorButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE62B26F25E83B0700AA9665 /* SensorButton.xib */; };
-		CE62B27125E83B0700AA9665 /* SensorButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE62B26F25E83B0700AA9665 /* SensorButton.xib */; };
-		CE62B27225E83B0700AA9665 /* SensorButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE62B26F25E83B0700AA9665 /* SensorButton.xib */; };
 		CE62B28825E84F5C00AA9665 /* WebMoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B28725E84F5C00AA9665 /* WebMoreInfoViewController.swift */; };
 		CE62B28F25E8521900AA9665 /* Symptom1DizzyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B28E25E8521900AA9665 /* Symptom1DizzyViewController.swift */; };
 		CE62B2A125E8566100AA9665 /* Symptom2BreathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2A025E8566100AA9665 /* Symptom2BreathViewController.swift */; };
@@ -59,6 +58,7 @@
 		CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */; };
 		CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */; };
 		CE6D7B072607E83000835756 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7B062607E83000835756 /* Document.swift */; };
+		CEA4EBE2266A8D4100144C5F /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */; };
 		CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
@@ -76,9 +76,9 @@
 		EF9CBD6F260C456E002360E2 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9CBD6E260C456E002360E2 /* HealthKit.framework */; };
 		EFF95573262B56860013E006 /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95572262B56860013E006 /* LoginLogic.swift */; };
 		EFF9557F262B56B60013E006 /* HomeScreenLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9557E262B56B60013E006 /* HomeScreenLogic.swift */; };
-		EFF95586262B56D50013E006 /* HeartRateViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95585262B56D50013E006 /* HeartRateViewLogic.swift */; };
-		EFF9558D262B56F00013E006 /* BloodOxygenViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558C262B56F00013E006 /* BloodOxygenViewLogic.swift */; };
-		EFF9558F262B56FE0013E006 /* AltitudeViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558E262B56FE0013E006 /* AltitudeViewLogic.swift */; };
+		EFF95586262B56D50013E006 /* HeartRateLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95585262B56D50013E006 /* HeartRateLogic.swift */; };
+		EFF9558D262B56F00013E006 /* BloodOxygenLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558C262B56F00013E006 /* BloodOxygenLogic.swift */; };
+		EFF9558F262B56FE0013E006 /* AltitudeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558E262B56FE0013E006 /* AltitudeLogic.swift */; };
 		EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9559F262B573F0013E006 /* SettingsViewLogic.swift */; };
 		EFF955A7262B574E0013E006 /* EditUserViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955A6262B574E0013E006 /* EditUserViewLogic.swift */; };
 		EFF955AE262B575B0013E006 /* AppPermissionsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955AD262B575B0013E006 /* AppPermissionsLogic.swift */; };
@@ -165,6 +165,14 @@
 		CE01C2F925D438D100A08E2D /* FeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE01C2FD25D438D100A08E2D /* FeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeUITests.swift; sourceTree = "<group>"; };
 		CE01C2FF25D438D100A08E2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE07432D26699CB000B97853 /* HeartRateData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeartRateData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE07432E26699CB000B97853 /* HeartRateData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeartRateData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE07432F26699CB000B97853 /* AirPressureData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AirPressureData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE07433026699CB000B97853 /* AirPressureData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AirPressureData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE07433126699CB000B97853 /* BloodOxygenData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BloodOxygenData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE07433226699CB000B97853 /* BloodOxygenData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BloodOxygenData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE07433326699CB000B97853 /* ElevationData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ElevationData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE07433426699CB000B97853 /* ElevationData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ElevationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE082721262A4DE700558A32 /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
 		CE082755262A96EE00558A32 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE1E4A6525D4B6E300342238 /* Fe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fe.entitlements; sourceTree = "<group>"; };
@@ -174,9 +182,6 @@
 		CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CE62AF1225DD6B0400AA9665 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		CE62AF2125DDC13600AA9665 /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
-		CE62B25425E72C8100AA9665 /* SensorCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorCustomButton.swift; sourceTree = "<group>"; };
-		CE62B26425E8395B00AA9665 /* SensorButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorButtonView.swift; sourceTree = "<group>"; };
-		CE62B26F25E83B0700AA9665 /* SensorButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorButton.xib; sourceTree = "<group>"; };
 		CE62B28725E84F5C00AA9665 /* WebMoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMoreInfoViewController.swift; sourceTree = "<group>"; };
 		CE62B28E25E8521900AA9665 /* Symptom1DizzyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptom1DizzyViewController.swift; sourceTree = "<group>"; };
 		CE62B2A025E8566100AA9665 /* Symptom2BreathViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptom2BreathViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +199,7 @@
 		CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAccessObject.swift; sourceTree = "<group>"; };
 		CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentviewViewController.swift; sourceTree = "<group>"; };
 		CE6D7B062607E83000835756 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDocumentViewController.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2544EF261F22E800069308 /* HKAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKAccessObject.swift; sourceTree = "<group>"; };
@@ -216,9 +222,9 @@
 		EF9CBD6E260C456E002360E2 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		EFF95572262B56860013E006 /* LoginLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginLogic.swift; path = "Fe/Business Layer/LoginLogic/LoginLogic.swift"; sourceTree = SOURCE_ROOT; };
 		EFF9557E262B56B60013E006 /* HomeScreenLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenLogic.swift; path = "Fe/Business Layer/HomeLogic/HomeScreenLogic.swift"; sourceTree = SOURCE_ROOT; };
-		EFF95585262B56D50013E006 /* HeartRateViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HeartRateViewLogic.swift; path = "Fe/Business Layer/SensorLogic/HeartRateViewLogic.swift"; sourceTree = SOURCE_ROOT; };
-		EFF9558C262B56F00013E006 /* BloodOxygenViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BloodOxygenViewLogic.swift; path = "Fe/Business Layer/SensorLogic/BloodOxygenViewLogic.swift"; sourceTree = SOURCE_ROOT; };
-		EFF9558E262B56FE0013E006 /* AltitudeViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AltitudeViewLogic.swift; path = "Fe/Business Layer/SensorLogic/AltitudeViewLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF95585262B56D50013E006 /* HeartRateLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HeartRateLogic.swift; path = "Fe/Business Layer/SensorLogic/HeartRateLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF9558C262B56F00013E006 /* BloodOxygenLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BloodOxygenLogic.swift; path = "Fe/Business Layer/SensorLogic/BloodOxygenLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF9558E262B56FE0013E006 /* AltitudeLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AltitudeLogic.swift; path = "Fe/Business Layer/SensorLogic/AltitudeLogic.swift"; sourceTree = SOURCE_ROOT; };
 		EFF9559F262B573F0013E006 /* SettingsViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewLogic.swift; path = "Fe/Business Layer/SettingsLogic/SettingsViewLogic.swift"; sourceTree = SOURCE_ROOT; };
 		EFF955A6262B574E0013E006 /* EditUserViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditUserViewLogic.swift; path = "Fe/Business Layer/SettingsLogic/EditUserViewLogic.swift"; sourceTree = SOURCE_ROOT; };
 		EFF955AD262B575B0013E006 /* AppPermissionsLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppPermissionsLogic.swift; path = "Fe/Business Layer/SettingsLogic/AppPermissionsLogic.swift"; sourceTree = SOURCE_ROOT; };
@@ -416,9 +422,9 @@
 		CE082718262A3FC500558A32 /* SensorLogic */ = {
 			isa = PBXGroup;
 			children = (
-				EFF95585262B56D50013E006 /* HeartRateViewLogic.swift */,
-				EFF9558C262B56F00013E006 /* BloodOxygenViewLogic.swift */,
-				EFF9558E262B56FE0013E006 /* AltitudeViewLogic.swift */,
+				EFF95585262B56D50013E006 /* HeartRateLogic.swift */,
+				EFF9558C262B56F00013E006 /* BloodOxygenLogic.swift */,
+				EFF9558E262B56FE0013E006 /* AltitudeLogic.swift */,
 			);
 			path = SensorLogic;
 			sourceTree = "<group>";
@@ -489,13 +495,26 @@
 			path = "Presentation Layer";
 			sourceTree = "<group>";
 		};
+		CE4D26F72665BBC3004629CC /* EntityModels */ = {
+			isa = PBXGroup;
+			children = (
+				CE07432D26699CB000B97853 /* HeartRateData+CoreDataClass.swift */,
+				CE07432E26699CB000B97853 /* HeartRateData+CoreDataProperties.swift */,
+				CE07432F26699CB000B97853 /* AirPressureData+CoreDataClass.swift */,
+				CE07433026699CB000B97853 /* AirPressureData+CoreDataProperties.swift */,
+				CE07433126699CB000B97853 /* BloodOxygenData+CoreDataClass.swift */,
+				CE07433226699CB000B97853 /* BloodOxygenData+CoreDataProperties.swift */,
+				CE07433326699CB000B97853 /* ElevationData+CoreDataClass.swift */,
+				CE07433426699CB000B97853 /* ElevationData+CoreDataProperties.swift */,
+			);
+			path = EntityModels;
+			sourceTree = "<group>";
+		};
 		CE69A26825D81F51009E87CB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CE62B25425E72C8100AA9665 /* SensorCustomButton.swift */,
-				CE62B26425E8395B00AA9665 /* SensorButtonView.swift */,
-				CE62B26F25E83B0700AA9665 /* SensorButton.xib */,
 				CE6D7B062607E83000835756 /* Document.swift */,
+				CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -516,6 +535,7 @@
 		CE6D7AC42607AF4400835756 /* Persistance Layer */ = {
 			isa = PBXGroup;
 			children = (
+				CE4D26F72665BBC3004629CC /* EntityModels */,
 				CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */,
 				EF2544EF261F22E800069308 /* HKAccessObject.swift */,
 				EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */,
@@ -719,7 +739,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE01C2E825D438D100A08E2D /* LaunchScreen.storyboard in Resources */,
-				CE62B27025E83B0700AA9665 /* SensorButton.xib in Resources */,
 				CE082756262A96EE00558A32 /* GoogleService-Info.plist in Resources */,
 				CE01C2E525D438D100A08E2D /* Assets.xcassets in Resources */,
 				CE01C2E025D438D100A08E2D /* Main.storyboard in Resources */,
@@ -730,7 +749,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE62B27125E83B0700AA9665 /* SensorButton.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,7 +756,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE62B27225E83B0700AA9665 /* SensorButton.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -907,12 +924,14 @@
 				EF9168EF262A5D3500DCCEEC /* CoreDataAccessObject.swift in Sources */,
 				CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */,
 				CE62B2DB25E8870900AA9665 /* BloodOxygenViewController.swift in Sources */,
-				EFF9558F262B56FE0013E006 /* AltitudeViewLogic.swift in Sources */,
+				EFF9558F262B56FE0013E006 /* AltitudeLogic.swift in Sources */,
 				EFF955A7262B574E0013E006 /* EditUserViewLogic.swift in Sources */,
 				CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */,
 				EFF955AE262B575B0013E006 /* AppPermissionsLogic.swift in Sources */,
 				EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */,
+				CEA4EBE2266A8D4100144C5F /* CustomTimer.swift in Sources */,
 				CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */,
+				CE07433626699CB000B97853 /* HeartRateData+CoreDataProperties.swift in Sources */,
 				CE62B2AF25E856CE00AA9665 /* AOKViewController.swift in Sources */,
 				CE082722262A4DE700558A32 /* Questionnaire.swift in Sources */,
 				CE62B2A825E856B800AA9665 /* CallDoctorViewController.swift in Sources */,
@@ -920,15 +939,17 @@
 				EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */,
 				CE62AF1325DD6B0400AA9665 /* StartViewController.swift in Sources */,
 				EFF95573262B56860013E006 /* LoginLogic.swift in Sources */,
+				CE07433A26699CB000B97853 /* BloodOxygenData+CoreDataProperties.swift in Sources */,
 				EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */,
+				CE07433826699CB000B97853 /* AirPressureData+CoreDataProperties.swift in Sources */,
 				CE01C2D925D438D100A08E2D /* AppDelegate.swift in Sources */,
 				CE62B28825E84F5C00AA9665 /* WebMoreInfoViewController.swift in Sources */,
 				CE01C2E325D438D100A08E2D /* Fe.xcdatamodeld in Sources */,
-				CE62B26525E8395B00AA9665 /* SensorButtonView.swift in Sources */,
+				CE07433926699CB000B97853 /* BloodOxygenData+CoreDataClass.swift in Sources */,
+				CE07433726699CB000B97853 /* AirPressureData+CoreDataClass.swift in Sources */,
 				CE01C2DB25D438D100A08E2D /* SceneDelegate.swift in Sources */,
 				CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */,
 				CE6D7B072607E83000835756 /* Document.swift in Sources */,
-				CE62B25525E72C8100AA9665 /* SensorCustomButton.swift in Sources */,
 				CE62B28F25E8521900AA9665 /* Symptom1DizzyViewController.swift in Sources */,
 				EFF955B0262B57740013E006 /* NotificationPermissionsLogic.swift in Sources */,
 				CE62B2E925E88AAC00AA9665 /* DocumentTableTableViewController.swift in Sources */,
@@ -937,14 +958,17 @@
 				CE62B2E225E8887800AA9665 /* AltitudeViewController.swift in Sources */,
 				CE62B2C225E871A100AA9665 /* Symptom4BlackStoolViewController.swift in Sources */,
 				CE62B2B625E8718E00AA9665 /* Symptom3BloodStoolViewController.swift in Sources */,
-				EFF95586262B56D50013E006 /* HeartRateViewLogic.swift in Sources */,
+				EFF95586262B56D50013E006 /* HeartRateLogic.swift in Sources */,
 				EFF9557F262B56B60013E006 /* HomeScreenLogic.swift in Sources */,
+				CE07433B26699CB000B97853 /* ElevationData+CoreDataClass.swift in Sources */,
 				CE62B2F025E88AC800AA9665 /* DocumentTableViewCell.swift in Sources */,
-				EFF9558D262B56F00013E006 /* BloodOxygenViewLogic.swift in Sources */,
+				EFF9558D262B56F00013E006 /* BloodOxygenLogic.swift in Sources */,
 				CE62B2D425E885F100AA9665 /* HeartRateViewController.swift in Sources */,
+				CE07433526699CB000B97853 /* HeartRateData+CoreDataClass.swift in Sources */,
 				CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 				CE62B2A125E8566100AA9665 /* Symptom2BreathViewController.swift in Sources */,
 				CE4D26F6264570B6004629CC /* PhoneSensorObject.swift in Sources */,
+				CE07433C26699CB000B97853 /* ElevationData+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -954,8 +978,6 @@
 			files = (
 				CE01C2F325D438D100A08E2D /* FeTests.swift in Sources */,
 				CE62AF1425DD6B0400AA9665 /* StartViewController.swift in Sources */,
-				CE62B26625E8395B00AA9665 /* SensorButtonView.swift in Sources */,
-				CE62B25625E72C8100AA9665 /* SensorCustomButton.swift in Sources */,
 				CE69A27225D831A5009E87CB /* HomeViewController.swift in Sources */,
 				CE62AF2325DDC13600AA9665 /* EditUserViewController.swift in Sources */,
 				CE62AF0725D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
@@ -968,8 +990,6 @@
 			files = (
 				CE01C2FE25D438D100A08E2D /* FeUITests.swift in Sources */,
 				CE62AF1525DD6B0400AA9665 /* StartViewController.swift in Sources */,
-				CE62B26725E8395B00AA9665 /* SensorButtonView.swift in Sources */,
-				CE62B25725E72C8100AA9665 /* SensorCustomButton.swift in Sources */,
 				CE69A27325D831A5009E87CB /* HomeViewController.swift in Sources */,
 				CE62AF2425DDC13600AA9665 /* EditUserViewController.swift in Sources */,
 				CE62AF0825D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
@@ -1559,7 +1579,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.1;
 			};
 			name = Debug;
 		};
@@ -1580,7 +1600,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.1;
 			};
 			name = Release;
 		};
@@ -1605,7 +1625,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.1;
 			};
 			name = Debug;
 		};
@@ -1628,7 +1648,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+				WATCHOS_DEPLOYMENT_TARGET = 7.1;
 			};
 			name = Release;
 		};

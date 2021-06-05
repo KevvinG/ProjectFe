@@ -1172,10 +1172,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1or-fP-Q48">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1410"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SBR-HS-zMs">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude and Pressure Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hu-08-UNY">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
@@ -1196,53 +1196,165 @@
                                                     <constraint firstAttribute="trailing" secondItem="V8r-0w-Z0g" secondAttribute="trailing" constant="10" id="8mT-Fz-NhJ"/>
                                                     <constraint firstItem="V8r-0w-Z0g" firstAttribute="leading" secondItem="SBR-HS-zMs" secondAttribute="leading" constant="10" id="L1X-gr-cO2"/>
                                                     <constraint firstItem="V8r-0w-Z0g" firstAttribute="top" secondItem="4hu-08-UNY" secondAttribute="bottom" constant="10" id="Nho-Mr-SOz"/>
-                                                    <constraint firstAttribute="height" constant="300" id="XB2-mR-jma"/>
+                                                    <constraint firstAttribute="height" constant="260" id="XB2-mR-jma"/>
                                                     <constraint firstItem="4hu-08-UNY" firstAttribute="top" secondItem="SBR-HS-zMs" secondAttribute="top" id="bXm-Pl-DU7"/>
                                                     <constraint firstAttribute="trailing" secondItem="4hu-08-UNY" secondAttribute="trailing" id="cUZ-Ga-SYZ"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpq-K9-xQ9">
+                                                <rect key="frame" x="0.0" y="260" width="414" height="80"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Pressure:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyN-4C-10K">
+                                                        <rect key="frame" x="10" y="10" width="394" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Elevation:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtE-wV-8Gu">
+                                                        <rect key="frame" x="10" y="44" width="394" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="nyN-4C-10K" firstAttribute="leading" secondItem="bpq-K9-xQ9" secondAttribute="leading" constant="10" id="0r6-bM-Dr5"/>
+                                                    <constraint firstAttribute="trailing" secondItem="rtE-wV-8Gu" secondAttribute="trailing" constant="10" id="3kD-SO-vS7"/>
+                                                    <constraint firstItem="nyN-4C-10K" firstAttribute="top" secondItem="bpq-K9-xQ9" secondAttribute="top" constant="10" id="FWS-ss-KLV"/>
+                                                    <constraint firstItem="rtE-wV-8Gu" firstAttribute="top" secondItem="nyN-4C-10K" secondAttribute="bottom" constant="10" id="NGz-eB-5QI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="nyN-4C-10K" secondAttribute="trailing" constant="10" id="Rm7-ab-NTj"/>
+                                                    <constraint firstAttribute="height" constant="80" id="eup-G8-i2H"/>
+                                                    <constraint firstItem="rtE-wV-8Gu" firstAttribute="leading" secondItem="bpq-K9-xQ9" secondAttribute="leading" constant="10" id="wg2-cQ-h8f"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UfD-hd-ys2">
+                                                <rect key="frame" x="0.0" y="340" width="414" height="300"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elevation Past 7 Days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Puq-Qg-PuH">
+                                                        <rect key="frame" x="10" y="10" width="394" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFW-wi-G0g" userLabel="Elevation Line Chart" customClass="LineChartView" customModule="Charts">
+                                                        <rect key="frame" x="10" y="44" width="394" height="246"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="kFW-wi-G0g" secondAttribute="trailing" constant="10" id="5vF-0F-nas"/>
+                                                    <constraint firstAttribute="height" constant="300" id="7W8-6e-GLQ"/>
+                                                    <constraint firstItem="Puq-Qg-PuH" firstAttribute="top" secondItem="UfD-hd-ys2" secondAttribute="top" constant="10" id="9ch-9D-7S6"/>
+                                                    <constraint firstItem="kFW-wi-G0g" firstAttribute="leading" secondItem="UfD-hd-ys2" secondAttribute="leading" constant="10" id="Qzd-Gk-Y8H"/>
+                                                    <constraint firstItem="kFW-wi-G0g" firstAttribute="top" secondItem="Puq-Qg-PuH" secondAttribute="bottom" constant="10" id="Y8a-uT-w9b"/>
+                                                    <constraint firstAttribute="bottom" secondItem="kFW-wi-G0g" secondAttribute="bottom" constant="10" id="c1V-rm-hZV"/>
+                                                    <constraint firstItem="Puq-Qg-PuH" firstAttribute="leading" secondItem="UfD-hd-ys2" secondAttribute="leading" constant="10" id="r38-KQ-Csv"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Puq-Qg-PuH" secondAttribute="trailing" constant="10" id="u7k-5H-yYB"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gpb-09-1I2">
+                                                <rect key="frame" x="0.0" y="640" width="414" height="300"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Air Pressure Past 7 Days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYG-xv-YEd">
+                                                        <rect key="frame" x="10" y="10" width="394" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJm-ce-wUg" userLabel="Air Pressure Line Chart" customClass="LineChartView" customModule="Charts">
+                                                        <rect key="frame" x="10" y="44" width="394" height="246"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="wJm-ce-wUg" secondAttribute="bottom" constant="10" id="5dx-4A-l64"/>
+                                                    <constraint firstAttribute="height" constant="300" id="9gr-h2-9Ok"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iYG-xv-YEd" secondAttribute="trailing" constant="10" id="AAd-Uu-jhM"/>
+                                                    <constraint firstItem="iYG-xv-YEd" firstAttribute="top" secondItem="Gpb-09-1I2" secondAttribute="top" constant="10" id="I5n-lt-8aR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="wJm-ce-wUg" secondAttribute="trailing" constant="10" id="KNl-OS-DF1"/>
+                                                    <constraint firstItem="wJm-ce-wUg" firstAttribute="top" secondItem="iYG-xv-YEd" secondAttribute="bottom" constant="10" id="hNv-8Q-WgW"/>
+                                                    <constraint firstItem="iYG-xv-YEd" firstAttribute="leading" secondItem="Gpb-09-1I2" secondAttribute="leading" constant="10" id="rhx-Mt-Ac1"/>
+                                                    <constraint firstItem="wJm-ce-wUg" firstAttribute="leading" secondItem="Gpb-09-1I2" secondAttribute="leading" constant="10" id="xna-Wq-JDF"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yno-bP-cD7">
+                                                <rect key="frame" x="0.0" y="940" width="414" height="470"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Did You Know?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsL-yM-9u8">
+                                                        <rect key="frame" x="10" y="10" width="394" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3sz-iM-Ze6">
+                                                        <rect key="frame" x="10" y="51" width="394" height="285"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <string key="text">People can experience headaches or migraines when the barometric pressure is 5 hPa lower than the previous day.  Air pressure drops as you elevation increases.   Symptoms relating to headaches can be:  - Nausea and vomiting - Increased sensitivity to light - Numbness in the face or neck - Pain in or around your temples  As your elevation increases, there are fewer oxygen particles in the air.  This reduction in oxygen can reduce your blood oxygen saturation if your body is not acclimated to the change in elevatioon.  </string>
+                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="- Sea Level: 20.9% - 1000M: 20.1% - 2000M: 19.4% - 3000M: 18.6% - 4000M: 17.9%" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Cz-St-3Uf">
+                                                        <rect key="frame" x="10" y="344" width="165" height="118"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="118" id="4Ym-MC-ibm"/>
+                                                            <constraint firstAttribute="width" constant="165" id="HF3-oB-l2V"/>
+                                                        </constraints>
+                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hnX-cr-8h0">
+                                                        <rect key="frame" x="239" y="346" width="165" height="116"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <string key="text">- 5000M: 17.3% - 6000M: 16.6% - 7000M: 16.0% - 8000M: 15.4%
+- 9000M: 14.8%</string>
+                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="6Cz-St-3Uf" firstAttribute="bottom" secondItem="Yno-bP-cD7" secondAttribute="bottomMargin" id="0bf-an-zei"/>
+                                                    <constraint firstItem="HsL-yM-9u8" firstAttribute="top" secondItem="Yno-bP-cD7" secondAttribute="top" constant="10" id="911-sK-gAG"/>
+                                                    <constraint firstItem="6Cz-St-3Uf" firstAttribute="bottom" secondItem="hnX-cr-8h0" secondAttribute="bottom" id="ASK-7P-j35"/>
+                                                    <constraint firstItem="3sz-iM-Ze6" firstAttribute="top" secondItem="HsL-yM-9u8" secondAttribute="bottom" constant="10" id="NiI-sZ-v1x"/>
+                                                    <constraint firstAttribute="trailing" secondItem="HsL-yM-9u8" secondAttribute="trailing" constant="10" id="Qqe-ya-mqR"/>
+                                                    <constraint firstItem="hnX-cr-8h0" firstAttribute="top" secondItem="3sz-iM-Ze6" secondAttribute="bottom" constant="10" id="U2a-ek-gjb"/>
+                                                    <constraint firstItem="3sz-iM-Ze6" firstAttribute="leading" secondItem="Yno-bP-cD7" secondAttribute="leading" constant="10" id="VWF-iV-QGA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hnX-cr-8h0" secondAttribute="trailing" constant="10" id="c0V-jq-30K"/>
+                                                    <constraint firstItem="6Cz-St-3Uf" firstAttribute="leading" secondItem="Yno-bP-cD7" secondAttribute="leading" constant="10" id="fxk-6u-5hc"/>
+                                                    <constraint firstItem="6Cz-St-3Uf" firstAttribute="top" secondItem="3sz-iM-Ze6" secondAttribute="bottom" constant="8" id="gpT-yK-tbb"/>
+                                                    <constraint firstAttribute="height" constant="470" id="hjZ-J9-9hT"/>
+                                                    <constraint firstItem="HsL-yM-9u8" firstAttribute="leading" secondItem="Yno-bP-cD7" secondAttribute="leading" constant="10" id="q5e-3e-Eoi"/>
+                                                    <constraint firstItem="hnX-cr-8h0" firstAttribute="leading" secondItem="6Cz-St-3Uf" secondAttribute="trailing" constant="64" id="uD0-e8-7So"/>
+                                                    <constraint firstAttribute="trailing" secondItem="3sz-iM-Ze6" secondAttribute="trailing" constant="10" id="vuv-16-qBO"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="Gpb-09-1I2" firstAttribute="leading" secondItem="1or-fP-Q48" secondAttribute="leading" id="97l-sE-pGK"/>
                                             <constraint firstItem="SBR-HS-zMs" firstAttribute="leading" secondItem="1or-fP-Q48" secondAttribute="leading" id="DQc-EZ-bRl"/>
+                                            <constraint firstAttribute="trailing" secondItem="Yno-bP-cD7" secondAttribute="trailing" id="KFq-pA-Lp0"/>
                                             <constraint firstItem="SBR-HS-zMs" firstAttribute="top" secondItem="1or-fP-Q48" secondAttribute="top" id="MQp-Yg-t7I"/>
+                                            <constraint firstItem="Yno-bP-cD7" firstAttribute="leading" secondItem="1or-fP-Q48" secondAttribute="leading" id="T6s-EG-7Ad"/>
                                             <constraint firstAttribute="trailing" secondItem="SBR-HS-zMs" secondAttribute="trailing" id="Tnk-9l-Q2u"/>
+                                            <constraint firstItem="Yno-bP-cD7" firstAttribute="top" secondItem="Gpb-09-1I2" secondAttribute="bottom" id="sfD-kK-qR1"/>
+                                            <constraint firstAttribute="trailing" secondItem="Gpb-09-1I2" secondAttribute="trailing" id="tMm-zg-4vk"/>
+                                            <constraint firstItem="Gpb-09-1I2" firstAttribute="top" secondItem="UfD-hd-ys2" secondAttribute="bottom" id="vWI-em-WRb"/>
                                         </constraints>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpq-K9-xQ9">
-                                        <rect key="frame" x="0.0" y="300" width="414" height="100"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Pressure:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyN-4C-10K">
-                                                <rect key="frame" x="10" y="10" width="394" height="24"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Elevation:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtE-wV-8Gu">
-                                                <rect key="frame" x="10" y="44" width="394" height="24"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstItem="nyN-4C-10K" firstAttribute="leading" secondItem="bpq-K9-xQ9" secondAttribute="leading" constant="10" id="0r6-bM-Dr5"/>
-                                            <constraint firstAttribute="trailing" secondItem="rtE-wV-8Gu" secondAttribute="trailing" constant="10" id="3kD-SO-vS7"/>
-                                            <constraint firstItem="nyN-4C-10K" firstAttribute="top" secondItem="bpq-K9-xQ9" secondAttribute="top" constant="10" id="FWS-ss-KLV"/>
-                                            <constraint firstItem="rtE-wV-8Gu" firstAttribute="top" secondItem="nyN-4C-10K" secondAttribute="bottom" constant="10" id="NGz-eB-5QI"/>
-                                            <constraint firstAttribute="trailing" secondItem="nyN-4C-10K" secondAttribute="trailing" constant="10" id="Rm7-ab-NTj"/>
-                                            <constraint firstAttribute="height" constant="100" id="eup-G8-i2H"/>
-                                            <constraint firstItem="rtE-wV-8Gu" firstAttribute="leading" secondItem="bpq-K9-xQ9" secondAttribute="leading" constant="10" id="wg2-cQ-h8f"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="zeJ-MQ-jRm" firstAttribute="trailing" secondItem="bpq-K9-xQ9" secondAttribute="trailing" id="7Oq-lZ-yRH"/>
                                     <constraint firstItem="1or-fP-Q48" firstAttribute="width" secondItem="zeJ-MQ-jRm" secondAttribute="width" id="Bo8-46-WGD"/>
                                     <constraint firstItem="1or-fP-Q48" firstAttribute="trailing" secondItem="5zA-E4-RUS" secondAttribute="trailing" id="E1R-5l-sBR"/>
-                                    <constraint firstItem="bpq-K9-xQ9" firstAttribute="top" secondItem="1or-fP-Q48" secondAttribute="bottom" id="NId-MZ-iEf"/>
                                     <constraint firstItem="1or-fP-Q48" firstAttribute="bottom" secondItem="5zA-E4-RUS" secondAttribute="bottom" id="XTU-SP-mkt"/>
-                                    <constraint firstItem="bpq-K9-xQ9" firstAttribute="leading" secondItem="zeJ-MQ-jRm" secondAttribute="leading" id="XcX-Tk-kVC"/>
                                     <constraint firstItem="1or-fP-Q48" firstAttribute="top" secondItem="5zA-E4-RUS" secondAttribute="top" id="fSc-uh-C3a"/>
                                     <constraint firstItem="1or-fP-Q48" firstAttribute="leading" secondItem="5zA-E4-RUS" secondAttribute="leading" id="s4L-L7-U9v"/>
                                 </constraints>
@@ -1261,6 +1373,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="9lq-aK-qIw"/>
                     <connections>
+                        <outlet property="apLineChart" destination="wJm-ce-wUg" id="zIx-G1-Pb3"/>
+                        <outlet property="elevationLineChart" destination="kFW-wi-G0g" id="poJ-cD-V0a"/>
                         <outlet property="imgMountainAlt" destination="V8r-0w-Z0g" id="Xnq-3K-daD"/>
                         <outlet property="lblCurrElevation" destination="rtE-wV-8Gu" id="4fi-Qv-QsG"/>
                         <outlet property="lblCurrPressure" destination="nyN-4C-10K" id="teO-7D-Tk5"/>
@@ -2346,6 +2460,9 @@
         <image name="mtnAlt" width="550" height="411"/>
         <image name="red-blood-cells" width="3620" height="3620"/>
         <image name="shortbreath" width="1600" height="1689"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

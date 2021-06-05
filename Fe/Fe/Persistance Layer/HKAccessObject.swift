@@ -19,10 +19,10 @@ class HKAccessObject {
     let healthStore = HKHealthStore()
 
     /*--------------------------------------------------------------------
-     - Function: fetchHealthData()
-     - Description:
+     - Function: getHrChartData()
+     - Description: Retrieves data on Heart Rate from health Store for Chart.
      -------------------------------------------------------------------*/
-    func fetchHRData(dateRange: String, completion: @escaping (_ bpmDict: [String:Double]) -> Void) {
+    func getHrChartData(dateRange: String, completion: @escaping (_ bpmDict: [String:Double]) -> Void) {
         var bpmDict : [String:Double] = [:]
         
         // Check if Health Data is available
@@ -47,14 +47,11 @@ class HKAccessObject {
                     
                     let interval = NSDateComponents()
                     switch dateRange {
-                    
-                    case "day":
-                        interval.minute = 1
-                    
-                    default:
-                        interval.minute = 30
+                        case "day":
+                            interval.minute = 1
+                        default:
+                            interval.minute = 30
                     }
-                    
                                         
                     let endDate = Date()
                     
@@ -63,21 +60,16 @@ class HKAccessObject {
                     }
                     
                     switch dateRange {
-                    
-                    case "month":
-                        startDate = calendar.date(byAdding: .month, value: -1, to: endDate) ?? Date()
-                        break
-                    case "day":
-                        startDate = calendar.date(byAdding: .day, value: -1, to: endDate) ?? Date()
-                        break
-                        
-                    default:
-                        print("No DR Selected, default to month")
-                        startDate = calendar.date(byAdding: .month, value: -1, to: endDate) ?? Date()
+                        case "month":
+                            startDate = calendar.date(byAdding: .month, value: -1, to: endDate) ?? Date()
+                            break
+                        case "day":
+                            startDate = calendar.date(byAdding: .day, value: -1, to: endDate) ?? Date()
+                            break
+                        default:
+                            print("No DR Selected, default to month")
+                            startDate = calendar.date(byAdding: .month, value: -1, to: endDate) ?? Date()
                     }
-//                    guard let startDate = calendar.date(byAdding: DR, value: -1, to: endDate) else {
-//                        fatalError("*** Unable to calculate the start date ***")
-//                    }
                                         
                     guard let quantityType = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate) else {
                         fatalError("*** Unable to create a step count type ***")
@@ -107,7 +99,6 @@ class HKAccessObject {
                         completion(bpmDict)
                     }
                     self.healthStore.execute(query)
-                    
                 } else {
                     print("Authorization failed")
                 }
@@ -117,8 +108,11 @@ class HKAccessObject {
         }
     }
     
-    
-    func fetchO2Data(dateRange: String, completion: @escaping (_ o2Dict: [String:Double]) -> Void) {
+    /*--------------------------------------------------------------------
+     - Function: getBloodOxChartData()
+     - Description: Retrieves data on Blood Oxygen from health Store for Chart.
+     -------------------------------------------------------------------*/
+    func getBloodOxChartData(dateRange: String, completion: @escaping (_ o2Dict: [String:Double]) -> Void) {
         var o2Dict : [String:Double] = [:]
         
         // Check if Health Data is available
@@ -212,13 +206,14 @@ class HKAccessObject {
             print("Healthkit not available.")
         }
     }
+    
     /*--------------------------------------------------------------------
      - Function: getLatestHR()
-     - Description: returns latest Heart Rate Number
+     - Description: Returns latest Heart Rate reading.
      -------------------------------------------------------------------*/
     func getLatestHR(completion: @escaping (_ hrVal: Int) -> Void) {
         guard let discreteHeartRate = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate) else {
-            fatalError("*** Unable to create a step count type ***")
+            fatalError("*** Unable to create HR type ***")
         }
         
         let discreteQuery = HKStatisticsQuery(quantityType: discreteHeartRate, quantitySamplePredicate: nil, options: .mostRecent) { query, statistics, error in
@@ -233,9 +228,11 @@ class HKAccessObject {
         healthStore.execute(discreteQuery)
     }
     
-    func getLatestO2(completion: @escaping (Double) -> Void) {
-        print("Oxy func called")
-        
+    /*--------------------------------------------------------------------
+     - Function: getLatestbloodOxReading()
+     - Description: Returns latest Blood Oxygen reading.
+     -------------------------------------------------------------------*/
+    func getLatestbloodOxReading(completion: @escaping (Double) -> Void) {
         guard let discreteOxySat = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.oxygenSaturation) else {
             fatalError("*** Unable to create O2 Type ***")
         }

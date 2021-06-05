@@ -13,20 +13,28 @@ import Charts
  - Class: HeartRateViewLogic
  - Description: Holds logic for the Heart Rate
  -----------------------------------------------------------------------*/
-class HeartRateViewLogic {
+class HeartRateLogic {
     
     // Class Variables
     let HKObj = HKAccessObject()
-    var dataDict : [String:Double] = [:]
+    var dataDict: [String:Double] = [:]
     
-    func fetchLatestHR(completion: @escaping (_ hrVal: Int) -> Void) {
+    /*--------------------------------------------------------------------
+     - Function: fetchLatestHrReading()
+     - Description: Obtains the latest heart rate value from Health Store.
+     -------------------------------------------------------------------*/
+    func fetchLatestHrReading(completion: @escaping (_ hrVal: Int) -> Void) {
         HKObj.getLatestHR( completion: { (hrVal) -> Void in
             completion(hrVal)
         })
     }
     
+    /*--------------------------------------------------------------------
+     - Function: fetchHrWithRange()
+     - Description: Obtains heart rate values from Health Store for Chart.
+     -------------------------------------------------------------------*/
     func fetchHrWithRange(dateRange: String, completion: @escaping (_ dateArray: [String], _ bpmArray: [Double], _ maxBPM: Int, _ minBPM: Int) -> Void) {
-        HKObj.fetchHRData(dateRange: dateRange, completion: { bpmDict in
+        HKObj.getHrChartData(dateRange: dateRange, completion: { bpmDict in
             DispatchQueue.main.async {
                 let dateArray = Array(bpmDict.keys)
                 let bpmArray = Array(bpmDict.values)
@@ -37,6 +45,10 @@ class HeartRateViewLogic {
         })
     }
     
+    /*--------------------------------------------------------------------
+     - Function: chartData()
+     - Description: Sets up the Chart for heart rate.
+     -------------------------------------------------------------------*/
     func chartData(dataPoints: [String], values: [Double]) -> LineChartData {
         var dataEntries : [ChartDataEntry] = []
         for i in 0..<dataPoints.count {

@@ -16,12 +16,12 @@ import CoreData
 class HomeViewController: UIViewController {
     
     // Class Variables
-    let HKObj = HKAccessObject()
     let FBObj = FirebaseAccessObject()
-    let AltObj = AltitudeViewLogic()
+    let HRObj = HeartRateLogic()
+    let BldOxObj = BloodOxygenLogic()
+    let AltObj = AltitudeLogic()
     let HSLogic = HomeScreenLogic()
     var counter = 0
-    var container : NSPersistentContainer!
     
     // UI Variables
     @IBOutlet var lblTitle: UILabel!
@@ -48,30 +48,50 @@ class HomeViewController: UIViewController {
             self.lblTitle.text = "Welcome back, \(name)!"
         })
         FBObj.checkIfNewUser() // Check if user already exists and add new user if not.
-       
-        // Heart Rate and Blood Oxygen Timer
-        let HRBOTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(HRTimerfire), userInfo: nil, repeats: true)
         
-        // Altitude Timer
-        AltTimerFire() // fire the first one to fill a value on screen.
-        let AltTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(AltTimerFire), userInfo: nil, repeats: true)
+        // Set off each method at start to fill UI
+        altTimerFire()
+        hrTimerfire()
+        bloodOxTimerfire()
+        
+        // Timer
+        let timer = CustomTimer { (seconds) in
+            if seconds % 15 == 0 {
+                self.altTimerFire() // Fire every 15 seconds
+            }
+            self.hrTimerfire() // Fire every 1 second
+            self.bloodOxTimerfire() // Fire every 1 second
+        }
+        timer.start()
     }
 
     /*--------------------------------------------------------------------
      - Function: HRTimerfire()
-     - Description: Starts Timer for gathering HR and Blood Oxygen
+     - Description: Method to update Heart Rate.
      -------------------------------------------------------------------*/
-    @objc func HRTimerfire()
+    @objc func hrTimerfire()
     {
-        self.lblHeartRateValue.text = HSLogic.getLatestHR()
-        // Call Blood Ox Funcion Here
+        HRObj.fetchLatestHrReading(completion: { heartRate in
+            self.lblHeartRateValue.text = "\(heartRate) BPM"
+        })
+    }
+    
+    /*--------------------------------------------------------------------
+     - Function: BloodOxTimerfire()
+     - Description: Method to update Blood Oxygen.
+     -------------------------------------------------------------------*/
+    @objc func bloodOxTimerfire()
+    {
+        BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxygen in
+            self.lblBloodOx.text = "\(bloodOxygen) %"
+        })
     }
     
     /*--------------------------------------------------------------------
      - Function: AltTimerFire()
-     - Description: Starts Timer for gathering Altitude.
+     - Description:  method to update Air Pressure.
      -------------------------------------------------------------------*/
-    @objc func AltTimerFire()
+    @objc func altTimerFire()
     {
         AltObj.fetchPressureReading(completion: { pressure in
             self.lblAltitude.text = "\(pressure) hPa"
