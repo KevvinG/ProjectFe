@@ -18,17 +18,23 @@ class CoreDataAccessObject {
     
     // Class Variables
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var apItems:[AirPressureData] = []
-    var eleItems:[ElevationData] = []
-    var hrItems:[HeartRateData] = []
-    var bldOxItems:[BloodOxygenData] = []
+    var apItems: [AirPressureData] = []
+    var eleItems: [ElevationData] = []
+    var hrItems: [HeartRateData] = []
+    var bldOxItems: [BloodOxygenData] = []
     
     // MARK: - Create HR Table Item
-    func createHeartRateTableEntry(hrValue: Int) {
-        let newHRentry = HeartRateData(context: self.context)
-        newHRentry.dateTime = Date()
-        newHRentry.heartRate = Int64(hrValue)
-        saveContext(tableName: "HeartRateData")
+    func createHeartRateTableEntry(hrValue: String) {
+        let hrFloat = Float(hrValue) ?? 0 // receive a float value
+        let hr = Int(hrFloat) // convert for table.
+        if hr != 0 {
+            let newHRentry = HeartRateData(context: self.context)
+            newHRentry.dateTime = Date()
+            newHRentry.heartRate = Int64(hr)
+            saveContext(tableName: "HeartRateData")
+        } else {
+            print("Error converting HR value. Did not create new table entry.")
+        }
 //        print("Saved HR: \(newHRentry.heartRate)")
     }
     
@@ -40,6 +46,25 @@ class CoreDataAccessObject {
             print("HeartRateData Read Fetch Failed: \(error.description)")
         }
         return self.hrItems
+    }
+    
+    // MARK: - Fetch Latest HR From Table
+    func fetchLatestHR() -> Int {
+        do {
+            self.hrItems = try context.fetch(HeartRateData.fetchRequest())
+        } catch let error as NSError{
+            print("HeartRateData Read Fetch Failed: \(error.description)")
+        }
+        if hrItems.count > 0 {
+            let topItem = hrItems.sorted(by: { $0.dateTime > $1.dateTime })
+//            print("Pulled value \(topItem[0].heartRate)")
+//            print("Pulled date \(topItem[0].dateTime)")
+//            print("Pulled count \(topItem.count)")
+            return Int(topItem[0].heartRate)
+        } else {
+            print("Empty HR table")
+            return 0
+        }
     }
     
     // MARK: - Create Blood Ox Table Item

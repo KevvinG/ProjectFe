@@ -17,16 +17,18 @@ class HeartRateLogic {
     
     // Class Variables
     let HKObj = HKAccessObject()
+    let CDObj = CoreDataAccessObject()
     var dataDict: [String:Double] = [:]
     
     /*--------------------------------------------------------------------
      - Function: fetchLatestHrReading()
-     - Description: Obtains the latest heart rate value from Health Store.
+     - Description: Obtains the latest heart rate value from Core Data.
      -------------------------------------------------------------------*/
-    func fetchLatestHrReading(completion: @escaping (_ hrVal: Int) -> Void) {
-        HKObj.getLatestHR( completion: { (hrVal) -> Void in
-            completion(hrVal)
-        })
+    func fetchLatestHrReading() -> Int {
+//        HKObj.getLatestHR( completion: { (hrVal) -> Void in
+//            completion(hrVal)
+//        })
+        return CDObj.fetchLatestHR()
     }
     
     /*--------------------------------------------------------------------

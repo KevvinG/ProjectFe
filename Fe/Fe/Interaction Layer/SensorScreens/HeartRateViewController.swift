@@ -32,9 +32,7 @@ class HeartRateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        HRLogic.fetchLatestHrReading(completion: { hrVal in
-            self.lblCurrentHR.text = "Current Heart Rate: \(String(hrVal))"
-        })
+        self.lblCurrentHR.text = "Current Heart Rate: \(String(HRLogic.fetchLatestHrReading()))"
 
         HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMin in
             

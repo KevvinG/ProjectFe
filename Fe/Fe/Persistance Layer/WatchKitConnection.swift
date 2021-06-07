@@ -98,29 +98,24 @@ extension WatchKitConnection: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("didReceiveMessage")
         print(message)
-        guard let heartRate = message.values.first as? String else {
-            print("error1")
-            return
+        DispatchQueue.main.async {
+            guard let heartRate = message.values.first as? String else {
+                print("error1")
+                return
+            }
+            CoreDataAccessObject().createHeartRateTableEntry(hrValue: heartRate)
         }
-        CoreDataAccessObject().createHeartRateTableEntry(hrValue: Int(heartRate)!)
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         print("didReceiveMessage with reply")
         print(message)
-        guard let heartRate = message.values.first as? String else {
-            print("error1")
-            return
+        DispatchQueue.main.async {
+            guard let heartRate = message.values.first as? String else {
+                print("error1")
+                return
+            }
+            CoreDataAccessObject().createHeartRateTableEntry(hrValue: heartRate)
         }
-        guard let heartRateDouble = Double(heartRate) else {
-            print("error2")
-            return
-        }
-        print("New HR! \(heartRateDouble)")
-        //CDAO.save(heartRate: heartRate)
-        print("CDAO Call Started")
-        CoreDataAccessObject().createHeartRateTableEntry(hrValue: Int(heartRate)!)
-        print("CDAO Call done")
-        //var data = [NSManagedObject] = []
     }
 }

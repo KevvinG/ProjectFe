@@ -71,9 +71,9 @@ class HomeViewController: UIViewController {
      -------------------------------------------------------------------*/
     @objc func hrTimerfire()
     {
-        HRObj.fetchLatestHrReading(completion: { heartRate in
-            self.lblHeartRateValue.text = "\(heartRate) BPM"
-        })
+        let hrVal = HRObj.fetchLatestHrReading()
+        self.lblHeartRateValue.text = "\(hrVal) BPM"
+        print("HR Timer Val: \(hrVal)")
     }
     
     /*--------------------------------------------------------------------
@@ -84,6 +84,7 @@ class HomeViewController: UIViewController {
     {
         BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxygen in
             self.lblBloodOx.text = "\(bloodOxygen) %"
+            print("Blood Ox Timer Val: \(bloodOxygen)")
         })
     }
     
@@ -95,6 +96,7 @@ class HomeViewController: UIViewController {
     {
         AltObj.fetchPressureReading(completion: { pressure in
             self.lblAltitude.text = "\(pressure) hPa"
+            print("Air Pressure Timer Val: \(pressure)")
         })
     }
 
