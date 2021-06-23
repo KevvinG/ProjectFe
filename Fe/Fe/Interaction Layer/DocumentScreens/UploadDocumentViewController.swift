@@ -5,11 +5,11 @@
 //  Created by Jayce Merinchuk on 2021-02-25.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: UploadDocumentViewController : UIViewController
+ //MARK: UploadDocumentViewController : UIViewController
  - Description: Screen to upload Document to system
  -----------------------------------------------------------------------*/
 class UploadDocumentViewController: UIViewController {
@@ -23,7 +23,7 @@ class UploadDocumentViewController: UIViewController {
     @IBOutlet var imagePicked: UIImageView!
     
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some code beforee showing screen.
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class UploadDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: createDatePicker()
+     //MARK: createDatePicker()
      - Description: Set datepicker options
      -------------------------------------------------------------------*/
     func createDatePicker() {
@@ -48,7 +48,7 @@ class UploadDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getDatePickerString()
+     //MARK: getDatePickerString()
      - Description: gets the string of the datePicker
      -------------------------------------------------------------------*/
     func getDatePickerString() -> String {
@@ -59,7 +59,7 @@ class UploadDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: takePictureBtnTapped()
+     //MARK: takePictureBtnTapped()
      - Description: Opens phonoe camera if available.
      -------------------------------------------------------------------*/
     @IBAction func takePictureBtnTapped() {
@@ -75,7 +75,7 @@ class UploadDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: findFileBtnTapped()
+     //MARK: findFileBtnTapped()
      - Description: Opens photo library to pick image if available.
      -------------------------------------------------------------------*/
     @IBAction func findDocumentBtnTapped(_ sender: Any) {
@@ -91,7 +91,7 @@ class UploadDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: uploadBtnTapped()
+     //MARK: uploadBtnTapped()
      - Description: uploads image to Firebase Storage
      -------------------------------------------------------------------*/
     @IBAction func uploadBtnTapped(_ sender: Any) {
@@ -104,7 +104,7 @@ class UploadDocumentViewController: UIViewController {
         } else {
             // Try to upload the picture to Firebase
             let objFB = FirebaseAccessObject()
-            let success = objFB.uploadFile(testName: txtTestName.text!, imagePicked: imagePicked, date: getDatePickerString(), doctor: txtDoctorName.text!, results: txtTestResults.text!, notes: Notes.text!)
+            let success = objFB.uploadDocument(testName: txtTestName.text!, imagePicked: imagePicked, date: getDatePickerString(), doctor: txtDoctorName.text!, results: txtTestResults.text!, notes: Notes.text!)
             if success {
                 // Show Alert that image was saved
                 let confirmationMessage = UIAlertController(title: "Picture Saved!", message: "Your picture has beed saved", preferredStyle: .alert)
@@ -123,13 +123,13 @@ class UploadDocumentViewController: UIViewController {
 }
 
 /*------------------------------------------------------------------------
- - Class: UploadDocumentViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate
+ //MARK: UploadDocumentViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate
  - Description: Functions to handle image picker.
  -----------------------------------------------------------------------*/
 extension UploadDocumentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     /*--------------------------------------------------------------------
-     - Function: imagePickerControllerDidCancel()
+     //MARK: imagePickerControllerDidCancel()
      - Description: Dismiss the picker controller.
      -------------------------------------------------------------------*/
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -137,7 +137,7 @@ extension UploadDocumentViewController: UIImagePickerControllerDelegate, UINavig
     }
     
     /*--------------------------------------------------------------------
-     - Function: imagePickerController()
+     //MARK: imagePickerController()
      - Description: Handles when a picture is chosen on camera or photo library.
      -------------------------------------------------------------------*/
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

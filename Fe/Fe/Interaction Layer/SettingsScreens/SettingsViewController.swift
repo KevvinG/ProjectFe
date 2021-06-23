@@ -5,11 +5,11 @@
 //  Created by Jayce Merinchuk on 2021-02-13.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: SettingsViewController : UIViewController
+ //MARK: SettingsViewController : UIViewController
  - Description: Holds logic for the Main Settings Screen
  -----------------------------------------------------------------------*/
 class SettingsViewController: UIViewController {
@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
     
 
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: prepare()
+     //MARK: prepare()
      - Description: Prepare any code before changing scenes.
      -------------------------------------------------------------------*/
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -47,7 +47,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: logOutButtonTapped()
+     //MARK: logOutButtonTapped()
      - Description: Creates Prompt and Logs out of Account if selected.
      -------------------------------------------------------------------*/
     @objc func logOutButtonTapped() {
@@ -67,7 +67,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: updateEmergencyBtnTapped()
+     //MARK: updateEmergencyBtnTapped()
      - Description: updates Emergency contact information.
      -------------------------------------------------------------------*/
     @IBAction func updateEmergencyBtnTapped(_ sender: Any) {
@@ -90,7 +90,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getEmergencyContactData()
+     //MARK: getEmergencyContactData()
      - Description: Fetches emergency contact data from firestore and
      fills values in text boxes
      -------------------------------------------------------------------*/
@@ -104,7 +104,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: editAccountBtnTapped()
+     //MARK: editAccountBtnTapped()
      - Description: Changes Screen to Edit Settings Screen.
      -------------------------------------------------------------------*/
     @IBAction func editAccountBtnTapped(_ sender: UIButton) {
@@ -112,7 +112,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: notificationSettingsBtnTapped()
+     //MARK: notificationSettingsBtnTapped()
      - Description: Changes Screen to Notification Settings Screen.
      -------------------------------------------------------------------*/
     @IBAction func notificationSettingsBtnTapped(_ sender: UIButton) {
@@ -120,7 +120,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: appPermissionsBtnTapped()
+     //MARK: appPermissionsBtnTapped()
      - Description: Changes Screen to Application Settings Screen.
      -------------------------------------------------------------------*/
     @IBAction func appPermissionsBtnTapped(_ sender: UIButton) {
@@ -128,7 +128,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: deleteDataBtnTapped()
+     //MARK: deleteDataBtnTapped()
      - Description: Prompt to delete all your data
      -------------------------------------------------------------------*/
     @IBAction func deleteDataBtnTapped(_ sender: UIButton) {
@@ -148,7 +148,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: deleteAccountBtnTapped()
+     //MARK: deleteAccountBtnTapped()
      - Description: Prompt to delete account and redirects to Start Screen.
      -------------------------------------------------------------------*/
     @IBAction func deleteAccountBtnTapped(_ sender: UIButton) {
@@ -167,7 +167,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: deleteDataPrompt()
+     //MARK: deleteDataPrompt()
      - Description: Ask if user wants to delete data too.
      -------------------------------------------------------------------*/
     func deleteDataPrompt() {
@@ -193,7 +193,7 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: deleteAccount()
+     //MARK: deleteAccount()
      - Description: Logic to delete account from Firestore.
      -------------------------------------------------------------------*/
     func deleteAccount() {

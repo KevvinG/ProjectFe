@@ -5,13 +5,13 @@
 //  Created by Kevin Grzela on 2021-04-17.
 //
 
-// Imports
+//MARK: Imports
 import Foundation
 import CoreMotion
 import Charts
 
 /*------------------------------------------------------------------------
- - Class: AltitudeViewLogic
+ //MARK: Class AltitudeLogic
  - Description: Holds logic for the Altitude
  -----------------------------------------------------------------------*/
 class AltitudeLogic {
@@ -21,7 +21,7 @@ class AltitudeLogic {
     let coredataObj = CoreDataAccessObject()
     
     /*--------------------------------------------------------------------
-     - Function: fetchPressureReading()
+     //MARK: fetchPressureReading()
      - Description: Obtains pressure reading from Phone Sensor Object.
      -------------------------------------------------------------------*/
     func fetchPressureReading(completion: @escaping (_ pressure: String) -> Void) {
@@ -37,7 +37,7 @@ class AltitudeLogic {
     }
     
     /*--------------------------------------------------------------------
-     - Function: fetchElevationReading()
+     //MARK: fetchElevationReading()
      - Description: Obtains clevation reading from Phone Sensor Object.
      -------------------------------------------------------------------*/
     func fetchElevationReading(completion: @escaping (_ elevatioon: String) -> Void) {
@@ -47,7 +47,7 @@ class AltitudeLogic {
     }
     
     /*--------------------------------------------------------------------
-     - Function: fetchAirPressureWithRange()
+     //MARK: fetchAirPressureWithRange()
      - Description: Obtains air pressure data in range
      -------------------------------------------------------------------*/
     func fetchAirPressureWithRange(dateRange: String, completion: @escaping (_ dateArray: [String], _ AirPressureArray: [Double]) -> Void) {
@@ -70,7 +70,7 @@ class AltitudeLogic {
     }
     
     /*--------------------------------------------------------------------
-     - Function: fetchElevationWithRange()
+     //MARK: fetchElevationWithRange()
      - Description: Obtains elevation data in range.
      -------------------------------------------------------------------*/
     func fetchElevationWithRange(dateRange: String, completion: @escaping (_ dateArray: [String], _ elevationArray: [Double]) -> Void) {
@@ -93,8 +93,8 @@ class AltitudeLogic {
     }
     
     /*--------------------------------------------------------------------
-     - Function: fetchAirPresssureChartData()
-     - Description: Obtains air pressure chart data from Core data
+     //MARK: chartData()
+     - Description: Obtains chart data from Core Data
      -------------------------------------------------------------------*/
     func chartData(dataPoints: [String], values: [Double]) -> LineChartData {
         var dataEntries : [ChartDataEntry] = []
@@ -103,7 +103,13 @@ class AltitudeLogic {
             dataEntries.append(dataEntry)
         }
         let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
+        lineChartDataSet.drawCirclesEnabled = false
+        lineChartDataSet.mode = .cubicBezier
+        lineChartDataSet.lineWidth = 3
+        lineChartDataSet.setColor(.systemRed)
+        lineChartDataSet.highlightColor = .systemRed
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        lineChartData.setDrawValues(false)
         return lineChartData
     }
 }

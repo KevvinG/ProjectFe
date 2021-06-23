@@ -5,11 +5,11 @@
 //  Created by Jayce Merinchuk on 2021-03-13.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: SettingsNotificationPermissionssViewController : UIViewController
+ //MARK: SettingsNotificationPermissionssViewController : UIViewController
  - Description: Holds logic for the Notification Permissions Screen.
  -----------------------------------------------------------------------*/
 class SettingsNotificationPermissionsViewController: UIViewController {
@@ -19,7 +19,7 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBOutlet var swMedicationReminder: UISwitch!
     
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Logic to initialize some code before screen loads.
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: swSensorActivityStateChanged()
+     //MARK: swSensorActivityStateChanged()
      - Description: Logic for changing notifications for unusual
      sensor activity detected Permission.
      -------------------------------------------------------------------*/
@@ -40,7 +40,7 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: swMedicationReminderStateChanged()
+     //MARK: swMedicationReminderStateChanged()
      - Description: Logic for changing notifications for daily medication
      reminder Permission.
      -------------------------------------------------------------------*/

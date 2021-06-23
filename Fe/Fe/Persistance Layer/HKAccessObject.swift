@@ -5,12 +5,12 @@
 //  Created by Kevin Grzela on 2021-04-08.
 //
 
-// Imports
+//MARK: Imports
 import Foundation
 import HealthKit
 
 /*------------------------------------------------------------------------
- - Class: HKAccessObject
+ //MARK: HKAccessObject
  - Description: Holds methods for accessing HealtthKit Data
  -----------------------------------------------------------------------*/
 class HKAccessObject {
@@ -19,7 +19,7 @@ class HKAccessObject {
     let healthStore = HKHealthStore()
 
     /*--------------------------------------------------------------------
-     - Function: getHrChartData()
+     //MARK: getHrChartData()
      - Description: Retrieves data on Heart Rate from health Store for Chart.
      -------------------------------------------------------------------*/
     func getHrChartData(dateRange: String, completion: @escaping (_ bpmDict: [String:Double]) -> Void) {
@@ -109,7 +109,7 @@ class HKAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getBloodOxChartData()
+     //MARK: getBloodOxChartData()
      - Description: Retrieves data on Blood Oxygen from health Store for Chart.
      -------------------------------------------------------------------*/
     func getBloodOxChartData(dateRange: String, completion: @escaping (_ o2Dict: [String:Double]) -> Void) {
@@ -208,7 +208,7 @@ class HKAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getLatestHR()
+     //MARK: getLatestHR()
      - Description: Returns latest Heart Rate reading.
      -------------------------------------------------------------------*/
     func getLatestHR(completion: @escaping (_ hrVal: Int) -> Void) {
@@ -229,7 +229,7 @@ class HKAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getLatestbloodOxReading()
+     //MARK: getLatestbloodOxReading()
      - Description: Returns latest Blood Oxygen reading.
      -------------------------------------------------------------------*/
     func getLatestbloodOxReading(completion: @escaping (Double) -> Void) {

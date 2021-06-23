@@ -5,13 +5,13 @@
 //  Created by Jayce Merinchuk on 2021-03-21.
 //
 
-// Imports
+//MARK: Imports
 import Foundation
 import Firebase
 import FirebaseAuth
 
 /*------------------------------------------------------------------------
- - Class: FirebaseAccessObject
+ //MARK: FirebaseAccessObject
  - Description: Holds methods for accessing Firebase Data
  -----------------------------------------------------------------------*/
 class FirebaseAccessObject {
@@ -20,7 +20,7 @@ class FirebaseAccessObject {
     let db = Firestore.firestore() // Access to Firestore Database
     
     /*--------------------------------------------------------------------
-     - Function: signOut()
+     //MARK: signOut()
      - Description: Signs out current User.
      -------------------------------------------------------------------*/
     func signOut() {
@@ -32,7 +32,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: checkIfNewUser()
+     //MARK: checkIfNewUser()
      - Description: Checks if the user already exists in the Database.
      If the user doesn't exist, create a blank profile for them.
      -------------------------------------------------------------------*/
@@ -55,7 +55,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getUserName() -> String
+     //MARK: getUserName() -> String
      - Description: fetches user name from Fireebase
      -------------------------------------------------------------------*/
     func getUserName(completion: @escaping (_ name: String) -> Void) {
@@ -81,7 +81,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: addNewUser()
+     //MARK: addNewUser()
      - Description: Logic to add user to Firebase Firestore
      -------------------------------------------------------------------*/
     func addNewUser() {
@@ -102,7 +102,11 @@ class FirebaseAccessObject {
             "existingSymptoms": "",
             "doctorPhone": "",
             "emergencyName": "",
-            "emergencyPhone": ""
+            "emergencyPhone": "",
+            "hrLowThreshold": "40",
+            "hrHighThreshold": "160",
+            "bldOxLowThreshold": "90",
+            "bldOxHighThreshold": "110"
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -113,10 +117,120 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: uploadFile()
+     //MARK: getUserHrThresholds() -> Dictionary
+     - Description: fetches hr thresholds from Firebase.
+     -------------------------------------------------------------------*/
+    func getUserHrThresholds(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
+        var dataDict = [String:String]()
+        let usersRef = db.collection("users")
+        let user = Auth.auth().currentUser
+        
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            dataDict["hrLowThreshold"] = document.data()["hrLowThreshold"] as? String
+                            dataDict["hrHighThreshold"] = document.data()["hrHighThreshold"] as? String
+                        }
+                    }
+                }
+            completion(dataDict)
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: updateHrThresholds()
+     - Description: Updates low and high Hr Thresholds for user.
+     -------------------------------------------------------------------*/
+    func updateHrThresholds(lowThreshold: String, highThreshold: String, completion: @escaping (_ successful: Bool) -> Void) {
+        let user = Auth.auth().currentUser
+        let userRef = db.collection("users").whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+        userRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count == 0 {
+                    print("No user found.")
+                    completion(false)
+                } else {
+                    for document in querySnapshot!.documents {
+                        let ref = document.reference
+                        ref.updateData([
+                            "hrLowThreshold": lowThreshold,
+                            "hrHighThreshold": highThreshold,
+                        ]);
+                        completion(true)
+                    }
+                }
+            }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: getUserBldOxThresholds() -> Dictionary
+     - Description: fetches hr thresholds from Firebase.
+     -------------------------------------------------------------------*/
+    func getUserBldOxThresholds(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
+        var dataDict = [String:String]()
+        let usersRef = db.collection("users")
+        let user = Auth.auth().currentUser
+        
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            dataDict["bldOxLowThreshold"] = document.data()["bldOxLowThreshold"] as? String
+                            dataDict["bldOxHighThreshold"] = document.data()["bldOxHighThreshold"] as? String
+                        }
+                    }
+                }
+            completion(dataDict)
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: updateBldOxThresholds()
+     - Description: Updates low and high Blood Oxygen thresholds for user.
+     -------------------------------------------------------------------*/
+    func updateBldOxThresholds(lowThreshold: String, highThreshold: String, completion: @escaping (_ successful: Bool) -> Void) {
+        let user = Auth.auth().currentUser
+        let userRef = db.collection("users").whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+        userRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count == 0 {
+                    print("No user found.")
+                    completion(false)
+                } else {
+                    for document in querySnapshot!.documents {
+                        let ref = document.reference
+                        ref.updateData([
+                            "bldOxLowThreshold": lowThreshold,
+                            "bldOxHighThreshold": highThreshold,
+                        ]);
+                        completion(true)
+                    }
+                }
+            }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: uploadDocument()
      - Description: Logic to upload image to Firebase.
      -------------------------------------------------------------------*/
-    func uploadFile(testName:String, imagePicked:UIImageView, date:String, doctor:String, results:String, notes:String) -> Bool {
+    func uploadDocument(testName:String, imagePicked:UIImageView, date:String, doctor:String, results:String, notes:String) -> Bool {
         
         // Get the user email and check if they are already in the storage system
         let user = Auth.auth().currentUser
@@ -163,7 +277,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: deleteDocument()
+     //MARK: deleteDocument()
      - Description: Deletes specific document from Firebase
      -------------------------------------------------------------------*/
     func deleteDocument(doc:Document?) {
@@ -182,7 +296,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: iterateDocuments()
+     //MARK: iterateDocuments()
      - Description: returns number of pictures uploaded.
      -------------------------------------------------------------------*/
     func iterateDocuments(completion: @escaping (_ docArray: [Document]) -> Void) {
@@ -241,7 +355,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: updateEmergencyContactData()
+     //MARK: updateEmergencyContactData()
      - Description: Logic to update EmergencyContact Data.
      -------------------------------------------------------------------*/
     func updateEmergencyContactData(doctorPhone: String, emergencyName: String, emergencyPhone: String, completion: @escaping (_ successful: Bool) -> Void) {
@@ -271,7 +385,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getEmergencyContactData()
+     //MARK: getEmergencyContactData()
      - Description: Obtains emergency contact data from Firebase and displays in
      - each of the appropriate TextViews.
      -------------------------------------------------------------------*/
@@ -301,7 +415,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: fetchDoctorPhoneNumber()
+     //MARK: fetchDoctorPhoneNumber()
      - Description: returns the doctor's phone number for call function.
      -------------------------------------------------------------------*/
     func fetchDoctorPhoneNumber(completion: @escaping (_ doctorPhone: String) -> Void) {
@@ -328,7 +442,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: deleteAccount()
+     //MARK: deleteAccount()
      - Description: Logic to delete account from Firestore.
      -------------------------------------------------------------------*/
     func deleteAccount() {
@@ -343,7 +457,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: deleteData()
+     //MARK: deleteData()
      - Description: Logic to delete data from Firestore.
      -------------------------------------------------------------------*/
     func deleteData() {
@@ -375,7 +489,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: deleteSensorData()
+     //MARK: deleteSensorData()
      - Description: Logic to delete sensor data from Firestore.
      -------------------------------------------------------------------*/
     func deleteSensorData() {
@@ -400,7 +514,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getUserData()
+     //MARK: getUserData()
      - Description: Obtains current user data from Firebase and displays in
      - each of the appropriate TextViews.
      -------------------------------------------------------------------*/
@@ -418,7 +532,6 @@ class FirebaseAccessObject {
                         print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
                     } else {
                         for document in querySnapshot!.documents {
-                            //print("\(document.documentID) => \(document.data())")
                             dataDict["fName"] = document.data()["fName"] as? String
                             dataDict["lName"] = document.data()["lName"] as? String
                             dataDict["age"] = document.data()["age"] as? String
@@ -440,7 +553,7 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function:updateUserData()
+     //MARK: updateUserData()
      - Description: Gets user from Firestore using email and updates data.
      -------------------------------------------------------------------*/
     func updateUserData(fname: String, lname: String, age: String, email: String, password: String, phone: String, st_address1: String, st_address2: String, postal: String, province: String, city: String, country: String, symptoms: String) {

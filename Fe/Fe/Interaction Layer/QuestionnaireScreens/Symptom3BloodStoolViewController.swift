@@ -5,17 +5,17 @@
 //  Created by Jayce Merinchuk on 2021-02-25.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: Symptom3BloodStoolViewController : UIViewController
+ //MARK: Symptom3BloodStoolViewController : UIViewController
  - Description: Holds logic for the 3rd question view controller.
  -----------------------------------------------------------------------*/
 class Symptom3BloodStoolViewController: UIViewController {
 
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class Symptom3BloodStoolViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: yesBtnTapped()
+     //MARK: yesBtnTapped()
      - Description: Move to call Doctor Screen.
      -------------------------------------------------------------------*/
     @IBAction func yesBtnTapped(_ sender: UIButton) {
@@ -31,7 +31,7 @@ class Symptom3BloodStoolViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: noBtnTapped()
+     //MARK: noBtnTapped()
      - Description: Move to question 3 view controller.
      -------------------------------------------------------------------*/
     @IBAction func noBtnTapped(_ sender: UIButton) {

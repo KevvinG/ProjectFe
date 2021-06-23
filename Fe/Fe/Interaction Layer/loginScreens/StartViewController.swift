@@ -5,19 +5,19 @@
 //  Created by Jayce Merinchuk on 2021-02-17.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 import FirebaseUI
 import GoogleSignIn
 
 /*------------------------------------------------------------------------
- - Class: StartViewController : UIViewController
+ //MARK: StartViewController : UIViewController
  - Description: Holds logic for the Main Start Screen
  -----------------------------------------------------------------------*/
 class StartViewController: UIViewController {
 
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -25,14 +25,13 @@ class StartViewController: UIViewController {
     }
 
     /*--------------------------------------------------------------------
-     - Function: loginTapped()
+     //MARK: loginTapped()
      - Description: Shows the different FirebaseUI ways to sign in.
      -------------------------------------------------------------------*/
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         let authUI = FUIAuth.defaultAuthUI()
         
         guard authUI != nil else {
-            // Log error
             NSLog("There was an error with setting authUI")
             return
         }
@@ -49,7 +48,7 @@ class StartViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: application()
+     //MARK: application()
      - Description: Handler for result of Google Sign Up.
      -------------------------------------------------------------------*/
     func application(_ app: UIApplication, open url: URL,
@@ -64,13 +63,18 @@ class StartViewController: UIViewController {
 }
 
 /*------------------------------------------------------------------------
- - Extension: ViewController : FUIAuthDelegate
+ //MARK: ViewController : FUIAuthDelegate
  - Description: If no errors detected, proceed to the Home Screen.
  -----------------------------------------------------------------------*/
 extension StartViewController : FUIAuthDelegate {
+    
+    /*--------------------------------------------------------------------
+     //MARK: authUI()
+     - Description:
+     -------------------------------------------------------------------*/
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
         if error != nil {
-            // log error
+            print("AuthUI Error: \(error)")
             return
         }
         performSegue(withIdentifier: "GoToHomeScreen", sender: self)

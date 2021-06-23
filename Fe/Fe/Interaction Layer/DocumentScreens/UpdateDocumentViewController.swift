@@ -5,12 +5,12 @@
 //  Created by Jayce Merinchuk on 2021-04-03.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 import Firebase
 
 /*------------------------------------------------------------------------
- - Class: UpdateDocumentViewController : UIViewController
+ //MARK: UpdateDocumentViewController : UIViewController
  - Description: Screen to update Document
  -----------------------------------------------------------------------*/
 class UpdateDocumentViewController: UIViewController {
@@ -29,7 +29,7 @@ class UpdateDocumentViewController: UIViewController {
     var document : Document?
     
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some code before showing screen.
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class UpdateDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: createDatePicker()
+     //MARK: createDatePicker()
      - Description: Set datepicker options
      -------------------------------------------------------------------*/
     func createDatePicker() {
@@ -51,7 +51,7 @@ class UpdateDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getDatePickerString()
+     //MARK: getDatePickerString()
      - Description: gets the string of the datePicker
      -------------------------------------------------------------------*/
     func getDatePickerString() -> String {
@@ -62,7 +62,7 @@ class UpdateDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: setDocumentDetails()
+     //MARK: setDocumentDetails()
      - Description: sets Document Details from passed document.
      -------------------------------------------------------------------*/
     func setDocumentDetails() {
@@ -93,7 +93,7 @@ class UpdateDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: takePictureBtnTapped()
+     //MARK: takePictureBtnTapped()
      - Description: Opens Camera to take picture.
      -------------------------------------------------------------------*/
     @IBAction func takePictureBtnTapped(_ sender: Any) {
@@ -109,7 +109,7 @@ class UpdateDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: findPictureBtnTapped()
+     //MARK: findPictureBtnTapped()
      - Description: Opens Gallery to choose picture.
      -------------------------------------------------------------------*/
     @IBAction func findPictureBtnTapped(_ sender: Any) {
@@ -125,7 +125,7 @@ class UpdateDocumentViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: updateDocumentBtnTapped()
+     //MARK: updateDocumentBtnTapped()
      - Description: Updates document in Firebase
      -------------------------------------------------------------------*/
     @IBAction func updateDocumentBtnTapped(_ sender: Any) {
@@ -140,7 +140,7 @@ class UpdateDocumentViewController: UIViewController {
             // Delete Old Document, then upload new one.
             objFB.deleteDocument(doc: self.document)
             // Upload New Document
-            let success = objFB.uploadFile(testName: txtTestName.text!, imagePicked: imgView, date: getDatePickerString(), doctor: txtDrName.text!, results: txtResults.text!, notes: txtNotes.text!)
+            let success = objFB.uploadDocument(testName: txtTestName.text!, imagePicked: imgView, date: getDatePickerString(), doctor: txtDrName.text!, results: txtResults.text!, notes: txtNotes.text!)
             if success {
                 // Show Alert that image was saved
                 let confirmationMessage = UIAlertController(title: "Picture Saved!", message: "Your picture has beed saved", preferredStyle: .alert)
@@ -159,13 +159,13 @@ class UpdateDocumentViewController: UIViewController {
 }
 
 /*------------------------------------------------------------------------
- - Class: UploadDocumentViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate
+ //MARK: UploadDocumentViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate
  - Description: Functions to handle image picker.
  -----------------------------------------------------------------------*/
 extension UpdateDocumentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     /*--------------------------------------------------------------------
-     - Function: imagePickerControllerDidCancel()
+     //MARK: imagePickerControllerDidCancel()
      - Description: Dismiss the picker controller.
      -------------------------------------------------------------------*/
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -173,7 +173,7 @@ extension UpdateDocumentViewController: UIImagePickerControllerDelegate, UINavig
     }
     
     /*--------------------------------------------------------------------
-     - Function: imagePickerController()
+     //MARK: imagePickerController()
      - Description: Handles when a picture is chosen on camera or photo library.
      -------------------------------------------------------------------*/
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

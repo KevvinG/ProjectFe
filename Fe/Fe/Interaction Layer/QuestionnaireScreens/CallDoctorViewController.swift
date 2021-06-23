@@ -5,17 +5,17 @@
 //  Created by Jayce Merinchuk on 2021-02-25.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: CallDoctorViewController : UIViewController
+ //MARK: CallDoctorViewController : UIViewController
  - Description: Holds logic for the call doctor view controller.
  -----------------------------------------------------------------------*/
 class CallDoctorViewController: UIViewController {
 
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class CallDoctorViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: callDoctorBtnTapped()
+     //MARK: callDoctorBtnTapped()
      - Description: fetches doctor phone number and opens call ability.
      -------------------------------------------------------------------*/
     @IBAction func callDoctorBtnTapped(_ sender: UIButton) {
@@ -35,7 +35,7 @@ class CallDoctorViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: returnBtnTapped()
+     //MARK: returnBtnTapped()
      - Description: Pop back to home screen.
      -------------------------------------------------------------------*/
     @IBAction func returnBtnTapped(_ sender: UIButton) {

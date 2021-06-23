@@ -5,12 +5,12 @@
 //  Created by Jayce Merinchuk on 2021-02-13.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 import CoreData
 
 /*------------------------------------------------------------------------
- - Class: HomeViewController : UIViewController
+ //MARK: HomeViewController : UIViewController
  - Description: Holds logic for the the User Home Screen
  -----------------------------------------------------------------------*/
 class HomeViewController: UIViewController {
@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
     
 
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -66,7 +66,7 @@ class HomeViewController: UIViewController {
     }
 
     /*--------------------------------------------------------------------
-     - Function: HRTimerfire()
+     //MARK: HRTimerfire()
      - Description: Method to update Heart Rate.
      -------------------------------------------------------------------*/
     @objc func hrTimerfire()
@@ -77,7 +77,7 @@ class HomeViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: BloodOxTimerfire()
+     //MARK: BloodOxTimerfire()
      - Description: Method to update Blood Oxygen.
      -------------------------------------------------------------------*/
     @objc func bloodOxTimerfire()
@@ -89,7 +89,7 @@ class HomeViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: AltTimerFire()
+     //MARK: AltTimerFire()
      - Description:  method to update Air Pressure.
      -------------------------------------------------------------------*/
     @objc func altTimerFire()
@@ -100,9 +100,8 @@ class HomeViewController: UIViewController {
         })
     }
 
-    //Below functions stay within VC, not moving to logic
     /*--------------------------------------------------------------------
-     - Function: heartRateBtnTapped()
+     //MARK: heartRateBtnTapped()
      - Description: Segue to heartRate Data View
      -------------------------------------------------------------------*/
     @IBAction func heartRateBtnTapped(_ sender: UIButton) {
@@ -110,7 +109,7 @@ class HomeViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: bloodOxygenBtnTapped()
+     //MARK: bloodOxygenBtnTapped()
      - Description: Segue to blood oxygen Data View
      -------------------------------------------------------------------*/
     @IBAction func bloodOxygenBtnTapped(_ sender: UIButton) {
@@ -118,7 +117,7 @@ class HomeViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: altitudeBtnTapped()
+     //MARK: altitudeBtnTapped()
      - Description: Segue to altitude Data View
      -------------------------------------------------------------------*/
     @IBAction func altitudeBtnTapped(_ sender: UIButton) {
@@ -126,7 +125,7 @@ class HomeViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: viewDocumentsBtnTapped()
+     //MARK: viewDocumentsBtnTapped()
      - Description: Segue to viewDocuments table View
      -------------------------------------------------------------------*/
     @IBAction func viewDocumentsBtnTapped(_ sender: UIButton) {
@@ -134,7 +133,7 @@ class HomeViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: uploadDocumentBtnTapped()
+     //MARK: uploadDocumentBtnTapped()
      - Description: Segue to upload document view
      -------------------------------------------------------------------*/
     @IBAction func uploadDocumentBtnTapped(_ sender: UIButton) {
@@ -142,7 +141,7 @@ class HomeViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: checkSymptomsBtnTapped()
+     //MARK: checkSymptomsBtnTapped()
      - Description: Segue to symptom Checking view
      -------------------------------------------------------------------*/
     @IBAction func checkSymptomsBtnTapped(_ sender: UIButton) {
@@ -150,7 +149,7 @@ class HomeViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: moreInformationBtnTapped()
+     //MARK: moreInformationBtnTapped()
      - Description: Segue to more Information Webpage
      -------------------------------------------------------------------*/
     @IBAction func moreInformationBtnTapped(_ sender: UIButton) {

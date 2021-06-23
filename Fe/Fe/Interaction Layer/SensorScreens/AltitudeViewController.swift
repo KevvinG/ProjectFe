@@ -5,13 +5,14 @@
 //  Created by Jayce Merinchuk on 2021-02-25.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 import CoreLocation
 import Charts
+import TinyConstraints
 
 /*------------------------------------------------------------------------
- - Class: AltitudeViewController : UIViewController
+ //MARK: AltitudeViewController : UIViewController
  - Description: Shows data for Blood Oxygen Sensor (past and current)
  -----------------------------------------------------------------------*/
 class AltitudeViewController: UIViewController {
@@ -30,7 +31,7 @@ class AltitudeViewController: UIViewController {
     let locationManager = CLLocationManager()
 
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize variables and screen before it loads
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -39,27 +40,31 @@ class AltitudeViewController: UIViewController {
         fetchPressure()
 //        fetchElevation()
         
-        AltLogic.fetchAirPressureWithRange(dateRange : "day", completion: { [self] dateArray, airPressureArray in
-//
-            apLineChart.data = AltLogic.chartData(dataPoints: dateArray, values: airPressureArray)
-            apLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
-            apLineChart.xAxis.granularity = 0.05
-            apLineChart.xAxis.labelPosition = .bottom
-            apLineChart.xAxis.drawGridLinesEnabled = false
-        })
-        
         AltLogic.fetchElevationWithRange(dateRange : "day", completion: { [self] dateArray, elevationArray in
-            
             elevationLineChart.data = AltLogic.chartData(dataPoints: dateArray, values: elevationArray)
             elevationLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
             elevationLineChart.xAxis.granularity = 0.05
             elevationLineChart.xAxis.labelPosition = .bottom
             elevationLineChart.xAxis.drawGridLinesEnabled = false
+            elevationLineChart.rightAxis.enabled = false
+            elevationLineChart.leftAxis.setLabelCount(6, force: false)
+            elevationLineChart.xAxis.labelCount = 4
+        })
+        
+        AltLogic.fetchAirPressureWithRange(dateRange : "day", completion: { [self] dateArray, airPressureArray in
+            apLineChart.data = AltLogic.chartData(dataPoints: dateArray, values: airPressureArray)
+            apLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+            apLineChart.xAxis.granularity = 0.05
+            apLineChart.xAxis.labelPosition = .bottom
+            apLineChart.xAxis.drawGridLinesEnabled = false
+            apLineChart.rightAxis.enabled = false
+            apLineChart.leftAxis.setLabelCount(6, force: false)
+            apLineChart.xAxis.labelCount = 4
         })
     }
     
     /*--------------------------------------------------------------------
-     - Function: fetchPressure()
+     //MARK: fetchPressure()
      - Description: Obtains current air pressure from business layer.
      -------------------------------------------------------------------*/
     func fetchPressure() {
@@ -69,7 +74,7 @@ class AltitudeViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: fetchElevation()
+     //MARK: fetchElevation()
      - Description: Retrieves latest elevation reading from phone.
      -------------------------------------------------------------------*/
     func fetchElevation() {
@@ -79,7 +84,7 @@ class AltitudeViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: obtainLocationAuth()
+     //MARK: obtainLocationAuth()
      - Description: Requests access to location.
      -------------------------------------------------------------------*/
     func obtainLocationAuth() {
@@ -93,13 +98,13 @@ class AltitudeViewController: UIViewController {
 }
 
 /*------------------------------------------------------------------------
- - Extension: AltitudeViewController : cLLocationManagerDelegate
+ //MARK: AltitudeViewController : cLLocationManagerDelegate
  - Description: Methods for getting location for Elevation.
  -----------------------------------------------------------------------*/
 extension AltitudeViewController: CLLocationManagerDelegate {
     
     /*--------------------------------------------------------------------
-     - Function: locationManager()
+     //MARK: locationManager()
      - Description: Gets last location altitude and displays on screen.
      -------------------------------------------------------------------*/
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

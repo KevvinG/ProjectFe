@@ -5,11 +5,11 @@
 //  Created by Jayce Merinchuk on 2021-02-25.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: DocumentTableViewCell : UITableViewCell
+ //MARK: DocumentTableViewCell : UITableViewCell
  - Description: Holds the logic for each cell click
  -----------------------------------------------------------------------*/
 class DocumentTableViewCell: UITableViewCell {
@@ -19,7 +19,7 @@ class DocumentTableViewCell: UITableViewCell {
     @IBOutlet var lblDate : UILabel!
 
     /*--------------------------------------------------------------------
-     - Function: awakeFromNib()
+     //MARK: awakeFromNib()
      - Description: Initialization code
      -------------------------------------------------------------------*/
     override func awakeFromNib() {
@@ -27,7 +27,7 @@ class DocumentTableViewCell: UITableViewCell {
     }
 
     /*--------------------------------------------------------------------
-     - Function: setSelected()
+     //MARK: setSelected()
      - Description: Set up Cell.
      -------------------------------------------------------------------*/
     override func setSelected(_ selected: Bool, animated: Bool) {

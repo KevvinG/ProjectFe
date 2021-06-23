@@ -5,12 +5,12 @@
 //  Created by Jayce Merinchuk on 2021-02-25.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 import WebKit
 
 /*------------------------------------------------------------------------
- - Class: WebMoreInfoViewController : UIViewController, WKUIDelegate
+ //MARK: WebMoreInfoViewController : UIViewController, WKUIDelegate
  - Description: Showss the Web Page for Canadian Cancer Society
  -----------------------------------------------------------------------*/
 class WebMoreInfoViewController: UIViewController, WKUIDelegate {
@@ -19,7 +19,7 @@ class WebMoreInfoViewController: UIViewController, WKUIDelegate {
     @IBOutlet var mWebView : WKWebView!
     
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Set up screen before showing it
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class WebMoreInfoViewController: UIViewController, WKUIDelegate {
     }
     
     /*--------------------------------------------------------------------
-     - Function: setupWeb()
+     //MARK: setupWeb()
      - Description: Setup and load web request
      -------------------------------------------------------------------*/
     func setupWeb() {
@@ -38,7 +38,7 @@ class WebMoreInfoViewController: UIViewController, WKUIDelegate {
     }
     
     /*--------------------------------------------------------------------
-     - Function: loadView()
+     //MARK: loadView()
      - Description: Customize and configure web view appearance
      -------------------------------------------------------------------*/
     override func loadView() {

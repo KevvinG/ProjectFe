@@ -5,11 +5,11 @@
 //  Created by Jayce Merinchuk on 2021-03-13.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: SettingsAppPermissionsViewController : UIViewController
+ //MARK: SettingsAppPermissionsViewController : UIViewController
  - Description: Holds the logic to control what permissions are allowed.
  -----------------------------------------------------------------------*/
 class SettingsAppPermissionsViewController: UIViewController {
@@ -23,7 +23,7 @@ class SettingsAppPermissionsViewController: UIViewController {
     @IBOutlet var sw911Emgcy: UISwitch!
     
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class SettingsAppPermissionsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: swGPSStateChanged()
+     //MARK: swGPSStateChanged()
      - Description: Logic for changing GPS Permission.
      -------------------------------------------------------------------*/
     @IBAction func swGPSStateChanged(_ sender: UISwitch) {
@@ -43,7 +43,7 @@ class SettingsAppPermissionsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: swGPSStateChanged()
+     //MARK: swGPSStateChanged()
      - Description: Logic for changing contacting emergency contact Permission.
      -------------------------------------------------------------------*/
     @IBAction func swTxtEmergencyStateChanged(_ sender: Any) {
@@ -55,7 +55,7 @@ class SettingsAppPermissionsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: swAltimeterStateChanged()
+     //MARK: swAltimeterStateChanged()
      - Description: Logic for changing Altimeter Sensor Permission.
      -------------------------------------------------------------------*/
     @IBAction func swAltimeterStateChanged(_ sender: Any) {
@@ -67,7 +67,7 @@ class SettingsAppPermissionsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: swHeartRateStateChanged()
+     //MARK: swHeartRateStateChanged()
      - Description: Logic for changing Heart Rate Sensor Permission.
      -------------------------------------------------------------------*/
     @IBAction func swHeartRateStateChanged(_ sender: Any) {
@@ -79,7 +79,7 @@ class SettingsAppPermissionsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: swBloodOxygenStateChanged()
+     //MARK: swBloodOxygenStateChanged()
      - Description: Logic for changing Blood Oxygen Sensor Permission.
      -------------------------------------------------------------------*/
     @IBAction func swBloodOxStateChanged(_ sender: Any) {
@@ -91,7 +91,7 @@ class SettingsAppPermissionsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: sw911EmgcyStateChanged()
+     //MARK: sw911EmgcyStateChanged()
      - Description: Logic for changing coontacting 911 in event
      of emergency Permission.
      -------------------------------------------------------------------*/

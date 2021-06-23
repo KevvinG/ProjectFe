@@ -5,17 +5,17 @@
 //  Created by Jayce Merinchuk on 2021-04-16.
 //
 
-// Imports
+//MARK: Imports
 import Foundation
 
 /*------------------------------------------------------------------------
- - Class: Questionnaire
- - Description:
+ //MARK: Questionnaire
+ - Description: Logic for Questionnaire.
  -----------------------------------------------------------------------*/
 class Questionnaire {
     
     /*--------------------------------------------------------------------
-     - Function: callDoctor()
+     //MARK: callDoctor()
      - Description: fetch doctor phone number and open menu to call.
      -------------------------------------------------------------------*/
     func callDoctor(completion: @escaping (_ doctorPhone: String) -> Void) {

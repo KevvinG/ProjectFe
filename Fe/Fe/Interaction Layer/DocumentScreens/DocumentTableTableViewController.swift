@@ -5,11 +5,11 @@
 //  Created by Jayce Merinchuk on 2021-02-25.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: DocumentTableTableViewController : UITableViewController
+ //MARK:: DocumentTableTableViewController : UITableViewController
  - Description: Holds the logic to show the whole table of documents
  -----------------------------------------------------------------------*/
 class DocumentTableTableViewController: UITableViewController {
@@ -18,7 +18,7 @@ class DocumentTableTableViewController: UITableViewController {
     var documentArray = [Document]()
 
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class DocumentTableTableViewController: UITableViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: viewDidAppear()
+     //MARK: viewDidAppear()
      - Description: Called when the view is shown to the user.
      -------------------------------------------------------------------*/
     override func viewDidAppear(_ animated: Bool) {
@@ -52,7 +52,7 @@ class DocumentTableTableViewController: UITableViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: viewDidAppear()
+     //MARK: viewDidAppear()
      - Description: Called when the view is shown to the user.
      -------------------------------------------------------------------*/
     @objc func handleDocumentTapped(_ gestureRecognizer: UITapGestureRecognizer){
@@ -65,7 +65,7 @@ class DocumentTableTableViewController: UITableViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: handleDocumentPress()
+     //MARK: handleDocumentPress()
      - Description: Called when the view is shown to the user.
      - If long press on document, opens Edit Document Screen.
      -------------------------------------------------------------------*/
@@ -79,7 +79,7 @@ class DocumentTableTableViewController: UITableViewController {
     }
 
     /*--------------------------------------------------------------------
-     - Function: numberOfSections()
+     //MARK: numberOfSections()
      - Description: Returns number of sections (1)
      -------------------------------------------------------------------*/
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -87,7 +87,7 @@ class DocumentTableTableViewController: UITableViewController {
     }
 
     /*--------------------------------------------------------------------
-     - Function: tableView()
+     //MARK: tableView()
      - Description: Returns number of documents in Firebase for user.
      -------------------------------------------------------------------*/
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,7 +95,7 @@ class DocumentTableTableViewController: UITableViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: tableView()
+     //MARK: tableView()
      - Description: Allows User to Edit/Delete Row.
      -------------------------------------------------------------------*/
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -103,7 +103,7 @@ class DocumentTableTableViewController: UITableViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: tableView()
+     //MARK: tableView()
      - Description:
      -------------------------------------------------------------------*/
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,7 +117,7 @@ class DocumentTableTableViewController: UITableViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: tableView()
+     //MARK: tableView()
      - Description: Call function to delete Document from Storage
      -------------------------------------------------------------------*/
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -135,7 +135,7 @@ class DocumentTableTableViewController: UITableViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: displayViewDocument()
+     //MARK: displayViewDocument()
      - Description: Shows New View Controller with specified document.
      -------------------------------------------------------------------*/
     private func displayViewDocument(indexPath: IndexPath) {
@@ -147,7 +147,7 @@ class DocumentTableTableViewController: UITableViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: displayEditDocument()
+     //MARK: displayEditDocument()
      - Description: Shows Edit Document screen with specified document.
      -------------------------------------------------------------------*/
     private func displayUpdateDocument(indexPath: IndexPath) {

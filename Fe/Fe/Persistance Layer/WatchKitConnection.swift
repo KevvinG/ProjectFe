@@ -5,12 +5,12 @@
 //  Created by Kevin Grzela on 2021-04-13.
 //
 
-// Imports
+//MARK: Imports
 import Foundation
 import WatchConnectivity
 
 /*------------------------------------------------------------------------
- - Protocol: WatchKitConnectionDelegate : class
+ //MARK: WatchKitConnectionDelegate : class
  - Description:
  -----------------------------------------------------------------------*/
 protocol WatchKitConnectionDelegate: AnyObject {
@@ -18,7 +18,7 @@ protocol WatchKitConnectionDelegate: AnyObject {
 }
 
 /*------------------------------------------------------------------------
- - Protocol: WatchKitConnectionProtocol
+ //MARK: WatchKitConnectionProtocol
  - Description:
  -----------------------------------------------------------------------*/
 protocol WatchKitConnectionProtocol {
@@ -27,15 +27,22 @@ protocol WatchKitConnectionProtocol {
 }
 
 /*------------------------------------------------------------------------
- - Class: WatchKitConnection : NSObject
+ //MARK: WatchKitConnection : NSObject
  - Description: Holds methods for accessing HealtthKit Data
  -----------------------------------------------------------------------*/
 class WatchKitConnection: NSObject {
+    
+    // Class Variables
     static let shared = WatchKitConnection()
     weak var delegate: WatchKitConnectionDelegate?
     //var CDAO : CoreDataAccessObject
 //    var moc:NSManagedObjectContext!
 //    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    
+    /*--------------------------------------------------------------------
+     //MARK: init()
+     - Description: Code initialization
+     -------------------------------------------------------------------*/
     private override init() {
         super.init()
 //        moc = appDelegate?.persistentContainer.viewContext
@@ -63,12 +70,20 @@ class WatchKitConnection: NSObject {
     }
 }
 
+/*------------------------------------------------------------------------
+ //MARK: WatchKitConnection : WatchKitConnectionProtocol
+ - Description:
+ -----------------------------------------------------------------------*/
 extension WatchKitConnection: WatchKitConnectionProtocol {
     func startSession() {
         session?.delegate = self
         session?.activate()
     }
     
+    /*--------------------------------------------------------------------
+     //MARK: sendMessage()
+     - Description: Sends message from watch to phone app.
+     -------------------------------------------------------------------*/
     func sendMessage(message: [String : AnyObject],
                      replyHandler: (([String : AnyObject]) -> Void)? = nil,
                      errorHandler: ((NSError) -> Void)? = nil)
@@ -81,26 +96,35 @@ extension WatchKitConnection: WatchKitConnectionProtocol {
     }
 }
 
+/*------------------------------------------------------------------------
+ //MARK: WatchKitConnection : WCSessionDelegate
+ - Description:
+ -----------------------------------------------------------------------*/
 extension WatchKitConnection: WCSessionDelegate {
+    
+    /*--------------------------------------------------------------------
+     //MARK: session()
+     - Description:
+     -------------------------------------------------------------------*/
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("activationDidCompleteWith")
+        //print("activationDidCompleteWith")
         delegate?.didFinishedActiveSession()
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
-        print("sessionDidBecomeInactive")
+        //print("sessionDidBecomeInactive")
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        print("sessionDidDeactivate")
+        //print("sessionDidDeactivate")
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        print("didReceiveMessage")
-        print(message)
+        //print("didReceiveMessage")
+        //print(message)
         DispatchQueue.main.async {
             guard let heartRate = message.values.first as? String else {
-                print("error1")
+                print("Error in WatchKit Connection Session function 1.")
                 return
             }
             CoreDataAccessObject().createHeartRateTableEntry(hrValue: heartRate)
@@ -108,11 +132,11 @@ extension WatchKitConnection: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        print("didReceiveMessage with reply")
+        //print("didReceiveMessage with reply")
         print(message)
         DispatchQueue.main.async {
             guard let heartRate = message.values.first as? String else {
-                print("error1")
+                print("Error in WatchKit Connection Session function 2.")
                 return
             }
             CoreDataAccessObject().createHeartRateTableEntry(hrValue: heartRate)

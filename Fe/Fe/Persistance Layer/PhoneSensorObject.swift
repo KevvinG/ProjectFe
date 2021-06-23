@@ -5,13 +5,13 @@
 //  Created by Jayce Merinchuk on 2021-05-07.
 //
 
-// Imports
+//MARK: Imports
 import Foundation
 import CoreMotion
 import CoreLocation
 
 /*------------------------------------------------------------------------
- - Class: PhoneSensorObject
+ //MARK: PhoneSensorObject
  - Description: Holds methods for directly accessing the phone sensors.
  -----------------------------------------------------------------------*/
 class PhoneSensorObject: NSObject {
@@ -20,7 +20,7 @@ class PhoneSensorObject: NSObject {
     let altimeter = CMAltimeter()
     
     /*--------------------------------------------------------------------
-     - Function: fetchPressure()
+     //MARK: fetchPressure()
      - Description: Fetches latest Pressure reading from Barometer.
      -------------------------------------------------------------------*/
     func fetchPressure(completion: @escaping (_ pressure: String) -> Void) {
@@ -36,7 +36,7 @@ class PhoneSensorObject: NSObject {
     }
     
     /*--------------------------------------------------------------------
-     - Function: fetchElevation()
+     //MARK: fetchElevation()
      - Description: Fetches latest elevation from phone sensor.
      -------------------------------------------------------------------*/
     func fetchElevation(completion: @escaping (_ pressure: String) -> Void) {

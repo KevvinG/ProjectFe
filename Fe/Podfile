@@ -22,6 +22,7 @@ target 'Fe' do
   pod 'Firebase/Storage'
   pod 'CorePlot'
   pod 'Charts'
+  pod 'TinyConstraints'
 
   target 'FeTests' do
     inherit! :search_paths

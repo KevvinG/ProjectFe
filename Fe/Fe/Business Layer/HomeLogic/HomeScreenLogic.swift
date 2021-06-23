@@ -5,11 +5,11 @@
 //  Created by Kevin Grzela on 2021-04-17.
 //
 
-// Imports
+//MARK: Imports
 import Foundation
 
 /*------------------------------------------------------------------------
- - Class: HomeScreenLogic
+ //MARK: HomeScreenLogic
  - Description: Holds logic for the Home Screen
  -----------------------------------------------------------------------*/
 class HomeScreenLogic {

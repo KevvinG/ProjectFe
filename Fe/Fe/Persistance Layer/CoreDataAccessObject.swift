@@ -5,14 +5,14 @@
 //  Created by Kevin Grzela on 2021-04-16.
 //
 
-// MARK: - Imports
+// MARK: Imports
 import Foundation
 import CoreData
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: CoreDataAccessObject
- - Description:
+ //MARK: CoreDataAccessObject
+ - Description: Access Core Data
  -----------------------------------------------------------------------*/
 class CoreDataAccessObject {
     
@@ -23,7 +23,10 @@ class CoreDataAccessObject {
     var hrItems: [HeartRateData] = []
     var bldOxItems: [BloodOxygenData] = []
     
-    // MARK: - Create HR Table Item
+    /*--------------------------------------------------------------------
+     //MARK: createHeartRateTableEntry()
+     - Description: create Table Entry for Heart Rate.
+     -------------------------------------------------------------------*/
     func createHeartRateTableEntry(hrValue: String) {
         let hrFloat = Float(hrValue) ?? 0 // receive a float value
         let hr = Int(hrFloat) // convert for table.
@@ -38,17 +41,26 @@ class CoreDataAccessObject {
 //        print("Saved HR: \(newHRentry.heartRate)")
     }
     
-    // MARK: - Fetch HR From Table
+    /*--------------------------------------------------------------------
+     //MARK: fetchHeartRateData()
+     - Description: Fetch Heart Rate from table (only today's data).
+     -------------------------------------------------------------------*/
     func fetchHeartRateData() -> [HeartRateData]?{
         do {
-            self.hrItems = try context.fetch(HeartRateData.fetchRequest())
+            let today = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "mm.dd"
+            self.hrItems = try context.fetch(HeartRateData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) == dateFormatter.string(from: today) } )
         } catch let error as NSError{
             print("HeartRateData Read Fetch Failed: \(error.description)")
         }
         return self.hrItems
     }
     
-    // MARK: - Fetch Latest HR From Table
+    /*--------------------------------------------------------------------
+     //MARK: fetchLatestHR()
+     - Description: Fetch latest saved heart rate entry from table.
+     -------------------------------------------------------------------*/
     func fetchLatestHR() -> Int {
         do {
             self.hrItems = try context.fetch(HeartRateData.fetchRequest())
@@ -57,9 +69,6 @@ class CoreDataAccessObject {
         }
         if hrItems.count > 0 {
             let topItem = hrItems.sorted(by: { $0.dateTime > $1.dateTime })
-//            print("Pulled value \(topItem[0].heartRate)")
-//            print("Pulled date \(topItem[0].dateTime)")
-//            print("Pulled count \(topItem.count)")
             return Int(topItem[0].heartRate)
         } else {
             print("Empty HR table")
@@ -67,7 +76,10 @@ class CoreDataAccessObject {
         }
     }
     
-    // MARK: - Create Blood Ox Table Item
+    /*--------------------------------------------------------------------
+     //MARK: createBloodOxygenTableEntry()
+     - Description: Create Table Entry for Blood Oxygen.
+     -------------------------------------------------------------------*/
     func createBloodOxygenTableEntry(bloodOxValue: Int) {
         let newBloodOxEntry = BloodOxygenData(context: self.context)
         newBloodOxEntry.dateTime = Date()
@@ -76,17 +88,26 @@ class CoreDataAccessObject {
 //        print("Saved Blood Ox: \(newBloodOxEntry.bloodOxygen)")
     }
     
-    // MARK: - Fetch Blood Ox From Table
+    /*--------------------------------------------------------------------
+     //MARK: fetchBloodOxygenData()
+     - Description: Fetch Blood Oxygen from table (only today's data).
+     -------------------------------------------------------------------*/
     func fetchBloodOxygenData() -> [BloodOxygenData]? {
         do {
-            self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest())
+            let today = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "mm.dd"
+            self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) == dateFormatter.string(from: today) } )
         } catch let error as NSError{
             print("BloodOxygenData Read Fetch Failed: \(error.description)")
         }
         return self.bldOxItems
     }
     
-    // MARK: - Create Elevation Table Item
+    /*--------------------------------------------------------------------
+     //MARK: createElevationDataTableEntry()
+     - Description: Create Table Entry for Elevation.
+     -------------------------------------------------------------------*/
     func createElevationDataTableEntry(eleValue: Float) {
         let newEleEntry = ElevationData(context: self.context)
         newEleEntry.dateTime = Date()
@@ -95,17 +116,26 @@ class CoreDataAccessObject {
 //        print("Saved Elevation: \(newEleEntry.elevation)")
     }
     
-    // MARK: - Fetch Elevation From Table
+    /*--------------------------------------------------------------------
+     //MARK: fetchElevationData()
+     - Description: Fetch Elevation from table (only today's data).
+     -------------------------------------------------------------------*/
     func fetchElevationData() -> [ElevationData]?{
         do {
-            self.eleItems = try context.fetch(ElevationData.fetchRequest())
+            let today = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "mm.dd"
+            self.eleItems = try context.fetch(ElevationData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) == dateFormatter.string(from: today) } )
         } catch let error as NSError{
             print("ElevationData Read Fetch Failed: \(error.description)")
         }
         return self.eleItems
     }
     
-    // MARK: - Create Air Pressure Table Item
+    /*--------------------------------------------------------------------
+     //MARK: createAirPressureDataTableEntry()
+     - Description: Create Table Entry for Air Pressure.
+     -------------------------------------------------------------------*/
     func createAirPressureDataTableEntry(apValue: Float) {
         let newAPentry = AirPressureData(context: self.context)
         newAPentry.dateTime = Date()
@@ -114,17 +144,26 @@ class CoreDataAccessObject {
 //        print("Saved Air Pressure: \(newAPentry.airPressure)")
     }
     
-    // MARK: - Fetches Air Pressure From Table
+    /*--------------------------------------------------------------------
+     //MARK: fetchAirPressureData()
+     - Description: Fetch Air Pressure from table (only today's data).
+     -------------------------------------------------------------------*/
     func fetchAirPressureData() -> [AirPressureData]? {
         do {
-            self.apItems = try context.fetch(AirPressureData.fetchRequest())
+            let today = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "mm.dd"
+            self.apItems = try context.fetch(AirPressureData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) == dateFormatter.string(from: today) } )
         } catch let error as NSError{
-            print("AirPressureData Read Fetch Failed: \(error.description)")
+             print("AirPressureData Read Fetch Failed: \(error.description)")
         }
         return self.apItems
     }
     
-    // MARK: - Delete Air Pressure Table Item
+    /*--------------------------------------------------------------------
+     //MARK: deleteAirPressureDataTableEntry()
+     - Description: Delete Air Pressure entry from table.
+     -------------------------------------------------------------------*/
     func deleteAirPressureDataTableEntry(index: Int) {
         // Search for the entry in the table
         let apEntryToDelete = self.apItems[index]
@@ -132,7 +171,10 @@ class CoreDataAccessObject {
         saveContext(tableName: "AirPressureData")
     }
     
-    // MARK: - Update Air Rressure Table Item
+    /*--------------------------------------------------------------------
+     //MARK: updateAirPressureDataTableEntry()
+     - Description: Update Air Pressure entry from table.
+     -------------------------------------------------------------------*/
     func updateAirPressureDataTableEntry(date: Date, apValue: Float, index: Int) {
         // Search for the entry in the table
         let apEntryToUpdate = self.apItems[index]
@@ -141,7 +183,10 @@ class CoreDataAccessObject {
         saveContext(tableName: "AirPressureData")
     }
     
-    // MARK: - Save Context Core Data
+    /*--------------------------------------------------------------------
+     //MARK: saveContext()
+     - Description: Save table changes.
+     -------------------------------------------------------------------*/
     func saveContext(tableName: String) {
         do {
             try self.context.save()

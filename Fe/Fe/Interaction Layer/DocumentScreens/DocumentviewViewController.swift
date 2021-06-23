@@ -5,12 +5,12 @@
 //  Created by Jayce Merinchuk on 2021-03-21.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 import Firebase
 
 /*------------------------------------------------------------------------
- - Class: DocumentviewViewController : UIViewController
+ //MARK: DocumentviewViewController : UIViewController
  - Description: Shows the image downloaded from Firebase.
  -----------------------------------------------------------------------*/
 class DocumentviewViewController: UIViewController {
@@ -21,6 +21,10 @@ class DocumentviewViewController: UIViewController {
     // Class Variables
     var document : Document?
 
+    /*--------------------------------------------------------------------
+     //MARK: viewDidLoad()
+     - Description: Initialization code
+     -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
 

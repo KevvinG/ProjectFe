@@ -5,17 +5,17 @@
 //  Created by Jayce Merinchuk on 2021-02-25.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: Symptom1DizzyViewController : UIViewController
+ //MARK: Symptom1DizzyViewController : UIViewController
  - Description: Holds logic for the 1st question view controller.
  -----------------------------------------------------------------------*/
 class Symptom1DizzyViewController: UIViewController {
     
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class Symptom1DizzyViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: yesBtnTapped()
+     //MARK: yesBtnTapped()
      - Description: Move to call Doctor Screen.
      -------------------------------------------------------------------*/
     @IBAction func yesBtnTapped(_ sender: UIButton) {
@@ -31,7 +31,7 @@ class Symptom1DizzyViewController: UIViewController {
     }
 
     /*--------------------------------------------------------------------
-     - Function: noBtnTapped()
+     //MARK: noBtnTapped()
      - Description: Move to question 2 view controller.
      -------------------------------------------------------------------*/
     @IBAction func noBtnTapped(_ sender: UIButton) {

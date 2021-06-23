@@ -5,11 +5,11 @@
 //  Created by Jayce Merinchuk on 2021-03-21.
 //
 
-// Imports
+//MARK: Imports
 import Foundation
 
 /*------------------------------------------------------------------------
- - Class: Document
+ //MARK: Document
  - Description: Structure for Firebase Document
  -----------------------------------------------------------------------*/
 class Document {
@@ -25,7 +25,7 @@ class Document {
     var location : String
     
     /*--------------------------------------------------------------------
-     - Function: init
+     //MARK: init
      - Description: initialize all variables
      -------------------------------------------------------------------*/
     init(name: String, size: String, type: String, testResults: String,

@@ -5,17 +5,17 @@
 //  Created by Jayce Merinchuk on 2021-02-25.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: Symptoom2BreathViewController : UIViewController
+ //MARK: Symptoom2BreathViewController : UIViewController
  - Description: Holds logic for the 2nd question view controller.
  -----------------------------------------------------------------------*/
 class Symptom2BreathViewController: UIViewController {
 
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class Symptom2BreathViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: yesBtnTapped()
+     //MARK: yesBtnTapped()
      - Description: Move to call Doctor Screen.
      -------------------------------------------------------------------*/
     @IBAction func yesBtnTapped(_ sender: UIButton) {
@@ -31,7 +31,7 @@ class Symptom2BreathViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: noBtnTapped()
+     //MARK: noBtnTapped()
      - Description: Move to question 3 view controller.
      -------------------------------------------------------------------*/
     @IBAction func noBtnTapped(_ sender: UIButton) {

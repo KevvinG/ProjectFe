@@ -5,11 +5,11 @@
 //  Created by Jayce Merinchuk on 2021-02-17.
 //
 
-// Imports
+//MARK: Imports
 import UIKit
 
 /*------------------------------------------------------------------------
- - Class: EditUserViewController : UIViewController
+ //MARK: EditUserViewController : UIViewController
  - Description: Holds logic for the User Account Settings Screen
  -----------------------------------------------------------------------*/
 class EditUserViewController: UIViewController {
@@ -36,7 +36,7 @@ class EditUserViewController: UIViewController {
     ]
     
     /*--------------------------------------------------------------------
-     - Function: viewDidLoad()
+     //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
@@ -49,7 +49,7 @@ class EditUserViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: saveChangeBtnTapped()
+     //MARK: saveChangeBtnTapped()
      - Description: Finds the user information in Firestore then updates.
      -------------------------------------------------------------------*/
     @IBAction func saveChangesBtnTapped(_ sender: UIButton) {
@@ -82,8 +82,8 @@ class EditUserViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function: getUserData()
-     - Description: Calls Firebase method and displays data iin
+     //MARK: getUserData()
+     - Description: Calls Firebase method and displays data in
      - each of the appropriate TextViews.
      -------------------------------------------------------------------*/
     func getUserData() {
@@ -105,7 +105,7 @@ class EditUserViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
-     - Function:updateUserData()
+     //MARK: updateUserData()
      - Description: Calls method in Firestore to update database
      -------------------------------------------------------------------*/
     func updateUserData(fname: String, lname: String, age: String, email: String, password: String, phone: String, st_address1: String, st_address2: String, postal: String, province: String, city: String, country: String, symptoms: String) {
