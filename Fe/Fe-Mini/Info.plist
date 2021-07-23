@@ -29,5 +29,9 @@
 	<string>ca.KJHealthCare.Fe3</string>
 	<key>WKWatchKitApp</key>
 	<true/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>We need to read your health data for our app to be effective</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>We need to update your health data for our app to be effective</string>
 </dict>
 </plist>

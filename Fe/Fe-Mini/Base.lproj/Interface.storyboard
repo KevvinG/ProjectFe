@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="18122" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -16,12 +16,12 @@
                                 <action selector="startStopTapped" destination="AgC-eL-Hgc" id="yoK-oT-0BE"/>
                             </connections>
                         </button>
-                        <label alignment="left" text="-" id="tIC-Yg-add"/>
-                        <label alignment="left" text="-" id="FxI-a8-9si"/>
+                        <label width="136" alignment="left" text="HR: --- BPM" id="FxI-a8-9si"/>
+                        <label width="136" alignment="left" text="Blood Ox: --- %" textAlignment="left" id="lG4-rp-1SZ"/>
                     </items>
                     <connections>
+                        <outlet property="bldOxLabel" destination="lG4-rp-1SZ" id="K7T-Gv-Udp"/>
                         <outlet property="bpmLabel" destination="FxI-a8-9si" id="0sa-Ta-MNh"/>
-                        <outlet property="deviceLabel" destination="tIC-Yg-add" id="tek-uO-Skv"/>
                         <outlet property="startStopButton" destination="y5o-EI-8E8" id="4Jv-qN-MCs"/>
                     </connections>
                 </controller>

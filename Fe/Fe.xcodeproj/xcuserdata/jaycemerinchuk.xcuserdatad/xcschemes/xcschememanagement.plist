@@ -17,12 +17,35 @@
 		<key>Fe-Mini.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>45</integer>
+			<integer>44</integer>
 		</dict>
 		<key>Fe.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>44</integer>
+			<integer>45</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>CE01C2D425D438D100A08E2D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE01C2ED25D438D100A08E2D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE01C2F825D438D100A08E2D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EF97E99425E6F3760050F8B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
