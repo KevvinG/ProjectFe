@@ -42,7 +42,7 @@ class BloodOxygenViewController: UIViewController {
         getUserBldOxThresholds()
         
         BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxValue in
-            self.lblCurrentBldOx.text = "Current Blood Oxygen: \(String(bloodOxValue)) %"
+            self.lblCurrentBldOx.text = "\(String(bloodOxValue)) %"
         })
         
         BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin in

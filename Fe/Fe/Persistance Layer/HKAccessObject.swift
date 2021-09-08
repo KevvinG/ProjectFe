@@ -242,7 +242,7 @@ class HKAccessObject {
                                               options: .mostRecent) {
                                                     query, statistics, error in
             if let val = statistics?.mostRecentQuantity(){
-                let oxyVal = val.doubleValue(for: HKUnit(from: "percent"))
+                let oxyVal = val.doubleValue(for: HKUnit(from: "%"))
                 
                 DispatchQueue.main.async {
                     completion(oxyVal)
