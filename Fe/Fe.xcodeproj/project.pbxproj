@@ -1590,6 +1590,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X46PTT568J;
+				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/functions/*";
 				IBSC_MODULE = Fe_Mini_Extension;
 				INFOPLIST_FILE = "Fe-Mini/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp;
@@ -1612,6 +1613,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X46PTT568J;
+				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/functions/*";
 				IBSC_MODULE = Fe_Mini_Extension;
 				INFOPLIST_FILE = "Fe-Mini/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp;
