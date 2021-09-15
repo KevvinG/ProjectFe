@@ -8,6 +8,7 @@
 //MARK: Imports
 import Foundation
 
+//MARK: CustomTimer
 class CustomTimer {
     
     typealias Update = (Int)->Void

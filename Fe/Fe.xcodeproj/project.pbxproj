@@ -30,6 +30,8 @@
 		CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */; };
 		CE26589425FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */; };
 		CE4D26F6264570B6004629CC /* PhoneSensorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */; };
+		CE5E232E26E99AAC00C0360D /* DataAnalysisLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E232D26E99AAC00C0360D /* DataAnalysisLogic.swift */; };
+		CE5E233126EB8F2F00C0360D /* ColorThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E233026EB8F2F00C0360D /* ColorThemes.swift */; };
 		CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */; };
 		CE62AF0725D84FDF00AA9665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */; };
 		CE62AF0825D84FDF00AA9665 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */; };
@@ -180,6 +182,8 @@
 		CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppPermissionsViewController.swift; sourceTree = "<group>"; };
 		CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationPermissionsViewController.swift; sourceTree = "<group>"; };
 		CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSensorObject.swift; sourceTree = "<group>"; };
+		CE5E232D26E99AAC00C0360D /* DataAnalysisLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAnalysisLogic.swift; sourceTree = "<group>"; };
+		CE5E233026EB8F2F00C0360D /* ColorThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorThemes.swift; sourceTree = "<group>"; };
 		CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CE62AF1225DD6B0400AA9665 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		CE62AF2125DDC13600AA9665 /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 				CE082720262A407A00558A32 /* Presentation Layer */,
 				CE082558261FAE4100558A32 /* Interaction Layer */,
 				CE6D7AC22607AEF800835756 /* Business Layer */,
+				CEE9E4BB26EC3FE3001BA3C8 /* Device Layer */,
 				CE6D7AC42607AF4400835756 /* Persistance Layer */,
 				CE69A26825D81F51009E87CB /* Models */,
 				CE9DD33E2680DD9400D9D026 /* Resources */,
@@ -513,6 +518,22 @@
 			path = EntityModels;
 			sourceTree = "<group>";
 		};
+		CE5E232C26E99A8F00C0360D /* DataAnalysisLogic */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E232D26E99AAC00C0360D /* DataAnalysisLogic.swift */,
+			);
+			path = DataAnalysisLogic;
+			sourceTree = "<group>";
+		};
+		CE5E232F26EB8F1B00C0360D /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E233026EB8F2F00C0360D /* ColorThemes.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
 		CE69A26825D81F51009E87CB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +546,7 @@
 		CE6D7AC22607AEF800835756 /* Business Layer */ = {
 			isa = PBXGroup;
 			children = (
+				CE5E232C26E99A8F00C0360D /* DataAnalysisLogic */,
 				CE08271B262A3FDB00558A32 /* LoginLogic */,
 				CE08271A262A3FD400558A32 /* HomeLogic */,
 				CE082719262A3FCC00558A32 /* DocumentLogic */,
@@ -541,9 +563,7 @@
 				CE4D26F72665BBC3004629CC /* EntityModels */,
 				CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */,
 				EF2544EF261F22E800069308 /* HKAccessObject.swift */,
-				EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */,
 				EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */,
-				CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */,
 			);
 			path = "Persistance Layer";
 			sourceTree = "<group>";
@@ -551,6 +571,7 @@
 		CE9DD33E2680DD9400D9D026 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE5E232F26EB8F1B00C0360D /* Themes */,
 				CE9DD33F2680DD9F00D9D026 /* Strings */,
 			);
 			path = Resources;
@@ -562,6 +583,15 @@
 				CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		CEE9E4BB26EC3FE3001BA3C8 /* Device Layer */ = {
+			isa = PBXGroup;
+			children = (
+				EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */,
+				CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */,
+			);
+			path = "Device Layer";
 			sourceTree = "<group>";
 		};
 		D208A80E127F4FAB0E75EF2A /* Pods */ = {
@@ -955,6 +985,7 @@
 				CE62B2AF25E856CE00AA9665 /* AOKViewController.swift in Sources */,
 				CE082722262A4DE700558A32 /* Questionnaire.swift in Sources */,
 				CE62B2A825E856B800AA9665 /* CallDoctorViewController.swift in Sources */,
+				CE5E232E26E99AAC00C0360D /* DataAnalysisLogic.swift in Sources */,
 				CE26589425FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift in Sources */,
 				EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */,
 				CE62AF1325DD6B0400AA9665 /* StartViewController.swift in Sources */,
@@ -983,6 +1014,7 @@
 				CE07433B26699CB000B97853 /* ElevationData+CoreDataClass.swift in Sources */,
 				CE62B2F025E88AC800AA9665 /* DocumentTableViewCell.swift in Sources */,
 				EFF9558D262B56F00013E006 /* BloodOxygenLogic.swift in Sources */,
+				CE5E233126EB8F2F00C0360D /* ColorThemes.swift in Sources */,
 				CE62B2D425E885F100AA9665 /* HeartRateViewController.swift in Sources */,
 				CE07433526699CB000B97853 /* HeartRateData+CoreDataClass.swift in Sources */,
 				CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */,

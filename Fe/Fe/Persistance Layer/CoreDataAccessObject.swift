@@ -50,7 +50,29 @@ class CoreDataAccessObject {
             let today = Date()
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "mm.dd"
-            self.hrItems = try context.fetch(HeartRateData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) == dateFormatter.string(from: today) } )
+            self.hrItems = try context.fetch(HeartRateData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) > dateFormatter.string(from: today) } )
+        } catch let error as NSError {
+            print("HeartRateData Read Fetch Failed: \(error.description)")
+        }
+        return self.hrItems
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: fetchHeartRateDataForAnalysis()
+     - Description: Fetch Heart Rate for last 5 minutes.
+     -------------------------------------------------------------------*/
+    func fetchHeartRateDataForAnalysis() -> [HeartRateData]?{
+        do {
+            let previousTime = Calendar.current.date(byAdding: .minute, value: -5, to: Date())!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "mm.dd"
+            
+            let fetchRequest:NSFetchRequest<HeartRateData> = HeartRateData.fetchRequest()
+            fetchRequest.fetchLimit = 300
+            
+            self.hrItems = try context.fetch(fetchRequest).filter( {
+                dateFormatter.string(from: $0.dateTime) > dateFormatter.string(from: previousTime)
+            } )
         } catch let error as NSError{
             print("HeartRateData Read Fetch Failed: \(error.description)")
         }
@@ -100,6 +122,28 @@ class CoreDataAccessObject {
             self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) == dateFormatter.string(from: today) } )
         } catch let error as NSError{
             print("BloodOxygenData Read Fetch Failed: \(error.description)")
+        }
+        return self.bldOxItems
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: fetchbloodOxygenDataForAnalysis()
+     - Description: Fetch blood Ox data for last 5 minutes.
+     -------------------------------------------------------------------*/
+    func fetchbloodOxygenDataForAnalysis() -> [BloodOxygenData]?{
+        do {
+            let previousTime = Calendar.current.date(byAdding: .minute, value: -5, to: Date())!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "mm.dd"
+            
+            let fetchRequest:NSFetchRequest<BloodOxygenData> = BloodOxygenData.fetchRequest()
+            fetchRequest.fetchLimit = 300
+            
+            self.bldOxItems = try context.fetch(fetchRequest).filter( {
+                dateFormatter.string(from: $0.dateTime) > dateFormatter.string(from: previousTime)
+            } )
+        } catch let error as NSError{
+            print("HeartRateData Read Fetch Failed: \(error.description)")
         }
         return self.bldOxItems
     }

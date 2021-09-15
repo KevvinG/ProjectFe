@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     let BldOxObj = BloodOxygenLogic()
     let AltObj = AltitudeLogic()
     let HSLogic = HomeScreenLogic()
+    let DALogic = DataAnalysisLogic()
     var counter = 0
     
     // UI Variables
@@ -56,6 +57,10 @@ class HomeViewController: UIViewController {
         
         // Timer
         let timer = CustomTimer { (seconds) in
+            if seconds % 300 == 0 {
+                self.DALogic.analyzeHeartRateData() // Fire every 5 minutes
+                self.DALogic.analyzeBloodOxygenData() // Fire every 5 minutes
+            }
             if seconds % 15 == 0 {
                 self.altTimerFire() // Fire every 15 seconds
             }
