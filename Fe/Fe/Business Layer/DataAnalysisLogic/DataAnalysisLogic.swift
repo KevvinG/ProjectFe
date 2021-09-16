@@ -27,42 +27,51 @@ class DataAnalysisLogic {
     func analyzeHeartRateData() {
 
         if let hrData = CDObj.fetchHeartRateDataForAnalysis(), !hrData.isEmpty {
-            for item in hrData {
-                print(item.heartRate)
-                print(item.dateTime)
-            }
             
             // Encode data to send
-            let jsonEncoder = JSONEncoder()
-            jsonEncoder.outputFormatting = .prettyPrinted
-
-            let jsonData = try! jsonEncoder.encode(hrData)
-            let data = String(data: jsonData, encoding: String.Encoding.utf8)
-
-            // Send to cloud function
-            let apiUrl = URL(string: "https://us-central1-project-fe-56023.cloudfunctions.net/heartRateDataAnalysis")!
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let jsonData = try! encoder.encode(hrData)
+            let jsonString = String(data: jsonData, encoding: .utf8)
             
-            let task = URLSession.shared.dataTask(with: apiUrl) {(data, response, error) in
+            // Verify string is not null before proceeding
+            if jsonString != nil {
+                //print(jsonString)
                 
-                // Catch any errors
-                guard error == nil else {
-                    print("Heart Rate API error: \(String(describing: error))")
+                // Create url string dynamically
+                var components = URLComponents()
+                components.scheme = "https"
+                components.host = "us-central1-project-fe-56023.cloudfunctions.net"
+                components.path = "/heartRateDataAnalysis"
+                components.queryItems = [
+                    URLQueryItem(name: "data", value: jsonString),
+                ]
+                let url = components.url?.absoluteString
+                
+                // Send to cloud function
+                guard let apiUrl = URL(string: url!) else {
+                    print("Invalid heartRate URL")
                     return
                 }
                 
-                guard data == data else {
-                    print("Error with data")
-                    return
-                }
+                let request = URLRequest(url: apiUrl)
                 
-                // Receive response back
-                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                    print("Server error!")
-                    return
-                }
-                print("The Response is: ", response)
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    
+                    // Catch any errors
+                    guard error == nil else {
+                        print("Heart Rate API error: \(String(describing: error))")
+                        return
+                    }
+                    
+                    // Receive response back
+                    guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                        print("HR call Server error!")
+                        return
+                    }
+                    print("HR API response: \(response)")
+                }.resume()
             }
-            task.resume()
         } else {
             print("Error gathering HR data for analysis")
         }
@@ -78,36 +87,49 @@ class DataAnalysisLogic {
         if let bloodOxygenData = CDObj.fetchBloodOxygenData(), !bloodOxygenData.isEmpty {
             
             // Encode data to send
-            let jsonEncoder = JSONEncoder()
-            jsonEncoder.outputFormatting = .prettyPrinted
-
-            let jsonData = try! jsonEncoder.encode(bloodOxygenData)
-            let data = String(data: jsonData, encoding: String.Encoding.utf8)
-
-            // Send to cloud function
-            let apiUrl = URL(string: "https://us-central1-project-fe-56023.cloudfunctions.net/bloodOxygenDataAnalysis")!
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let jsonData = try! encoder.encode(bloodOxygenData)
+            let jsonString = String(data: jsonData, encoding: .utf8)
             
-            let task = URLSession.shared.dataTask(with: apiUrl) {(data, response, error) in
+            // Verify string is not null before proceeding
+            if jsonString != nil {
+                //print(jsonString)
                 
-                // Catch any errors
-                guard error == nil else {
-                    print("Heart Rate API error: \(String(describing: error))")
+                // Create url string dynamically
+                var components = URLComponents()
+                components.scheme = "https"
+                components.host = "us-central1-project-fe-56023.cloudfunctions.net"
+                components.path = "/bloodOxygenDataAnalysis"
+                components.queryItems = [
+                    URLQueryItem(name: "data", value: jsonString),
+                ]
+                let url = components.url?.absoluteString
+                
+                // Send to cloud function
+                guard let apiUrl = URL(string: url!) else {
+                    print("Invalid blood Oxygen URL")
                     return
                 }
                 
-                guard data == data else {
-                    print("Error with data")
-                    return
-                }
+                let request = URLRequest(url: apiUrl)
                 
-                // Receive response back
-                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                    print("Server error!")
-                    return
-                }
-                print("The Response is: ", response)
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    
+                    // Catch any errors
+                    guard error == nil else {
+                        print("Blood Oxygen API error: \(String(describing: error))")
+                        return
+                    }
+                    
+                    // Receive response back
+                    guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                        print("Bld Ox Call Server error!")
+                        return
+                    }
+                    print("Bld Ox API response: \(response)")
+                }.resume()
             }
-            task.resume()
         } else {
             print("Error gathering Blood Oxygen data for analysis")
         }

@@ -58,7 +58,7 @@ class HomeViewController: UIViewController {
         // Timer
         let timer = CustomTimer { (seconds) in
             
-            if seconds % 15 == 0 { // Fire every 5 minutes (300 seconds)
+            if seconds % 300 == 0 { // Fire every 5 minutes (300 seconds)
                 self.DALogic.analyzeHeartRateData()
                 self.DALogic.analyzeBloodOxygenData()
             }
@@ -67,7 +67,7 @@ class HomeViewController: UIViewController {
                 self.altTimerFire()
             }
             
-            if seconds % 2 == 0 { // Fire every 2 seconds
+            if seconds % 3 == 0 { // Fire every 3 seconds - Watch sends messages in this interval
                 self.hrTimerfire()
                 self.bloodOxTimerfire()
             }

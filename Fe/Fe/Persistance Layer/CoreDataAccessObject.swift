@@ -28,9 +28,9 @@ class CoreDataAccessObject {
      - Description: create Table Entry for Heart Rate.
      -------------------------------------------------------------------*/
     func createHeartRateTableEntry(hrValue: String) {
-        let hrFloat = Float(hrValue) ?? 0 // receive a float value
+        let hrFloat = Float(hrValue) ?? -1 // receive a float value
         let hr = Int(hrFloat) // convert for table.
-        if hr != 0 {
+        if hr != -1 {
             let newHRentry = HeartRateData(context: self.context)
             newHRentry.dateTime = Date()
             newHRentry.heartRate = Int64(hr)
