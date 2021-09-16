@@ -120,8 +120,6 @@ extension WatchKitConnection: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        //print("didReceiveMessage")
-        //print(message)
         DispatchQueue.main.async {
             guard let heartRate = message.values.first as? String else {
                 print("Error in WatchKit Connection Session function 1.")
@@ -132,8 +130,6 @@ extension WatchKitConnection: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        //print("didReceiveMessage with reply")
-        print(message)
         DispatchQueue.main.async {
             guard let heartRate = message.values.first as? String else {
                 print("Error in WatchKit Connection Session function 2.")

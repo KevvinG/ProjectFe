@@ -25,11 +25,44 @@ class DataAnalysisLogic {
      - cloud Function to be analyzed.
      -------------------------------------------------------------------*/
     func analyzeHeartRateData() {
-        print("Called Analyze HR Data")
-        
-        if let hrData = CDObj.fetchHeartRateDataForAnalysis() {
+
+        if let hrData = CDObj.fetchHeartRateDataForAnalysis(), !hrData.isEmpty {
+            for item in hrData {
+                print(item.heartRate)
+                print(item.dateTime)
+            }
+            
+            // Encode data to send
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.outputFormatting = .prettyPrinted
+
+            let jsonData = try! jsonEncoder.encode(hrData)
+            let data = String(data: jsonData, encoding: String.Encoding.utf8)
+
             // Send to cloud function
-            var apiUrl = "https://us-central1-project-fe-56023.cloudfunctions.net/heartRateDataAnalysis"
+            let apiUrl = URL(string: "https://us-central1-project-fe-56023.cloudfunctions.net/heartRateDataAnalysis")!
+            
+            let task = URLSession.shared.dataTask(with: apiUrl) {(data, response, error) in
+                
+                // Catch any errors
+                guard error == nil else {
+                    print("Heart Rate API error: \(String(describing: error))")
+                    return
+                }
+                
+                guard data == data else {
+                    print("Error with data")
+                    return
+                }
+                
+                // Receive response back
+                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    print("Server error!")
+                    return
+                }
+                print("The Response is: ", response)
+            }
+            task.resume()
         } else {
             print("Error gathering HR data for analysis")
         }
@@ -41,11 +74,40 @@ class DataAnalysisLogic {
      - Firebase cloud Function to be analyzed.
      -------------------------------------------------------------------*/
     func analyzeBloodOxygenData() {
-        print("Called Analyze Blood Ox Data")
-        
-        if let bloodOxygenData = CDObj.fetchBloodOxygenData() {
+
+        if let bloodOxygenData = CDObj.fetchBloodOxygenData(), !bloodOxygenData.isEmpty {
+            
+            // Encode data to send
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.outputFormatting = .prettyPrinted
+
+            let jsonData = try! jsonEncoder.encode(bloodOxygenData)
+            let data = String(data: jsonData, encoding: String.Encoding.utf8)
+
             // Send to cloud function
-            var bloodOxCloudFunction = "https://us-central1-project-fe-56023.cloudfunctions.net/bloodOxygenDataAnalysis"
+            let apiUrl = URL(string: "https://us-central1-project-fe-56023.cloudfunctions.net/bloodOxygenDataAnalysis")!
+            
+            let task = URLSession.shared.dataTask(with: apiUrl) {(data, response, error) in
+                
+                // Catch any errors
+                guard error == nil else {
+                    print("Heart Rate API error: \(String(describing: error))")
+                    return
+                }
+                
+                guard data == data else {
+                    print("Error with data")
+                    return
+                }
+                
+                // Receive response back
+                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    print("Server error!")
+                    return
+                }
+                print("The Response is: ", response)
+            }
+            task.resume()
         } else {
             print("Error gathering Blood Oxygen data for analysis")
         }

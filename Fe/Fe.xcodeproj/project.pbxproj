@@ -63,6 +63,7 @@
 		CE9DD3432680E0C500D9D026 /* ProjectKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */; };
 		CEA4EBE2266A8D4100144C5F /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */; };
 		CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
+		CEE9E4BE26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
 		EF9168EF262A5D3500DCCEEC /* CoreDataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */; };
@@ -207,6 +208,7 @@
 		CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectKeys.swift; sourceTree = "<group>"; };
 		CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDocumentViewController.swift; sourceTree = "<group>"; };
+		CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKeyExtension.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2544EF261F22E800069308 /* HKAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKAccessObject.swift; sourceTree = "<group>"; };
 		EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchKitConnection.swift; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 				CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */,
 				EF2544EF261F22E800069308 /* HKAccessObject.swift */,
 				EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */,
+				CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */,
 			);
 			path = "Persistance Layer";
 			sourceTree = "<group>";
@@ -1017,6 +1020,7 @@
 				CE5E233126EB8F2F00C0360D /* ColorThemes.swift in Sources */,
 				CE62B2D425E885F100AA9665 /* HeartRateViewController.swift in Sources */,
 				CE07433526699CB000B97853 /* HeartRateData+CoreDataClass.swift in Sources */,
+				CEE9E4BE26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift in Sources */,
 				CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 				CE62B2A125E8566100AA9665 /* Symptom2BreathViewController.swift in Sources */,
 				CE4D26F6264570B6004629CC /* PhoneSensorObject.swift in Sources */,

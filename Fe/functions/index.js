@@ -6,7 +6,7 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 
 //MARK: Heart Rate Function
-exports.heartRateDataAnalysis = functions.https.onRequest((req, res) => {
+exports.heartRateDataAnalysis = functions.https.onCall((req, res) => {
     console.log("Successfully called heart rate data analysis function")
     // pull threshold values from Firestore
     // evaluate the heart rate data, send notification if above/below threshold values
@@ -15,7 +15,7 @@ exports.heartRateDataAnalysis = functions.https.onRequest((req, res) => {
 });
 
 //MARK: Blood Oxygen Function
-    exports.bloodOxygenDataAnalysis = functions.https.onRequest(async (req, res) => {
+    exports.bloodOxygenDataAnalysis = functions.https.onCall(async (req, res) => {
     console.log("Successfully called blood oxygen data analysis function")
     // Pull threshold values from Firestore
     // Evaluate if blood oxygen value is lower than threshold value.

@@ -57,15 +57,20 @@ class HomeViewController: UIViewController {
         
         // Timer
         let timer = CustomTimer { (seconds) in
-            if seconds % 300 == 0 {
-                self.DALogic.analyzeHeartRateData() // Fire every 5 minutes
-                self.DALogic.analyzeBloodOxygenData() // Fire every 5 minutes
+            
+            if seconds % 15 == 0 { // Fire every 5 minutes (300 seconds)
+                self.DALogic.analyzeHeartRateData()
+                self.DALogic.analyzeBloodOxygenData()
             }
-            if seconds % 15 == 0 {
-                self.altTimerFire() // Fire every 15 seconds
+            
+            if seconds % 15 == 0 { // Fire every 15 seconds
+                self.altTimerFire()
             }
-            self.hrTimerfire() // Fire every 1 second
-            self.bloodOxTimerfire() // Fire every 1 second
+            
+            if seconds % 2 == 0 { // Fire every 2 seconds
+                self.hrTimerfire()
+                self.bloodOxTimerfire()
+            }
         }
         timer.start()
     }
