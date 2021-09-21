@@ -50,6 +50,7 @@ class HeartRateViewController: UIViewController {
             lineChartView.xAxis.granularity = 0.05
             lineChartView.xAxis.labelPosition = .bottom
             lineChartView.xAxis.drawGridLinesEnabled = false
+            lineChartView.xAxis.labelRotationAngle = -30
             lineChartView.xAxis.labelCount = 4
             
             self.lblAvgHR.text = "\(bpmAvg) BPM"

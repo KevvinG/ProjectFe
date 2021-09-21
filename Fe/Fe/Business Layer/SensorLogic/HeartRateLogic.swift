@@ -64,6 +64,10 @@ class HeartRateLogic {
         HKObj.getHrChartData(dateRange: dateRange, completion: { bpmDict in
             DispatchQueue.main.async {
                 let dateArray = Array(bpmDict.keys)
+                var newDateArray : [String] = []
+                for element in dateArray{
+                    newDateArray.append(self.convertDate(element, daily: true))
+                }
                 let bpmArray = Array(bpmDict.values)
                 let bpmMax = Int(bpmArray.max() ?? 0)
                 let bpmMin = Int(bpmArray.min() ?? 0)
@@ -73,10 +77,27 @@ class HeartRateLogic {
                 if count > 0 {
                     bpmAvg = sum / count
                 }
-                completion(dateArray, bpmArray, bpmMax, bpmMin, bpmAvg)
+                completion(newDateArray, bpmArray, bpmMax, bpmMin, bpmAvg)
             }
         })
     }
+    
+    func convertDate(_ date: String, daily: Bool) -> String {
+
+        let dateFormatter = DateFormatter()
+        let formatDate = dateFormatter.date(from: date)
+
+        // Set Date Format
+        if daily {
+            dateFormatter.dateFormat = "HH:mm"
+        }else {
+            dateFormatter.dateFormat = "dd/MM/YY"
+        }
+        
+        let currentDate = Date()
+        // Convert Date to String
+        return dateFormatter.string(from: formatDate ?? currentDate)
+        }
     
     /*--------------------------------------------------------------------
      //MARK: chartData()
