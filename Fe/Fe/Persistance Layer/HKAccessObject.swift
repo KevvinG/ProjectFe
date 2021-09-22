@@ -187,11 +187,11 @@ class HKAccessObject {
                                             
                         statsCollection.enumerateStatistics(from: startDate, to: endDate) { statistics, stop in
                             if let quantity = statistics.averageQuantity() {
-                                let value = quantity.doubleValue(for: HKUnit(from: "count/min"))
+                                let value = quantity.doubleValue(for: HKUnit(from: "%"))
                                 let date = statistics.startDate
                                 let formatter3 = DateFormatter()
                                 formatter3.dateFormat = "HH:mm E, d MMM y"
-                                o2Dict[formatter3.string(from: date)] = value
+                                o2Dict[formatter3.string(from: date)] = value * 100
                             }
                         }
                         completion(o2Dict)
@@ -233,22 +233,44 @@ class HKAccessObject {
      - Description: Returns latest Blood Oxygen reading.
      -------------------------------------------------------------------*/
     func getLatestbloodOxReading(completion: @escaping (Double) -> Void) {
-        guard let discreteOxySat = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.oxygenSaturation) else {
-            fatalError("*** Unable to create O2 Type ***")
-        }
         
-        let discreteQuery = HKStatisticsQuery(quantityType: discreteOxySat,
-                                              quantitySamplePredicate: nil,
-                                              options: .mostRecent) {
-                                                    query, statistics, error in
-            if let val = statistics?.mostRecentQuantity(){
-                let oxyVal = val.doubleValue(for: HKUnit(from: "%"))
+        // Check if Health Data is available
+        if HKHealthStore.isHealthDataAvailable() {
+            let readData = Set([
+                HKObjectType.quantityType(forIdentifier: .oxygenSaturation)!
+            ])
+            // Ask for authorization to read data
+            healthStore.requestAuthorization(toShare: [], read: readData) { (success, error) in
                 
-                DispatchQueue.main.async {
-                    completion(oxyVal)
+                if error != nil {
+                    print("Authorization failed with error: ", error!)
+                    return
+                }
+                
+                if success {
+                    guard let discreteOxySat = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.oxygenSaturation) else {
+                        fatalError("*** Unable to create O2 Type ***")
+                    }
+                    
+                    let discreteQuery = HKStatisticsQuery(quantityType: discreteOxySat,
+                                                          quantitySamplePredicate: nil,
+                                                          options: .mostRecent) {
+                                                                query, statistics, error in
+                        if let val = statistics?.mostRecentQuantity(){
+                            let oxyVal = val.doubleValue(for: HKUnit(from: "%"))
+                            
+                            DispatchQueue.main.async {
+                                completion(oxyVal * 100) // get an Int value
+                            }
+                        }
+                    }
+                    self.healthStore.execute(discreteQuery)
                 }
             }
+        } else {
+            print("Healthkit not available.")
         }
-        healthStore.execute(discreteQuery)
+        
+        
     }
 }
