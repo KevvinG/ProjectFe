@@ -59,15 +59,16 @@ class HomeViewController: UIViewController {
         let timer = CustomTimer { (seconds) in
             
             if seconds % 300 == 0 { // Fire every 5 minutes (300 seconds)
-                self.DALogic.analyzeHeartRateData()
-                self.DALogic.analyzeBloodOxygenData()
+                //TODO: Finish data analysis Firebase Function before enabling
+//                self.DALogic.analyzeHeartRateData()
+//                self.DALogic.analyzeBloodOxygenData()
             }
             
-            if seconds % 15 == 0 { // Fire every 15 seconds
+            if seconds % 60 == 0 { // Fire every 60 seconds
                 self.altTimerFire()
             }
             
-            if seconds % 3 == 0 { // Fire every 3 seconds - Watch sends messages in this interval
+            if seconds % 5 == 0 { // Fire every 5 seconds - Watch sends messages in this interval
                 self.hrTimerfire()
                 self.bloodOxTimerfire()
             }
