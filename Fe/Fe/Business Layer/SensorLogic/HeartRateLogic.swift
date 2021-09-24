@@ -82,6 +82,14 @@ class HeartRateLogic {
         })
     }
     
+    /*--------------------------------------------------------------------
+     //MARK: fetchHrWithRangeCD()
+     - Description: Obtains heart rate values from Health Store for Chart.
+     -------------------------------------------------------------------*/
+    func fetchHrWithRangeCD() {
+        
+    }
+    
     func convertDate(_ date: String, daily: Bool) -> String {
 
         let dateFormatter = DateFormatter()
