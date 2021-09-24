@@ -63,12 +63,22 @@ class HeartRateLogic {
     func fetchHrWithRange(dateRange: String, completion: @escaping (_ dateArray: [String], _ bpmArray: [Double], _ maxBPM: Int, _ minBPM: Int, _ avgBPM: Int) -> Void) {
         HKObj.getHrChartData(dateRange: dateRange, completion: { bpmDict in
             DispatchQueue.main.async {
-                let dateArray = Array(bpmDict.keys)
+                var testDict = bpmDict
+                let dictCount = testDict.count
+                let outputSpacing = dictCount/12
+                var i = 1
+                for element in testDict {
+                    if i % outputSpacing != 0 {
+                        testDict.removeValue(forKey: element.key)
+                    }
+                    i+=1
+                }
+                let dateArray = Array(testDict.keys)
                 var newDateArray : [String] = []
                 for element in dateArray{
-                    newDateArray.append(self.convertDate(element, daily: true))
+                    newDateArray.append(self.convertDate(element, dateRange: dateRange))
                 }
-                let bpmArray = Array(bpmDict.values)
+                let bpmArray = Array(testDict.values)
                 let bpmMax = Int(bpmArray.max() ?? 0)
                 let bpmMin = Int(bpmArray.min() ?? 0)
                 let sum = Int(bpmArray.reduce(0, +))
@@ -77,6 +87,7 @@ class HeartRateLogic {
                 if count > 0 {
                     bpmAvg = sum / count
                 }
+                
                 completion(newDateArray, bpmArray, bpmMax, bpmMin, bpmAvg)
             }
         })
@@ -90,15 +101,15 @@ class HeartRateLogic {
         
     }
     
-    func convertDate(_ date: String, daily: Bool) -> String {
+    func convertDate(_ date: String, dateRange: String) -> String {
 
         let dateFormatter = DateFormatter()
         let formatDate = dateFormatter.date(from: date)
 
         // Set Date Format
-        if daily {
+        if dateRange == "day"{
             dateFormatter.dateFormat = "HH:mm"
-        }else {
+        }else if dateRange == "month"{
             dateFormatter.dateFormat = "dd/MM/YY"
         }
         
