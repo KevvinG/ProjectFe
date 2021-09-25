@@ -6,21 +6,202 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 
 //MARK: Heart Rate Function
-exports.heartRateDataAnalysis = functions.https.onCall((req, res) => {
-    console.log("Successfully called heart rate data analysis function")
-    // pull threshold values from Firestore
-    // evaluate the heart rate data, send notification if above/below threshold values
-    // If true, send notification
-    res.send("Successfully called heart rate data analysis function")
+exports.heartRateDataAnalysis = functions.https.onRequest(async (req, res) => {
+    var body = [];
+    
+    // Get first name from request parameter
+    const fName = req.query.fName;
+    if (fName == null || fName == "") {
+        console.log("fName is empty.")
+    }
+    console.log("First Name: ", fName)
+    
+    // Get phoone number from request parameter
+    const phone = req.query.phone;
+    if (phone == null || phone == "") {
+        res.send("phone is empty. Cannot proceed with hr analysis")
+    }
+    console.log("phone: ", phone)
+    
+    // Get emergency phone from request parameter
+    const emergencyPhone = req.query.emergencyPhone;
+    if (emergencyPhone == null || emergencyPhone == "") {
+        console.log("emergencyPhone is empty. Cannot send message to emergency contact.")
+    }
+    console.log("Emergency Phone: ", emergencyPhone)
+    
+    // Get low threshold value or default 40 from request parameter
+    var hrLowThreshold = req.query.hrLowThreshold;
+    if (hrLowThreshold == null || hrLowThreshold == "") {
+        console.log("hrLowThreshold is empty. Using default 40")
+        hrLowThreshold = 40
+    }
+    
+    // Get High Threshold Value or default 100 from request parameter
+    var hrHighThreshold = req.query.hrHighThreshold;
+    if (hrHighThreshold == null || hrLowThreshold == "") {
+        console.log("hrHighThreshold is empty. Using default 100")
+        hrHighThreshold = 100
+    }
+    console.log("Low: ", hrLowThreshold, " High: ", hrHighThreshold)
+
+    
+    // Evaluate the heart rate data, send notification if above/below threshold values
+    const data = req.query.data;
+    var jsonObject;
+    
+    // Verify data is not empty and parse to JSON data
+    if (data == null || data == "") {
+        console.log("data is empty. Cannot proceed with hr analysis")
+        return res.status(404).send("data is empty. Cannot proceed with hr analysis")
+    } else {
+        try {
+            jsonObject = JSON.parse(data);
+        } catch (error) {
+            return res.status(404).send("Unable to process the json data.")
+        }
+        
+    }
+    console.log("data: ", jsonObject);
+    
+    // Loop through the JSON values
+    for (var object in jsonObject) {
+        
+        // Convert Date
+        var date = jsonObject[object].dateTime;
+        try {
+            date = new Date(date);
+        } catch (error) {
+            console.log("Cannot convert date: ", jsonObject[object].dateTime);
+        }
+        
+        // Store heart rate in an easier variable
+        var hr = jsonObject[object].heartRate;
+        
+        // Evaluate if low threshold is triggered
+        if (hr < hrLowThreshold) {
+            console.log('Trigger: Heart rate ', hr, ' is lower than low threshold ', hrLowThreshold)
+            const thresholdsTriggered = {hrLowThreshold:hrLowThreshold, hr:hr, dateTime:date};
+            body.push(thresholdsTriggered) // Store in response
+            //TODO: SEND NOTIFICATION
+            
+        }
+        
+        // Evaluate if high threshold is triggered
+        if (hr > hrHighThreshold) {
+            console.log('Trigger: Heart rate ', hr, ' is higher than high threshold ', hrHighThreshold)
+            const thresholdsTriggered = {hrHighThreshold:hrHighThreshold, hr:hr, dateTime:date};
+            body.push(thresholdsTriggered) // Store in response
+            //TODO: SEND NOTIFICATION
+            
+        }
+    }
+    
+    // If no thresholds broken
+    if (body.length == 0) {
+        body.push("Successfully processed heart rate data analysis function");
+    }
+    
+    return res.status(200).send(JSON.stringify(body));
 });
 
 //MARK: Blood Oxygen Function
-    exports.bloodOxygenDataAnalysis = functions.https.onCall(async (req, res) => {
-    console.log("Successfully called blood oxygen data analysis function")
-    // Pull threshold values from Firestore
-    // Evaluate if blood oxygen value is lower than threshold value.
-    // If true, send notification
-    res.send("Successfully called blood oxygen data analysis function")
+    exports.bloodOxygenDataAnalysis = functions.https.onRequest(async (req, res) => {
+        var body = [];
+        
+        // Get first name from request parameter
+        const fName = req.query.fName;
+        if (fName == null || fName == "") {
+            console.log("fName is empty.")
+        }
+        console.log("First Name: ", fName)
+        
+        // Get phoone number from request parameter
+        const phone = req.query.phone;
+        if (phone == null || phone == "") {
+            res.send("phone is empty. Cannot proceed with blood oxygen analysis")
+        }
+        console.log("phone: ", phone)
+        
+        // Get emergency phone from request parameter
+        const emergencyPhone = req.query.emergencyPhone;
+        if (emergencyPhone == null || emergencyPhone == "") {
+            console.log("emergencyPhone is empty. Cannot send message to emergency contact.")
+        }
+        console.log("Emergency Phone: ", emergencyPhone)
+        
+        // Get low threshold value or default 90 from request parameter
+        var bldOxLowThreshold = req.query.bldOxLowThreshold;
+        if (bldOxLowThreshold == null || bldOxLowThreshold == "") {
+            console.log("bldOxLowThreshold is empty. Using default 90")
+            bldOxLowThreshold = 90
+        }
+        
+        // Get High Threshold Value or default 110 from request parameter
+        var bldOxHighThreshold = req.query.bldOxHighThreshold;
+        if (bldOxHighThreshold == null || bldOxHighThreshold == "") {
+            console.log("bldOxHighThreshold is empty. Using default 110")
+            bldOxHighThreshold = 110
+        }
+        console.log("Low: ", bldOxLowThreshold, " High: ", bldOxHighThreshold)
+
+        
+        // Evaluate the heart rate data, send notification if above/below threshold values
+        const data = req.query.data;
+        var jsonObject;
+        
+        // Verify data is not empty and parse to JSON data
+        if (data == null || data == "") {
+            console.log("data is empty. Cannot proceed with blood oxygen analysis")
+            return res.status(404).send("data is empty. Cannot proceed with blood oxygen analysis")
+        } else {
+            try {
+                jsonObject = JSON.parse(data);
+            } catch (error) {
+                return res.status(404).send("Unable to process the json data.")
+            }
+        }
+        console.log("data: ", jsonObject);
+        
+        // Loop through the JSON values
+        for (var object in jsonObject) {
+            
+            // Convert Date
+            var date = jsonObject[object].dateTime;
+            try {
+                date = new Date(date);
+            } catch (error) {
+                console.log("Cannot convert date: ", jsonObject[object].dateTime);
+            }
+            
+            // Store blood oxygen value in an easier variable
+            var bldOx = jsonObject[object].bloodOxygen;
+            
+            // Evaluate if low threshold is triggered
+            if (bldOx < bldOxLowThreshold) {
+                console.log('Trigger: Blood oxygen ', bldOx, ' is lower than low threshold ', bldOxLowThreshold)
+                const thresholdsTriggered = {bldOxLowThreshold:bldOxLowThreshold, bloodOxygen:bldOx, dateTime:date};
+                body.push(thresholdsTriggered) // Store in response
+                //TODO: SEND NOTIFICATION
+                
+            }
+            
+            // Evaluate if high threshold is triggered
+            if (bldOx > bldOxHighThreshold) {
+                console.log('Trigger: Blood oxygen ', bldOx, ' is higher than high threshold ', bldOxHighThreshold)
+                const thresholdsTriggered = {bldOxHighThreshold:bldOxHighThreshold, bloodOxygen:bldOx, dateTime:date};
+                body.push(thresholdsTriggered) // Store in response
+                //TODO: SEND NOTIFICATION
+                
+            }
+        }
+        
+        // If no thresholds broken
+        if (body.length == 0) {
+            body.push("Successfully processed blood oxygen data analysis function");
+        }
+        
+        return res.status(200).send(JSON.stringify(body));
 });
 
 

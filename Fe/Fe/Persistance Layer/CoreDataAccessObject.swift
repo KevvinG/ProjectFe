@@ -21,6 +21,7 @@ class CoreDataAccessObject {
     var apItems: [AirPressureData] = []
     var eleItems: [ElevationData] = []
     var hrItems: [HeartRateData] = []
+    var hrAnalysisItems: [HeartRateData] = []
     var bldOxItems: [BloodOxygenData] = []
     
     /*--------------------------------------------------------------------
@@ -65,18 +66,18 @@ class CoreDataAccessObject {
         do {
             let previousTime = Calendar.current.date(byAdding: .minute, value: -5, to: Date())!
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "mm.dd"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
             
             let fetchRequest:NSFetchRequest<HeartRateData> = HeartRateData.fetchRequest()
             fetchRequest.fetchLimit = 300
             
-            self.hrItems = try context.fetch(fetchRequest).filter( {
+            self.hrAnalysisItems = try context.fetch(fetchRequest).filter( {
                 dateFormatter.string(from: $0.dateTime) > dateFormatter.string(from: previousTime)
-            } )
+            })
         } catch let error as NSError{
             print("HeartRateData Read Fetch Failed: \(error.description)")
         }
-        return self.hrItems
+        return self.hrAnalysisItems
     }
     
     /*--------------------------------------------------------------------

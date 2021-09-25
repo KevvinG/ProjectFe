@@ -9,6 +9,8 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 
 /*------------------------------------------------------------------------
  //MARK: FirebaseAccessObject
@@ -18,6 +20,56 @@ class FirebaseAccessObject {
     
     // Class Variables
     let db = Firestore.firestore() // Access to Firestore Database
+    
+    /*--------------------------------------------------------------------
+     //MARK: getUserEmail()
+     - Description: Returns user email
+     -------------------------------------------------------------------*/
+    func getUserEmail() -> String? {
+        let email = Auth.auth().currentUser?.email
+        return email ?? "NOEMAIL"
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: getUserId()
+     - Description: Returns user id
+     -------------------------------------------------------------------*/
+    func getUserId() -> String? {
+        let id = Auth.auth().currentUser?.uid
+        return id ?? "NOID"
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: getUserdataForAnalysis() -> Dictionary<Int, Double>
+     - Description: fetches user data from Firebase for analysis functions
+     -------------------------------------------------------------------*/
+    func getUserdataForAnalysis(completion: @escaping (_ userdata: Dictionary<String, String>) -> Void) {
+        let user = Auth.auth().currentUser
+        let userRef = db.collection("users")
+        
+        userRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count == 0 {
+                    print("No user found.")
+                } else {
+                    for document in querySnapshot!.documents {
+                        //print("\(document.documentID) => \(document.data())")
+                        var userData = Dictionary<String, String>()
+                        userData["fName"] = document.get("fName") as? String
+                        userData["phone"] = document.get("phone") as? String
+                        userData["emergencyPhone"] = document.get("emergencyPhone") as? String
+                        userData["hrLowThreshold"] = document.get("hrLowThreshold") as? String
+                        userData["hrHighThreshold"] = document.get("hrHighThreshold") as? String
+                        
+                        completion(userData)
+                    }
+                }
+            }
+        }
+    }
     
     /*--------------------------------------------------------------------
      //MARK: signOut()

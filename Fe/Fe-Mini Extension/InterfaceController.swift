@@ -144,7 +144,18 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, HKLi
                 case HKQuantityType.quantityType(forIdentifier: .heartRate):
                     let statistics = workoutBuilder.statistics(for: quantityType)
                     let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
-                    let value = statistics!.mostRecentQuantity()?.doubleValue(for: heartRateUnit)
+                    var value = statistics!.mostRecentQuantity()?.doubleValue(for: heartRateUnit)
+                    
+                    // Generate random value to trip thresholds
+                    let randomInt = Int.random(in: 1..<100)
+                    if randomInt < 10 {
+                        value = 32
+                    }
+                    if randomInt > 90 {
+                        value = 152
+                    }
+                    // end of random
+                    
                     sendHRMessage(hrVal: value ?? 0.00)
                     let stringValue = String(Int(Double(round(1 * value!) / 1)))
                     bpmLabel.setText("HR: \(stringValue) BPM")
