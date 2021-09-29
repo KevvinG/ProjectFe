@@ -65,13 +65,18 @@ class HeartRateLogic {
             DispatchQueue.main.async {
                 var testDict = bpmDict
                 let dictCount = testDict.count
-                let outputSpacing = dictCount/12
+                var outputSpacing = dictCount/12
+                if outputSpacing == 0 {
+                    outputSpacing = 1
+                }
                 var i = 1
                 for element in testDict {
                     if i % outputSpacing != 0 {
                         testDict.removeValue(forKey: element.key)
+                        print("Item removed")
                     }
                     i+=1
+                    print(i)
                 }
                 let dateArray = Array(testDict.keys)
                 var newDateArray : [String] = []
@@ -88,7 +93,7 @@ class HeartRateLogic {
                     bpmAvg = sum / count
                 }
                 
-                completion(newDateArray, bpmArray, bpmMax, bpmMin, bpmAvg)
+                completion(dateArray, bpmArray, bpmMax, bpmMin, bpmAvg)
             }
         })
     }

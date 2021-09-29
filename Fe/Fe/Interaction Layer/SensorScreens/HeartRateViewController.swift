@@ -14,7 +14,7 @@ import Charts
  //MARK: HeartRateViewController : UIViewController
  - Description: Holds logic for the Heart Rate Screen
  -----------------------------------------------------------------------*/
-class HeartRateViewController: UIViewController {
+class HeartRateViewController: UIViewController, ChartViewDelegate {
     
     // Class Variables
     let HRLogic = HeartRateLogic()
@@ -42,22 +42,72 @@ class HeartRateViewController: UIViewController {
         getUserHrThresholds()
         
         self.lblCurrentHR.text = "\(String(HRLogic.fetchLatestHrReading())) BPM"
+        
+        initChart()
 
+//        HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMin, bpmAvg in
+//
+//            lineChartView.data = HRLogic.chartData(dataPoints: dateArray, values: bpmArray)
+//            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+//            lineChartView.xAxis.granularity = 0.05
+//            lineChartView.xAxis.labelPosition = .bottom
+//            lineChartView.xAxis.drawGridLinesEnabled = false
+//            lineChartView.xAxis.labelRotationAngle = -30
+//            lineChartView.xAxis.labelCount = 4
+//
+//            self.lblAvgHR.text = "\(bpmAvg) BPM"
+//            self.lblMaxHR.text = "\(bpmMax) BPM"
+//            self.lblMinHR.text = "\(bpmMin) BPM"
+       // })
+    }
+    
+    func initChart() {
         HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMin, bpmAvg in
             
             lineChartView.data = HRLogic.chartData(dataPoints: dateArray, values: bpmArray)
             lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
             lineChartView.xAxis.granularity = 0.05
+            
             lineChartView.xAxis.labelPosition = .bottom
             lineChartView.xAxis.drawGridLinesEnabled = false
             lineChartView.xAxis.labelRotationAngle = -30
-            lineChartView.xAxis.labelCount = 4
+            lineChartView.xAxis.setLabelCount(6, force: false)
+            //lineChartView.backgroundColor = .systemRed
+            
+            //lineChartView.data?.setDrawValues(false)
+            lineChartView.legend.enabled = false
+            
+            lineChartView.animate(xAxisDuration: 2)
             
             self.lblAvgHR.text = "\(bpmAvg) BPM"
             self.lblMaxHR.text = "\(bpmMax) BPM"
             self.lblMinHR.text = "\(bpmMin) BPM"
         })
     }
+    
+    func populateChart(dateRange: String) {
+        HRLogic.fetchHrWithRange(dateRange : dateRange, completion: { [self] dateArray, bpmArray, bpmMax, bpmMin, bpmAvg in
+            
+            lineChartView.data = HRLogic.chartData(dataPoints: dateArray, values: bpmArray)
+            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+            lineChartView.xAxis.granularity = 0.05
+            lineChartView.xAxis.labelPosition = .bottom
+            lineChartView.xAxis.drawGridLinesEnabled = false
+            //lineChartView.xAxis.labelRotationAngle = -30
+            lineChartView.xAxis.labelCount = 4
+            lineChartView.backgroundColor = .systemRed
+            
+            self.lblAvgHR.text = "\(bpmAvg) BPM"
+            self.lblMaxHR.text = "\(bpmMax) BPM"
+            self.lblMinHR.text = "\(bpmMin) BPM"
+        })
+    }
+    
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        //print(entry)
+    }
+    
+    
     
     /*--------------------------------------------------------------------
      //MARK: setupTextFields()
