@@ -18,6 +18,13 @@ class DataAnalysisLogic {
     
     // Class Variables
     let CDObj = CoreDataAccessObject()
+    let FBObj = FirebaseAccessObject()
+    var fName = ""
+    var phone = ""
+    var emergencyPhone = ""
+    var hrLowThreshold = ""
+    var hrHighThreshold = ""
+
     
     /*--------------------------------------------------------------------
      //MARK: analyzeHeartRateData()
@@ -27,7 +34,15 @@ class DataAnalysisLogic {
     func analyzeHeartRateData() {
 
         if let hrData = CDObj.fetchHeartRateDataForAnalysis(), !hrData.isEmpty {
-            
+           
+            FBObj.getUserdataForAnalysis(completion: { userData in
+                self.fName = userData["fName"]!
+                self.phone = userData["phone"]!
+                self.emergencyPhone = userData["emergencyPhone"]!
+                self.hrLowThreshold = userData["hrLowThreshold"]!
+                self.hrHighThreshold = userData["hrHighThreshold"]!
+            })
+
             // Encode data to send
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
@@ -36,7 +51,7 @@ class DataAnalysisLogic {
             
             // Verify string is not null before proceeding
             if jsonString != nil {
-                //print(jsonString)
+               //print(jsonString!)
                 
                 // Create url string dynamically
                 var components = URLComponents()
@@ -44,6 +59,11 @@ class DataAnalysisLogic {
                 components.host = "us-central1-project-fe-56023.cloudfunctions.net"
                 components.path = "/heartRateDataAnalysis"
                 components.queryItems = [
+                    URLQueryItem(name: "fName", value: fName),
+                    URLQueryItem(name: "phone", value: phone),
+                    URLQueryItem(name: "emergencyPhone", value: emergencyPhone),
+                    URLQueryItem(name: "hrLowThreshold", value: hrLowThreshold),
+                    URLQueryItem(name: "hrHighThreshold", value: hrHighThreshold),
                     URLQueryItem(name: "data", value: jsonString),
                 ]
                 let url = components.url?.absoluteString

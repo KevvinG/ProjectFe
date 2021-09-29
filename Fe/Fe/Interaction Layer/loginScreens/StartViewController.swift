@@ -74,7 +74,7 @@ extension StartViewController : FUIAuthDelegate {
      -------------------------------------------------------------------*/
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
         if error != nil {
-            print("AuthUI Error: \(error)")
+            print("AuthUI Error: ", error! as Any)
             return
         }
         performSegue(withIdentifier: "GoToHomeScreen", sender: self)
