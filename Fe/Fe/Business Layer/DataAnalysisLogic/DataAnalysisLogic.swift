@@ -20,7 +20,7 @@ class DataAnalysisLogic {
     let CDObj = CoreDataAccessObject()
     let FBObj = FirebaseAccessObject()
     var fName = ""
-    var phone = ""
+    var fcmToken = ""
     var emergencyPhone = ""
     var hrLowThreshold = ""
     var hrHighThreshold = ""
@@ -33,68 +33,68 @@ class DataAnalysisLogic {
      -------------------------------------------------------------------*/
     func analyzeHeartRateData() {
 
-        if let hrData = CDObj.fetchHeartRateDataForAnalysis(), !hrData.isEmpty {
-           
-            FBObj.getUserdataForAnalysis(completion: { userData in
-                self.fName = userData["fName"]!
-                self.phone = userData["phone"]!
-                self.emergencyPhone = userData["emergencyPhone"]!
-                self.hrLowThreshold = userData["hrLowThreshold"]!
-                self.hrHighThreshold = userData["hrHighThreshold"]!
-            })
-
-            // Encode data to send
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
-            let jsonData = try! encoder.encode(hrData)
-            let jsonString = String(data: jsonData, encoding: .utf8)
+        FBObj.getUserdataForAnalysis(completion: { userData in
+            self.fName = userData["fName"]!
+            self.fcmToken = userData["fcmToken"]!
+            self.emergencyPhone = userData["emergencyPhone"]!
+            self.hrLowThreshold = userData["hrLowThreshold"]!
+            self.hrHighThreshold = userData["hrHighThreshold"]!
             
-            // Verify string is not null before proceeding
-            if jsonString != nil {
-               //print(jsonString!)
+            if let hrData = self.CDObj.fetchHeartRateDataForAnalysis(), !hrData.isEmpty {
                 
-                // Create url string dynamically
-                var components = URLComponents()
-                components.scheme = "https"
-                components.host = "us-central1-project-fe-56023.cloudfunctions.net"
-                components.path = "/heartRateDataAnalysis"
-                components.queryItems = [
-                    URLQueryItem(name: "fName", value: fName),
-                    URLQueryItem(name: "phone", value: phone),
-                    URLQueryItem(name: "emergencyPhone", value: emergencyPhone),
-                    URLQueryItem(name: "hrLowThreshold", value: hrLowThreshold),
-                    URLQueryItem(name: "hrHighThreshold", value: hrHighThreshold),
-                    URLQueryItem(name: "data", value: jsonString),
-                ]
-                let url = components.url?.absoluteString
+                // Encode data to send
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = .prettyPrinted
+                let jsonData = try! encoder.encode(hrData)
+                let jsonString = String(data: jsonData, encoding: .utf8)
                 
-                // Send to cloud function
-                guard let apiUrl = URL(string: url!) else {
-                    print("Invalid heartRate URL")
-                    return
+                // Verify string is not null before proceeding
+                if jsonString != nil {
+                   //print(jsonString!)
+                    
+                    // Create url string dynamically
+                    var components = URLComponents()
+                    components.scheme = "https"
+                    components.host = "us-central1-project-fe-56023.cloudfunctions.net"
+                    components.path = "/heartRateDataAnalysis"
+                    components.queryItems = [
+                        URLQueryItem(name: "fName", value: self.fName),
+                        URLQueryItem(name: "fcmToken", value: self.fcmToken),
+                        URLQueryItem(name: "emergencyPhone", value: self.emergencyPhone),
+                        URLQueryItem(name: "hrLowThreshold", value: self.hrLowThreshold),
+                        URLQueryItem(name: "hrHighThreshold", value: self.hrHighThreshold),
+                        URLQueryItem(name: "data", value: jsonString),
+                    ]
+                    let url = components.url?.absoluteString
+                    
+                    // Send to cloud function
+                    guard let apiUrl = URL(string: url!) else {
+                        print("Invalid heartRate URL")
+                        return
+                    }
+                    
+                    let request = URLRequest(url: apiUrl)
+                    
+                    URLSession.shared.dataTask(with: request) { data, response, error in
+                        
+                        // Catch any errors
+                        guard error == nil else {
+                            print("Heart Rate API error: \(String(describing: error))")
+                            return
+                        }
+                        
+                        // Receive response back
+                        guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                            print("HR call Server error!")
+                            return
+                        }
+                        //print("HR API response: \(response)")
+                    }.resume()
                 }
-                
-                let request = URLRequest(url: apiUrl)
-                
-                URLSession.shared.dataTask(with: request) { data, response, error in
-                    
-                    // Catch any errors
-                    guard error == nil else {
-                        print("Heart Rate API error: \(String(describing: error))")
-                        return
-                    }
-                    
-                    // Receive response back
-                    guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                        print("HR call Server error!")
-                        return
-                    }
-                    print("HR API response: \(response)")
-                }.resume()
+            } else {
+                print("Error gathering HR data for analysis")
             }
-        } else {
-            print("Error gathering HR data for analysis")
-        }
+        })
     }
     
     /*--------------------------------------------------------------------
@@ -103,55 +103,68 @@ class DataAnalysisLogic {
      - Firebase cloud Function to be analyzed.
      -------------------------------------------------------------------*/
     func analyzeBloodOxygenData() {
-
-        if let bloodOxygenData = CDObj.fetchBloodOxygenData(), !bloodOxygenData.isEmpty {
+        
+        FBObj.getUserdataForAnalysis(completion: { userData in
+            self.fName = userData["fName"]!
+            self.fcmToken = userData["fcmToken"]!
+            self.emergencyPhone = userData["emergencyPhone"]!
+            self.hrLowThreshold = userData["hrLowThreshold"]!
+            self.hrHighThreshold = userData["hrHighThreshold"]!
             
-            // Encode data to send
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
-            let jsonData = try! encoder.encode(bloodOxygenData)
-            let jsonString = String(data: jsonData, encoding: .utf8)
+            if let bloodOxygenData = self.CDObj.fetchBloodOxygenData(), !bloodOxygenData.isEmpty {
             
-            // Verify string is not null before proceeding
-            if jsonString != nil {
-                //print(jsonString)
+                // Encode data to send
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = .prettyPrinted
+                let jsonData = try! encoder.encode(bloodOxygenData)
+                let jsonString = String(data: jsonData, encoding: .utf8)
                 
-                // Create url string dynamically
-                var components = URLComponents()
-                components.scheme = "https"
-                components.host = "us-central1-project-fe-56023.cloudfunctions.net"
-                components.path = "/bloodOxygenDataAnalysis"
-                components.queryItems = [
-                    URLQueryItem(name: "data", value: jsonString),
-                ]
-                let url = components.url?.absoluteString
-                
-                // Send to cloud function
-                guard let apiUrl = URL(string: url!) else {
-                    print("Invalid blood Oxygen URL")
-                    return
+                // Verify string is not null before proceeding
+                if jsonString != nil {
+                    //print(jsonString)
+                    
+                    // Create url string dynamically
+                    var components = URLComponents()
+                    components.scheme = "https"
+                    components.host = "us-central1-project-fe-56023.cloudfunctions.net"
+                    components.path = "/heartRateDataAnalysis"
+                    components.queryItems = [
+                        URLQueryItem(name: "fName", value: self.fName),
+                        URLQueryItem(name: "fcmToken", value: self.fcmToken),
+                        URLQueryItem(name: "emergencyPhone", value: self.emergencyPhone),
+                        URLQueryItem(name: "hrLowThreshold", value: self.hrLowThreshold),
+                        URLQueryItem(name: "hrHighThreshold", value: self.hrHighThreshold),
+                        URLQueryItem(name: "data", value: jsonString),
+                    ]
+                    let url = components.url?.absoluteString
+                    
+                    // Send to cloud function
+                    guard let apiUrl = URL(string: url!) else {
+                        print("Invalid Blood Oxygen URL")
+                        return
+                    }
+                    
+                    let request = URLRequest(url: apiUrl)
+                    
+                    URLSession.shared.dataTask(with: request) { data, response, error in
+                        
+                        // Catch any errors
+                        guard error == nil else {
+                            print("Blood Oxygen API error: \(String(describing: error))")
+                            return
+                        }
+                        
+                        // Receive response back
+                        guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                            print("Bld Ox Call Server error!")
+                            return
+                        }
+                        //print("Bld Ox API response: \(response)")
+                    }.resume()
                 }
-                
-                let request = URLRequest(url: apiUrl)
-                
-                URLSession.shared.dataTask(with: request) { data, response, error in
-                    
-                    // Catch any errors
-                    guard error == nil else {
-                        print("Blood Oxygen API error: \(String(describing: error))")
-                        return
-                    }
-                    
-                    // Receive response back
-                    guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                        print("Bld Ox Call Server error!")
-                        return
-                    }
-                    print("Bld Ox API response: \(response)")
-                }.resume()
+            } else {
+                print("Error gathering Blood Oxygen data for analysis")
             }
-        } else {
-            print("Error gathering Blood Oxygen data for analysis")
-        }
+        })
     }
 }

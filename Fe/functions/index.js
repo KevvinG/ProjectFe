@@ -3,62 +3,62 @@ const functions = require('firebase-functions');
 
 // The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
-admin.initializeApp();
+admin.initializeApp(functions.config().firebase);
 
 //MARK: Heart Rate Function
 exports.heartRateDataAnalysis = functions.https.onRequest(async (req, res) => {
-    var body = [];
     
     // Get first name from request parameter
     const fName = req.query.fName;
     if (fName == null || fName == "") {
-        console.log("fName is empty.")
+        console.log("fName is empty.");
     }
-    console.log("First Name: ", fName)
+    console.log("First Name: ", fName);
     
-    // Get phoone number from request parameter
-    const phone = req.query.phone;
-    if (phone == null || phone == "") {
-        res.send("phone is empty. Cannot proceed with hr analysis")
+    // Get fcmToken from request parameter
+    const fcmToken = req.query.fcmToken;
+    if (fcmToken == null || fcmToken == "") {
+        res.send("fcmToken is empty. Cannot proceed with hr analysis");
     }
-    console.log("phone: ", phone)
+    console.log("fcmToken: ", fcmToken);
     
     // Get emergency phone from request parameter
     const emergencyPhone = req.query.emergencyPhone;
     if (emergencyPhone == null || emergencyPhone == "") {
-        console.log("emergencyPhone is empty. Cannot send message to emergency contact.")
+        console.log("emergencyPhone is empty. Cannot send message to emergency contact.");
     }
-    console.log("Emergency Phone: ", emergencyPhone)
+    console.log("Emergency Phone: ", emergencyPhone);
     
     // Get low threshold value or default 40 from request parameter
     var hrLowThreshold = req.query.hrLowThreshold;
     if (hrLowThreshold == null || hrLowThreshold == "") {
-        console.log("hrLowThreshold is empty. Using default 40")
-        hrLowThreshold = 40
+        console.log("hrLowThreshold is empty. Using default 40");
+        hrLowThreshold = 40;
     }
     
     // Get High Threshold Value or default 100 from request parameter
     var hrHighThreshold = req.query.hrHighThreshold;
     if (hrHighThreshold == null || hrLowThreshold == "") {
-        console.log("hrHighThreshold is empty. Using default 100")
-        hrHighThreshold = 100
+        console.log("hrHighThreshold is empty. Using default 100");
+        hrHighThreshold = 100;
     }
-    console.log("Low: ", hrLowThreshold, " High: ", hrHighThreshold)
+    console.log("Low: ", hrLowThreshold, " High: ", hrHighThreshold);
 
     
     // Evaluate the heart rate data, send notification if above/below threshold values
     const data = req.query.data;
     var jsonObject;
+    var returnBody = [];
     
     // Verify data is not empty and parse to JSON data
     if (data == null || data == "") {
-        console.log("data is empty. Cannot proceed with hr analysis")
-        return res.status(404).send("data is empty. Cannot proceed with hr analysis")
+        console.log("data is empty. Cannot proceed with hr analysis");
+        return res.status(404).send("data is empty. Cannot proceed with hr analysis");
     } else {
         try {
             jsonObject = JSON.parse(data);
         } catch (error) {
-            return res.status(404).send("Unable to process the json data.")
+            return res.status(404).send("Unable to process the json data.");
         }
         
     }
@@ -68,7 +68,7 @@ exports.heartRateDataAnalysis = functions.https.onRequest(async (req, res) => {
     for (var object in jsonObject) {
         
         // Convert Date
-        var date = jsonObject[object].dateTime;
+        var date = Math.floor(jsonObject[object].dateTime);
         try {
             date = new Date(date);
         } catch (error) {
@@ -80,29 +80,49 @@ exports.heartRateDataAnalysis = functions.https.onRequest(async (req, res) => {
         
         // Evaluate if low threshold is triggered
         if (hr < hrLowThreshold) {
-            console.log('Trigger: Heart rate ', hr, ' is lower than low threshold ', hrLowThreshold)
+            console.log('Trigger: Heart rate ', hr, ' is lower than low threshold ', hrLowThreshold);
             const thresholdsTriggered = {hrLowThreshold:hrLowThreshold, hr:hr, dateTime:date};
-            body.push(thresholdsTriggered) // Store in response
-            //TODO: SEND NOTIFICATION
-            
+            returnBody.push(hr); // Store in response
         }
         
         // Evaluate if high threshold is triggered
         if (hr > hrHighThreshold) {
-            console.log('Trigger: Heart rate ', hr, ' is higher than high threshold ', hrHighThreshold)
+            console.log('Trigger: Heart rate ', hr, ' is higher than high threshold ', hrHighThreshold);
             const thresholdsTriggered = {hrHighThreshold:hrHighThreshold, hr:hr, dateTime:date};
-            body.push(thresholdsTriggered) // Store in response
-            //TODO: SEND NOTIFICATION
-            
+            returnBody.push(hr); // Store in response
         }
     }
     
-    // If no thresholds broken
-    if (body.length == 0) {
+    // If body is empty, no notification, else, send a notification
+    if (returnBody.length == 0) {
         body.push("Successfully processed heart rate data analysis function");
+    } else {
+        var hrValues = "";
+        for (var i=0; i < returnBody.length; i++) {
+            if (hrValues == "") {
+                hrValues = returnBody[i];
+            } else {
+                hrValues = hrValues + ", " + returnBody[i];
+            }
+        }
+        
+        // Create a notification
+        let title = "Threshold Triggered";
+        let body = `Fe noticed HR value(s) of ${hrValues} which are outside of your set thresholds.`;
+        const message = {
+            notification : {title: title, body: body},
+            token : fcmToken,
+            data : {}
+        };
+        admin.messaging().send(message).then(response => {
+            console.log("Sent message");
+        }).catch(error => {
+            console.error(error);
+            console.log("Error sending message");
+        });
     }
     
-    return res.status(200).send(JSON.stringify(body));
+    return res.status(200).send(returnBody);
 });
 
 //MARK: Blood Oxygen Function
@@ -112,38 +132,38 @@ exports.heartRateDataAnalysis = functions.https.onRequest(async (req, res) => {
         // Get first name from request parameter
         const fName = req.query.fName;
         if (fName == null || fName == "") {
-            console.log("fName is empty.")
+            console.log("fName is empty.");
         }
-        console.log("First Name: ", fName)
+        console.log("First Name: ", fName);
         
-        // Get phoone number from request parameter
-        const phone = req.query.phone;
-        if (phone == null || phone == "") {
-            res.send("phone is empty. Cannot proceed with blood oxygen analysis")
+        // Get fcmToken from request parameter
+        const fcmToken = req.query.fcmToken;
+        if (fcmToken == null || fcmToken == "") {
+            res.send("fcmToken is empty. Cannot proceed with hr analysis");
         }
-        console.log("phone: ", phone)
+        console.log("fcmToken: ", fcmToken);
         
         // Get emergency phone from request parameter
         const emergencyPhone = req.query.emergencyPhone;
         if (emergencyPhone == null || emergencyPhone == "") {
-            console.log("emergencyPhone is empty. Cannot send message to emergency contact.")
+            console.log("emergencyPhone is empty. Cannot send message to emergency contact.");
         }
-        console.log("Emergency Phone: ", emergencyPhone)
+        console.log("Emergency Phone: ", emergencyPhone);
         
         // Get low threshold value or default 90 from request parameter
         var bldOxLowThreshold = req.query.bldOxLowThreshold;
         if (bldOxLowThreshold == null || bldOxLowThreshold == "") {
-            console.log("bldOxLowThreshold is empty. Using default 90")
-            bldOxLowThreshold = 90
+            console.log("bldOxLowThreshold is empty. Using default 90");
+            bldOxLowThreshold = 90;
         }
         
         // Get High Threshold Value or default 110 from request parameter
         var bldOxHighThreshold = req.query.bldOxHighThreshold;
         if (bldOxHighThreshold == null || bldOxHighThreshold == "") {
-            console.log("bldOxHighThreshold is empty. Using default 110")
-            bldOxHighThreshold = 110
+            console.log("bldOxHighThreshold is empty. Using default 110");
+            bldOxHighThreshold = 110;
         }
-        console.log("Low: ", bldOxLowThreshold, " High: ", bldOxHighThreshold)
+        console.log("Low: ", bldOxLowThreshold, " High: ", bldOxHighThreshold);
 
         
         // Evaluate the heart rate data, send notification if above/below threshold values
@@ -152,13 +172,13 @@ exports.heartRateDataAnalysis = functions.https.onRequest(async (req, res) => {
         
         // Verify data is not empty and parse to JSON data
         if (data == null || data == "") {
-            console.log("data is empty. Cannot proceed with blood oxygen analysis")
-            return res.status(404).send("data is empty. Cannot proceed with blood oxygen analysis")
+            console.log("data is empty. Cannot proceed with blood oxygen analysis");
+            return res.status(404).send("data is empty. Cannot proceed with blood oxygen analysis");
         } else {
             try {
                 jsonObject = JSON.parse(data);
             } catch (error) {
-                return res.status(404).send("Unable to process the json data.")
+                return res.status(404).send("Unable to process the json data.");
             }
         }
         console.log("data: ", jsonObject);
@@ -179,26 +199,47 @@ exports.heartRateDataAnalysis = functions.https.onRequest(async (req, res) => {
             
             // Evaluate if low threshold is triggered
             if (bldOx < bldOxLowThreshold) {
-                console.log('Trigger: Blood oxygen ', bldOx, ' is lower than low threshold ', bldOxLowThreshold)
+                console.log('Trigger: Blood oxygen ', bldOx, ' is lower than low threshold ', bldOxLowThreshold);
                 const thresholdsTriggered = {bldOxLowThreshold:bldOxLowThreshold, bloodOxygen:bldOx, dateTime:date};
-                body.push(thresholdsTriggered) // Store in response
-                //TODO: SEND NOTIFICATION
-                
+                body.push(thresholdsTriggered); // Store in response
             }
             
             // Evaluate if high threshold is triggered
             if (bldOx > bldOxHighThreshold) {
-                console.log('Trigger: Blood oxygen ', bldOx, ' is higher than high threshold ', bldOxHighThreshold)
+                console.log('Trigger: Blood oxygen ', bldOx, ' is higher than high threshold ', bldOxHighThreshold);
                 const thresholdsTriggered = {bldOxHighThreshold:bldOxHighThreshold, bloodOxygen:bldOx, dateTime:date};
-                body.push(thresholdsTriggered) // Store in response
-                //TODO: SEND NOTIFICATION
-                
+                body.push(thresholdsTriggered); // Store in response
             }
         }
         
         // If no thresholds broken
         if (body.length == 0) {
             body.push("Successfully processed blood oxygen data analysis function");
+        } else {
+            
+            var bldOxValues = "";
+            for (var i=0; i < body.length; i++) {
+                if (bldOxValues == "") {
+                    bldOxValues = returnBody[i];
+                } else {
+                    bldOxValues = bldOxValues + ", " + returnBody[i];
+                }
+            }
+            // Create a notification
+            let title = "Threshold Triggered";
+            let body = `Fe noticed Blood Oxygen value(s) of ${bldOxValues} which are outside of your set thresholds.`;
+            const message = {
+                notification : {title: title, body: body},
+                token : fcmToken,
+                data : {}
+            };
+            
+            admin.messaging().send(message).then(response => {
+                console.log("Sent message");
+            }).catch(error => {
+                console.error(error);
+                console.log("Error sending message");
+            });
         }
         
         return res.status(200).send(JSON.stringify(body));

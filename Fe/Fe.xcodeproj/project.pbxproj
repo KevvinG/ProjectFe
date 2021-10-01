@@ -208,6 +208,8 @@
 		CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectKeys.swift; sourceTree = "<group>"; };
 		CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDocumentViewController.swift; sourceTree = "<group>"; };
+		CEC690C92704ADD5003351F9 /* Fe-MiniDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fe-MiniDebug.entitlements"; sourceTree = "<group>"; };
+		CEC690CA2704B309003351F9 /* FeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeRelease.entitlements; sourceTree = "<group>"; };
 		CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKeyExtension.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2544EF261F22E800069308 /* HKAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKAccessObject.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 		CE01C2D725D438D100A08E2D /* Fe */ = {
 			isa = PBXGroup;
 			children = (
+				CEC690CA2704B309003351F9 /* FeRelease.entitlements */,
 				CE082720262A407A00558A32 /* Presentation Layer */,
 				CE082558261FAE4100558A32 /* Interaction Layer */,
 				CE6D7AC22607AEF800835756 /* Business Layer */,
@@ -613,6 +616,7 @@
 		EF97E99625E6F3760050F8B5 /* Fe-Mini */ = {
 			isa = PBXGroup;
 			children = (
+				CEC690C92704ADD5003351F9 /* Fe-MiniDebug.entitlements */,
 				EF97E99725E6F3760050F8B5 /* Interface.storyboard */,
 				EF97E99A25E6F37A0050F8B5 /* Assets.xcassets */,
 				EF97E99C25E6F37A0050F8B5 /* Info.plist */,
@@ -1383,7 +1387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Fe/Fe.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Fe/FeRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X46PTT568J;
 				INFOPLIST_FILE = Fe/Info.plist;
@@ -1623,6 +1627,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Fe-Mini/Fe-MiniDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X46PTT568J;
@@ -1693,7 +1698,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Fe-Mini Extension/Fe-Mini Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				INFOPLIST_FILE = "Fe-Mini Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

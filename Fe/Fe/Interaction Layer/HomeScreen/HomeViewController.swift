@@ -48,6 +48,7 @@ class HomeViewController: UIViewController {
         FBObj.getUserName(completion: { name in
             self.lblTitle.text = "Welcome back, \(name)!"
         })
+        
         FBObj.checkIfNewUser() // Check if user already exists and add new user if not.
         
         // Set off each method at start to fill UI
@@ -59,9 +60,8 @@ class HomeViewController: UIViewController {
         let timer = CustomTimer { (seconds) in
             
             if seconds % 300 == 0 { // Fire every 5 minutes (300 seconds)
-                //TODO: Finish data analysis Firebase Function before enabling
-//                self.DALogic.analyzeHeartRateData()
-//                self.DALogic.analyzeBloodOxygenData()
+                self.DALogic.analyzeHeartRateData()
+                self.DALogic.analyzeBloodOxygenData()
             }
             
             if seconds % 60 == 0 { // Fire every 60 seconds

@@ -59,7 +59,7 @@ class FirebaseAccessObject {
                         //print("\(document.documentID) => \(document.data())")
                         var userData = Dictionary<String, String>()
                         userData["fName"] = document.get("fName") as? String
-                        userData["phone"] = document.get("phone") as? String
+                        userData["fcmToken"] = document.get("fcmToken") as? String
                         userData["emergencyPhone"] = document.get("emergencyPhone") as? String
                         userData["hrLowThreshold"] = document.get("hrLowThreshold") as? String
                         userData["hrHighThreshold"] = document.get("hrHighThreshold") as? String
@@ -97,10 +97,20 @@ class FirebaseAccessObject {
                 print("Error getting documents: \(err)")
             } else {
                 if querySnapshot!.documents.count == 0 {
-                    //print("Adding new user.")
                     self.addNewUser()
                 } else {
-                    //print("This user already exists.")
+                    // Verify Token is up to date
+                    self.getUserMessagingToken(completion: { token in
+                        for document in querySnapshot!.documents {
+                            let currentToken = document.get("fcmToken") as! String
+                            if token != currentToken {
+                                let ref = document.reference
+                                ref.updateData([
+                                    "fcmToken": token
+                                ])
+                            }
+                        }
+                    })
                 }
             }
         }
@@ -138,39 +148,42 @@ class FirebaseAccessObject {
      -------------------------------------------------------------------*/
     func addNewUser() {
         let user = Auth.auth().currentUser
-        db.collection("users").addDocument(data: [
-            "uid": user!.uid,
-            "fName": "",
-            "lName": "",
-            "age": "",
-            "email": user!.email!,
-            "password": "",
-            "street1": "",
-            "street2": "",
-            "city": "",
-            "postal": "",
-            "province": "",
-            "country": "",
-            "existingSymptoms": "",
-            "doctorPhone": "",
-            "emergencyName": "",
-            "emergencyPhone": "",
-            "hrLowThreshold": "40",
-            "hrHighThreshold": "160",
-            "bldOxLowThreshold": "90",
-            "bldOxHighThreshold": "110"
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                //print("Document added with ID: \(ref!.documentID)")
+        
+        // Get Phone Token, then create new user
+        getUserMessagingToken(completion: { token in
+            self.db.collection("users").addDocument(data: [
+                "uid": user!.uid,
+                "fName": "",
+                "lName": "",
+                "age": "",
+                "email": user!.email!,
+                "password": "",
+                "street1": "",
+                "street2": "",
+                "city": "",
+                "postal": "",
+                "province": "",
+                "country": "",
+                "existingSymptoms": "",
+                "doctorPhone": "",
+                "emergencyName": "",
+                "emergencyPhone": "",
+                "hrLowThreshold": "40",
+                "hrHighThreshold": "100",
+                "bldOxLowThreshold": "90",
+                "bldOxHighThreshold": "110",
+                "fcmToken": token
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                }
             }
-        }
+        })
     }
     
     /*--------------------------------------------------------------------
      //MARK: getUserHrThresholds() -> Dictionary
-     - Description: fetches hr thresholds from Firebase.
+     - Description: Fetches hr thresholds from Firebase.
      -------------------------------------------------------------------*/
     func getUserHrThresholds(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
         var dataDict = [String:String]()
@@ -225,7 +238,7 @@ class FirebaseAccessObject {
     
     /*--------------------------------------------------------------------
      //MARK: getUserBldOxThresholds() -> Dictionary
-     - Description: fetches hr thresholds from Firebase.
+     - Description: Fetches hr thresholds from Firebase.
      -------------------------------------------------------------------*/
     func getUserBldOxThresholds(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
         var dataDict = [String:String]()
@@ -279,6 +292,46 @@ class FirebaseAccessObject {
     }
     
     /*--------------------------------------------------------------------
+     //MARK: getUserMessagingToken()
+     - Description: Returns the user FCM Token.
+     -------------------------------------------------------------------*/
+    func getUserMessagingToken(completion: @escaping (_ fcmToken: String) -> Void) {
+        Messaging.messaging().token { token, error in
+            if let error = error {
+            print("Error fetching FCM registration token: \(error)")
+            } else if let token = token {
+              completion(token)
+            }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: updateUserMessagingToken(token)
+     - Description: Returns the user FCM Token.
+     -------------------------------------------------------------------*/
+    func updateUserMessagingToken(fcmToken: String) {
+        let user = Auth.auth().currentUser
+        let userRef = db.collection("users").whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+        userRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count == 0 {
+                    print("No user found.")
+                    return
+                } else {
+                    for document in querySnapshot!.documents {
+                        let ref = document.reference
+                        ref.updateData([
+                            "fcmToken": fcmToken,
+                        ])
+                    }
+                }
+            }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: uploadDocument()
      - Description: Logic to upload image to Firebase.
      -------------------------------------------------------------------*/
@@ -319,7 +372,6 @@ class FirebaseAccessObject {
                 print("Error uploading picture: \(error.localizedDescription)")
                 err += 1
             }
-            // print("Put is complete and i got this back: \(String(describing: downloadMetadata))")
         }
         if err == 0 {
             return true
@@ -336,20 +388,17 @@ class FirebaseAccessObject {
         let storage = Storage.storage()
         let storageRef = storage.reference().child(doc!.location)
 
-        // Delete the file
+        // Delete the file or output error
         storageRef.delete { error in
             if let error = error {
                 print("There was an error deleting the document: \(error)")
-            } else {
-                // File deleted successfully
-                // print("File Deleted Successfully.")
             }
         }
     }
     
     /*--------------------------------------------------------------------
      //MARK: iterateDocuments()
-     - Description: returns number of pictures uploaded.
+     - Description: Returns number of pictures uploaded.
      -------------------------------------------------------------------*/
     func iterateDocuments(completion: @escaping (_ docArray: [Document]) -> Void) {
         var docArray = [Document]()
@@ -363,7 +412,6 @@ class FirebaseAccessObject {
                 print("There was an error retrieving list of emails: ", error)
             }
             for prefix in result.prefixes {
-                // print(prefix.name)
                 let storageRef = storage.reference().child("\((user?.email!)!)/\(prefix.name)")
                 
                 storageRef.listAll { (result, error) in
@@ -371,7 +419,6 @@ class FirebaseAccessObject {
                         print("There was an error retrieving files in date folder: ", error)
                     }
                     for item in result.items {
-//                        print(item.name)
                         
                         item.getMetadata { metadata, error in
                             if let error = error {
@@ -455,7 +502,6 @@ class FirebaseAccessObject {
                         print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
                     } else {
                         for document in querySnapshot!.documents {
-                            //print("\(document.documentID) => \(document.data())")
                             dataDict["doctorPhone"] = document.data()["doctorPhone"] as? String
                             dataDict["emergencyName"] = document.data()["emergencyName"] as? String
                             dataDict["emergencyPhone"] = document.data()["emergencyPhone"] as? String
@@ -468,7 +514,7 @@ class FirebaseAccessObject {
     
     /*--------------------------------------------------------------------
      //MARK: fetchDoctorPhoneNumber()
-     - Description: returns the doctor's phone number for call function.
+     - Description: Returns the doctor's phone number for call function.
      -------------------------------------------------------------------*/
     func fetchDoctorPhoneNumber(completion: @escaping (_ doctorPhone: String) -> Void) {
         var doctorPhone =  String()
@@ -484,7 +530,6 @@ class FirebaseAccessObject {
                         print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
                     } else {
                         for document in querySnapshot!.documents {
-                            //print("\(document.documentID) => \(document.data())")
                             doctorPhone = document.data()["doctorPhone"] as? String ?? ""
                         }
                     }
@@ -503,6 +548,7 @@ class FirebaseAccessObject {
             if let error = error {
                 print("There was an error getting the user: \(error)")
             } else {
+                //TODO: STOP TIMER THAT WAS SET UP IN HOME VIEW CONTROLLER
                 self.signOut()
             }
         }
