@@ -93,18 +93,23 @@ class HeartRateLogic {
                     bpmAvg = sum / count
                 }
                 
-                completion(dateArray, bpmArray, bpmMax, bpmMin, bpmAvg)
+                completion(newDateArray, bpmArray, bpmMax, bpmMin, bpmAvg)
             }
         })
     }
     
     /*--------------------------------------------------------------------
      //MARK: fetchHrWithRangeCD()
-     - Description: Obtains heart rate values from Health Store for Chart.
+     - Description: Obtains heart rate values from CoreData for Chart.
      -------------------------------------------------------------------*/
     func fetchHrWithRangeCD() {
         
     }
+    
+    /*--------------------------------------------------------------------
+     //MARK: convertDate()
+     - Description: Converts the date stored in the database to one more user readable
+     -------------------------------------------------------------------*/
     
     func convertDate(_ date: String, dateRange: String) -> String {
 

@@ -40,7 +40,7 @@ class AltitudeViewController: UIViewController {
         fetchPressure()
 //        fetchElevation()
         
-        AltLogic.fetchElevationWithRange(dateRange : "day", completion: { [self] dateArray, elevationArray in
+        AltLogic.fetchElevationWithRange(dateRange : "week", completion: { [self] dateArray, elevationArray in
             elevationLineChart.data = AltLogic.chartData(dataPoints: dateArray, values: elevationArray)
             elevationLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
             elevationLineChart.xAxis.granularity = 0.05
@@ -51,7 +51,7 @@ class AltitudeViewController: UIViewController {
             elevationLineChart.xAxis.labelCount = 4
         })
         
-        AltLogic.fetchAirPressureWithRange(dateRange : "day", completion: { [self] dateArray, airPressureArray in
+        AltLogic.fetchAirPressureWithRange(dateRange : "week", completion: { [self] dateArray, airPressureArray in
             apLineChart.data = AltLogic.chartData(dataPoints: dateArray, values: airPressureArray)
             apLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
             apLineChart.xAxis.granularity = 0.05

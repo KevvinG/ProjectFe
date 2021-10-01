@@ -45,13 +45,69 @@ class BloodOxygenViewController: UIViewController {
             self.lblCurrentBldOx.text = "\(String(bloodOxValue)) %"
         })
         
-        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin in
+        initChart()
+        
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapChart))
+        self.lineChartView.addGestureRecognizer(gesture)
+        
+//        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin in
+//            lineChartView.data = BldOxObj.chartData(dataPoints: dateArray, values: bldOxArray)
+//            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+//            lineChartView.xAxis.granularity = 1
+//            self.lblMaxBldOx.text = "\(Int(bldOxArray.max() ?? 0)) %"
+//            self.lblMinBldOx.text = "\(Int(bldOxArray.min() ?? 0)) %"
+//        })
+    }
+    
+    @objc func tapChart(sender : UITapGestureRecognizer) {
+        print("tapped")
+    }
+    
+    func initChart() {
+        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg in
+            
             lineChartView.data = BldOxObj.chartData(dataPoints: dateArray, values: bldOxArray)
             lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
-            lineChartView.xAxis.granularity = 1
-            self.lblMaxBldOx.text = "\(Int(bldOxArray.max() ?? 0)) %"
-            self.lblMinBldOx.text = "\(Int(bldOxArray.min() ?? 0)) %"
+            lineChartView.xAxis.granularity = 0.05
+            
+            lineChartView.xAxis.labelPosition = .bottom
+            lineChartView.xAxis.drawGridLinesEnabled = false
+            //lineChartView.xAxis.labelRotationAngle = -30
+            lineChartView.xAxis.setLabelCount(6, force: false)
+            //lineChartView.backgroundColor = .systemRed
+            
+            //lineChartView.data?.setDrawValues(false)
+            lineChartView.legend.enabled = false
+            
+            lineChartView.animate(xAxisDuration: 2)
+            
+            self.lblAvgBldOx.text = "\(bldOxAvg) %"
+            self.lblMaxBldOx.text = "\(bldOxMax) %"
+            self.lblMinBldOx.text = "\(bldOxMin) %"
         })
+    }
+    
+    func populateChart(dateRange: String) {
+        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg in
+            
+            lineChartView.data = BldOxObj.chartData(dataPoints: dateArray, values: bldOxArray)
+            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+            lineChartView.xAxis.granularity = 0.05
+            
+            lineChartView.xAxis.labelPosition = .bottom
+            lineChartView.xAxis.drawGridLinesEnabled = false
+            //lineChartView.xAxis.labelRotationAngle = -30
+            lineChartView.xAxis.setLabelCount(6, force: false)
+            //lineChartView.backgroundColor = .systemRed
+            
+            self.lblAvgBldOx.text = "\(bldOxAvg) %"
+            self.lblMaxBldOx.text = "\(bldOxMax) %"
+            self.lblMinBldOx.text = "\(bldOxMin) %"
+        })
+    }
+    
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        print(entry)
     }
     
     /*--------------------------------------------------------------------

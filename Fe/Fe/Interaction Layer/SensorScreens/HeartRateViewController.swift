@@ -44,6 +44,9 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         self.lblCurrentHR.text = "\(String(HRLogic.fetchLatestHrReading())) BPM"
         
         initChart()
+        
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapChart))
+        self.lineChartView.addGestureRecognizer(gesture)
 
 //        HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMin, bpmAvg in
 //
@@ -60,7 +63,9 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
 //            self.lblMinHR.text = "\(bpmMin) BPM"
        // })
     }
-    
+    @objc func tapChart(sender : UITapGestureRecognizer) {
+        print("tapped")
+    }
     func initChart() {
         HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMin, bpmAvg in
             
@@ -70,7 +75,7 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
             
             lineChartView.xAxis.labelPosition = .bottom
             lineChartView.xAxis.drawGridLinesEnabled = false
-            lineChartView.xAxis.labelRotationAngle = -30
+            //lineChartView.xAxis.labelRotationAngle = -30
             lineChartView.xAxis.setLabelCount(6, force: false)
             //lineChartView.backgroundColor = .systemRed
             
@@ -95,7 +100,7 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
             lineChartView.xAxis.drawGridLinesEnabled = false
             //lineChartView.xAxis.labelRotationAngle = -30
             lineChartView.xAxis.labelCount = 4
-            lineChartView.backgroundColor = .systemRed
+            //lineChartView.backgroundColor = .systemRed
             
             self.lblAvgHR.text = "\(bpmAvg) BPM"
             self.lblMaxHR.text = "\(bpmMax) BPM"
@@ -104,7 +109,7 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        //print(entry)
+        print(entry)
     }
     
     

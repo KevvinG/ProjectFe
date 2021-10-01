@@ -59,17 +59,67 @@ class BloodOxygenLogic {
      //MARK: fetchBloodOxWithRange()
      - Description: Obtains blood oxygen values from Health Store for Chart.
      -------------------------------------------------------------------*/
-    func fetchBloodOxWithRange(dateRange: String, completion: @escaping (_ dateArray: [String], _ bldOxArray: [Double], _ bldOxMax: Int, _ bldOxMin: Int) -> Void) {
+    func fetchBloodOxWithRange(dateRange: String, completion: @escaping (_ dateArray: [String], _ bldOxArray: [Double], _ bldOxMax: Int, _ bldOxMin: Int, _ bldOxAvg: Int) -> Void) {
         HKObj.getBloodOxChartData(dateRange: dateRange, completion: { bldOxDict in
             DispatchQueue.main.async {
-                let dateArray = Array(bldOxDict.keys)
-                let bldOxArray = Array(bldOxDict.values)
+                //let dateArray = Array(bldOxDict.keys)
+                //let bldOxArray = Array(bldOxDict.values)
+                var outputDict = bldOxDict
+                let outputCount = outputDict.count
+                var outputSpacing = outputCount/12
+                if outputSpacing == 0 {
+                    outputSpacing = 1
+                }
+                var i=1
+                for element in outputDict {
+                    if i % outputSpacing != 0 {
+                        outputDict.removeValue(forKey: element.key)
+                        print("Item removed")
+                    }
+                    i+=1
+                    print(i)
+                }
+                let dateArray = Array(outputDict.keys)
+                var outputDates : [String] = []
+                for element in dateArray {
+                    outputDates.append(self.convertDate(element, dateRange: dateRange))
+                }
+                let bldOxArray = Array(outputDict.values)
+                
+                let sum = Int(bldOxArray.reduce(0, +))
+                let count = bldOxArray.count
+                var bldOxAvg = 0
+                if count > 0 {
+                    bldOxAvg = sum / count
+                }
                 let bldOxMax = Int(bldOxArray.max() ?? 0)
                 let bldOxMin = Int(bldOxArray.min() ?? 0)
-                completion(dateArray, bldOxArray, bldOxMax, bldOxMin)
+                completion(dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg)
             }
         })
     }
+    
+    /*--------------------------------------------------------------------
+     //MARK: convertDate()
+     - Description: Converts the date stored in the database to one more user readable
+     -------------------------------------------------------------------*/
+    
+    func convertDate(_ date: String, dateRange: String) -> String {
+
+        let dateFormatter = DateFormatter()
+        let formatDate = dateFormatter.date(from: date)
+
+        // Set Date Format
+        if dateRange == "day"{
+            dateFormatter.dateFormat = "HH:mm"
+        }else if dateRange == "month"{
+            dateFormatter.dateFormat = "dd/MM/YY"
+        }
+        
+        let currentDate = Date()
+        // Convert Date to String
+        return dateFormatter.string(from: formatDate ?? currentDate)
+        }
     
     /*--------------------------------------------------------------------
      //MARK: chartData()
