@@ -42,6 +42,7 @@ class HomeViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        //HSLogic.homeScreenSetup() // Setup options once logged in.
         
         // Set Name at top of UI
         FBObj.getUserName(completion: { name in

@@ -241,32 +241,32 @@ exports.heartRateDataAnalysis = functions.https.onRequest(async (req, res) => {
         }
 });
 
-//MARK: Med Reminder Function
-exports.medicationReminder = functions.https.onRequest(async (req, res) => {
-    var returnBody = [];
-    
-    // Get fcmToken from request parameter
-    const fcmToken = req.query.fcmToken;
-    if (fcmToken == null || fcmToken == "") {
-        returnBody.push("fcmToken is empty. Cannot send Medication Reminder Notification");
-        return res.status(400).send(returnBody);
-    }
-    
-    // Create a notification
-    let title = "Medication Reminder";
-    let body = `It is now 8:00 AM. Have you taken your medication today?`;
-    const message = {
-        notification : {title: title, body: body},
-        token : fcmToken,
-        data : {}
-    };
-    
-    admin.messaging().send(message).then(response => {
-        returnBody.push("Successfully sent medication reminder push notification");
-        return res.status(200).send(returnBody);
-    }).catch(error => {
-        returnBody.push(`Error sending medication reminder push notification: ${error}`);
-        return res.status(400).send(returnBody);
-    });
-});
+//MARK: Med Reminder Function (NOT NEEDED ANYMORE)
+//exports.medicationReminder = functions.https.onRequest(async (req, res) => {
+//    var returnBody = [];
+//
+//    // Get fcmToken from request parameter
+//    const fcmToken = req.query.fcmToken;
+//    if (fcmToken == null || fcmToken == "") {
+//        returnBody.push("fcmToken is empty. Cannot send Medication Reminder Notification");
+//        return res.status(400).send(returnBody);
+//    }
+//
+//    // Create a notification
+//    let title = "Medication Reminder";
+//    let body = `It is now 8:00 AM. Have you taken your medication today?`;
+//    const message = {
+//        notification : {title: title, body: body},
+//        token : fcmToken,
+//        data : {}
+//    };
+//
+//    admin.messaging().send(message).then(response => {
+//        returnBody.push("Successfully sent medication reminder push notification");
+//        return res.status(200).send(returnBody);
+//    }).catch(error => {
+//        returnBody.push(`Error sending medication reminder push notification: ${error}`);
+//        return res.status(400).send(returnBody);
+//    });
+//});
    

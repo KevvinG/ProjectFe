@@ -19,4 +19,12 @@ class HomeScreenLogic {
     let FBObj = FirebaseAccessObject()
     let CDObj = CoreDataAccessObject()
     let phoneObj = PhoneSensorObject()
+    
+    /*--------------------------------------------------------------------
+     //MARK: homeScreenSetup()
+     - Description: Set up home screen options once logged in.
+     -------------------------------------------------------------------*/
+    func homeScreenSetup() {
+        
+    }
 }

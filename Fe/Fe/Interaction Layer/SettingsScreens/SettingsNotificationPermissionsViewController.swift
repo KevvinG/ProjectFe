@@ -14,6 +14,9 @@ import UIKit
  -----------------------------------------------------------------------*/
 class SettingsNotificationPermissionsViewController: UIViewController {
     
+    // Class Variables
+    let NotificationLogic = NotificationPermissionsLogic()
+    
     // UI Variables
     @IBOutlet var swUnusualSensor: UISwitch!
     @IBOutlet var swMedicationReminder: UISwitch!
@@ -24,6 +27,7 @@ class SettingsNotificationPermissionsViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        swMedicationReminder.setOn(NotificationLogic.setMedicationNotificationSwitchState(), animated: false) 
     }
     
     /*--------------------------------------------------------------------
@@ -45,10 +49,14 @@ class SettingsNotificationPermissionsViewController: UIViewController {
      reminder Permission.
      -------------------------------------------------------------------*/
     @IBAction func swMedicationReminderStateChanged(_ sender: Any) {
-        if swUnusualSensor.isOn {
-            print("Notifications for Daily Medication Reminder Switch is on.")
+        if swMedicationReminder.isOn {
+            print("Med Reminder On - Scheduled task")
+            NotificationLogic.updateMedicationNotificationSwitchState(value: true)
+            NotificationLogic.scheduleMedicationReminder()
         } else {
-            print("Notifications for Daily Medication Reminder Switch is off.")
+            print("Med Reminder Off - Removed all tasks")
+            NotificationLogic.updateMedicationNotificationSwitchState(value: false)
+            NotificationLogic.cancelAllScheduledNotifications()
         }
     }
     
