@@ -22,7 +22,6 @@ class HomeViewController: UIViewController {
     let AltObj = AltitudeLogic()
     let HSLogic = HomeScreenLogic()
     let DALogic = DataAnalysisLogic()
-    var counter = 0
     
     // UI Variables
     @IBOutlet var lblTitle: UILabel!

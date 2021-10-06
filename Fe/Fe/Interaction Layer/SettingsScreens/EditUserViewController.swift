@@ -44,7 +44,7 @@ class EditUserViewController: UIViewController {
         self.getUserData()
         
         // Tap Gesture to close the onscreen keyboard
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
     
