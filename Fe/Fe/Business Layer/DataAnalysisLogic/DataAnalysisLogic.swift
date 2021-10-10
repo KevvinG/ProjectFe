@@ -50,6 +50,7 @@ class DataAnalysisLogic {
                 
                 // Verify string is not null before proceeding
                 if jsonString != nil {
+                   //print(jsonString!)
                     
                     // Create url string dynamically
                     var components = URLComponents()
@@ -87,6 +88,7 @@ class DataAnalysisLogic {
                             print("HR call Server error!")
                             return
                         }
+                        //print("HR API response: \(response)")
                     }.resume()
                 }
             } else {
@@ -119,6 +121,7 @@ class DataAnalysisLogic {
                 
                 // Verify string is not null before proceeding
                 if jsonString != nil {
+                    //print(jsonString)
                     
                     // Create url string dynamically
                     var components = URLComponents()
@@ -156,6 +159,7 @@ class DataAnalysisLogic {
                             print("Bld Ox Call Server error!")
                             return
                         }
+                        //print("Bld Ox API response: \(response)")
                     }.resume()
                 }
             } else {
