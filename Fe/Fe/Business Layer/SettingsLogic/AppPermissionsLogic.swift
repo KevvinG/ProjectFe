@@ -7,11 +7,3 @@
 
 //MARK: Imports
 import Foundation
-
-/*------------------------------------------------------------------------
- //MARK: Class AppPermissionsLogic
- - Description: Holds logic for the AppPermissions Screen.
- -----------------------------------------------------------------------*/
-class AppPermissionsLogic {
-    
-}

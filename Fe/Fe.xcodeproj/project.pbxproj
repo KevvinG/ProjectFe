@@ -60,11 +60,9 @@
 		CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */; };
 		CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */; };
 		CE6D7B072607E83000835756 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7B062607E83000835756 /* Document.swift */; };
-		CE9DD3432680E0C500D9D026 /* UIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DD3422680E0C500D9D026 /* UIKeys.swift */; };
+		CE9DD3432680E0C500D9D026 /* ProjectKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */; };
 		CEA4EBE2266A8D4100144C5F /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */; };
 		CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
-		CEBEB3E3270E259B00576F3E /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3E2270E259B00576F3E /* UserDefaults+Extension.swift */; };
-		CEBEB3E5270E2E0F00576F3E /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3E4270E2E0F00576F3E /* UserDefaultKeys.swift */; };
 		CEE9E4BE26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
@@ -207,11 +205,9 @@
 		CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAccessObject.swift; sourceTree = "<group>"; };
 		CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentviewViewController.swift; sourceTree = "<group>"; };
 		CE6D7B062607E83000835756 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		CE9DD3422680E0C500D9D026 /* UIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKeys.swift; sourceTree = "<group>"; };
+		CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectKeys.swift; sourceTree = "<group>"; };
 		CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDocumentViewController.swift; sourceTree = "<group>"; };
-		CEBEB3E2270E259B00576F3E /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
-		CEBEB3E4270E2E0F00576F3E /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		CEC690C92704ADD5003351F9 /* Fe-MiniDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fe-MiniDebug.entitlements"; sourceTree = "<group>"; };
 		CEC690CA2704B309003351F9 /* FeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeRelease.entitlements; sourceTree = "<group>"; };
 		CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKeyExtension.swift; sourceTree = "<group>"; };
@@ -574,7 +570,6 @@
 				EF2544EF261F22E800069308 /* HKAccessObject.swift */,
 				EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */,
 				CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */,
-				CEBEB3E2270E259B00576F3E /* UserDefaults+Extension.swift */,
 			);
 			path = "Persistance Layer";
 			sourceTree = "<group>";
@@ -583,18 +578,17 @@
 			isa = PBXGroup;
 			children = (
 				CE5E232F26EB8F1B00C0360D /* Themes */,
-				CE9DD33F2680DD9F00D9D026 /* Keys */,
+				CE9DD33F2680DD9F00D9D026 /* Strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		CE9DD33F2680DD9F00D9D026 /* Keys */ = {
+		CE9DD33F2680DD9F00D9D026 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
-				CE9DD3422680E0C500D9D026 /* UIKeys.swift */,
-				CEBEB3E4270E2E0F00576F3E /* UserDefaultKeys.swift */,
+				CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */,
 			);
-			path = Keys;
+			path = Strings;
 			sourceTree = "<group>";
 		};
 		CEE9E4BB26EC3FE3001BA3C8 /* Device Layer */ = {
@@ -987,12 +981,11 @@
 				CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */,
 				CE62B2DB25E8870900AA9665 /* BloodOxygenViewController.swift in Sources */,
 				EFF9558F262B56FE0013E006 /* AltitudeLogic.swift in Sources */,
-				CEBEB3E5270E2E0F00576F3E /* UserDefaultKeys.swift in Sources */,
 				EFF955A7262B574E0013E006 /* EditUserViewLogic.swift in Sources */,
 				CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */,
 				EFF955AE262B575B0013E006 /* AppPermissionsLogic.swift in Sources */,
 				EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */,
-				CE9DD3432680E0C500D9D026 /* UIKeys.swift in Sources */,
+				CE9DD3432680E0C500D9D026 /* ProjectKeys.swift in Sources */,
 				CEA4EBE2266A8D4100144C5F /* CustomTimer.swift in Sources */,
 				CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */,
 				CE07433626699CB000B97853 /* HeartRateData+CoreDataProperties.swift in Sources */,
@@ -1035,7 +1028,6 @@
 				CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 				CE62B2A125E8566100AA9665 /* Symptom2BreathViewController.swift in Sources */,
 				CE4D26F6264570B6004629CC /* PhoneSensorObject.swift in Sources */,
-				CEBEB3E3270E259B00576F3E /* UserDefaults+Extension.swift in Sources */,
 				CE07433C26699CB000B97853 /* ElevationData+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
