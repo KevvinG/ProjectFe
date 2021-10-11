@@ -46,51 +46,52 @@ enum UIKeys: String {
     case hrMinimum
     case hrLowThreshold
     case hrHighThreshold
-    case hrInfoDescription = "Anemia can cause you to have an irregular heartbeat.   When you are anemic, your heart may have to work harder to pump more blood due to a lack of oxygen in the body.   You may feel your heart speed up, or feel like it stops momentarily. These are the irregularities we are looking for."
+    case hrInfoDescription
     
     //MARK: Blood Oxygen Detail Screen
-    case bldOxTitle = "Blood Oxygen Data"
-    case bldOxCurrent = "Today Current Blood Ox:"
-    case bldOxAverage = "Today Average Blood Ox:"
-    case bldOxMaximum = "Today Maximum Blood Ox:"
-    case bldOxMinimum = "Today Minimum Blood Ox:"
-    case bldOxLowThreshold = "Blood Ox Low Threshold:"
-    case bldOxHighThreshold = "Blood Ox High Threshold:"
+    case bldOxTitle
+    case bldOxCurrent
+    case bldOxAverage
+    case bldOxMaximum
+    case bldOxMinimum
+    case bldOxLowThreshold
+    case bldOxHighThreshold
     
     //MARK: Altitude Detail Screen
-    case altTitle = "Altitude and Pressure Data"
-    case altCurrent = "Current Pressure:"
-    case altElevation = "Current Elevation:"
-    case altElevationSubtitle = "Elevation Past 7 Days"
-    case altPressureSubtitle = "Air Pressure Past 7 Days"
-    case altDescription = "People can experience headaches or migraines when the barometric pressure is 5 hPa lower than the previous day.  Air pressure drops as you elevation increases.   Symptoms relating to headaches can be:  - Nausea and vomiting - Increased sensitivity to light - Numbness in the face or neck - Pain in or around your temples  As your elevation increases, there are fewer oxygen particles in the air.  This reduction in oxygen can reduce your blood oxygen saturation if your body is not acclimated to the change in elevatioon.  "
-    case altDescriptionChart1 = "- Sea Level: 20.9% - 1000M: 20.1% - 2000M: 19.4% - 3000M: 18.6% - 4000M: 17.9%"
-    case altDescriptionChart2 = "- 5000M: 17.3% - 6000M: 16.6% - 7000M: 16.0% - 8000M: 15.4% - 9000M: 14.8%"
+    case altTitle
+    case altCurrent
+    case altElevation
+    case altElevationSubtitle
+    case altPressureSubtitle
+    case altDescription
+    case altDescriptionChart1
+    case altDescriptionChart2
     
     //MARK: Symptoms Screen
-    case sympQuestion1 = "Are you feeling dizzy?"
-    case sympQuestion2 = "Are you feeling shortness of breath?"
-    case sympQuestion3 = "Have you noticed blood in your stool?"
-    case sympQuestion4 = "Have you noticed your stool being black?"
-    case sympTitleClear = "You are clear of some of the usual symptoms, but if you still don't feel well, consider contacting your doctor to make an appointment"
-    case sympBtnCall = "Call Doctor"
-    case sympTitleConcern = "Consider contacting your doctor to schedule an appointment"
+    case sympQuestion1
+    case sympQuestion2
+    case sympQuestion3
+    case sympQuestion4
+    case sympTitleClear
+    case sympBtnCall
+    case sympTitleConcern
     
     //MARK: Settings Screen
-    case settingsTitleDrPhone = "Doctor Phone Number"
-    case settingsTitleEmergContact = "Emergency Contact"
-    case settingsBtnUpdateEmergContact = "Update Emergency Info"
-    case settingsBtnEditAccount = "Edit Account Details"
-    case settingsBtnAppPermissions = "Application Permissions"
-    case settingsBtnNotificationSettings = "Notification Settings"
-    case settingsBtnDeleteData = "Delete Data"
-    case settingsBtnDeleteAccount = "Delete Account"
+    case settingsTitleDrPhone
+    case settingsTitleEmergContact
+    case settingsBtnUpdateEmergContact
+    case settingsBtnEditAccount
+    case settingsBtnAppPermissions
+    case settingsBtnNotificationSettings
+    case settingsBtnDeleteData
+    case settingsBtnDeleteAccount
     
     //MARK: Edit Account Screen
     
     //MARK: App Permissions Screen
     
     //MARK: Notification Settings Screen
+    case settingsNotifSensorTitle
     
     //MARK: Alert Box Strings
     
@@ -150,67 +151,69 @@ enum UIKeys: String {
         case .hrHighThreshold:
             return "Heart Rate High Threshold:"
         case .hrInfoDescription:
-            return ""
+            return "Anemia can cause you to have an irregular heartbeat.   When you are anemic, your heart may have to work harder to pump more blood due to a lack of oxygen in the body.   You may feel your heart speed up, or feel like it stops momentarily. These are the irregularities we are looking for."
         case .bldOxTitle:
-            return ""
+            return "Blood Oxygen Data"
         case .bldOxCurrent:
-            return ""
+            return "Today Current Blood Ox:"
         case .bldOxAverage:
-            return ""
+            return "Today Average Blood Ox:"
         case .bldOxMaximum:
-            return ""
+            return "Today Maximum Blood Ox:"
         case .bldOxMinimum:
-            return ""
+            return "Today Minimum Blood Ox:"
         case .bldOxLowThreshold:
-            return ""
+            return "Blood Ox Low Threshold:"
         case .bldOxHighThreshold:
-            return ""
+            return "Blood Ox High Threshold:"
         case .altTitle:
-            return ""
+            return "Altitude and Pressure Data"
         case .altCurrent:
-            return ""
+            return "Current Pressure:"
         case .altElevation:
-            return ""
+            return "Current Elevation:"
         case .altElevationSubtitle:
-            return ""
+            return "Elevation Past 7 Days"
         case .altPressureSubtitle:
-            return ""
+            return "Air Pressure Past 7 Days"
         case .altDescription:
-            return ""
+            return "People can experience headaches or migraines when the barometric pressure is 5 hPa lower than the previous day.  Air pressure drops as you elevation increases.   Symptoms relating to headaches can be:  - Nausea and vomiting - Increased sensitivity to light - Numbness in the face or neck - Pain in or around your temples  As your elevation increases, there are fewer oxygen particles in the air.  This reduction in oxygen can reduce your blood oxygen saturation if your body is not acclimated to the change in elevatioon.  "
         case .altDescriptionChart1:
-            return ""
+            return "- Sea Level: 20.9% - 1000M: 20.1% - 2000M: 19.4% - 3000M: 18.6% - 4000M: 17.9%"
         case .altDescriptionChart2:
-            return ""
+            return "- 5000M: 17.3% - 6000M: 16.6% - 7000M: 16.0% - 8000M: 15.4% - 9000M: 14.8%"
         case .sympQuestion1:
-            return ""
+            return "Are you feeling dizzy?"
         case .sympQuestion2:
-            return ""
+            return "Are you feeling shortness of breath?"
         case .sympQuestion3:
-            return ""
+            return "Have you noticed blood in your stool?"
         case .sympQuestion4:
-            return ""
+            return "Have you noticed your stool being black?"
         case .sympTitleClear:
-            return ""
+            return "You are clear of some of the usual symptoms, but if you still don't feel well, consider contacting your doctor to make an appointment"
         case .sympBtnCall:
-            return ""
+            return "Call Doctor"
         case .sympTitleConcern:
-            return ""
+            return "Consider contacting your doctor to schedule an appointment"
         case .settingsTitleDrPhone:
-            return ""
+            return "Doctor Phone Number"
         case .settingsTitleEmergContact:
-            return ""
+            return "Emergency Contact"
         case .settingsBtnUpdateEmergContact:
-            return ""
+            return "Update Emergency Info"
         case .settingsBtnEditAccount:
-            return ""
+            return "Edit Account Details"
         case .settingsBtnAppPermissions:
-            return ""
+            return "Application Permissions"
         case .settingsBtnNotificationSettings:
-            return ""
+            return "Notification Settings"
         case .settingsBtnDeleteData:
-            return ""
+            return "Delete Data"
         case .settingsBtnDeleteAccount:
-            return ""
+            return "Delete Account"
+        case .settingsNotifSensorTitle:
+            return "Sensor Anomaly Notifications"
         }
     }
 }

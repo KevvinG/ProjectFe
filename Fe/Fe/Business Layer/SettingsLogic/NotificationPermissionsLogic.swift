@@ -19,8 +19,8 @@ class NotificationPermissionsLogic {
      //MARK: setMedicationNotificationSwitchState()
      - Description: Set on screen state of medication notification switch.
      -------------------------------------------------------------------*/
-    func setMedicationNotificationSwitchState() -> Bool {
-        if let switchValue = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.switchNotificationMedicationKey.description), switchValue {
+    func setMedicationNotificationSwitchState(key: String) -> Bool {
+        if let switchValue = UserDefaults.standard.getSwitchState(key: key), switchValue {
             return true
         } else {
             return false
@@ -31,8 +31,8 @@ class NotificationPermissionsLogic {
      //MARK: updateMedicationNotificationSwitchState()
      - Description: Updates current state of medication notification switch.
      -------------------------------------------------------------------*/
-    func updateMedicationNotificationSwitchState(value: Bool) {
-        UserDefaults.standard.setSwitchState(key: UserDefaultKeys.switchNotificationMedicationKey.description, value: value)
+    func updateMedicationNotificationSwitchState(key: String, value: Bool) {
+        UserDefaults.standard.setSwitchState(key: key, value: value)
     }
     
     /*--------------------------------------------------------------------

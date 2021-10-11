@@ -42,14 +42,12 @@ class HomeViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        //HSLogic.homeScreenSetup() // Setup options once logged in.
+        HSLogic.homeScreenSetup() // Setup options once logged in.
         
         // Set Name at top of UI
         FBObj.getUserName(completion: { name in
             self.lblTitle.text = "Welcome back, \(name)!"
         })
-        
-        FBObj.checkIfNewUser() // Check if user already exists and add new user if not.
         
         // Set off each method at start to fill UI
         altTimerFire()
