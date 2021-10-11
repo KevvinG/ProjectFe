@@ -63,6 +63,8 @@
 		CE9DD3432680E0C500D9D026 /* ProjectKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */; };
 		CEA4EBE2266A8D4100144C5F /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */; };
 		CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
+		CEBEB3E92714B7B400576F3E /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3E82714B7B400576F3E /* UserDefaultKeys.swift */; };
+		CEBEB3EB2714B8D300576F3E /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3EA2714B8D300576F3E /* UserDefaults+Extension.swift */; };
 		CEE9E4BE26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
@@ -208,6 +210,8 @@
 		CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectKeys.swift; sourceTree = "<group>"; };
 		CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDocumentViewController.swift; sourceTree = "<group>"; };
+		CEBEB3E82714B7B400576F3E /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
+		CEBEB3EA2714B8D300576F3E /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		CEC690C92704ADD5003351F9 /* Fe-MiniDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fe-MiniDebug.entitlements"; sourceTree = "<group>"; };
 		CEC690CA2704B309003351F9 /* FeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeRelease.entitlements; sourceTree = "<group>"; };
 		CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKeyExtension.swift; sourceTree = "<group>"; };
@@ -570,6 +574,7 @@
 				EF2544EF261F22E800069308 /* HKAccessObject.swift */,
 				EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */,
 				CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */,
+				CEBEB3EA2714B8D300576F3E /* UserDefaults+Extension.swift */,
 			);
 			path = "Persistance Layer";
 			sourceTree = "<group>";
@@ -587,6 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */,
+				CEBEB3E82714B7B400576F3E /* UserDefaultKeys.swift */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -979,11 +985,13 @@
 				CE69A27125D831A5009E87CB /* HomeViewController.swift in Sources */,
 				EF9168EF262A5D3500DCCEEC /* CoreDataAccessObject.swift in Sources */,
 				CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */,
+				CEBEB3EB2714B8D300576F3E /* UserDefaults+Extension.swift in Sources */,
 				CE62B2DB25E8870900AA9665 /* BloodOxygenViewController.swift in Sources */,
 				EFF9558F262B56FE0013E006 /* AltitudeLogic.swift in Sources */,
 				EFF955A7262B574E0013E006 /* EditUserViewLogic.swift in Sources */,
 				CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */,
 				EFF955AE262B575B0013E006 /* AppPermissionsLogic.swift in Sources */,
+				CEBEB3E92714B7B400576F3E /* UserDefaultKeys.swift in Sources */,
 				EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */,
 				CE9DD3432680E0C500D9D026 /* ProjectKeys.swift in Sources */,
 				CEA4EBE2266A8D4100144C5F /* CustomTimer.swift in Sources */,

@@ -28,7 +28,9 @@ class SettingsNotificationPermissionsViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        swMedicationReminder.setOn(NotificationLogic.setMedicationNotificationSwitchState(key: UserDefaultKeys.switchNotificationMedicationKey.description), animated: false)
+        swHRNotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), animated: false)
+        swBONotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), animated: false)
+        swMedicationReminder.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description), animated: false)
     }
     
     /*--------------------------------------------------------------------
@@ -38,10 +40,10 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBAction func swHRSensorStateChanged(_ sender: Any) {
         if swHRNotification.isOn {
             print("Notifications for Unusual HR Sensor Activity Switch is on.")
-            NotificationLogic.updateMedicationNotificationSwitchState(key: UserDefaultKeys.switchNotificationHRKey.description, value: true)
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationHRKey.description, value: true)
         } else {
             print("Notifications for Unusual HR Sensor Activity Switch is off.")
-            NotificationLogic.updateMedicationNotificationSwitchState(key: UserDefaultKeys.switchNotificationHRKey.description, value: false)
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationHRKey.description, value: false)
         }
     }
     
@@ -52,10 +54,10 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBAction func swBOSensorStateChanged(_ sender: Any) {
         if swBONotification.isOn {
             print("Notifications for Unusual Blood Oxygen Sensor Activity Switch is on.")
-            NotificationLogic.updateMedicationNotificationSwitchState(key: UserDefaultKeys.switchNotificationBloodOxygenKey.description, value: true)
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationBOKey.description, value: true)
         } else {
             print("Notifications for Unusual Blood Oxygen Sensor Activity Switch is off.")
-            NotificationLogic.updateMedicationNotificationSwitchState(key: UserDefaultKeys.switchNotificationBloodOxygenKey.description, value: false)
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationBOKey.description, value: false)
         }
     }
     
@@ -67,13 +69,12 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBAction func swMedicationReminderStateChanged(_ sender: Any) {
         if swMedicationReminder.isOn {
             print("Med Reminder On - Scheduled task")
-            NotificationLogic.updateMedicationNotificationSwitchState(key: UserDefaultKeys.switchNotificationMedicationKey.description, value: true)
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: true)
             NotificationLogic.scheduleMedicationReminder()
         } else {
             print("Med Reminder Off - Removed all tasks")
-            NotificationLogic.updateMedicationNotificationSwitchState(key: UserDefaultKeys.switchNotificationMedicationKey.description, value: false)
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: false)
             NotificationLogic.cancelAllScheduledNotifications()
         }
     }
-    
 }
