@@ -1,52 +1,48 @@
 //
-//  HomeViewController.swift
+//  HomeVC.swift
 //  Fe
 //
-//  Created by Jayce Merinchuk on 2021-02-13.
+//  Created by Jayce Merinchuk on 2021-10-13.
 //
 
 //MARK: Imports
 import UIKit
-import CoreData
 
 /*------------------------------------------------------------------------
- //MARK: HomeViewController : UIViewController
- - Description: Holds logic for the the User Home Screen
+ //MARK: HomeVC : UIViewController
+ - Description: Holds UI Interactions for the Home Screen
  -----------------------------------------------------------------------*/
-class HomeViewController: UIViewController {
+class HomeVC: UIViewController {
     
     // Class Variables
+    let HSLogic = HomeScreenLogic()
     let FBObj = FirebaseAccessObject()
     let HRObj = HeartRateLogic()
     let BldOxObj = BloodOxygenLogic()
     let AltObj = AltitudeLogic()
-    let HSLogic = HomeScreenLogic()
-    let DALogic = DataAnalysisLogic()
+    let DAObj = DataAnalysisLogic()
     
     // UI Variables
     @IBOutlet var lblTitle: UILabel!
-    @IBOutlet var lblSubTitle: UILabel!
-    @IBOutlet var btnHeartRate: UIButton!
+    @IBOutlet var lblSubtitle: UILabel!
     @IBOutlet var lblHeartRateValue: UILabel!
-    @IBOutlet var btnBloodOx: UIButton!
-    @IBOutlet var lblBloodOx: UILabel!
-    @IBOutlet var btnAltitude: UIButton!
-    @IBOutlet var lblAltitude: UILabel!
-    @IBOutlet var btnCheckSymptoms: UIButton!
-    @IBOutlet var btnMoreInfo: UIButton!
+    @IBOutlet var lblBloodOxygenValue: UILabel!
+    @IBOutlet var lblAltitudeValue: UILabel!
     
-
     /*--------------------------------------------------------------------
      //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        HSLogic.homeScreenSetup() // Setup options once logged in.
+//        HSLogic.homeScreenSetup() // Setup options once logged in.
+        
+        // Check if user already exists and add new user if not.
+        FBObj.checkIfNewUser()
         
         // Set Name at top of UI
         FBObj.getUserName(completion: { name in
-            self.lblTitle.text = "Welcome back, \(name)!"
+            self.setWelcomeTitle(title: "Welcome back, \(name)!")
         })
         
         // Set off each method at start to fill UI
@@ -58,8 +54,13 @@ class HomeViewController: UIViewController {
         let timer = CustomTimer { (seconds) in
             
             if seconds % 300 == 0 { // Fire every 5 minutes (300 seconds)
-                self.DALogic.analyzeHeartRateData()
-                self.DALogic.analyzeBloodOxygenData()
+                if let hrSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), hrSwitchState {
+                    self.DAObj.analyzeHeartRateData()
+                }
+                
+                if let bloodOxSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), bloodOxSwitchState {
+                    self.DAObj.analyzeBloodOxygenData()
+                }
             }
             
             if seconds % 60 == 0 { // Fire every 60 seconds
@@ -73,7 +74,7 @@ class HomeViewController: UIViewController {
         }
         timer.start()
     }
-
+    
     /*--------------------------------------------------------------------
      //MARK: HRTimerfire()
      - Description: Method to update Heart Rate.
@@ -92,7 +93,7 @@ class HomeViewController: UIViewController {
     @objc func bloodOxTimerfire()
     {
         BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxygen in
-            self.lblBloodOx.text = "\(bloodOxygen) %"
+            self.lblBloodOxygenValue.text = "\(bloodOxygen) %"
             print("Blood Ox Timer Val: \(bloodOxygen)")
         })
     }
@@ -104,64 +105,80 @@ class HomeViewController: UIViewController {
     @objc func altTimerFire()
     {
         AltObj.fetchPressureReading(completion: { pressure in
-            self.lblAltitude.text = "\(pressure) hPa"
+            self.lblAltitudeValue.text = "\(pressure) hPa"
             print("Air Pressure Timer Val: \(pressure)")
         })
     }
-
+    
+    /*--------------------------------------------------------------------
+     //MARK: setWelcomeTitle()
+     - Description: Set UI Welcome Title
+     -------------------------------------------------------------------*/
+    func setWelcomeTitle(title: String) {
+        self.lblTitle.text = title
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setHRButtonValue()
+     - Description: Set HR Button Value
+     -------------------------------------------------------------------*/
+    func setHRButtonValue(labelValue: String) {
+        self.lblHeartRateValue.text = labelValue
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setBloodOxButtonValue()
+     - Description: Set Blood Oxygen Button Value
+     -------------------------------------------------------------------*/
+    func setBloodOxButtonValue(labelValue: String) {
+        self.lblBloodOxygenValue.text = labelValue
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setAltitudeButtonValue()
+     - Description: Set Altitude Button Value
+     -------------------------------------------------------------------*/
+    func setAltitudeButtonValue(labelValue: String) {
+        self.lblAltitudeValue.text = labelValue
+    }
+    
     /*--------------------------------------------------------------------
      //MARK: heartRateBtnTapped()
      - Description: Segue to heartRate Data View
      -------------------------------------------------------------------*/
-    @IBAction func heartRateBtnTapped(_ sender: UIButton) {
+    @IBAction func btnHeartRateTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToHeartRateScreen", sender: self)
     }
     
     /*--------------------------------------------------------------------
-     //MARK: bloodOxygenBtnTapped()
+     //MARK: btnBloodOxygenTapped()
      - Description: Segue to blood oxygen Data View
      -------------------------------------------------------------------*/
-    @IBAction func bloodOxygenBtnTapped(_ sender: UIButton) {
+    @IBAction func btnBloodOxygenTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToBloodOxygenScreen", sender: self)
     }
     
     /*--------------------------------------------------------------------
-     //MARK: altitudeBtnTapped()
+     //MARK: btnAltitudeTapped()
      - Description: Segue to altitude Data View
      -------------------------------------------------------------------*/
-    @IBAction func altitudeBtnTapped(_ sender: UIButton) {
+    @IBAction func btnAltitudeTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToAltitudeScreen", sender: self)
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: viewDocumentsBtnTapped()
-     - Description: Segue to viewDocuments table View
-     -------------------------------------------------------------------*/
-    @IBAction func viewDocumentsBtnTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "GoToDocumentsScreen", sender: self)
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: uploadDocumentBtnTapped()
-     - Description: Segue to upload document view
-     -------------------------------------------------------------------*/
-    @IBAction func uploadDocumentBtnTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "GoToUploadDocumentScreen", sender: self)
     }
     
     /*--------------------------------------------------------------------
      //MARK: checkSymptomsBtnTapped()
      - Description: Segue to symptom Checking view
      -------------------------------------------------------------------*/
-    @IBAction func checkSymptomsBtnTapped(_ sender: UIButton) {
+    @IBAction func btnSymptomsTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToSymptomDizzy", sender: self)
     }
     
     /*--------------------------------------------------------------------
-     //MARK: moreInformationBtnTapped()
+     //MARK: btnMoreInfoTapped()
      - Description: Segue to more Information Webpage
      -------------------------------------------------------------------*/
-    @IBAction func moreInformationBtnTapped(_ sender: UIButton) {
+    @IBAction func btnMoreInfoTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToMoreInfoScreen", sender: self)
     }
     

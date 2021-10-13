@@ -542,7 +542,7 @@
         <!--Home-->
         <scene sceneID="VaT-pa-N9B">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="2NR-qE-kpl" customClass="HomeViewController" customModule="Fe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="2NR-qE-kpl" customClass="HomeVC" customModule="Fe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9A9-tJ-dK4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -566,7 +566,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="moreInformationBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="oU7-6C-CJT"/>
+                                                    <action selector="btnMoreInfoTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="2de-GE-n2o"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back, User!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dP9-Qr-Fxa">
@@ -587,7 +587,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcX-4h-uYD">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                         <connections>
-                                                            <action selector="bloodOxygenBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="NgV-hg-zzI"/>
+                                                            <action selector="btnBloodOxygenTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="fh2-Tf-16M"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blood Oxygen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8z-f8-TRG">
@@ -635,7 +635,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCv-Ot-nhe">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                         <connections>
-                                                            <action selector="heartRateBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="GFL-9d-pc0"/>
+                                                            <action selector="btnHeartRateTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="THe-gT-pue"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIj-bf-Y0Z">
@@ -671,7 +671,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMh-CS-tsK">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                         <connections>
-                                                            <action selector="altitudeBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="tLC-w9-4qU"/>
+                                                            <action selector="btnAltitudeTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="tAe-iR-Ytn"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hH4-0v-1Rr">
@@ -716,7 +716,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhu-xq-NrZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                         <connections>
-                                                            <action selector="checkSymptomsBtnTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="KpH-Ok-53f"/>
+                                                            <action selector="btnSymptomsTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="BZx-h7-xuC"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -781,13 +781,11 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house.fill" id="gTj-YQ-TgZ"/>
                     <navigationItem key="navigationItem" title="Home" id="a9u-kb-Oqk"/>
                     <connections>
-                        <outlet property="btnHeartRate" destination="ZCv-Ot-nhe" id="t4K-AH-gZ0"/>
-                        <outlet property="btnMoreInfo" destination="Ism-hU-Zbv" id="vZq-la-dul"/>
-                        <outlet property="lblAltitude" destination="Zqu-c6-1q9" id="eK0-lN-IVO"/>
-                        <outlet property="lblBloodOx" destination="htx-eY-3hs" id="PoO-Y5-PO6"/>
-                        <outlet property="lblHeartRateValue" destination="dIj-bf-Y0Z" id="bmo-iq-X0F"/>
-                        <outlet property="lblSubTitle" destination="rlC-LD-crQ" id="IMh-me-HMd"/>
-                        <outlet property="lblTitle" destination="dP9-Qr-Fxa" id="cs6-OL-5a9"/>
+                        <outlet property="lblAltitudeValue" destination="Zqu-c6-1q9" id="yPl-fe-jeY"/>
+                        <outlet property="lblBloodOxygenValue" destination="htx-eY-3hs" id="Tsb-aA-JyU"/>
+                        <outlet property="lblHeartRateValue" destination="dIj-bf-Y0Z" id="zk4-c5-Hrg"/>
+                        <outlet property="lblSubtitle" destination="rlC-LD-crQ" id="Orw-pe-cVG"/>
+                        <outlet property="lblTitle" destination="dP9-Qr-Fxa" id="q97-lP-SIo"/>
                         <segue destination="yw4-UD-Z7u" kind="show" identifier="GoToMoreInfoScreen" id="9Gg-LW-X18"/>
                         <segue destination="nvo-d2-GEQ" kind="show" identifier="GoToSymptomDizzy" id="EBz-Zy-cNc"/>
                         <segue destination="TvE-pJ-KAB" kind="show" identifier="GoToHeartRateScreen" id="vDR-Qe-kof"/>
