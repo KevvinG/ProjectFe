@@ -95,7 +95,7 @@ class CoreDataAccessObject {
             return Int(topItem[0].heartRate)
         } else {
             print("Empty HR table")
-            return 0
+            return -1
         }
     }
     
@@ -109,6 +109,25 @@ class CoreDataAccessObject {
         newBloodOxEntry.bloodOxygen = Int64(bloodOxValue)
         saveContext(tableName: "BloodOxygenData")
 //        print("Saved Blood Ox: \(newBloodOxEntry.bloodOxygen)")
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: fetchLatestBloodOx()
+     - Description: Fetch latest saved Blood Ox entry from table.
+     -------------------------------------------------------------------*/
+    func fetchLatestBloodOx() -> Int {
+        do {
+            self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest())
+        } catch let error as NSError{
+            print("BloodOxygenData Read Fetch Failed: \(error.description)")
+        }
+        if bldOxItems.count > 0 {
+            let topItem = bldOxItems.sorted(by: { $0.dateTime > $1.dateTime })
+            return Int(topItem[0].bloodOxygen)
+        } else {
+            print("Empty Blood Oxygen table")
+            return -1
+        }
     }
     
     /*--------------------------------------------------------------------

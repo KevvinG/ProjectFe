@@ -82,7 +82,7 @@ class HomeVC: UIViewController {
     @objc func hrTimerfire()
     {
         let hrVal = HRObj.fetchLatestHrReading()
-        self.lblHeartRateValue.text = "\(hrVal) BPM"
+        self.setHRButtonValue(labelValue: "\(hrVal) BPM")
         print("HR Timer Val: \(hrVal)")
     }
     
@@ -92,20 +92,21 @@ class HomeVC: UIViewController {
      -------------------------------------------------------------------*/
     @objc func bloodOxTimerfire()
     {
+        // let bloodOxVal = BldOxObj = fetchLatestBloodOxReading()
         BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxygen in
-            self.lblBloodOxygenValue.text = "\(bloodOxygen) %"
+            self.setBloodOxButtonValue(labelValue: "\(bloodOxygen) %")
             print("Blood Ox Timer Val: \(bloodOxygen)")
         })
     }
     
     /*--------------------------------------------------------------------
      //MARK: AltTimerFire()
-     - Description:  method to update Air Pressure.
+     - Description: Method to update Air Pressure.
      -------------------------------------------------------------------*/
     @objc func altTimerFire()
     {
         AltObj.fetchPressureReading(completion: { pressure in
-            self.lblAltitudeValue.text = "\(pressure) hPa"
+            self.setAltitudeButtonValue(labelValue: "\(pressure) hPa")
             print("Air Pressure Timer Val: \(pressure)")
         })
     }

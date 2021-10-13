@@ -50,6 +50,7 @@ class BloodOxygenLogic {
      - Description: Obtains blood oxygen reading from health store.
      -------------------------------------------------------------------*/
     func fetchLatestBloodOxReading(completion: @escaping (_ bloodOxValue: Int) -> Void) {
+//        return CDObj.fetchLatestBloodOx() //TODO: Uncomment once pulling from Core Data
         HKObj.getLatestbloodOxReading( completion: { (bloodOxValue) -> Void in
             completion(Int(bloodOxValue))
         })
