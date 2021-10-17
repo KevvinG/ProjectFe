@@ -14,8 +14,12 @@ import UIKit
  -----------------------------------------------------------------------*/
 class SettingsNotificationPermissionsViewController: UIViewController {
     
+    // Class Variables
+    let NotificationLogic = NotificationPermissionsLogic()
+    
     // UI Variables
-    @IBOutlet var swUnusualSensor: UISwitch!
+    @IBOutlet var swHRNotification: UISwitch!
+    @IBOutlet var swBONotification: UISwitch!
     @IBOutlet var swMedicationReminder: UISwitch!
     
     /*--------------------------------------------------------------------
@@ -24,18 +28,36 @@ class SettingsNotificationPermissionsViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        swHRNotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), animated: false)
+        swBONotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), animated: false)
+        swMedicationReminder.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description), animated: false)
     }
     
     /*--------------------------------------------------------------------
-     //MARK: swSensorActivityStateChanged()
-     - Description: Logic for changing notifications for unusual
-     sensor activity detected Permission.
+     //MARK: swHRSensorStateChanged()
+     - Description: Logic for turning on/off heart rate notifications.
      -------------------------------------------------------------------*/
-    @IBAction func swSensorActivityStateChanged(_ sender: Any) {
-        if swUnusualSensor.isOn {
-            print("Notifications for Unusual Sensor Activity Switch is on.")
+    @IBAction func swHRSensorStateChanged(_ sender: Any) {
+        if swHRNotification.isOn {
+            print("Notifications for Unusual HR Sensor Activity Switch is on.")
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationHRKey.description, value: true)
         } else {
-            print("Notifications for Unusual Sensor Activity Switch is off.")
+            print("Notifications for Unusual HR Sensor Activity Switch is off.")
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationHRKey.description, value: false)
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: swBOSensorStateChanged()
+     - Description: Logic for turning on/off blood oxygen notifications.
+     -------------------------------------------------------------------*/
+    @IBAction func swBOSensorStateChanged(_ sender: Any) {
+        if swBONotification.isOn {
+            print("Notifications for Unusual Blood Oxygen Sensor Activity Switch is on.")
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationBOKey.description, value: true)
+        } else {
+            print("Notifications for Unusual Blood Oxygen Sensor Activity Switch is off.")
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationBOKey.description, value: false)
         }
     }
     
@@ -45,11 +67,14 @@ class SettingsNotificationPermissionsViewController: UIViewController {
      reminder Permission.
      -------------------------------------------------------------------*/
     @IBAction func swMedicationReminderStateChanged(_ sender: Any) {
-        if swUnusualSensor.isOn {
-            print("Notifications for Daily Medication Reminder Switch is on.")
+        if swMedicationReminder.isOn {
+            print("Med Reminder On - Scheduled task")
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: true)
+            NotificationLogic.scheduleMedicationReminder()
         } else {
-            print("Notifications for Daily Medication Reminder Switch is off.")
+            print("Med Reminder Off - Removed all tasks")
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: false)
+            NotificationLogic.cancelAllScheduledNotifications()
         }
     }
-    
 }

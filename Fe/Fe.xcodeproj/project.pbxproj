@@ -54,15 +54,15 @@
 		CE62B2E925E88AAC00AA9665 /* DocumentTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2E825E88AAC00AA9665 /* DocumentTableTableViewController.swift */; };
 		CE62B2F025E88AC800AA9665 /* DocumentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2EF25E88AC800AA9665 /* DocumentTableViewCell.swift */; };
 		CE62B2FE25E88BCB00AA9665 /* UploadDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2FD25E88BCB00AA9665 /* UploadDocumentViewController.swift */; };
-		CE69A27125D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
-		CE69A27225D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
-		CE69A27325D831A5009E87CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A27025D831A5009E87CB /* HomeViewController.swift */; };
 		CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */; };
 		CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */; };
 		CE6D7B072607E83000835756 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7B062607E83000835756 /* Document.swift */; };
 		CE9DD3432680E0C500D9D026 /* ProjectKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */; };
 		CEA4EBE2266A8D4100144C5F /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */; };
 		CEBB35EE2619265500993137 /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
+		CEBEB3E92714B7B400576F3E /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3E82714B7B400576F3E /* UserDefaultKeys.swift */; };
+		CEBEB3EB2714B8D300576F3E /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3EA2714B8D300576F3E /* UserDefaults+Extension.swift */; };
+		CEBEB3ED27171F2100576F3E /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3EC27171F2100576F3E /* HomeVC.swift */; };
 		CEE9E4BE26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
@@ -204,13 +204,15 @@
 		CE62B2E825E88AAC00AA9665 /* DocumentTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTableTableViewController.swift; sourceTree = "<group>"; };
 		CE62B2EF25E88AC800AA9665 /* DocumentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTableViewCell.swift; sourceTree = "<group>"; };
 		CE62B2FD25E88BCB00AA9665 /* UploadDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentViewController.swift; sourceTree = "<group>"; };
-		CE69A27025D831A5009E87CB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAccessObject.swift; sourceTree = "<group>"; };
 		CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentviewViewController.swift; sourceTree = "<group>"; };
 		CE6D7B062607E83000835756 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectKeys.swift; sourceTree = "<group>"; };
 		CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDocumentViewController.swift; sourceTree = "<group>"; };
+		CEBEB3E82714B7B400576F3E /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
+		CEBEB3EA2714B8D300576F3E /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		CEBEB3EC27171F2100576F3E /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		CEC690C92704ADD5003351F9 /* Fe-MiniDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fe-MiniDebug.entitlements"; sourceTree = "<group>"; };
 		CEC690CA2704B309003351F9 /* FeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeRelease.entitlements; sourceTree = "<group>"; };
 		CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKeyExtension.swift; sourceTree = "<group>"; };
@@ -482,7 +484,7 @@
 		CE08271D262A3FF600558A32 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				CE69A27025D831A5009E87CB /* HomeViewController.swift */,
+				CEBEB3EC27171F2100576F3E /* HomeVC.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -576,6 +578,7 @@
 				EF2544EF261F22E800069308 /* HKAccessObject.swift */,
 				EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */,
 				CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */,
+				CEBEB3EA2714B8D300576F3E /* UserDefaults+Extension.swift */,
 			);
 			path = "Persistance Layer";
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */,
+				CEBEB3E82714B7B400576F3E /* UserDefaultKeys.swift */,
 				EF9DC0B22717ECE900ABEE4A /* CBUUIDS.swift */,
 			);
 			path = Strings;
@@ -985,14 +989,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE69A27125D831A5009E87CB /* HomeViewController.swift in Sources */,
+				CEBEB3ED27171F2100576F3E /* HomeVC.swift in Sources */,
 				EF9168EF262A5D3500DCCEEC /* CoreDataAccessObject.swift in Sources */,
 				CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */,
+				CEBEB3EB2714B8D300576F3E /* UserDefaults+Extension.swift in Sources */,
 				CE62B2DB25E8870900AA9665 /* BloodOxygenViewController.swift in Sources */,
 				EFF9558F262B56FE0013E006 /* AltitudeLogic.swift in Sources */,
 				EFF955A7262B574E0013E006 /* EditUserViewLogic.swift in Sources */,
 				CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */,
 				EFF955AE262B575B0013E006 /* AppPermissionsLogic.swift in Sources */,
+				CEBEB3E92714B7B400576F3E /* UserDefaultKeys.swift in Sources */,
 				EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */,
 				CE9DD3432680E0C500D9D026 /* ProjectKeys.swift in Sources */,
 				CEA4EBE2266A8D4100144C5F /* CustomTimer.swift in Sources */,
@@ -1050,7 +1056,6 @@
 			files = (
 				CE01C2F325D438D100A08E2D /* FeTests.swift in Sources */,
 				CE62AF1425DD6B0400AA9665 /* StartViewController.swift in Sources */,
-				CE69A27225D831A5009E87CB /* HomeViewController.swift in Sources */,
 				CE62AF2325DDC13600AA9665 /* EditUserViewController.swift in Sources */,
 				CE62AF0725D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 			);
@@ -1062,7 +1067,6 @@
 			files = (
 				CE01C2FE25D438D100A08E2D /* FeUITests.swift in Sources */,
 				CE62AF1525DD6B0400AA9665 /* StartViewController.swift in Sources */,
-				CE69A27325D831A5009E87CB /* HomeViewController.swift in Sources */,
 				CE62AF2425DDC13600AA9665 /* EditUserViewController.swift in Sources */,
 				CE62AF0825D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 			);

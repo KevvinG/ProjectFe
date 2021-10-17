@@ -14,12 +14,12 @@ import Charts
  - Description: Holds logic for the Blood Oxygen
  -----------------------------------------------------------------------*/
 class BloodOxygenLogic {
-    
+
     // Class Variables
     let HKObj = HKAccessObject()
     let CDObj = CoreDataAccessObject()
     let FBOObj = FirebaseAccessObject()
-    
+
     /*--------------------------------------------------------------------
      //MARK: getUserBldOxThresholds()
      - Description: Calls Firebase method and displays data in
@@ -30,7 +30,7 @@ class BloodOxygenLogic {
             completion(thresholds)
          })
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: updateBldOxThresholds()
      - Description: Sends Threshold values to Firebase Access Object.
@@ -44,7 +44,7 @@ class BloodOxygenLogic {
             }
         })
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: fetchLatestBloodOxReading()
      - Description: Obtains blood oxygen reading from health store.
@@ -54,11 +54,11 @@ class BloodOxygenLogic {
 //            completion(Int(bloodOxValue))
 //        })
 //    }
-    
+
     func fetchLatestBloodOxReading() -> Int {
         return CDObj.fetchLatestSPO2()
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: fetchBloodOxWithRange()
      - Description: Obtains blood oxygen values from Health Store for Chart.
@@ -89,7 +89,7 @@ class BloodOxygenLogic {
                     outputDates.append(self.convertDate(element, dateRange: dateRange))
                 }
                 let bldOxArray = Array(outputDict.values)
-                
+
                 let sum = Int(bldOxArray.reduce(0, +))
                 let count = bldOxArray.count
                 var bldOxAvg = 0
@@ -102,12 +102,12 @@ class BloodOxygenLogic {
             }
         })
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: convertDate()
      - Description: Converts the date stored in the database to one more user readable
      -------------------------------------------------------------------*/
-    
+
     func convertDate(_ date: String, dateRange: String) -> String {
 
         let dateFormatter = DateFormatter()
@@ -119,12 +119,12 @@ class BloodOxygenLogic {
         }else if dateRange == "month"{
             dateFormatter.dateFormat = "dd/MM/YY"
         }
-        
+
         let currentDate = Date()
         // Convert Date to String
         return dateFormatter.string(from: formatDate ?? currentDate)
         }
-    
+
     /*--------------------------------------------------------------------
      //MARK: chartData()
      - Description: Obtains chart data from Core Data
