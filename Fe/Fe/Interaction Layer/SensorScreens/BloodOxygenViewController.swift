@@ -18,7 +18,7 @@ class BloodOxygenViewController: UIViewController {
     
     // Class Variables
     let BldOxObj = BloodOxygenLogic()
-    
+    let CDLogic = CoreDataAccessObject()
     // UI Variables
     @IBOutlet var lblCurrentBldOx: UILabel!
     @IBOutlet var lblAvgBldOx: UILabel!
@@ -41,9 +41,12 @@ class BloodOxygenViewController: UIViewController {
         setupTextFields()
         getUserBldOxThresholds()
         
-        BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxValue in
-            self.lblCurrentBldOx.text = "\(String(bloodOxValue)) %"
-        })
+//        BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxValue in
+//            self.lblCurrentBldOx.text = "\(String(bloodOxValue)) %"
+//        })
+        
+        let bloodOxValue = BldOxObj.fetchLatestBloodOxReading()
+        self.lblCurrentBldOx.text = "\(String(bloodOxValue)) %"
         
         initChart()
         
@@ -64,10 +67,30 @@ class BloodOxygenViewController: UIViewController {
     }
     
     func initChart() {
-        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg in
+        
+        var cdBldOxData = [BloodOxygenData]()
+        var cdSPO2Data = [Double]()
+        var cdDateData = [String]()
+        cdBldOxData = CDLogic.fetchBloodOxygenData()!
+        
+        for item in cdBldOxData {
+            let df = DateFormatter()
+            cdDateData.append(df.string(from: item.dateTime))
+            cdSPO2Data.append(Double(item.bloodOxygen))
+        }
+        
+        let bldOxMin = Int(cdSPO2Data.min() ?? 0)
+        let bldOxMax = Int(cdSPO2Data.max() ?? 0)
+        var spo2sum = 0.0
+        for item in cdSPO2Data {
+            spo2sum+=item
+        }
+        let bldOxAvg = Int(spo2sum/Double(cdSPO2Data.count))
+        
+//        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg in
             
-            lineChartView.data = BldOxObj.chartData(dataPoints: dateArray, values: bldOxArray)
-            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+            lineChartView.data = BldOxObj.chartData(dataPoints: cdDateData, values: cdSPO2Data)
+            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:cdDateData)
             lineChartView.xAxis.granularity = 0.05
             
             lineChartView.xAxis.labelPosition = .bottom
@@ -84,7 +107,7 @@ class BloodOxygenViewController: UIViewController {
             self.lblAvgBldOx.text = "\(bldOxAvg) %"
             self.lblMaxBldOx.text = "\(bldOxMax) %"
             self.lblMinBldOx.text = "\(bldOxMin) %"
-        })
+//        })
     }
     
     func populateChart(dateRange: String) {

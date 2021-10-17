@@ -55,15 +55,24 @@ class AltitudeLogic {
         let apItems = self.coredataObj.fetchAirPressureData()
         var dateArray = [String]()
         var airPressureArray = [Double]()
+        var outputSpacing = apItems!.count/2
+        if outputSpacing == 0 {
+            outputSpacing = 1
+        }
         if apItems != nil && apItems!.count > 0 {
+            var i=1
             for item in 0..<(apItems!.count-1) {
                 let df = DateFormatter()
-                df.dateFormat = "HH:mm E, d MMM y"
+//                df.dateFormat = "HH:mm E, d MMM y"
+                df.dateFormat = "dd/MM/YY"
                 let date = df.string(from: apItems![item].dateTime)
-                dateArray.append(date)
-                
-                let airPressure = Double(apItems![item].airPressure)
-                airPressureArray.append(airPressure)
+                if i % outputSpacing != 0 {
+                    dateArray.append(date)
+                    
+                    let airPressure = Double(apItems![item].airPressure)
+                    airPressureArray.append(airPressure)
+                }
+                i+=1
             }
         }
         completion(dateArray, airPressureArray)
@@ -78,15 +87,24 @@ class AltitudeLogic {
         let elevationItems = self.coredataObj.fetchElevationData()
         var dateArray = [String]()
         var elevationArray = [Double]()
+        var outputSpacing = elevationItems!.count/2
+        if outputSpacing == 0 {
+            outputSpacing = 1
+        }
         if elevationItems != nil && elevationItems!.count > 0 {
+            var i=1
             for item in 0..<(elevationItems!.count-1) {
                 let df = DateFormatter()
-                df.dateFormat = "HH:mm E, d MMM y"
+//                df.dateFormat = "HH:mm E, d MMM y"
+                df.dateFormat = "dd/MM/YY"
                 let date = df.string(from: elevationItems![item].dateTime)
+                if i % outputSpacing != 0 {
                 dateArray.append(date)
                 
                 let elevation = Double(elevationItems![item].elevation)
                 elevationArray.append(elevation)
+                }
+                i+=1
             }
         }
         completion(dateArray, elevationArray)

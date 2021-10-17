@@ -18,6 +18,7 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
     
     // Class Variables
     let HRLogic = HeartRateLogic()
+    let CDLogic = CoreDataAccessObject()
 
     // UI Variables
     @IBOutlet var lblCurrentHR: UILabel!
@@ -67,10 +68,33 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         print("tapped")
     }
     func initChart() {
-        HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMin, bpmAvg in
+        
+        var cdHRData = [HeartRateData]()
+        var cdBPMData = [Double]()
+        var cdDateData = [String]()
+        cdHRData = CDLogic.fetchHeartRateData()!
+        
+        for item in cdHRData {
+            let df = DateFormatter()
+            cdDateData.append(df.string(from: item.dateTime))
+            cdBPMData.append(Double(item.heartRate))
+        }
+        
+        let bpmMin = Int(cdBPMData.min() ?? 0)
+        let bpmMax = Int(cdBPMData.max() ?? 0)
+        var bpmSum = 0.0
+        for item in cdBPMData {
+            bpmSum+=item
+        }
+        let bpmAvg = Int(bpmSum/Double(cdBPMData.count))
+        
+//        HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMin, bpmAvg in
             
-            lineChartView.data = HRLogic.chartData(dataPoints: dateArray, values: bpmArray)
-            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+//            lineChartView.data = HRLogic.chartData(dataPoints: dateArray, values: bpmArray)
+            lineChartView.data = HRLogic.chartData(dataPoints: cdDateData, values: cdBPMData)
+
+//            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: cdDateData)
             lineChartView.xAxis.granularity = 0.05
             
             lineChartView.xAxis.labelPosition = .bottom
@@ -83,11 +107,14 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
             lineChartView.legend.enabled = false
             
             lineChartView.animate(xAxisDuration: 2)
-            
+//
             self.lblAvgHR.text = "\(bpmAvg) BPM"
             self.lblMaxHR.text = "\(bpmMax) BPM"
             self.lblMinHR.text = "\(bpmMin) BPM"
-        })
+//        })
+        
+
+        
     }
     
     func populateChart(dateRange: String) {
@@ -106,6 +133,9 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
             self.lblMaxHR.text = "\(bpmMax) BPM"
             self.lblMinHR.text = "\(bpmMin) BPM"
         })
+        
+        CDLogic.fetchHeartRateData()
+        
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {

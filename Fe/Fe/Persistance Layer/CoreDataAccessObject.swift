@@ -51,11 +51,31 @@ class CoreDataAccessObject {
             let today = Date()
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "mm.dd"
-            self.hrItems = try context.fetch(HeartRateData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) > dateFormatter.string(from: today) } )
+            //Filtering for today is not working, needs to be reworked
+//            self.hrItems = try context.fetch(HeartRateData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) > dateFormatter.string(from: today) } )
+            self.hrItems = try context.fetch(HeartRateData.fetchRequest())
         } catch let error as NSError {
             print("HeartRateData Read Fetch Failed: \(error.description)")
         }
+        print(self.hrItems)
         return self.hrItems
+    }
+    
+    func fetchHeartRateDataWithRange(dateRange: String) {
+        // Get the current calendar with local time zone
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+
+        // Get today's beginning & end
+        let dateFrom = calendar.startOfDay(for: Date()) // eg. 2016-10-10 00:00:00
+        let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)
+        // Note: Times are printed in UTC. Depending on where you live it won't print 00:00:00 but it will work with UTC times which can be converted to local time
+
+        // Set predicate as date being today's date
+        let fromPredicate = NSPredicate(format: "%@ >= %K", dateFrom as NSDate, #keyPath(HeartRateData.dateTime))
+        let toPredicate = NSPredicate(format: "%K < %@", #keyPath(HeartRateData.dateTime), dateTo! as NSDate)
+        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+//        fetchRequest.predicate = datePredicate
     }
     
     /*--------------------------------------------------------------------
@@ -99,6 +119,23 @@ class CoreDataAccessObject {
         }
     }
     
+    //MARK: fetchLatestSPO2
+    
+    func fetchLatestSPO2() -> Int {
+        do {
+            self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest())
+        } catch let error as NSError{
+            print("Blood Oxygen Data Read Fetch Failed: \(error.description)")
+        }
+        if bldOxItems.count > 0 {
+            let topItem = bldOxItems.sorted(by: { $0.dateTime > $1.dateTime })
+            return Int(topItem[0].bloodOxygen)
+        } else {
+            print("Empty SPO2 table")
+            return 0
+        }
+    }
+    
     /*--------------------------------------------------------------------
      //MARK: createBloodOxygenTableEntry()
      - Description: Create Table Entry for Blood Oxygen.
@@ -120,7 +157,9 @@ class CoreDataAccessObject {
             let today = Date()
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "mm.dd"
-            self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) == dateFormatter.string(from: today) } )
+            //Filtering for today is not working, needs to be reworked
+            self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest())
+//            self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) == dateFormatter.string(from: today) } )
         } catch let error as NSError{
             print("BloodOxygenData Read Fetch Failed: \(error.description)")
         }

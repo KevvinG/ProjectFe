@@ -20,18 +20,18 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>We need to read your health data for our app to be effective</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>We need to update your health data for our app to be effective</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>ca.KJHealthCare.Fe3</string>
+	<string>ca.KJHealthCare.Fe5</string>
 	<key>WKWatchKitApp</key>
 	<true/>
-	<key>NSHealthShareUsageDescription</key>
-	<string>We need to read your health data for our app to be effective</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>We need to update your health data for our app to be effective</string>
 </dict>
 </plist>

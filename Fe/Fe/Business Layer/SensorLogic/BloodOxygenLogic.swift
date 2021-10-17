@@ -49,10 +49,14 @@ class BloodOxygenLogic {
      //MARK: fetchLatestBloodOxReading()
      - Description: Obtains blood oxygen reading from health store.
      -------------------------------------------------------------------*/
-    func fetchLatestBloodOxReading(completion: @escaping (_ bloodOxValue: Int) -> Void) {
-        HKObj.getLatestbloodOxReading( completion: { (bloodOxValue) -> Void in
-            completion(Int(bloodOxValue))
-        })
+//    func fetchLatestBloodOxReading(completion: @escaping (_ bloodOxValue: Int) -> Void) {
+//        HKObj.getLatestbloodOxReading( completion: { (bloodOxValue) -> Void in
+//            completion(Int(bloodOxValue))
+//        })
+//    }
+    
+    func fetchLatestBloodOxReading() -> Int {
+        return CDObj.fetchLatestSPO2()
     }
     
     /*--------------------------------------------------------------------
