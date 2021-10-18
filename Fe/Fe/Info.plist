@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Can this app use Bluetooth?</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Can this app connect to Bluetooth peripheral?</string>
 	<key></key>
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -37,6 +33,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Can this app use Bluetooth?</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Can this app connect to Bluetooth peripheral?</string>
 	<key>NSCameraUsageDescription</key>
 	<string>The application requires your permission to take a picture</string>
 	<key>NSHealthShareUsageDescription</key>

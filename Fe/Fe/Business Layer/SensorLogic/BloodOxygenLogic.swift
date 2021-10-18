@@ -49,12 +49,6 @@ class BloodOxygenLogic {
      //MARK: fetchLatestBloodOxReading()
      - Description: Obtains blood oxygen reading from health store.
      -------------------------------------------------------------------*/
-//    func fetchLatestBloodOxReading(completion: @escaping (_ bloodOxValue: Int) -> Void) {
-//        HKObj.getLatestbloodOxReading( completion: { (bloodOxValue) -> Void in
-//            completion(Int(bloodOxValue))
-//        })
-//    }
-
     func fetchLatestBloodOxReading() -> Int {
         return CDObj.fetchLatestSPO2()
     }
@@ -107,16 +101,14 @@ class BloodOxygenLogic {
      //MARK: convertDate()
      - Description: Converts the date stored in the database to one more user readable
      -------------------------------------------------------------------*/
-
     func convertDate(_ date: String, dateRange: String) -> String {
-
         let dateFormatter = DateFormatter()
         let formatDate = dateFormatter.date(from: date)
 
         // Set Date Format
-        if dateRange == "day"{
+        if dateRange == "day" {
             dateFormatter.dateFormat = "HH:mm"
-        }else if dateRange == "month"{
+        } else if dateRange == "month" {
             dateFormatter.dateFormat = "dd/MM/YY"
         }
 

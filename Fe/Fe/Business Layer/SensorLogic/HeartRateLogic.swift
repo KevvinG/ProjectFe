@@ -50,9 +50,6 @@ class HeartRateLogic {
      - Description: Obtains the latest heart rate value from Core Data.
      -------------------------------------------------------------------*/
     func fetchLatestHrReading() -> Int {
-//        HKObj.getLatestHR( completion: { (hrVal) -> Void in
-//            completion(hrVal)
-//        })
         return CDObj.fetchLatestHR()
     }
     
@@ -99,27 +96,17 @@ class HeartRateLogic {
     }
     
     /*--------------------------------------------------------------------
-     //MARK: fetchHrWithRangeCD()
-     - Description: Obtains heart rate values from CoreData for Chart.
-     -------------------------------------------------------------------*/
-    func fetchHrWithRangeCD() {
-        
-    }
-    
-    /*--------------------------------------------------------------------
      //MARK: convertDate()
      - Description: Converts the date stored in the database to one more user readable
      -------------------------------------------------------------------*/
-    
     func convertDate(_ date: String, dateRange: String) -> String {
-
         let dateFormatter = DateFormatter()
         let formatDate = dateFormatter.date(from: date)
 
         // Set Date Format
-        if dateRange == "day"{
+        if dateRange == "day" {
             dateFormatter.dateFormat = "HH:mm"
-        }else if dateRange == "month"{
+        } else if dateRange == "month" {
             dateFormatter.dateFormat = "dd/MM/YY"
         }
         

@@ -22,13 +22,12 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     let HRObj = HeartRateLogic()
     let BldOxObj = BloodOxygenLogic()
     let AltObj = AltitudeLogic()
-    let DALogic = DataAnalysisLogic()
+    let DAObj = DataAnalysisLogic()
     let CDObj = CoreDataAccessObject()
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral!
     var txCharacteristic: CBCharacteristic!
     var rxCharacteristic: CBCharacteristic!
-    let DAObj = DataAnalysisLogic()
     
     // UI Variables
     @IBOutlet var lblTitle: UILabel!
@@ -85,87 +84,97 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         timer.start()
     }
     
-    //MARK: Bluetooth logic here
-    
-    // If we're powered on, start scanning
-        func centralManagerDidUpdateState(_ central: CBCentralManager) {
-            print("Central state update")
-            if central.state != .poweredOn {
-                print("Central is not powered on")
-            } else {
-                print("Central scanning for", SensorDeviceObject.deviceServiceUUID);
+    /*--------------------------------------------------------------------
+     //MARK: centralManagerDidUpdateState()
+     - Description: If we're powered on, start scanning
+     -------------------------------------------------------------------*/
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        print("Central state update")
+        if central.state != .poweredOn {
+            print("Central is not powered on")
+        } else {
+            print("Central scanning for", SensorDeviceObject.deviceServiceUUID);
 //                centralManager.scanForPeripherals(withServices: [SensorDeviceObject.deviceServiceUUID],
 //                                                  options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
-                centralManager.scanForPeripherals(withServices: nil)
-            }
+            centralManager.scanForPeripherals(withServices: nil)
         }
+    }
     
-    // Handles the result of the scan
-    // Did Discover new device
-        func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-
+    /*--------------------------------------------------------------------
+     //MARK: centralManager()
+     - Description: Handles the result of the scan.
+     - Did Discover new device
+     -------------------------------------------------------------------*/
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
 //            self.centralManager.stopScan()
 
-            // Copy the peripheral instance
-            self.peripheral = peripheral
-            if self.peripheral.name == "BT05" {
-                //Stop scan when it finds our device
-                self.centralManager.stopScan()
-            }
-            self.peripheral.delegate = self
-
-            // Connect!
-            self.centralManager.connect(self.peripheral, options: nil)
-
+        // Copy the peripheral instance
+        self.peripheral = peripheral
+        if self.peripheral.name == "BT05" {
+            //Stop scan when it finds our device
+            self.centralManager.stopScan()
         }
+        self.peripheral.delegate = self
+
+        // Connect!
+        self.centralManager.connect(self.peripheral, options: nil)
+    }
     
-    // The handler if we do connect succesfully
-        func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-            if peripheral == self.peripheral {
-                print("Sensor Device connected")
-                peripheral.discoverServices([SensorDeviceObject.deviceServiceUUID])
-            }
+    /*--------------------------------------------------------------------
+     //MARK: centralManager()
+     - Description: The handler if we do connect succesfully
+     -------------------------------------------------------------------*/
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        if peripheral == self.peripheral {
+            print("Sensor Device connected")
+            peripheral.discoverServices([SensorDeviceObject.deviceServiceUUID])
         }
+    }
     
-    // Handles discovery event
-        func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-            if let services = peripheral.services {
-                for service in services {
-                    if service.uuid == SensorDeviceObject.deviceServiceUUID {
-                        print("Sensor service found")
-                        //Now kick off discovery of characteristics
-                        peripheral.discoverCharacteristics(nil, for: service)
-                        return
-                    }
+    /*--------------------------------------------------------------------
+     //MARK: peripheral()
+     - Description: Handles discovery event
+     -------------------------------------------------------------------*/
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        if let services = peripheral.services {
+            for service in services {
+                if service.uuid == SensorDeviceObject.deviceServiceUUID {
+                    print("Sensor service found")
+                    //Now kick off discovery of characteristics
+                    peripheral.discoverCharacteristics(nil, for: service)
+                    return
                 }
             }
         }
+    }
 
-
-    // Handling discovery of characteristics
-        func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-            if let characteristics = service.characteristics {
-                for characteristic in characteristics {
-                    if characteristic.uuid == SensorDeviceObject.deviceTXUUID {
-                        txCharacteristic = characteristic
-                        print("Device TX Characteristic Found")
-                    }
-                    if characteristic.uuid == SensorDeviceObject.deviceRXUUID {
-                        rxCharacteristic = characteristic
-                        print("Device RX Characteristic Found")
-                        peripheral.setNotifyValue(true, for: rxCharacteristic)
-                        peripheral.readValue(for: characteristic)
-                    }
+    /*--------------------------------------------------------------------
+     //MARK: peripheral()
+     - Description: Handling discovery of characteristics
+     -------------------------------------------------------------------*/
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        if let characteristics = service.characteristics {
+            for characteristic in characteristics {
+                if characteristic.uuid == SensorDeviceObject.deviceTXUUID {
+                    txCharacteristic = characteristic
+                    print("Device TX Characteristic Found")
+                }
+                if characteristic.uuid == SensorDeviceObject.deviceRXUUID {
+                    rxCharacteristic = characteristic
+                    print("Device RX Characteristic Found")
+                    peripheral.setNotifyValue(true, for: rxCharacteristic)
+                    peripheral.readValue(for: characteristic)
                 }
             }
         }
+    }
     
-    //Handle data receipt
-    
+    /*--------------------------------------------------------------------
+     //MARK: peripheral()
+     - Description: Handle data receipt
+     -------------------------------------------------------------------*/
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        
         var characteristicASCIIValue = NSString()
-
         guard characteristic == txCharacteristic,
 
               let characteristicValue = characteristic.value,
@@ -175,7 +184,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
 
         print("Value Recieved: \((characteristicASCIIValue as String))")
         
-        var input = characteristicASCIIValue as String
+        let input = characteristicASCIIValue as String
         
         let splitInput = input.split(separator: ",")
         print(splitInput)
@@ -189,15 +198,13 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
                 CDObj.createBloodOxygenTableEntry(bloodOxValue: number2)
             }
         }
-        
     }
 
     /*--------------------------------------------------------------------
      //MARK: HRTimerfire()
      - Description: Method to update Heart Rate.
      -------------------------------------------------------------------*/
-    @objc func hrTimerfire()
-    {
+    @objc func hrTimerfire() {
         let hrVal = HRObj.fetchLatestHrReading()
         self.setHRButtonValue(labelValue: "\(hrVal) BPM")
         print("HR Timer Val: \(hrVal)")
@@ -207,27 +214,17 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
      //MARK: BloodOxTimerfire()
      - Description: Method to update Blood Oxygen.
      -------------------------------------------------------------------*/
-    @objc func bloodOxTimerfire()
-    {
-//        BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxygen in
-//            self.lblBloodOx.text = "\(bloodOxygen) %"
-//            print("Blood Ox Timer Val: \(bloodOxygen)")
-//        })
+    @objc func bloodOxTimerfire() {
         let bloodOxygen = BldOxObj.fetchLatestBloodOxReading()
         self.setBloodOxButtonValue(labelValue: "\(bloodOxygen) %")
         print("Blood Ox Timer Val: \(bloodOxygen)")
-        // let bloodOxVal = BldOxObj = fetchLatestBloodOxReading()
-//        BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxygen in
-//            self.setBloodOxButtonValue(labelValue: "\(bloodOxygen) %")
-//            print("Blood Ox Timer Val: \(bloodOxygen)")
         }
     
     /*--------------------------------------------------------------------
      //MARK: AltTimerFire()
      - Description: Method to update Air Pressure.
      -------------------------------------------------------------------*/
-    @objc func altTimerFire()
-    {
+    @objc func altTimerFire() {
         AltObj.fetchPressureReading(completion: { pressure in
             self.setAltitudeButtonValue(labelValue: "\(pressure) hPa")
             print("Air Pressure Timer Val: \(pressure)")
@@ -305,5 +302,4 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBAction func btnMoreInfoTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToMoreInfoScreen", sender: self)
     }
-    
 }

@@ -39,7 +39,6 @@ class CoreDataAccessObject {
         } else {
             print("Error converting HR value. Did not create new table entry.")
         }
-//        print("Saved HR: \(newHRentry.heartRate)")
     }
     
     /*--------------------------------------------------------------------
@@ -61,6 +60,10 @@ class CoreDataAccessObject {
         return self.hrItems
     }
     
+    /*--------------------------------------------------------------------
+     //MARK: fetchHeartRateDataWithRange()
+     - Description:
+     -------------------------------------------------------------------*/
     func fetchHeartRateDataWithRange(dateRange: String) {
         // Get the current calendar with local time zone
         var calendar = Calendar.current
@@ -119,8 +122,10 @@ class CoreDataAccessObject {
         }
     }
     
-    //MARK: fetchLatestSPO2
-    
+    /*--------------------------------------------------------------------
+     //MARK: fetchLatestSPO2()
+     - Description: Fetch latest saved Blood Ox entry from table.
+     -------------------------------------------------------------------*/
     func fetchLatestSPO2() -> Int {
         do {
             self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest())
@@ -132,7 +137,7 @@ class CoreDataAccessObject {
             return Int(topItem[0].bloodOxygen)
         } else {
             print("Empty SPO2 table")
-            return 0
+            return -1
         }
     }
     
@@ -244,7 +249,6 @@ class CoreDataAccessObject {
         newAPentry.dateTime = Date()
         newAPentry.airPressure = Float(apValue)
         saveContext(tableName: "AirPressureData")
-//        print("Saved Air Pressure: \(newAPentry.airPressure)")
     }
     
     /*--------------------------------------------------------------------
