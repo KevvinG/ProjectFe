@@ -7,21 +7,14 @@
 
 //MARK: Imports
 import UIKit
-<<<<<<< HEAD:Fe/Fe/Interaction Layer/HomeScreen/HomeViewController.swift
 import CoreData
 import CoreBluetooth
-=======
->>>>>>> master:Fe/Fe/Interaction Layer/HomeScreen/HomeVC.swift
 
 /*------------------------------------------------------------------------
  //MARK: HomeVC : UIViewController
  - Description: Holds UI Interactions for the Home Screen
  -----------------------------------------------------------------------*/
-<<<<<<< HEAD:Fe/Fe/Interaction Layer/HomeScreen/HomeViewController.swift
-class HomeViewController: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate {
-=======
-class HomeVC: UIViewController {
->>>>>>> master:Fe/Fe/Interaction Layer/HomeScreen/HomeVC.swift
+class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  {
     
     // Class Variables
     let HSLogic = HomeScreenLogic()
@@ -29,18 +22,14 @@ class HomeVC: UIViewController {
     let HRObj = HeartRateLogic()
     let BldOxObj = BloodOxygenLogic()
     let AltObj = AltitudeLogic()
-<<<<<<< HEAD:Fe/Fe/Interaction Layer/HomeScreen/HomeViewController.swift
-    let HSLogic = HomeScreenLogic()
     let DALogic = DataAnalysisLogic()
     let CDObj = CoreDataAccessObject()
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral!
     var txCharacteristic: CBCharacteristic!
     var rxCharacteristic: CBCharacteristic!
-=======
     let DAObj = DataAnalysisLogic()
     
->>>>>>> master:Fe/Fe/Interaction Layer/HomeScreen/HomeVC.swift
     // UI Variables
     @IBOutlet var lblTitle: UILabel!
     @IBOutlet var lblSubtitle: UILabel!
@@ -54,16 +43,13 @@ class HomeVC: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD:Fe/Fe/Interaction Layer/HomeScreen/HomeViewController.swift
         centralManager = CBCentralManager(delegate: self, queue: nil)
 
-=======
 //        HSLogic.homeScreenSetup() // Setup options once logged in.
         
         // Check if user already exists and add new user if not.
         FBObj.checkIfNewUser()
         
->>>>>>> master:Fe/Fe/Interaction Layer/HomeScreen/HomeVC.swift
         // Set Name at top of UI
         FBObj.getUserName(completion: { name in
             self.setWelcomeTitle(title: "Welcome back, \(name)!")
@@ -99,7 +85,6 @@ class HomeVC: UIViewController {
         timer.start()
     }
     
-<<<<<<< HEAD:Fe/Fe/Interaction Layer/HomeScreen/HomeViewController.swift
     //MARK: Bluetooth logic here
     
     // If we're powered on, start scanning
@@ -207,8 +192,6 @@ class HomeVC: UIViewController {
         
     }
 
-=======
->>>>>>> master:Fe/Fe/Interaction Layer/HomeScreen/HomeVC.swift
     /*--------------------------------------------------------------------
      //MARK: HRTimerfire()
      - Description: Method to update Heart Rate.
@@ -226,22 +209,18 @@ class HomeVC: UIViewController {
      -------------------------------------------------------------------*/
     @objc func bloodOxTimerfire()
     {
-<<<<<<< HEAD:Fe/Fe/Interaction Layer/HomeScreen/HomeViewController.swift
 //        BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxygen in
 //            self.lblBloodOx.text = "\(bloodOxygen) %"
 //            print("Blood Ox Timer Val: \(bloodOxygen)")
 //        })
         let bloodOxygen = BldOxObj.fetchLatestBloodOxReading()
-        self.lblBloodOx.text = "\(bloodOxygen) %"
+        self.setBloodOxButtonValue(labelValue: "\(bloodOxygen) %")
         print("Blood Ox Timer Val: \(bloodOxygen)")
-=======
         // let bloodOxVal = BldOxObj = fetchLatestBloodOxReading()
-        BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxygen in
-            self.setBloodOxButtonValue(labelValue: "\(bloodOxygen) %")
-            print("Blood Ox Timer Val: \(bloodOxygen)")
-        })
->>>>>>> master:Fe/Fe/Interaction Layer/HomeScreen/HomeVC.swift
-    }
+//        BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxygen in
+//            self.setBloodOxButtonValue(labelValue: "\(bloodOxygen) %")
+//            print("Blood Ox Timer Val: \(bloodOxygen)")
+        }
     
     /*--------------------------------------------------------------------
      //MARK: AltTimerFire()
