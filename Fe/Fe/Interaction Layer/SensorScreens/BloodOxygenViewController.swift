@@ -53,18 +53,20 @@ class BloodOxygenViewController: UIViewController {
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapChart))
         self.lineChartView.addGestureRecognizer(gesture)
         
-//        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin in
-//            lineChartView.data = BldOxObj.chartData(dataPoints: dateArray, values: bldOxArray)
-//            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
-//            lineChartView.xAxis.granularity = 1
-//            self.lblMaxBldOx.text = "\(Int(bldOxArray.max() ?? 0)) %"
-//            self.lblMinBldOx.text = "\(Int(bldOxArray.min() ?? 0)) %"
-//        })
     }
     
+    /*--------------------------------------------------------------------
+     //MARK: tapChart(sender: UITapGestureRecognizer)
+     - Description: Handles tapping on chart
+     -------------------------------------------------------------------*/
     @objc func tapChart(sender : UITapGestureRecognizer) {
         print("tapped")
     }
+    
+    /*--------------------------------------------------------------------
+     //MARK: initChart()
+     - Description: Code to inialize and load chart data
+     -------------------------------------------------------------------*/
     
     func initChart() {
         
@@ -85,30 +87,39 @@ class BloodOxygenViewController: UIViewController {
         for item in cdSPO2Data {
             spo2sum+=item
         }
-        let bldOxAvg = Int(spo2sum/Double(cdSPO2Data.count))
+        if cdSPO2Data.count == 0 {
+            self.lblAvgBldOx.text = "N/A"
+        } else {
+            let bldOxAvg = Int(spo2sum/Double(cdSPO2Data.count))
+            self.lblAvgBldOx.text = "\(bldOxAvg) %"
+        }//if
         
 //        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg in
             
-            lineChartView.data = BldOxObj.chartData(dataPoints: cdDateData, values: cdSPO2Data)
-            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:cdDateData)
-            lineChartView.xAxis.granularity = 0.05
+        lineChartView.data = BldOxObj.chartData(dataPoints: cdDateData, values: cdSPO2Data)
+        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:cdDateData)
+        lineChartView.xAxis.granularity = 0.05
             
-            lineChartView.xAxis.labelPosition = .bottom
-            lineChartView.xAxis.drawGridLinesEnabled = false
-            //lineChartView.xAxis.labelRotationAngle = -30
-            lineChartView.xAxis.setLabelCount(6, force: false)
-            //lineChartView.backgroundColor = .systemRed
-            
-            //lineChartView.data?.setDrawValues(false)
-            lineChartView.legend.enabled = false
-            
-            lineChartView.animate(xAxisDuration: 2)
-            
-            self.lblAvgBldOx.text = "\(bldOxAvg) %"
-            self.lblMaxBldOx.text = "\(bldOxMax) %"
-            self.lblMinBldOx.text = "\(bldOxMin) %"
+        lineChartView.xAxis.labelPosition = .bottom
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        //lineChartView.xAxis.labelRotationAngle = -30
+        lineChartView.xAxis.setLabelCount(6, force: false)
+        //lineChartView.backgroundColor = .systemRed
+        
+        //lineChartView.data?.setDrawValues(false)
+        lineChartView.legend.enabled = false
+        
+        lineChartView.animate(xAxisDuration: 2)
+        
+        self.lblMaxBldOx.text = "\(bldOxMax) %"
+        self.lblMinBldOx.text = "\(bldOxMin) %"
 //        })
     }
+    
+    /*--------------------------------------------------------------------
+     //MARK: populateChart(dateRange: String)
+     - Description: CURRENTLY UNUSED. Code to reload chart data
+     -------------------------------------------------------------------*/
     
     func populateChart(dateRange: String) {
         BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg in

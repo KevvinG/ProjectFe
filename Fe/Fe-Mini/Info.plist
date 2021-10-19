@@ -30,7 +30,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>ca.KJHealthCare.Fe3</string>
+	<string>ca.KJHealthCare.Fe5</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
