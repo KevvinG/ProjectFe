@@ -1481,8 +1481,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="editAccountBtnTapped:" destination="Jo8-bJ-VS0" eventType="touchUpInside" id="ThY-de-7JS"/>
-                                                            <action selector="editAccountBtnTapped:" destination="xlJ-CY-MNc" eventType="touchUpInside" id="fib-UH-X50"/>
+                                                            <action selector="editAccountDetailsSettingsBtnTapped:" destination="Jo8-bJ-VS0" eventType="touchUpInside" id="qy8-6M-mD5"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxD-R7-7He">
@@ -1582,7 +1581,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZI-zG-d9d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="xlJ-CY-MNc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2334.7826086956525" y="68.973214285714278"/>
         </scene>

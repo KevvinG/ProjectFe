@@ -27,14 +27,38 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getDoctorContactData()
+        self.setupTextFields()
         
         view.backgroundColor = .white
         navigationItem.title = "Settings"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logOutButtonTapped))
         
         // Tap Gesture to close the onscreen keyboard
-        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setupTextFields()
+     - Description: Set up keyboard for text field.
+     -------------------------------------------------------------------*/
+    func setupTextFields() {
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        toolbar.sizeToFit()
+        
+        self.txtDoctorPhone.inputAccessoryView = toolbar
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: doneButtonTapped()
+     - Description: Selector for finishing keyboard editiing.
+     -------------------------------------------------------------------*/
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
     }
     
     /*--------------------------------------------------------------------
@@ -90,6 +114,14 @@ class SettingsViewController: UIViewController {
             userData in
             self.txtDoctorPhone.text = userData["doctorPhone"]
         })
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: editAccountDetailsSettingsBtnTapped()
+     - Description: Changes Screen to Notification Settings Screen.
+     -------------------------------------------------------------------*/
+    @IBAction func editAccountDetailsSettingsBtnTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToEditUserSettings", sender: self)
     }
     
     /*--------------------------------------------------------------------

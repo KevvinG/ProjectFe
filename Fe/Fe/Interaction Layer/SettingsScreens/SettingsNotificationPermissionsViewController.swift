@@ -16,6 +16,7 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     
     // Class Variables
     let NotificationLogic = NotificationPermissionsLogic()
+    let validation = Validation()
     
     // UI Variables
     @IBOutlet var swHRNotification: UISwitch!
@@ -32,11 +33,39 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getEmergencyContactData()
+        self.setupTextFields()
         
         swHRNotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), animated: false)
         swBONotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), animated: false)
         swMedicationReminder.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description), animated: false)
         swEmergencyContactState.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description), animated: false)
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setupTextFields()
+     - Description: Set up keyboard for text field.
+     -------------------------------------------------------------------*/
+    func setupTextFields() {
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        toolbar.sizeToFit()
+        
+        self.txtEmergencyName.inputAccessoryView = toolbar
+        self.txtEmergencyPhone.inputAccessoryView = toolbar
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: doneButtonTapped()
+     - Description: Selector for finishing keyboard editiing.
+     -------------------------------------------------------------------*/
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
     }
     
     /*--------------------------------------------------------------------
@@ -117,6 +146,8 @@ class SettingsNotificationPermissionsViewController: UIViewController {
      - Description: Updates Emergency Contact Entries.
      -------------------------------------------------------------------*/
     @IBAction func updateEmergencyBtnTapped(_ sender: Any) {
+        
+        
         // Get values from Text boxes
         let emergencyName = txtEmergencyName.text ?? ""
         let emergencyPhone = txtEmergencyPhone.text ?? ""

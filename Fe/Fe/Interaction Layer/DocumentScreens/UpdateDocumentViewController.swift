@@ -34,8 +34,35 @@ class UpdateDocumentViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupTextFields()
         createDatePicker()
         setDocumentDetails()
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setupTextFields()
+     - Description: Set up keyboard for text field.
+     -------------------------------------------------------------------*/
+    func setupTextFields() {
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        toolbar.sizeToFit()
+        
+        self.txtTestName.inputAccessoryView = toolbar
+        self.txtNotes.inputAccessoryView = toolbar
+        self.txtResults.inputAccessoryView = toolbar
+        self.txtDrName.inputAccessoryView = toolbar
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: doneButtonTapped()
+     - Description: Selector for finishing keyboard editiing.
+     -------------------------------------------------------------------*/
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
     }
     
     /*--------------------------------------------------------------------

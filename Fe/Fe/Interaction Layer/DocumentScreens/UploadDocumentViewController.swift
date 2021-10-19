@@ -28,11 +28,37 @@ class UploadDocumentViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupTextFields()
         createDatePicker()
         
         // Tap Gesture to close the onscreen keyboard
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setupTextFields()
+     - Description: Set up keyboard for text field.
+     -------------------------------------------------------------------*/
+    func setupTextFields() {
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        toolbar.sizeToFit()
+        
+        self.txtTestName.inputAccessoryView = toolbar
+        self.txtDoctorName.inputAccessoryView = toolbar
+        self.txtTestResults.inputAccessoryView = toolbar
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: doneButtonTapped()
+     - Description: Selector for finishing keyboard editiing.
+     -------------------------------------------------------------------*/
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
     }
     
     /*--------------------------------------------------------------------

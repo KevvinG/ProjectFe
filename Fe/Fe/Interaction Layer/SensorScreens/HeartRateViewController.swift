@@ -35,6 +35,7 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupTextFields()
         txtLowHrThreshold.returnKeyType = .done
         txtLowHrThreshold.delegate = self
         txtHighHrThreshold.returnKeyType = .done
@@ -49,6 +50,30 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         //Setup tap handling on chart
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapChart))
         self.lineChartView.addGestureRecognizer(gesture)
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setupTextFields()
+     - Description: Set up keyboard for text field.
+     -------------------------------------------------------------------*/
+    func setupTextFields() {
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        toolbar.sizeToFit()
+        
+        self.txtLowHrThreshold.inputAccessoryView = toolbar
+        self.txtHighHrThreshold.inputAccessoryView = toolbar
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: doneButtonTapped()
+     - Description: Selector for finishing keyboard editiing.
+     -------------------------------------------------------------------*/
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
     }
     
     /*--------------------------------------------------------------------

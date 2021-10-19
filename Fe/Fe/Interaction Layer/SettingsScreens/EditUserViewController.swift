@@ -42,10 +42,46 @@ class EditUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getUserData()
+        self.setupTextFields()
         
         // Tap Gesture to close the onscreen keyboard
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setupTextFields()
+     - Description: Set up keyboard for text field.
+     -------------------------------------------------------------------*/
+    func setupTextFields() {
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        toolbar.sizeToFit()
+        
+        self.txtfName.inputAccessoryView = toolbar
+        self.txtlName.inputAccessoryView = toolbar
+        self.txtAge.inputAccessoryView = toolbar
+        self.txtEmail.inputAccessoryView = toolbar
+        self.txtPassword.inputAccessoryView = toolbar
+        self.txtphoneNo.inputAccessoryView = toolbar
+        self.txtStAddress1.inputAccessoryView = toolbar
+        self.txtStAddress2.inputAccessoryView = toolbar
+        self.txtCity.inputAccessoryView = toolbar
+        self.txtPostal.inputAccessoryView = toolbar
+        self.txtProvince.inputAccessoryView = toolbar
+        self.txtCountry.inputAccessoryView = toolbar
+        self.txtExistingSymptoms.inputAccessoryView = toolbar
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: doneButtonTapped()
+     - Description: Selector for finishing keyboard editiing.
+     -------------------------------------------------------------------*/
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
     }
     
     /*--------------------------------------------------------------------
