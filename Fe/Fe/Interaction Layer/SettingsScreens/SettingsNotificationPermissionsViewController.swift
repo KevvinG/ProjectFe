@@ -69,6 +69,20 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
+     //MARK: txtEmergencyContactFieldChanged()
+     - Description: Ensure phone number is properly formatted.
+     -------------------------------------------------------------------*/
+    @IBAction func txtEmergencyContactFieldChanged(_ sender: Any) {
+        let phoneNumber = self.txtEmergencyPhone.text ?? ""
+        let isValid = validation.validatePhoneNumber(phoneNumber: phoneNumber)
+        if isValid {
+            self.txtEmergencyPhone.backgroundColor = .green
+        } else {
+            self.txtEmergencyPhone.backgroundColor = .red
+        }
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: getEmergencyContactData()
      - Description: Fetches emergency contact data from firestore and
      fills values in text boxes
@@ -164,10 +178,4 @@ class SettingsNotificationPermissionsViewController: UIViewController {
                 self.present(updateAlert, animated: true, completion: nil)
         })
     }
-    
-    /*--------------------------------------------------------------------
-     //MARK: isValidPhoneNumber()
-     - Description: Updates Emergency Contact Entries.
-     -------------------------------------------------------------------*/
-    
 }

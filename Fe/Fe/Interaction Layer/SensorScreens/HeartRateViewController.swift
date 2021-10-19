@@ -171,28 +171,6 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
     }
     
     /*--------------------------------------------------------------------
-     //MARK: setupTextFields()
-     - Description: Add toolbar to number pad keyboards.
-     -------------------------------------------------------------------*/
-    func setupTextFields() {
-        let toolbar = UIToolbar()
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
-        toolbar.setItems([flexSpace, doneButton], animated: true)
-        toolbar.sizeToFit()
-        txtLowHrThreshold.inputAccessoryView = toolbar
-        txtHighHrThreshold.inputAccessoryView = toolbar
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: doneButtonTapped()
-     - Description: dismisses keyboard.
-     -------------------------------------------------------------------*/
-    @objc func doneButtonTapped() {
-        view.endEditing(true)
-    }
-    
-    /*--------------------------------------------------------------------
      //MARK: getUserHrThresholds()
      - Description: Fetches HR thresholds from Firebase
      -------------------------------------------------------------------*/
