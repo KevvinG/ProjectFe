@@ -15,6 +15,33 @@ import UserNotifications
  -----------------------------------------------------------------------*/
 class NotificationPermissionsLogic {
     
+    // Class Variables
+    let FBObj = FirebaseAccessObject()
+    
+    /*--------------------------------------------------------------------
+     //MARK: getEmergencyContactData()
+     - Description: Call Firebase to fetch emegency contact data.
+     -------------------------------------------------------------------*/
+    func getEmergencyContactData(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
+        FBObj.getEmergencyContactData(completion: { userData in
+            completion(userData)
+        })
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: updateEmergencyContact()
+     - Description: Call Firebase to update emergency contact data.
+     -------------------------------------------------------------------*/
+    func updateEmergencyContact(emergencyName: String, emergencyPhone: String, completion: @escaping (_ successful: Bool) -> Void) {
+        FirebaseAccessObject().updateEmergencyContactData(emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: { success in
+            if success {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        })
+    }
+    
     /*--------------------------------------------------------------------
      //MARK: setSwitchState()
      - Description: Set on screen state of switch.

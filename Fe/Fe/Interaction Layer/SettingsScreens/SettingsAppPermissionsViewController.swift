@@ -19,7 +19,6 @@ class SettingsAppPermissionsViewController: UIViewController {
     
     // UI Variables
     @IBOutlet var swGPS: UISwitch!
-    @IBOutlet var swTxtEmgcy: UISwitch!
     @IBOutlet var swAltimeter: UISwitch!
     @IBOutlet var swHeartRate: UISwitch!
     @IBOutlet var swBloodOxygen: UISwitch!
@@ -109,20 +108,6 @@ class SettingsAppPermissionsViewController: UIViewController {
         } else {
             print("Contact 911 in Emergency Switch is off.")
             AppLogic.updateSwitchState(key: UserDefaultKeys.swContact911EmergencyKey.description, value: false)
-        }
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: swNotifyEmergencyStateChanged()
-     - Description: Logic for changing contacting emergency contact Permission.
-     -------------------------------------------------------------------*/
-    @IBAction func swNotifyEmergencyStateChanged(_ sender: Any) {
-        if swTxtEmgcy.isOn {
-            print("Notify Emergency Contact Switch is on.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: true)
-        } else {
-            print("Notify Emergency Contact Switch is off.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: false)
         }
     }
 }

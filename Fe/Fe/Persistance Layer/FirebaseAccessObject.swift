@@ -457,7 +457,7 @@ class FirebaseAccessObject {
      //MARK: updateEmergencyContactData()
      - Description: Logic to update EmergencyContact Data.
      -------------------------------------------------------------------*/
-    func updateEmergencyContactData(doctorPhone: String, emergencyName: String, emergencyPhone: String, completion: @escaping (_ successful: Bool) -> Void) {
+    func updateEmergencyContactData(emergencyName: String, emergencyPhone: String, completion: @escaping (_ successful: Bool) -> Void) {
         let user = Auth.auth().currentUser
         let userRef = db.collection("users").whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
         
@@ -472,7 +472,6 @@ class FirebaseAccessObject {
                     for document in querySnapshot!.documents {
                         let ref = document.reference
                         ref.updateData([
-                            "doctorPhone": doctorPhone,
                             "emergencyName": emergencyName,
                             "emergencyPhone": emergencyPhone
                         ]);
@@ -502,9 +501,63 @@ class FirebaseAccessObject {
                         print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
                     } else {
                         for document in querySnapshot!.documents {
-                            dataDict["doctorPhone"] = document.data()["doctorPhone"] as? String
                             dataDict["emergencyName"] = document.data()["emergencyName"] as? String
                             dataDict["emergencyPhone"] = document.data()["emergencyPhone"] as? String
+                        }
+                    }
+                }
+            completion(dataDict)
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: updateDoctorContactData()
+     - Description: Logic to update Doctor Data.
+     -------------------------------------------------------------------*/
+    func updateDoctorContactData(doctorPhone: String, completion: @escaping (_ successful: Bool) -> Void) {
+        let user = Auth.auth().currentUser
+        let userRef = db.collection("users").whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+        
+        userRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count == 0 {
+                    print("No user found.")
+                    completion(false)
+                } else {
+                    for document in querySnapshot!.documents {
+                        let ref = document.reference
+                        ref.updateData([
+                            "doctorPhone": doctorPhone,
+                        ]);
+                        completion(true)
+                    }
+                }
+            }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: getDoctorContactData()
+     - Description: Obtains doctor contact data from Firebase and displays in
+     - the appropriate TextViews.
+     -------------------------------------------------------------------*/
+    func getDoctorContactData(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
+        var dataDict = [String:String]()
+        let usersRef = db.collection("users")
+        let user = Auth.auth().currentUser
+        
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            dataDict["doctorPhone"] = document.data()["doctorPhone"] as? String
                         }
                     }
                 }

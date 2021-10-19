@@ -13,20 +13,20 @@ import UIKit
  - Description: Holds logic for the Main Settings Screen
  -----------------------------------------------------------------------*/
 class SettingsViewController: UIViewController {
+    
+    // Class Variables
     let settingsLogic = SettingsViewLogic()
+    
     // UI Variables
     @IBOutlet var txtDoctorPhone: UITextField!
-    @IBOutlet var txtEmergencyName: UITextField!
-    @IBOutlet var txtEmergencyPhone: UITextField!
     
-
     /*--------------------------------------------------------------------
      //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getEmergencyContactData()
+        self.getDoctorContactData()
         
         view.backgroundColor = .white
         navigationItem.title = "Settings"
@@ -35,15 +35,6 @@ class SettingsViewController: UIViewController {
         // Tap Gesture to close the onscreen keyboard
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: prepare()
-     - Description: Prepare any code before changing scenes.
-     -------------------------------------------------------------------*/
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     
     /*--------------------------------------------------------------------
@@ -59,6 +50,7 @@ class SettingsViewController: UIViewController {
             startViewController.modalPresentationStyle = .fullScreen
             self.present(startViewController, animated:true, completion:nil)
         }
+        
         // Present the Alert with 2 actions
         let signOutAlert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         signOutAlert.addAction(logOutAction)
@@ -70,16 +62,14 @@ class SettingsViewController: UIViewController {
      //MARK: updateEmergencyBtnTapped()
      - Description: updates Emergency contact information.
      -------------------------------------------------------------------*/
-    @IBAction func updateEmergencyBtnTapped(_ sender: Any) {
+    @IBAction func updateDoctorNumberBtnTapped(_ sender: Any) {
         // Get values from Text boxes
         let doctorPhone = txtDoctorPhone.text ?? ""
-        let emergencyName = txtEmergencyName.text ?? ""
-        let emergencyPhone = txtEmergencyPhone.text ?? ""
-
-        settingsLogic.updateEmergencyContact(doctorPhone : doctorPhone, emergencyName : emergencyName, emergencyPhone : emergencyPhone, completion: {success in
+        
+        settingsLogic.updateDoctorContact(doctorPhone: doctorPhone, completion: { success in
                 var msg = ""
                 if success {
-                    msg = "Successfully updated emergency contact details"
+                    msg = "Successfully updated doctor contact details"
                 } else {
                     msg = "Update Not Successful"
                 }
@@ -87,28 +77,19 @@ class SettingsViewController: UIViewController {
                 updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
                 self.present(updateAlert, animated: true, completion: nil)
         })
+    
     }
     
     /*--------------------------------------------------------------------
-     //MARK: getEmergencyContactData()
+     //MARK: getDoctorContactData()
      - Description: Fetches emergency contact data from firestore and
      fills values in text boxes
      -------------------------------------------------------------------*/
-    private func getEmergencyContactData() {
-        settingsLogic.getEmergencyContactData(completion: {
+    private func getDoctorContactData() {
+        settingsLogic.getDoctorContactData(completion: {
             userData in
             self.txtDoctorPhone.text = userData["doctorPhone"]
-            self.txtEmergencyName.text = userData["emergencyName"]
-            self.txtEmergencyPhone.text = userData["emergencyPhone"]
         })
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: editAccountBtnTapped()
-     - Description: Changes Screen to Edit Settings Screen.
-     -------------------------------------------------------------------*/
-    @IBAction func editAccountBtnTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "GoToEditUserSettings", sender: self)
     }
     
     /*--------------------------------------------------------------------
@@ -135,8 +116,9 @@ class SettingsViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete Data", style: .destructive ) { action in
             do {
                 // Delete Data
-                self.settingsLogic.deleteFBSensorData()
+                self.settingsLogic.deleteSensorData()
 //                self.deleteSensorData()
+
             }
         }
         // Prompt before deleting
@@ -173,7 +155,7 @@ class SettingsViewController: UIViewController {
     func deleteDataPrompt() {
         let deleteAllAction = UIAlertAction(title: "Delete All", style: .destructive ) { action in
             do {
-                self.settingsLogic.deleteFBData()
+                self.settingsLogic.deleteData()
                 self.settingsLogic.deleteAccount()
             }
         }
@@ -183,7 +165,7 @@ class SettingsViewController: UIViewController {
 //                self.deleteAccount()
             }
         }
-        //Leaving this logic in VC as it is just interaction logic
+        // Leaving this logic in VC as it is just interaction logic
         let msg = "Do you want to delete your data and account?"
         let deleteDataAlert = UIAlertController(title: "Delete Data", message: msg, preferredStyle: UIAlertController.Style.alert)
         deleteDataAlert.addAction(deleteAllAction)

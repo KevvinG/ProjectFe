@@ -21,7 +21,8 @@ class SettingsViewLogic {
      //MARK: deleteFBSensorData()
      - Description: Call Firebase to delete Sensor Data.
      -------------------------------------------------------------------*/
-    func deleteFBSensorData() {
+    func deleteSensorData() {
+        //TODO: DELETE SENSOR DATA FROM CORE DATA
         FBObj.deleteSensorData()
     }
     
@@ -29,7 +30,7 @@ class SettingsViewLogic {
      //MARK: deleteFBData()
      - Description: Call Firebase to delete Data.
      -------------------------------------------------------------------*/
-    func deleteFBData() {
+    func deleteData() {
         FBObj.deleteData()
     }
     
@@ -50,12 +51,11 @@ class SettingsViewLogic {
     }
     
     /*--------------------------------------------------------------------
-     //MARK: updateEmergencyContact()
-     - Description: Call Firebase to update emergency contact data.
+     //MARK: updateDoctorContact()
+     - Description: Call Firebase to update doctor contact data.
      -------------------------------------------------------------------*/
-    func updateEmergencyContact(doctorPhone : String, emergencyName : String, emergencyPhone : String, completion: @escaping (_ successful: Bool) -> Void) {
-        
-        FirebaseAccessObject().updateEmergencyContactData(doctorPhone: doctorPhone, emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: { success in
+    func updateDoctorContact(doctorPhone : String, completion: @escaping (_ successful: Bool) -> Void) {
+        FirebaseAccessObject().updateDoctorContactData(doctorPhone: doctorPhone, completion: { success in
             if success {
                 completion(true)
             } else {
@@ -65,13 +65,12 @@ class SettingsViewLogic {
     }
     
     /*--------------------------------------------------------------------
-     //MARK: getEmergencyContactData()
-     - Description: Call Firebase to fetch emegency contact data.
+     //MARK: getDoctorContactData()
+     - Description: Call Firebase to fetch doctor contact data.
      -------------------------------------------------------------------*/
-    func getEmergencyContactData(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
-        FBObj.getEmergencyContactData(completion: { userData in
+    func getDoctorContactData(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
+        FBObj.getDoctorContactData(completion: { userData in
             completion(userData)
         })
     }
-    
 }

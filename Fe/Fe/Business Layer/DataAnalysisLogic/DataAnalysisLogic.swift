@@ -19,12 +19,6 @@ class DataAnalysisLogic {
     // Class Variables
     let CDObj = CoreDataAccessObject()
     let FBObj = FirebaseAccessObject()
-    var fName = ""
-    var fcmToken = ""
-    var emergencyPhone = ""
-    var hrLowThreshold = ""
-    var hrHighThreshold = ""
-
     
     /*--------------------------------------------------------------------
      //MARK: analyzeHeartRateData()
@@ -34,11 +28,17 @@ class DataAnalysisLogic {
     func analyzeHeartRateData() {
 
         FBObj.getUserdataForAnalysis(completion: { userData in
-            self.fName = userData["fName"]!
-            self.fcmToken = userData["fcmToken"]!
-            self.emergencyPhone = userData["emergencyPhone"]!
-            self.hrLowThreshold = userData["hrLowThreshold"]!
-            self.hrHighThreshold = userData["hrHighThreshold"]!
+            // URL Variables
+            let fName = userData["fName"]!
+            let fcmToken = userData["fcmToken"]!
+            let emergencyPhone = userData["emergencyPhone"]!
+            let hrLowThreshold = userData["hrLowThreshold"]!
+            let hrHighThreshold = userData["hrHighThreshold"]!
+            let emergencySwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description)
+            var emergencySwitch = "false"
+            if emergencySwitchState != nil {
+                emergencySwitch = String(emergencySwitchState!)
+            }
             
             if let hrData = self.CDObj.fetchHeartRateDataForAnalysis(), !hrData.isEmpty {
                 
@@ -50,7 +50,6 @@ class DataAnalysisLogic {
                 
                 // Verify string is not null before proceeding
                 if jsonString != nil {
-                   //print(jsonString!)
                     
                     // Create url string dynamically
                     var components = URLComponents()
@@ -58,11 +57,12 @@ class DataAnalysisLogic {
                     components.host = "us-central1-project-fe-56023.cloudfunctions.net"
                     components.path = "/heartRateDataAnalysis"
                     components.queryItems = [
-                        URLQueryItem(name: "fName", value: self.fName),
-                        URLQueryItem(name: "fcmToken", value: self.fcmToken),
-                        URLQueryItem(name: "emergencyPhone", value: self.emergencyPhone),
-                        URLQueryItem(name: "hrLowThreshold", value: self.hrLowThreshold),
-                        URLQueryItem(name: "hrHighThreshold", value: self.hrHighThreshold),
+                        URLQueryItem(name: "fName", value: fName),
+                        URLQueryItem(name: "fcmToken", value: fcmToken),
+                        URLQueryItem(name: "emergencyPhone", value: emergencyPhone),
+                        URLQueryItem(name: "emergencySwitch", value: emergencySwitch),
+                        URLQueryItem(name: "hrLowThreshold", value: hrLowThreshold),
+                        URLQueryItem(name: "hrHighThreshold", value: hrHighThreshold),
                         URLQueryItem(name: "data", value: jsonString),
                     ]
                     let url = components.url?.absoluteString
@@ -105,11 +105,17 @@ class DataAnalysisLogic {
     func analyzeBloodOxygenData() {
         
         FBObj.getUserdataForAnalysis(completion: { userData in
-            self.fName = userData["fName"]!
-            self.fcmToken = userData["fcmToken"]!
-            self.emergencyPhone = userData["emergencyPhone"]!
-            self.hrLowThreshold = userData["hrLowThreshold"]!
-            self.hrHighThreshold = userData["hrHighThreshold"]!
+            // URL Variables
+            let fName = userData["fName"]!
+            let fcmToken = userData["fcmToken"]!
+            let emergencyPhone = userData["emergencyPhone"]!
+            let hrLowThreshold = userData["hrLowThreshold"]!
+            let hrHighThreshold = userData["hrHighThreshold"]!
+            let emergencySwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description)
+            var emergencySwitch = "false"
+            if emergencySwitchState != nil {
+                emergencySwitch = String(emergencySwitchState!)
+            }
             
             if let bloodOxygenData = self.CDObj.fetchBloodOxygenData(), !bloodOxygenData.isEmpty {
             
@@ -121,7 +127,6 @@ class DataAnalysisLogic {
                 
                 // Verify string is not null before proceeding
                 if jsonString != nil {
-                    //print(jsonString)
                     
                     // Create url string dynamically
                     var components = URLComponents()
@@ -129,11 +134,12 @@ class DataAnalysisLogic {
                     components.host = "us-central1-project-fe-56023.cloudfunctions.net"
                     components.path = "/heartRateDataAnalysis"
                     components.queryItems = [
-                        URLQueryItem(name: "fName", value: self.fName),
-                        URLQueryItem(name: "fcmToken", value: self.fcmToken),
-                        URLQueryItem(name: "emergencyPhone", value: self.emergencyPhone),
-                        URLQueryItem(name: "hrLowThreshold", value: self.hrLowThreshold),
-                        URLQueryItem(name: "hrHighThreshold", value: self.hrHighThreshold),
+                        URLQueryItem(name: "fName", value: fName),
+                        URLQueryItem(name: "fcmToken", value: fcmToken),
+                        URLQueryItem(name: "emergencyPhone", value: emergencyPhone),
+                        URLQueryItem(name: "emergencySwitch", value: emergencySwitch),
+                        URLQueryItem(name: "hrLowThreshold", value: hrLowThreshold),
+                        URLQueryItem(name: "hrHighThreshold", value: hrHighThreshold),
                         URLQueryItem(name: "data", value: jsonString),
                     ]
                     let url = components.url?.absoluteString

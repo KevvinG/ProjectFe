@@ -21,6 +21,9 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBOutlet var swHRNotification: UISwitch!
     @IBOutlet var swBONotification: UISwitch!
     @IBOutlet var swMedicationReminder: UISwitch!
+    @IBOutlet var txtEmergencyName: UITextField!
+    @IBOutlet var txtEmergencyPhone: UITextField!
+    @IBOutlet var swEmergencyContactState: UISwitch!
     
     /*--------------------------------------------------------------------
      //MARK: viewDidLoad()
@@ -28,9 +31,25 @@ class SettingsNotificationPermissionsViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getEmergencyContactData()
+        
         swHRNotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), animated: false)
         swBONotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), animated: false)
         swMedicationReminder.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description), animated: false)
+        swEmergencyContactState.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description), animated: false)
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: getEmergencyContactData()
+     - Description: Fetches emergency contact data from firestore and
+     fills values in text boxes
+     -------------------------------------------------------------------*/
+    private func getEmergencyContactData() {
+        NotificationLogic.getEmergencyContactData(completion: {
+            userData in
+            self.txtEmergencyName.text = userData["emergencyName"]
+            self.txtEmergencyPhone.text = userData["emergencyPhone"]
+        })
     }
     
     /*--------------------------------------------------------------------
@@ -77,4 +96,47 @@ class SettingsNotificationPermissionsViewController: UIViewController {
             NotificationLogic.cancelAllScheduledNotifications()
         }
     }
+    
+    /*--------------------------------------------------------------------
+     //MARK: swEmergencyContactStateChanged()
+     - Description: Logic for changing state of emergency contact button.
+     -------------------------------------------------------------------*/
+    @IBAction func swEmergencyContactStateChanged(_ sender: Any) {
+        if swEmergencyContactState.isOn {
+            print("Text to Emergency Contact On")
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: true)
+        } else {
+            print("Text to Emergency Contact Off")
+            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: false)
+        }
+    }
+    
+    
+    /*--------------------------------------------------------------------
+     //MARK: updateEmergencyBtnTapped()
+     - Description: Updates Emergency Contact Entries.
+     -------------------------------------------------------------------*/
+    @IBAction func updateEmergencyBtnTapped(_ sender: Any) {
+        // Get values from Text boxes
+        let emergencyName = txtEmergencyName.text ?? ""
+        let emergencyPhone = txtEmergencyPhone.text ?? ""
+
+        NotificationLogic.updateEmergencyContact(emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: {success in
+                var msg = ""
+                if success {
+                    msg = "Successfully updated emergency contact details"
+                } else {
+                    msg = "Update Not Successful"
+                }
+                let updateAlert = UIAlertController(title: "Updating Data", message: msg, preferredStyle: UIAlertController.Style.alert)
+                updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+                self.present(updateAlert, animated: true, completion: nil)
+        })
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: isValidPhoneNumber()
+     - Description: Updates Emergency Contact Entries.
+     -------------------------------------------------------------------*/
+    
 }
