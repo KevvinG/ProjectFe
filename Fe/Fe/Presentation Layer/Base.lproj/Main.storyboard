@@ -1419,41 +1419,12 @@
                                                         <rect key="frame" x="10" y="41.5" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                                        <connections>
+                                                            <action selector="txtDoctorPhoneFieldChanged:" destination="Jo8-bJ-VS0" eventType="editingChanged" id="V4u-6x-bHe"/>
+                                                        </connections>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXf-mB-DXU">
-                                                        <rect key="frame" x="10" y="343.5" width="394" height="42"/>
-                                                        <color key="backgroundColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                        <state key="normal" title="Delete Account">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="10"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="deleteAccountBtnTapped:" destination="Jo8-bJ-VS0" eventType="touchUpInside" id="oYv-nY-tfE"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3a6-8Z-AsT">
-                                                        <rect key="frame" x="10" y="291.5" width="394" height="42"/>
-                                                        <color key="backgroundColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                        <state key="normal" title="Delete Data">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="10"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="deleteDataBtnTapped:" destination="Jo8-bJ-VS0" eventType="touchUpInside" id="qaF-jP-mKh"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6N-bz-aa5">
-                                                        <rect key="frame" x="10" y="189.5" width="394" height="42"/>
+                                                        <rect key="frame" x="10" y="221" width="394" height="42"/>
                                                         <color key="backgroundColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <state key="normal" title="Application Permissions">
@@ -1469,7 +1440,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7H-ka-18y">
-                                                        <rect key="frame" x="10" y="137.5" width="394" height="42"/>
+                                                        <rect key="frame" x="10" y="169" width="394" height="42"/>
                                                         <color key="backgroundColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <state key="normal" title="Edit Account Details">
@@ -1485,7 +1456,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxD-R7-7He">
-                                                        <rect key="frame" x="10" y="239.5" width="394" height="42"/>
+                                                        <rect key="frame" x="10" y="271" width="394" height="42"/>
                                                         <color key="backgroundColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <state key="normal" title="Notification Settings">
@@ -1517,34 +1488,84 @@
                                                             <action selector="updateDoctorNumberBtnTapped:" destination="Jo8-bJ-VS0" eventType="touchUpInside" id="WW0-mv-QsL"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXx-2h-gxO">
+                                                        <rect key="frame" x="10" y="137.5" width="394" height="21.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DANGER AREA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGH-5t-yTe">
+                                                        <rect key="frame" x="10" y="323" width="394" height="21.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXf-mB-DXU">
+                                                        <rect key="frame" x="10" y="406.5" width="394" height="42"/>
+                                                        <color key="backgroundColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                        <state key="normal" title="Delete Account">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="deleteAccountBtnTapped:" destination="Jo8-bJ-VS0" eventType="touchUpInside" id="oYv-nY-tfE"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3a6-8Z-AsT">
+                                                        <rect key="frame" x="10" y="354.5" width="394" height="42"/>
+                                                        <color key="backgroundColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                        <state key="normal" title="Delete Data">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="deleteDataBtnTapped:" destination="Jo8-bJ-VS0" eventType="touchUpInside" id="qaF-jP-mKh"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="DXf-mB-DXU" firstAttribute="top" secondItem="3a6-8Z-AsT" secondAttribute="bottom" constant="10" id="0LV-vF-aZt"/>
+                                                    <constraint firstItem="3a6-8Z-AsT" firstAttribute="top" secondItem="SGH-5t-yTe" secondAttribute="bottom" constant="10" id="21O-Hc-E5p"/>
                                                     <constraint firstItem="6oe-I9-Vyt" firstAttribute="top" secondItem="bfW-BX-4kK" secondAttribute="bottom" constant="10" id="4Ke-q3-ZHE"/>
                                                     <constraint firstItem="RxD-R7-7He" firstAttribute="top" secondItem="Y6N-bz-aa5" secondAttribute="bottom" constant="8" symbolic="YES" id="6o9-V2-6k2"/>
                                                     <constraint firstItem="RxD-R7-7He" firstAttribute="leading" secondItem="p0B-gb-EaV" secondAttribute="leading" constant="10" id="766-UD-dzL"/>
                                                     <constraint firstItem="Y6N-bz-aa5" firstAttribute="top" secondItem="p7H-ka-18y" secondAttribute="bottom" constant="10" id="A7q-mE-s4p"/>
+                                                    <constraint firstItem="WXx-2h-gxO" firstAttribute="leading" secondItem="p0B-gb-EaV" secondAttribute="leading" constant="10" id="AzI-cm-YDd"/>
                                                     <constraint firstItem="p7H-ka-18y" firstAttribute="leading" secondItem="p0B-gb-EaV" secondAttribute="leading" constant="10" id="CDA-W0-Iq5"/>
                                                     <constraint firstAttribute="trailing" secondItem="p7H-ka-18y" secondAttribute="trailing" constant="10" id="E1r-kp-DGg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="WXx-2h-gxO" secondAttribute="trailing" constant="10" id="EAT-Z4-fgT"/>
+                                                    <constraint firstItem="WXx-2h-gxO" firstAttribute="top" secondItem="6oe-I9-Vyt" secondAttribute="bottom" constant="10" id="GqP-eq-ph6"/>
                                                     <constraint firstAttribute="trailing" secondItem="Y6N-bz-aa5" secondAttribute="trailing" constant="10" id="Qcx-gw-rnT"/>
                                                     <constraint firstItem="6oe-I9-Vyt" firstAttribute="leading" secondItem="p0B-gb-EaV" secondAttribute="leading" constant="10" id="ToY-U1-Mpl"/>
                                                     <constraint firstAttribute="trailing" secondItem="IzM-kR-lVh" secondAttribute="trailing" constant="10" id="Y8Z-nb-Gb9"/>
                                                     <constraint firstAttribute="trailing" secondItem="3a6-8Z-AsT" secondAttribute="trailing" constant="10" id="YTz-zj-VG2"/>
                                                     <constraint firstItem="DXf-mB-DXU" firstAttribute="leading" secondItem="p0B-gb-EaV" secondAttribute="leading" constant="10" id="YU2-n1-qG1"/>
                                                     <constraint firstItem="3a6-8Z-AsT" firstAttribute="leading" secondItem="p0B-gb-EaV" secondAttribute="leading" constant="10" id="Zgu-AI-8kJ"/>
+                                                    <constraint firstItem="SGH-5t-yTe" firstAttribute="leading" secondItem="p0B-gb-EaV" secondAttribute="leading" constant="10" id="dmO-QN-jzf"/>
                                                     <constraint firstItem="Y6N-bz-aa5" firstAttribute="leading" secondItem="p0B-gb-EaV" secondAttribute="leading" constant="10" id="dof-t9-Ie9"/>
                                                     <constraint firstAttribute="trailing" secondItem="DXf-mB-DXU" secondAttribute="trailing" constant="10" id="gc9-mC-jZN"/>
-                                                    <constraint firstItem="3a6-8Z-AsT" firstAttribute="top" secondItem="RxD-R7-7He" secondAttribute="bottom" constant="10" id="gmw-UL-APx"/>
                                                     <constraint firstAttribute="height" constant="800" id="hag-MI-KVH"/>
+                                                    <constraint firstItem="p7H-ka-18y" firstAttribute="top" secondItem="WXx-2h-gxO" secondAttribute="bottom" constant="10" id="jQh-Cp-pM2"/>
                                                     <constraint firstItem="bfW-BX-4kK" firstAttribute="leading" secondItem="p0B-gb-EaV" secondAttribute="leading" constant="10" id="kbh-TU-oHc"/>
                                                     <constraint firstAttribute="trailing" secondItem="bfW-BX-4kK" secondAttribute="trailing" constant="10" id="lML-aU-9Vj"/>
                                                     <constraint firstItem="bfW-BX-4kK" firstAttribute="top" secondItem="IzM-kR-lVh" secondAttribute="bottom" constant="10" id="lvQ-3I-ndt"/>
+                                                    <constraint firstAttribute="trailing" secondItem="SGH-5t-yTe" secondAttribute="trailing" constant="10" id="mG3-PX-EPG"/>
                                                     <constraint firstItem="IzM-kR-lVh" firstAttribute="leading" secondItem="p0B-gb-EaV" secondAttribute="leading" constant="10" id="pZI-Bk-CNP"/>
                                                     <constraint firstItem="IzM-kR-lVh" firstAttribute="top" secondItem="p0B-gb-EaV" secondAttribute="top" constant="10" id="q5I-9W-A95"/>
                                                     <constraint firstAttribute="trailing" secondItem="6oe-I9-Vyt" secondAttribute="trailing" constant="10" id="s7A-8e-hQ5"/>
                                                     <constraint firstAttribute="trailing" secondItem="RxD-R7-7He" secondAttribute="trailing" constant="10" id="u0j-zm-1PJ"/>
-                                                    <constraint firstItem="p7H-ka-18y" firstAttribute="top" secondItem="6oe-I9-Vyt" secondAttribute="bottom" constant="10" id="vNs-2q-dVX"/>
+                                                    <constraint firstItem="SGH-5t-yTe" firstAttribute="top" secondItem="RxD-R7-7He" secondAttribute="bottom" constant="10" id="yqw-5s-rT8"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -1979,6 +2000,9 @@
                                                         <rect key="frame" x="10" y="327.5" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="done" textContentType="name"/>
+                                                        <connections>
+                                                            <action selector="txtEmergencyNameFieldChanged:" destination="wOC-5z-hqt" eventType="editingChanged" id="Pr9-5K-XQr"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Emergency Contant Phone Number" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="pB0-zi-0vt">
                                                         <rect key="frame" x="10" y="371.5" width="394" height="34"/>
@@ -2086,6 +2110,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Notification Settings" id="6PD-ep-cw8"/>
                     <connections>
+                        <outlet property="btnUpdateEmergencyContact" destination="ocB-mO-t1q" id="lXt-xL-pgA"/>
                         <outlet property="swBONotification" destination="l31-RB-t1y" id="pTR-yP-2wl"/>
                         <outlet property="swEmergencyContactState" destination="xkH-11-0yd" id="PRw-mQ-UoB"/>
                         <outlet property="swHRNotification" destination="Jya-iu-1nT" id="w4l-ve-YBd"/>
@@ -2659,62 +2684,98 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HR2-wA-1Jn">
                                                         <rect key="frame" x="10" y="20" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="next" textContentType="given-name"/>
+                                                        <connections>
+                                                            <action selector="txtFnameFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="q6z-qy-UXu"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nZK-SO-Xgq">
                                                         <rect key="frame" x="10" y="64" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="next" textContentType="family-name"/>
+                                                        <connections>
+                                                            <action selector="txtLnameFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="Mf6-KZ-m5P"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xcg-jE-cd5">
                                                         <rect key="frame" x="10" y="108" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                                                        <connections>
+                                                            <action selector="txtAgeFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="lZ0-KY-4gd"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yiZ-dF-kUu">
                                                         <rect key="frame" x="10" y="152" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                                        <connections>
+                                                            <action selector="txtEmailFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="Eo2-wY-qyg"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FrE-vV-U3Y">
                                                         <rect key="frame" x="10" y="196" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" textContentType="new-password"/>
+                                                        <connections>
+                                                            <action selector="txtPasswordFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="w1R-BS-9fw"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Postal Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWK-ow-3qZ">
                                                         <rect key="frame" x="10" y="416" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="postal-code"/>
+                                                        <connections>
+                                                            <action selector="txtPostalFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="U9a-Pd-pA8"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n0d-vQ-BW6">
                                                         <rect key="frame" x="10" y="240" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" textContentType="tel"/>
+                                                        <connections>
+                                                            <action selector="txtPhoneFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="eWR-q7-d6b"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street Address 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j4d-Qc-0TP">
                                                         <rect key="frame" x="10" y="328" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-line2"/>
+                                                        <connections>
+                                                            <action selector="txtStreet2FieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="OgK-T0-E3E"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street Address 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RYW-VT-RLc">
                                                         <rect key="frame" x="10" y="284" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-line1"/>
+                                                        <connections>
+                                                            <action selector="txtStreet1FieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="McI-SR-6ij"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cle-0d-PC1">
                                                         <rect key="frame" x="10" y="372" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-level2"/>
+                                                        <connections>
+                                                            <action selector="txtCityFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="scS-k5-PPy"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Province" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iVS-Xa-80E">
                                                         <rect key="frame" x="10" y="460" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-level1"/>
+                                                        <connections>
+                                                            <action selector="txtProvinceFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="Zfs-F5-zec"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xXJ-dG-vVk">
                                                         <rect key="frame" x="10" y="504" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="country-name"/>
+                                                        <connections>
+                                                            <action selector="txtCountryFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="Q8p-K0-Dug"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="line" placeholder="Existing Symptoms" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8eV-fK-or6">
                                                         <rect key="frame" x="10" y="548" width="394" height="40"/>
@@ -2723,7 +2784,10 @@
                                                             <constraint firstAttribute="height" constant="40" id="nb0-Ji-kam"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        <connections>
+                                                            <action selector="txtSymptomsFieldChanged:" destination="PSe-Yc-n1n" eventType="editingChanged" id="A9i-F5-dZs"/>
+                                                        </connections>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJr-ws-7pa">
                                                         <rect key="frame" x="10" y="598" width="394" height="42"/>

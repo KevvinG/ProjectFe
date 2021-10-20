@@ -657,7 +657,6 @@ class FirebaseAccessObject {
                         print("We found the user.")
                         for document in querySnapshot!.documents {
                             print(document)
-                            //TODO: Delete the Sensor Data once established in firestore
                         }
                     }
                 }

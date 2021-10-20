@@ -25,6 +25,7 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBOutlet var txtEmergencyName: UITextField!
     @IBOutlet var txtEmergencyPhone: UITextField!
     @IBOutlet var swEmergencyContactState: UISwitch!
+    @IBOutlet var btnUpdateEmergencyContact: UIButton!
     
     /*--------------------------------------------------------------------
      //MARK: viewDidLoad()
@@ -39,6 +40,7 @@ class SettingsNotificationPermissionsViewController: UIViewController {
         swBONotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), animated: false)
         swMedicationReminder.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description), animated: false)
         swEmergencyContactState.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description), animated: false)
+        modifyUIState() // Modify Emergency Contact switch
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
@@ -69,16 +71,35 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
+     //MARK: txtEmergencyNameFieldChanged()
+     - Description: Ensure name is properly formatted.
+     -------------------------------------------------------------------*/
+    @IBAction func txtEmergencyNameFieldChanged(_ sender: Any) {
+        // If Emergency Contact Switch is on, ensure this field is validated
+        if swEmergencyContactState.isOn {
+            let name = self.txtEmergencyName.text ?? ""
+            let isValid = validation.validateName(name: name)
+            if isValid {
+                self.txtEmergencyName.backgroundColor = .FeValidationGreen
+            } else {
+                self.txtEmergencyName.backgroundColor = .FeValidationRed
+            }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: txtEmergencyContactFieldChanged()
      - Description: Ensure phone number is properly formatted.
      -------------------------------------------------------------------*/
     @IBAction func txtEmergencyContactFieldChanged(_ sender: Any) {
-        let phoneNumber = self.txtEmergencyPhone.text ?? ""
-        let isValid = validation.validatePhoneNumber(phoneNumber: phoneNumber)
-        if isValid {
-            self.txtEmergencyPhone.backgroundColor = .green
-        } else {
-            self.txtEmergencyPhone.backgroundColor = .red
+        if swEmergencyContactState.isOn {
+            let phoneNumber = self.txtEmergencyPhone.text ?? ""
+            let isValid = validation.validatePhoneNumber(phoneNumber: phoneNumber)
+            if isValid {
+                self.txtEmergencyPhone.backgroundColor = .FeValidationGreen
+            } else {
+                self.txtEmergencyPhone.backgroundColor = .FeValidationRed
+            }
         }
     }
     
@@ -148,34 +169,65 @@ class SettingsNotificationPermissionsViewController: UIViewController {
         if swEmergencyContactState.isOn {
             print("Text to Emergency Contact On")
             NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: true)
+            modifyUIState()
         } else {
             print("Text to Emergency Contact Off")
             NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: false)
+            modifyUIState()
         }
     }
     
+    /*--------------------------------------------------------------------
+     //MARK: modifyUIState()
+     - Description: Logic for changing UI state if emergency button tapped.
+     -------------------------------------------------------------------*/
+    private func modifyUIState() {
+        // If Emergency switch is off, button and text fields are disabled
+        if swEmergencyContactState.isOn {
+            self.btnUpdateEmergencyContact.isEnabled = true
+            self.btnUpdateEmergencyContact.backgroundColor = UIColor.FeRed
+            self.txtEmergencyName.isEnabled = true
+            self.txtEmergencyName.backgroundColor = UIColor.white
+            self.txtEmergencyPhone.isEnabled = true
+            self.txtEmergencyPhone.backgroundColor = UIColor.white
+        } else {
+            self.btnUpdateEmergencyContact.isEnabled = false
+            self.btnUpdateEmergencyContact.setTitleColor(UIColor.FeDisabledGrey, for: .disabled)
+            self.btnUpdateEmergencyContact.backgroundColor = UIColor.FeDisabledRed
+            self.txtEmergencyName.isEnabled = false
+            self.txtEmergencyName.backgroundColor = UIColor.FeDisabledGrey
+            self.txtEmergencyPhone.isEnabled = false
+            self.txtEmergencyPhone.backgroundColor = UIColor.FeDisabledGrey
+        }
+    }
     
     /*--------------------------------------------------------------------
      //MARK: updateEmergencyBtnTapped()
      - Description: Updates Emergency Contact Entries.
      -------------------------------------------------------------------*/
     @IBAction func updateEmergencyBtnTapped(_ sender: Any) {
-        
-        
-        // Get values from Text boxes
-        let emergencyName = txtEmergencyName.text ?? ""
-        let emergencyPhone = txtEmergencyPhone.text ?? ""
+        // If both boxes are validated, proceed to update
+        if validation.validateName(name: txtEmergencyName.text ?? ""), validation.validatePhoneNumber(phoneNumber: txtEmergencyPhone.text ?? "") {
+            // Get values from Text boxes
+            let emergencyName = txtEmergencyName.text ?? ""
+            let emergencyPhone = txtEmergencyPhone.text ?? ""
 
-        NotificationLogic.updateEmergencyContact(emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: {success in
-                var msg = ""
-                if success {
-                    msg = "Successfully updated emergency contact details"
-                } else {
-                    msg = "Update Not Successful"
-                }
-                let updateAlert = UIAlertController(title: "Updating Data", message: msg, preferredStyle: UIAlertController.Style.alert)
-                updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
-                self.present(updateAlert, animated: true, completion: nil)
-        })
+            NotificationLogic.updateEmergencyContact(emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: {success in
+                    var msg = ""
+                    if success {
+                        msg = "Successfully updated emergency contact details"
+                    } else {
+                        msg = "Update Not Successful"
+                    }
+                    let updateAlert = UIAlertController(title: "Updating Data", message: msg, preferredStyle: UIAlertController.Style.alert)
+                    updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+                    self.present(updateAlert, animated: true, completion: nil)
+            })
+        } else {
+            let msg = "Please Verify:\n Name has no numbers.\n Phone number is 10 digits. Example: 12223334444"
+            let updateAlert = UIAlertController(title: "Cannot Update", message: msg, preferredStyle: UIAlertController.Style.alert)
+            updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(updateAlert, animated: true, completion: nil)
+        }
     }
 }

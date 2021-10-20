@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController {
     
     // Class Variables
     let settingsLogic = SettingsViewLogic()
+    let validation = Validation()
     
     // UI Variables
     @IBOutlet var txtDoctorPhone: UITextField!
@@ -83,14 +84,30 @@ class SettingsViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
+     //MARK: txtDoctorPhoneFieldChanged()
+     - Description: Validate doctor phone number
+     -------------------------------------------------------------------*/
+    @IBAction func txtDoctorPhoneFieldChanged(_ sender: Any) {
+        let phoneNumber = self.txtDoctorPhone.text ?? ""
+        let isValid = validation.validatePhoneNumber(phoneNumber: phoneNumber)
+        if isValid {
+            self.txtDoctorPhone.backgroundColor = .FeValidationGreen
+        } else {
+            self.txtDoctorPhone.backgroundColor = .FeValidationRed
+        }
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: updateEmergencyBtnTapped()
      - Description: updates Emergency contact information.
      -------------------------------------------------------------------*/
     @IBAction func updateDoctorNumberBtnTapped(_ sender: Any) {
-        // Get values from Text boxes
-        let doctorPhone = txtDoctorPhone.text ?? ""
-        
-        settingsLogic.updateDoctorContact(doctorPhone: doctorPhone, completion: { success in
+        // If doctor phone number is validated, proceed to update
+        if validation.validatePhoneNumber(phoneNumber: txtDoctorPhone.text ?? "") {
+            // Get values from Text boxes
+            let doctorPhone = txtDoctorPhone.text ?? ""
+            
+            settingsLogic.updateDoctorContact(doctorPhone: doctorPhone, completion: { success in
                 var msg = ""
                 if success {
                     msg = "Successfully updated doctor contact details"
@@ -100,8 +117,13 @@ class SettingsViewController: UIViewController {
                 let updateAlert = UIAlertController(title: "Updating Data", message: msg, preferredStyle: UIAlertController.Style.alert)
                 updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
                 self.present(updateAlert, animated: true, completion: nil)
-        })
-    
+            })
+        } else {
+            let msg = "Please verify phone number is 10 digits. Example: 12223334444"
+            let updateAlert = UIAlertController(title: "Cannot Update", message: msg, preferredStyle: UIAlertController.Style.alert)
+            updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(updateAlert, animated: true, completion: nil)
+        }
     }
     
     /*--------------------------------------------------------------------
