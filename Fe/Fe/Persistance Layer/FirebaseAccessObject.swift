@@ -595,15 +595,14 @@ class FirebaseAccessObject {
      //MARK: deleteAccount()
      - Description: Logic to delete account from Firestore.
      -------------------------------------------------------------------*/
-    func deleteAccount() {
+    func deleteAccount(completion: @escaping (_ success: Bool) -> Void) {
         let user = Auth.auth().currentUser
         user?.delete { error in
             if let error = error {
                 print("There was an error getting the user: \(error)")
-            } else {
-                //TODO: STOP TIMER THAT WAS SET UP IN HOME VIEW CONTROLLER
-                self.signOut()
+                completion(false)
             }
+            completion(true)
         }
     }
     
@@ -706,7 +705,7 @@ class FirebaseAccessObject {
      //MARK: updateUserData()
      - Description: Gets user from Firestore using email and updates data.
      -------------------------------------------------------------------*/
-    func updateUserData(fname: String, lname: String, age: String, email: String, password: String, phone: String, st_address1: String, st_address2: String, postal: String, province: String, city: String, country: String, symptoms: String) {
+    func updateUserData(fname: String, lname: String, age: String, email: String, password: String, phone: String, st_address1: String, st_address2: String, postal: String, province: String, city: String, country: String, symptoms: String, completion: @escaping (_ success: Bool) -> Void) {
         print("Updating existing user...")
         let usersRef = db.collection("users")
         let user = Auth.auth().currentUser
@@ -715,9 +714,11 @@ class FirebaseAccessObject {
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
+                    completion(false)
                 } else {
                     if querySnapshot!.documents.count == 0 {
                         print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                        completion(false)
                     } else {
                         for document in querySnapshot!.documents {
                             print("\(document.documentID) => \(document.data())")
@@ -739,9 +740,9 @@ class FirebaseAccessObject {
                                 "existingSymptoms": symptoms
                             ]);
                         }
+                        completion(true)
                     }
                 }
         }
     }
-    
 }

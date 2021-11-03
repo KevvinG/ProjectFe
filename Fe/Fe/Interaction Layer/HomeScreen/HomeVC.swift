@@ -302,4 +302,13 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBAction func btnMoreInfoTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToMoreInfoScreen", sender: self)
     }
+    
+    /*--------------------------------------------------------------------
+     //MARK: btnChatbotTapped()
+     - Description: Segue to Chatbot Screen
+     -------------------------------------------------------------------*/
+    @IBAction func btnChatbotTapped(_ sender: Any) {
+//        performSegue(withIdentifier: "GoToChatbotScreen", sender: self)
+        print("Chatbot button pressed")
+    }
 }

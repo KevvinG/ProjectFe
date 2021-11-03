@@ -15,6 +15,7 @@ import UIKit
 class EditUserViewController: UIViewController {
     
     // Class Variables
+    let EditUserLogic = EditUserViewLogic()
     let validation = Validation()
     
     // UI Variables
@@ -287,7 +288,6 @@ class EditUserViewController: UIViewController {
         
         let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { (action) -> Void in
             self.updateUserData(fname: txt_fname!, lname: txt_lname!, age: txt_age!, email: txt_email!, password: txt_password!, phone: txt_phone!, st_address1: txt_st_address1!, st_address2: txt_st_address2!, postal: txt_postal!, province: txt_province!, city: txt_city!, country: txt_country!, symptoms: txt_ex_symptoms!)
-            //TODO: Separate logic down the chain here.
         })
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         
@@ -304,7 +304,7 @@ class EditUserViewController: UIViewController {
      -------------------------------------------------------------------*/
     func getUserData() {
         //TODO: Move logic down the layers.
-        FirebaseAccessObject().getUserData(completion: { userData in
+        self.EditUserLogic.getUserData(completion: { userData in
             self.txtfName.text = userData["fName"]
             self.txtlName.text = userData["lName"]
             self.txtAge.text = userData["age"]
@@ -323,10 +323,21 @@ class EditUserViewController: UIViewController {
     
     /*--------------------------------------------------------------------
      //MARK: updateUserData()
-     - Description: Calls method in Firestore to update database
+     - Description: Sends data to Edit User Logic To update in Firebase.
      -------------------------------------------------------------------*/
     func updateUserData(fname: String, lname: String, age: String, email: String, password: String, phone: String, st_address1: String, st_address2: String, postal: String, province: String, city: String, country: String, symptoms: String) {
-        //TODO: Move logic down the layers.
-        FirebaseAccessObject().updateUserData(fname: fname, lname: lname, age: age, email: email, password: password, phone: phone, st_address1: st_address1, st_address2: st_address2, postal: postal, province: province, city: city, country: country, symptoms: symptoms)
+        self.EditUserLogic.updateUserData(fname: fname, lname: lname, age: age, email: email, password: password, phone: phone, st_address1: st_address1, st_address2: st_address2, postal: postal, province: province, city: city, country: country, symptoms: symptoms, completion: { success in
+            if success {
+                let msg = "Your account data has been updated."
+                let updateAlert = UIAlertController(title: "Update Account Data Successful", message: msg, preferredStyle: UIAlertController.Style.alert)
+                updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+                self.present(updateAlert, animated: true, completion: nil)
+            } else {
+                let msg = "Your account data has failed to update. Please try again later."
+                let updateAlert = UIAlertController(title: "Update Account Data Failed", message: msg, preferredStyle: UIAlertController.Style.alert)
+                updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+                self.present(updateAlert, animated: true, completion: nil)
+            }
+        })
     }
 }

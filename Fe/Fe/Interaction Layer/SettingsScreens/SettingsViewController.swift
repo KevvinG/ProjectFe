@@ -170,9 +170,19 @@ class SettingsViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete Data", style: .destructive ) { action in
             do {
                 // Delete Data
-                self.settingsLogic.deleteSensorData()
-//                self.deleteSensorData()
-
+                let dataDeleted = self.settingsLogic.deleteSensorData()
+                
+                if dataDeleted {
+                    let msg = "Your sensor data has been successfully deleted"
+                    let updateAlert = UIAlertController(title: "Deleting Data Successful", message: msg, preferredStyle: UIAlertController.Style.alert)
+                    updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+                    self.present(updateAlert, animated: true, completion: nil)
+                } else {
+                    let msg = "Your sensor data has noot been successfully deleted"
+                    let updateAlert = UIAlertController(title: "Deleting Data Failed", message: msg, preferredStyle: UIAlertController.Style.alert)
+                    updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+                    self.present(updateAlert, animated: true, completion: nil)
+                }
             }
         }
         // Prompt before deleting
@@ -190,8 +200,39 @@ class SettingsViewController: UIViewController {
     @IBAction func deleteAccountBtnTapped(_ sender: UIButton) {
         let deleteAction = UIAlertAction(title: "Delete Account", style: .destructive ) { action in
             do {
-                // Show Prompt for deleting or keeping data
-                self.deleteDataPrompt()
+                // Try to delete data.
+                let dataDeleted = self.settingsLogic.deleteSensorData()
+                // If data delete successful, try to delete account
+                if dataDeleted {
+                    self.settingsLogic.deleteAccount(completion: { success in
+                        // If account delete successful, log out
+                        if success {
+                            let okAction = UIAlertAction(title: "OK", style: .default ) { action in
+                                do {
+                                    //TODO: STOP TIMER
+                                    self.returnToLoginScreen()
+                                }
+                            }
+                            let msg = "Account deleted Successfully"
+                            let deleteAccountAlert = UIAlertController(title: "Delete Successful", message: msg, preferredStyle: UIAlertController.Style.alert)
+                            deleteAccountAlert.addAction(okAction)
+                            self.present(deleteAccountAlert, animated: true, completion: nil)
+                            
+                        } else {
+                            // Error Deleting Account
+                            let msg = "There was an error deleting your account. Please try again later."
+                            let deleteAccountAlert = UIAlertController(title: "Error Deleting Account", message: msg, preferredStyle: UIAlertController.Style.alert)
+                            deleteAccountAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                            self.present(deleteAccountAlert, animated: true, completion: nil)
+                        }
+                    })
+                } else {
+                    // Error Deleting Account
+                    let msg = "There was an error deleting your data. Please try again later."
+                    let deleteAccountAlert = UIAlertController(title: "Error Deleting Data", message: msg, preferredStyle: UIAlertController.Style.alert)
+                    deleteAccountAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(deleteAccountAlert, animated: true, completion: nil)
+                }
             }
         }
         // Prompt before deleting
@@ -201,39 +242,13 @@ class SettingsViewController: UIViewController {
             deleteAccountAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(deleteAccountAlert, animated: true, completion: nil)
     }
+
     
     /*--------------------------------------------------------------------
-     //MARK: deleteDataPrompt()
-     - Description: Ask if user wants to delete data too.
+     //MARK: returnToLoginScreen()
+     - Description: Return user to Login Screen
      -------------------------------------------------------------------*/
-    func deleteDataPrompt() {
-        let deleteAllAction = UIAlertAction(title: "Delete All", style: .destructive ) { action in
-            do {
-                self.settingsLogic.deleteData()
-                self.settingsLogic.deleteAccount()
-            }
-        }
-        let deleteAccountOnlyAction = UIAlertAction(title: "Delete Account, Keep Data", style: .destructive ) { action in
-            do {
-                self.settingsLogic.deleteAccount()
-//                self.deleteAccount()
-            }
-        }
-        // Leaving this logic in VC as it is just interaction logic
-        let msg = "Do you want to delete your data and account?"
-        let deleteDataAlert = UIAlertController(title: "Delete Data", message: msg, preferredStyle: UIAlertController.Style.alert)
-        deleteDataAlert.addAction(deleteAllAction)
-        deleteDataAlert.addAction(deleteAccountOnlyAction)
-        deleteDataAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-        self.present(deleteDataAlert, animated: true, completion: nil)
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: deleteAccount()
-     - Description: Logic to delete account from Firestore.
-     -------------------------------------------------------------------*/
-    func deleteAccount() {
-        settingsLogic.deleteAccount()
+    func returnToLoginScreen() {
         // Redirect the user to the StartViewController
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController

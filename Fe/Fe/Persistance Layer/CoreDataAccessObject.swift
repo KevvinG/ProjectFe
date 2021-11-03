@@ -123,6 +123,27 @@ class CoreDataAccessObject {
     }
     
     /*--------------------------------------------------------------------
+     //MARK: deleteAllHREntries()
+     - Description: Delete all HR Entries from Core Data
+     -------------------------------------------------------------------*/
+    func deleteAllHREntries() -> Bool {
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "HeartRateData")
+
+        // Create Batch Delete Request
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try self.context.execute(batchDeleteRequest)
+            return true
+        } catch {
+            print("Error deleting data from HeartRateData Table")
+            return false
+        }
+        saveContext(tableName: "HeartRateData")
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: fetchLatestSPO2()
      - Description: Fetch latest saved Blood Ox entry from table.
      -------------------------------------------------------------------*/
@@ -213,6 +234,27 @@ class CoreDataAccessObject {
     }
     
     /*--------------------------------------------------------------------
+     //MARK: deleteAllBloodOxygenEntries()
+     - Description: Delete all Blood Oxygen Entries from Core Data
+     -------------------------------------------------------------------*/
+    func deleteAllBloodOxygenEntries() -> Bool {
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BloodOxygenData")
+
+        // Create Batch Delete Request
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try self.context.execute(batchDeleteRequest)
+            return true
+        } catch {
+            print("Error deleting data from BloodOxygenData Table")
+            return false
+        }
+        saveContext(tableName: "BloodOxygenData")
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: createElevationDataTableEntry()
      - Description: Create Table Entry for Elevation.
      -------------------------------------------------------------------*/
@@ -238,6 +280,27 @@ class CoreDataAccessObject {
             print("ElevationData Read Fetch Failed: \(error.description)")
         }
         return self.eleItems
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: deleteAllElevationEntries()
+     - Description: Delete all Elevation Entries from Core Data
+     -------------------------------------------------------------------*/
+    func deleteAllElevationEntries() -> Bool {
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ElevationData")
+
+        // Create Batch Delete Request
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try self.context.execute(batchDeleteRequest)
+            return true
+        } catch {
+            print("Error deleting data from ElevationData Table")
+            return false
+        }
+        saveContext(tableName: "ElevationData")
     }
     
     /*--------------------------------------------------------------------
@@ -268,6 +331,18 @@ class CoreDataAccessObject {
     }
     
     /*--------------------------------------------------------------------
+     //MARK: updateAirPressureDataTableEntry()
+     - Description: Update Air Pressure entry from table.
+     -------------------------------------------------------------------*/
+    func updateAirPressureDataTableEntry(date: Date, apValue: Float, index: Int) {
+        // Search for the entry in the table
+        let apEntryToUpdate = self.apItems[index]
+        apEntryToUpdate.dateTime = date
+        apEntryToUpdate.airPressure = Float(apValue)
+        saveContext(tableName: "AirPressureData")
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: deleteAirPressureDataTableEntry()
      - Description: Delete Air Pressure entry from table.
      -------------------------------------------------------------------*/
@@ -279,14 +354,23 @@ class CoreDataAccessObject {
     }
     
     /*--------------------------------------------------------------------
-     //MARK: updateAirPressureDataTableEntry()
-     - Description: Update Air Pressure entry from table.
+     //MARK: deleteAllairPressureEntries()
+     - Description: Delete all Air Pressure Entries from Core Data
      -------------------------------------------------------------------*/
-    func updateAirPressureDataTableEntry(date: Date, apValue: Float, index: Int) {
-        // Search for the entry in the table
-        let apEntryToUpdate = self.apItems[index]
-        apEntryToUpdate.dateTime = date
-        apEntryToUpdate.airPressure = Float(apValue)
+    func deleteAllairPressureEntries() -> Bool {
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AirPressureData")
+
+        // Create Batch Delete Request
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try self.context.execute(batchDeleteRequest)
+            return true
+        } catch {
+            print("Error deleting data from AirPressureData Table")
+            return false
+        }
         saveContext(tableName: "AirPressureData")
     }
     

@@ -16,30 +16,33 @@ class SettingsViewLogic {
     
     // Class Variables
     let FBObj = FirebaseAccessObject()
+    let CDObj = CoreDataAccessObject()
     
     /*--------------------------------------------------------------------
      //MARK: deleteFBSensorData()
-     - Description: Call Firebase to delete Sensor Data.
+     - Description: Call Core Data to delete Sensor Data.
      -------------------------------------------------------------------*/
-    func deleteSensorData() {
-        //TODO: DELETE SENSOR DATA FROM CORE DATA
-        FBObj.deleteSensorData()
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: deleteFBData()
-     - Description: Call Firebase to delete Data.
-     -------------------------------------------------------------------*/
-    func deleteData() {
-        FBObj.deleteData()
+    func deleteSensorData() -> Bool {
+        let hrDeleted = CDObj.deleteAllHREntries()
+        let bloodOxygenDeleted = CDObj.deleteAllBloodOxygenEntries()
+        let elevationDeleted = CDObj.deleteAllElevationEntries()
+        let airPressureDeleted = CDObj.deleteAllairPressureEntries()
+        
+        if hrDeleted, bloodOxygenDeleted, elevationDeleted, airPressureDeleted {
+            return true
+        } else {
+            return false
+        }
     }
     
     /*--------------------------------------------------------------------
      //MARK: deleteAccount()
      - Description: Call Firebase to delete account.
      -------------------------------------------------------------------*/
-    func deleteAccount() {
-        FBObj.deleteAccount()
+    func deleteAccount(completion: @escaping (_ success: Bool) -> Void) {
+        FBObj.deleteAccount(completion: { success in
+            completion(success)
+        })
     }
     
     /*--------------------------------------------------------------------
@@ -55,7 +58,7 @@ class SettingsViewLogic {
      - Description: Call Firebase to update doctor contact data.
      -------------------------------------------------------------------*/
     func updateDoctorContact(doctorPhone : String, completion: @escaping (_ successful: Bool) -> Void) {
-        FirebaseAccessObject().updateDoctorContactData(doctorPhone: doctorPhone, completion: { success in
+        FBObj.updateDoctorContactData(doctorPhone: doctorPhone, completion: { success in
             if success {
                 completion(true)
             } else {

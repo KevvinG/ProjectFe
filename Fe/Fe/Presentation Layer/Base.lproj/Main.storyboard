@@ -733,6 +733,37 @@
                                                     <constraint firstAttribute="height" constant="150" id="yMq-w8-pVa"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RRC-W3-pld" userLabel="ChatbotView">
+                                                <rect key="frame" x="30" y="501.5" width="150" height="150"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chatbot" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQT-ol-zCe">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30R-Fx-fU7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain"/>
+                                                        <connections>
+                                                            <action selector="btnChatbotTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="BPp-2A-Y2O"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="placeholderTextColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="SQT-ol-zCe" firstAttribute="leading" secondItem="RRC-W3-pld" secondAttribute="leading" id="257-n5-Lsa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="30R-Fx-fU7" secondAttribute="trailing" id="4CC-8a-2Nb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="30R-Fx-fU7" secondAttribute="bottom" id="6hw-kI-rhb"/>
+                                                    <constraint firstItem="30R-Fx-fU7" firstAttribute="leading" secondItem="RRC-W3-pld" secondAttribute="leading" id="96R-Rn-y6R"/>
+                                                    <constraint firstItem="SQT-ol-zCe" firstAttribute="top" secondItem="RRC-W3-pld" secondAttribute="top" id="9dK-J0-9qi"/>
+                                                    <constraint firstItem="30R-Fx-fU7" firstAttribute="top" secondItem="RRC-W3-pld" secondAttribute="top" id="IgC-yk-Lzj"/>
+                                                    <constraint firstAttribute="trailing" secondItem="SQT-ol-zCe" secondAttribute="trailing" id="dus-tb-HEJ"/>
+                                                    <constraint firstAttribute="width" constant="150" id="kfL-P1-TTt"/>
+                                                    <constraint firstAttribute="height" constant="150" id="q81-T0-pXt"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -748,12 +779,14 @@
                                             <constraint firstAttribute="bottom" secondItem="Ism-hU-Zbv" secondAttribute="bottom" constant="10" id="NW0-0g-0uR"/>
                                             <constraint firstItem="vhf-Mv-DFc" firstAttribute="top" secondItem="rlC-LD-crQ" secondAttribute="bottom" constant="30" id="RJE-6B-9qh"/>
                                             <constraint firstItem="dP9-Qr-Fxa" firstAttribute="leading" secondItem="E4E-cy-CgJ" secondAttribute="leading" constant="10" id="Rq3-Ie-o6b"/>
+                                            <constraint firstItem="RRC-W3-pld" firstAttribute="top" secondItem="hsg-9t-OJP" secondAttribute="bottom" constant="50" id="S0l-WL-pva"/>
                                             <constraint firstItem="Ism-hU-Zbv" firstAttribute="leading" secondItem="E4E-cy-CgJ" secondAttribute="leading" constant="10" id="SGs-oY-3jK"/>
                                             <constraint firstAttribute="trailing" secondItem="Djx-sd-eJQ" secondAttribute="trailing" constant="30" id="ZZh-Nm-Hk6"/>
                                             <constraint firstItem="hsg-9t-OJP" firstAttribute="leading" secondItem="E4E-cy-CgJ" secondAttribute="leading" constant="30" id="ceu-8g-MOm"/>
                                             <constraint firstAttribute="trailing" secondItem="hcE-4U-hz4" secondAttribute="trailing" constant="30" id="eb4-dN-jFs"/>
                                             <constraint firstAttribute="trailing" secondItem="Ism-hU-Zbv" secondAttribute="trailing" constant="10" id="hoR-tF-bFz"/>
                                             <constraint firstAttribute="trailing" secondItem="dP9-Qr-Fxa" secondAttribute="trailing" constant="10" id="jLy-Lf-Vd9"/>
+                                            <constraint firstItem="RRC-W3-pld" firstAttribute="leading" secondItem="E4E-cy-CgJ" secondAttribute="leading" constant="30" id="lhy-nt-QBi"/>
                                             <constraint firstItem="hsg-9t-OJP" firstAttribute="top" secondItem="vhf-Mv-DFc" secondAttribute="bottom" constant="50" id="ybr-4l-EGV"/>
                                         </constraints>
                                     </view>
@@ -1840,20 +1873,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_document" id="rIB-mZ-29H" customClass="DocumentTableViewCell" customModule="Fe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="41"/>
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="41.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rIB-mZ-29H" id="oRC-t5-GNB">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyT-kL-KrN">
-                                            <rect key="frame" x="10" y="10" width="33" height="21"/>
+                                            <rect key="frame" x="10" y="10" width="33" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkt-ar-2W3">
-                                            <rect key="frame" x="368" y="10" width="36" height="21"/>
+                                            <rect key="frame" x="368" y="10" width="36" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
