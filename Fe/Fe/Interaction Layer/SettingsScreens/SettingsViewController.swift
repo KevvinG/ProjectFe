@@ -227,7 +227,7 @@ class SettingsViewController: UIViewController {
                         }
                     })
                 } else {
-                    // Error Deleting Account
+                    // Error Deleting data
                     let msg = "There was an error deleting your data. Please try again later."
                     let deleteAccountAlert = UIAlertController(title: "Error Deleting Data", message: msg, preferredStyle: UIAlertController.Style.alert)
                     deleteAccountAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -255,6 +255,4 @@ class SettingsViewController: UIViewController {
         startViewController.modalPresentationStyle = .fullScreen
         self.present(startViewController, animated:true, completion:nil)
     }
-    
-
 }

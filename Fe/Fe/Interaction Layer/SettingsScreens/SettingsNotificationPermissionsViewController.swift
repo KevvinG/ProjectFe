@@ -40,7 +40,7 @@ class SettingsNotificationPermissionsViewController: UIViewController {
         swBONotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), animated: false)
         swMedicationReminder.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description), animated: false)
         swEmergencyContactState.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description), animated: false)
-        modifyUIState() // Modify Emergency Contact switch
+        modifyUIState() // Set Emergency Contact switch and textfields
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)

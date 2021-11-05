@@ -13,6 +13,9 @@ import UIKit
  - Description: Holds logic for the Everything OK view controller.
  -----------------------------------------------------------------------*/
 class AOKViewController: UIViewController {
+    
+    // Class Variables
+    let QuestLogic = Questionnaire()
 
     /*--------------------------------------------------------------------
      //MARK: viewDidLoad()
@@ -27,9 +30,14 @@ class AOKViewController: UIViewController {
      - Description: fetches doctor phone number and opens call ability.
      -------------------------------------------------------------------*/
     @IBAction func callDoctorBtnTapped(_ sender: UIButton) {
-        Questionnaire().callDoctor(completion: { (doctorPhone) -> Void in
+        QuestLogic.callDoctor(completion: { (doctorPhone) -> Void in
             if let url = NSURL(string: "tel://\(doctorPhone)"), UIApplication.shared.canOpenURL(url as URL) {
                 UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+            } else {
+                let msg = "Go to Settings and add a phone number for your doctor to use this feature."
+                let updateAlert = UIAlertController(title: "No doctor phone number found", message: msg, preferredStyle: UIAlertController.Style.alert)
+                updateAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+                self.present(updateAlert, animated: true, completion: nil)
             }
         })
     }

@@ -18,36 +18,33 @@ class PhoneSensorObject: NSObject {
     
     // Class Variables
     let altimeter = CMAltimeter()
+    let CDObj = CoreDataAccessObject()
     
     /*--------------------------------------------------------------------
-     //MARK: fetchPressure()
-     - Description: Fetches latest Pressure reading from Barometer.
+     //MARK: startAltitudeUpdates()
+     - Description: Starts Altitude Updates.
+     - We have no control over the frequency of updates. Always 1 second.
      -------------------------------------------------------------------*/
-    func fetchPressure(completion: @escaping (_ pressure: String) -> Void) {
+    func startAltitudeUpdates() {
         if CMAltimeter.isRelativeAltitudeAvailable() {
             altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { (data, error) in
                 let pressure = String.init(format: "%.2f", (data?.pressure.floatValue)!*10)
-                completion(pressure)
+                self.CDObj.createAirPressureDataTableEntry(apValue: Float(pressure)!)
             }
         } else {
             print("Alt Sensor Not Available.")
-            completion("NA")
         }
     }
     
     /*--------------------------------------------------------------------
-     //MARK: fetchElevation()
-     - Description: Fetches latest elevation from phone sensor.
+     //MARK: stopAltitudeUpdates()
+     - Description: Stops Altitude Updates
      -------------------------------------------------------------------*/
-    func fetchElevation(completion: @escaping (_ pressure: String) -> Void) {
+    func stopAltitudeUpdates() {
         if CMAltimeter.isRelativeAltitudeAvailable() {
-            altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { (data, error) in
-                let relAlt = String.init(format: "%.2f", (data?.relativeAltitude.floatValue)!)
-                completion(relAlt)
-            }
+            altimeter.stopRelativeAltitudeUpdates()
         } else {
             print("Alt Sensor Not Available.")
-            completion("NA")
         }
     }
 }

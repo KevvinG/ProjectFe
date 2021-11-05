@@ -43,8 +43,6 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         setupTextFields()
         getUserHrThresholds()
         
-        self.lblCurrentHR.text = "\(String(HRLogic.fetchLatestHrReading())) BPM"
-        
         initChart()
         
         //Setup tap handling on chart
@@ -100,26 +98,14 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
             cdDateData.append(df.string(from: item.dateTime))
             cdBPMData.append(Double(item.heartRate))
         }
-        
-        let bpmMin = Int(cdBPMData.min() ?? 0)
-        let bpmMax = Int(cdBPMData.max() ?? 0)
-        var bpmSum = 0.0
-        for item in cdBPMData {
-            bpmSum+=item
-        }
-        if cdBPMData.count == 0 {
-            self.lblAvgHR.text = "N/A"
-        } else {
-            let bpmAvg = Int(bpmSum/Double(cdBPMData.count))
-            self.lblAvgHR.text = "\(bpmAvg) BPM"
-        }//if
+        //if
         
 //        HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMin, bpmAvg in
             
-//            lineChartView.data = HRLogic.chartData(dataPoints: dateArray, values: bpmArray)
+//        lineChartView.data = HRLogic.chartData(dataPoints: dateArray, values: bpmArray)
         lineChartView.data = HRLogic.chartData(dataPoints: cdDateData, values: cdBPMData)
 
-//            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+//        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
         lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: cdDateData)
         lineChartView.xAxis.granularity = 0.05
         
@@ -133,7 +119,23 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         lineChartView.legend.enabled = false
         
         lineChartView.animate(xAxisDuration: 2)
-//
+        
+        // Set Stats Values
+        self.lblCurrentHR.text = "\(String(HRLogic.fetchLatestHrReading())) BPM"
+        
+        let bpmMin = Int(cdBPMData.min() ?? -1)
+        let bpmMax = Int(cdBPMData.max() ?? -1)
+        var bpmSum = 0.0
+        for item in cdBPMData {
+            bpmSum+=item
+        }
+        if cdBPMData.count == 0 {
+            self.lblAvgHR.text = "-1 BPM"
+        } else {
+            let bpmAvg = Int(bpmSum/Double(cdBPMData.count))
+            self.lblAvgHR.text = "\(bpmAvg) BPM"
+        }
+        
         self.lblMaxHR.text = "\(bpmMax) BPM"
         self.lblMinHR.text = "\(bpmMin) BPM"
 //        })
@@ -220,6 +222,10 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
  -----------------------------------------------------------------------*/
 extension HeartRateViewController: UITextFieldDelegate {
     
+    /*--------------------------------------------------------------------
+     //MARK: textFieldShouldReturn()
+     - Description: Close Keyboard.
+     -------------------------------------------------------------------*/
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

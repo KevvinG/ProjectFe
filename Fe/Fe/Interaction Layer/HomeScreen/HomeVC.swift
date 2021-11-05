@@ -7,6 +7,8 @@
 
 //MARK: Imports
 import UIKit
+import CoreLocation
+import CoreMotion
 import CoreData
 import CoreBluetooth
 
@@ -24,6 +26,8 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     let AltObj = AltitudeLogic()
     let DAObj = DataAnalysisLogic()
     let CDObj = CoreDataAccessObject()
+    let PhoneObj = PhoneSensorObject()
+    let locationManager = CLLocationManager()
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral!
     var txCharacteristic: CBCharacteristic!
@@ -42,6 +46,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        obtainLocationAuth()
         centralManager = CBCentralManager(delegate: self, queue: nil)
 
 //        HSLogic.homeScreenSetup() // Setup options once logged in.
@@ -201,6 +206,21 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     }
 
     /*--------------------------------------------------------------------
+     //MARK: altTimerFire()
+     - Description: Method to update Air Pressure and Elevation.
+     -------------------------------------------------------------------*/
+    @objc func altTimerFire() {
+        PhoneObj.startAltitudeUpdates()
+        let airPressure = AltObj.fetchLatestPressureReading()
+        self.setAltitudeButtonValue(labelValue: "\(airPressure) hPa")
+        print("Air Pressure Timer Val: \(airPressure) hPa")
+        
+        let elevation = AltObj.fetchLatestElevationReading()
+        print("Elevation Timer Val: \(elevation) meters")
+        PhoneObj.stopAltitudeUpdates()
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: HRTimerfire()
      - Description: Method to update Heart Rate.
      -------------------------------------------------------------------*/
@@ -218,17 +238,6 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         let bloodOxygen = BldOxObj.fetchLatestBloodOxReading()
         self.setBloodOxButtonValue(labelValue: "\(bloodOxygen) %")
         print("Blood Ox Timer Val: \(bloodOxygen)")
-        }
-    
-    /*--------------------------------------------------------------------
-     //MARK: AltTimerFire()
-     - Description: Method to update Air Pressure.
-     -------------------------------------------------------------------*/
-    @objc func altTimerFire() {
-        AltObj.fetchPressureReading(completion: { pressure in
-            self.setAltitudeButtonValue(labelValue: "\(pressure) hPa")
-            print("Air Pressure Timer Val: \(pressure)")
-        })
     }
     
     /*--------------------------------------------------------------------
@@ -310,5 +319,36 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBAction func btnChatbotTapped(_ sender: Any) {
 //        performSegue(withIdentifier: "GoToChatbotScreen", sender: self)
         print("Chatbot button pressed")
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: obtainLocationAuth()
+     - Description: Requests access to location.
+     -------------------------------------------------------------------*/
+    func obtainLocationAuth() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+    }
+}
+
+/*------------------------------------------------------------------------
+ //MARK: AltitudeViewController : cLLocationManagerDelegate
+ - Description: Methods for getting location for Elevation.
+ -----------------------------------------------------------------------*/
+extension HomeVC: CLLocationManagerDelegate {
+    
+    /*--------------------------------------------------------------------
+     //MARK: locationManager()
+     - Description: Gets last location altitude and displays on screen.
+     -------------------------------------------------------------------*/
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let lastLocation = locations.last {
+            // Elevation
+            let elevation = round(lastLocation.altitude)
+            CDObj.createElevationDataTableEntry(eleValue: Float(elevation))
+        }
     }
 }

@@ -17,33 +17,23 @@ import Charts
 class AltitudeLogic {
     
     // Class Variables
-    let phoneObj = PhoneSensorObject()
-    let coredataObj = CoreDataAccessObject()
+    let PhoneObj = PhoneSensorObject()
+    let CDObj = CoreDataAccessObject()
     
     /*--------------------------------------------------------------------
      //MARK: fetchPressureReading()
      - Description: Obtains pressure reading from Phone Sensor Object.
      -------------------------------------------------------------------*/
-    func fetchPressureReading(completion: @escaping (_ pressure: String) -> Void) {
-        phoneObj.fetchPressure(completion: { (pressure) -> Void in
-            // Save Value received if valid
-            if pressure != "NA" {
-                DispatchQueue.main.async {
-                    self.coredataObj.createAirPressureDataTableEntry(apValue: Float(pressure)!)
-                }
-            }
-            completion(pressure)
-        })
+    func fetchLatestPressureReading() -> Float {
+        return CDObj.fetchLatestAirPressure()
     }
     
     /*--------------------------------------------------------------------
      //MARK: fetchElevationReading()
      - Description: Obtains clevation reading from Phone Sensor Object.
      -------------------------------------------------------------------*/
-    func fetchElevationReading(completion: @escaping (_ elevatioon: String) -> Void) {
-        phoneObj.fetchElevation(completion: { (elevation) -> Void in
-            completion(elevation)
-        })
+    func fetchLatestElevationReading() -> Float {
+        return CDObj.fetchLatestElevation()
     }
     
     /*--------------------------------------------------------------------
@@ -52,7 +42,7 @@ class AltitudeLogic {
      -------------------------------------------------------------------*/
     func fetchAirPressureWithRange(dateRange: String, completion: @escaping (_ dateArray: [String], _ AirPressureArray: [Double]) -> Void) {
         
-        let apItems = self.coredataObj.fetchAirPressureData()
+        let apItems = CDObj.fetchAirPressureData()
         var dateArray = [String]()
         var airPressureArray = [Double]()
         var outputSpacing = apItems!.count/2
@@ -84,7 +74,7 @@ class AltitudeLogic {
      -------------------------------------------------------------------*/
     func fetchElevationWithRange(dateRange: String, completion: @escaping (_ dateArray: [String], _ elevationArray: [Double]) -> Void) {
         
-        let elevationItems = self.coredataObj.fetchElevationData()
+        let elevationItems = CDObj.fetchElevationData()
         var dateArray = [String]()
         var elevationArray = [Double]()
         var outputSpacing = elevationItems!.count/2

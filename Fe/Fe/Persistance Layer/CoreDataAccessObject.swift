@@ -135,12 +135,12 @@ class CoreDataAccessObject {
 
         do {
             try self.context.execute(batchDeleteRequest)
+            saveContext(tableName: "HeartRateData")
             return true
         } catch {
             print("Error deleting data from HeartRateData Table")
             return false
         }
-        saveContext(tableName: "HeartRateData")
     }
     
     /*--------------------------------------------------------------------
@@ -171,26 +171,6 @@ class CoreDataAccessObject {
         newBloodOxEntry.dateTime = Date()
         newBloodOxEntry.bloodOxygen = Int64(bloodOxValue)
         saveContext(tableName: "BloodOxygenData")
-//        print("Saved Blood Ox: \(newBloodOxEntry.bloodOxygen)")
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: fetchLatestBloodOx()
-     - Description: Fetch latest saved Blood Ox entry from table.
-     -------------------------------------------------------------------*/
-    func fetchLatestBloodOx() -> Int {
-        do {
-            self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest())
-        } catch let error as NSError{
-            print("BloodOxygenData Read Fetch Failed: \(error.description)")
-        }
-        if bldOxItems.count > 0 {
-            let topItem = bldOxItems.sorted(by: { $0.dateTime > $1.dateTime })
-            return Int(topItem[0].bloodOxygen)
-        } else {
-            print("Empty Blood Oxygen table")
-            return -1
-        }
     }
     
     /*--------------------------------------------------------------------
@@ -246,12 +226,12 @@ class CoreDataAccessObject {
 
         do {
             try self.context.execute(batchDeleteRequest)
+            saveContext(tableName: "BloodOxygenData")
             return true
         } catch {
             print("Error deleting data from BloodOxygenData Table")
             return false
         }
-        saveContext(tableName: "BloodOxygenData")
     }
     
     /*--------------------------------------------------------------------
@@ -263,7 +243,25 @@ class CoreDataAccessObject {
         newEleEntry.dateTime = Date()
         newEleEntry.elevation = Float(eleValue)
         saveContext(tableName: "ElevationData")
-//        print("Saved Elevation: \(newEleEntry.elevation)")
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: fetchLatestElevation()
+     - Description: Fetch latest saved elevation entry from table.
+     -------------------------------------------------------------------*/
+    func fetchLatestElevation() -> Float {
+        do {
+            self.eleItems = try context.fetch(ElevationData.fetchRequest())
+        } catch let error as NSError{
+            print("ElevationData Read Fetch Failed: \(error.description)")
+        }
+        if eleItems.count > 0 {
+            let topItem = eleItems.sorted(by: { $0.dateTime > $1.dateTime })
+            return Float(topItem[0].elevation)
+        } else {
+            print("Empty Elevation table")
+            return -1.00
+        }
     }
     
     /*--------------------------------------------------------------------
@@ -295,12 +293,12 @@ class CoreDataAccessObject {
 
         do {
             try self.context.execute(batchDeleteRequest)
+            saveContext(tableName: "ElevationData")
             return true
         } catch {
             print("Error deleting data from ElevationData Table")
             return false
         }
-        saveContext(tableName: "ElevationData")
     }
     
     /*--------------------------------------------------------------------
@@ -312,6 +310,25 @@ class CoreDataAccessObject {
         newAPentry.dateTime = Date()
         newAPentry.airPressure = Float(apValue)
         saveContext(tableName: "AirPressureData")
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: fetchLatestAirPressure()
+     - Description: Fetch latest saved air pressure entry from table.
+     -------------------------------------------------------------------*/
+    func fetchLatestAirPressure() -> Float {
+        do {
+            self.apItems = try context.fetch(AirPressureData.fetchRequest())
+        } catch let error as NSError{
+            print("AirPressureData Read Fetch Failed: \(error.description)")
+        }
+        if apItems.count > 0 {
+            let topItem = apItems.sorted(by: { $0.dateTime > $1.dateTime })
+            return Float(topItem[0].airPressure)
+        } else {
+            print("Empty Air Pressure table")
+            return -1.00
+        }
     }
     
     /*--------------------------------------------------------------------
@@ -366,12 +383,12 @@ class CoreDataAccessObject {
 
         do {
             try self.context.execute(batchDeleteRequest)
+            saveContext(tableName: "AirPressureData")
             return true
         } catch {
             print("Error deleting data from AirPressureData Table")
             return false
         }
-        saveContext(tableName: "AirPressureData")
     }
     
     /*--------------------------------------------------------------------

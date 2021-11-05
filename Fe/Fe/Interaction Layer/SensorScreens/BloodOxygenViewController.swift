@@ -19,6 +19,7 @@ class BloodOxygenViewController: UIViewController {
     // Class Variables
     let BldOxObj = BloodOxygenLogic()
     let CDLogic = CoreDataAccessObject()
+    
     // UI Variables
     @IBOutlet var lblCurrentBldOx: UILabel!
     @IBOutlet var lblAvgBldOx: UILabel!
@@ -41,13 +42,6 @@ class BloodOxygenViewController: UIViewController {
         txtHighBldOxThreshold.delegate = self
         setupTextFields()
         getUserBldOxThresholds()
-        
-//        BldOxObj.fetchLatestBloodOxReading(completion: { bloodOxValue in
-//            self.lblCurrentBldOx.text = "\(String(bloodOxValue)) %"
-//        })
-        
-        let bloodOxValue = BldOxObj.fetchLatestBloodOxReading()
-        self.lblCurrentBldOx.text = "\(String(bloodOxValue)) %"
         
         initChart()
         
@@ -91,7 +85,6 @@ class BloodOxygenViewController: UIViewController {
      //MARK: initChart()
      - Description: Code to inialize and load chart data
      -------------------------------------------------------------------*/
-    
     func initChart() {
         
         var cdBldOxData = [BloodOxygenData]()
@@ -105,18 +98,7 @@ class BloodOxygenViewController: UIViewController {
             cdSPO2Data.append(Double(item.bloodOxygen))
         }
         
-        let bldOxMin = Int(cdSPO2Data.min() ?? 0)
-        let bldOxMax = Int(cdSPO2Data.max() ?? 0)
-        var spo2sum = 0.0
-        for item in cdSPO2Data {
-            spo2sum+=item
-        }
-        if cdSPO2Data.count == 0 {
-            self.lblAvgBldOx.text = "N/A"
-        } else {
-            let bldOxAvg = Int(spo2sum/Double(cdSPO2Data.count))
-            self.lblAvgBldOx.text = "\(bldOxAvg) %"
-        }//if
+        //if
         
 //        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg in
             
@@ -135,6 +117,23 @@ class BloodOxygenViewController: UIViewController {
         
         lineChartView.animate(xAxisDuration: 2)
         
+        // Set Stats Values
+        let bloodOxValue = BldOxObj.fetchLatestBloodOxReading()
+        self.lblCurrentBldOx.text = "\(String(bloodOxValue)) %"
+        
+        let bldOxMin = Int(cdSPO2Data.min() ?? -1)
+        let bldOxMax = Int(cdSPO2Data.max() ?? -1)
+        var spo2sum = 0.0
+        for item in cdSPO2Data {
+            spo2sum+=item
+        }
+        if cdSPO2Data.count == 0 {
+            self.lblAvgBldOx.text = "-1 %"
+        } else {
+            let bldOxAvg = Int(spo2sum/Double(cdSPO2Data.count))
+            self.lblAvgBldOx.text = "\(bldOxAvg) %"
+        }
+        
         self.lblMaxBldOx.text = "\(bldOxMax) %"
         self.lblMinBldOx.text = "\(bldOxMin) %"
 //        })
@@ -144,7 +143,6 @@ class BloodOxygenViewController: UIViewController {
      //MARK: populateChart(dateRange: String)
      - Description: CURRENTLY UNUSED. Code to reload chart data
      -------------------------------------------------------------------*/
-    
     func populateChart(dateRange: String) {
         BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg in
             
@@ -164,6 +162,10 @@ class BloodOxygenViewController: UIViewController {
         })
     }
     
+    /*--------------------------------------------------------------------
+     //MARK: chartValueSelected()
+     - Description: Prints entry from chart value
+     -------------------------------------------------------------------*/
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         print(entry)
     }
@@ -218,6 +220,10 @@ class BloodOxygenViewController: UIViewController {
  -----------------------------------------------------------------------*/
 extension BloodOxygenViewController: UITextFieldDelegate {
     
+    /*--------------------------------------------------------------------
+     //MARK: textFieldShouldReturn()
+     - Description: Close Keyboard.
+     -------------------------------------------------------------------*/
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
