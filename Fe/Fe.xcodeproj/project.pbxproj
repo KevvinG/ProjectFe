@@ -27,7 +27,7 @@
 		CE07433C26699CB000B97853 /* ElevationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433426699CB000B97853 /* ElevationData+CoreDataProperties.swift */; };
 		CE082722262A4DE700558A32 /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE082721262A4DE700558A32 /* Questionnaire.swift */; };
 		CE082756262A96EE00558A32 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE082755262A96EE00558A32 /* GoogleService-Info.plist */; };
-		CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */; };
+		CE26588D25FD460D00437C97 /* SettingsSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26588C25FD460D00437C97 /* SettingsSensorsViewController.swift */; };
 		CE26589425FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */; };
 		CE4D26F6264570B6004629CC /* PhoneSensorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */; };
 		CE5E232E26E99AAC00C0360D /* DataAnalysisLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E232D26E99AAC00C0360D /* DataAnalysisLogic.swift */; };
@@ -89,7 +89,7 @@
 		EFF9558F262B56FE0013E006 /* AltitudeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558E262B56FE0013E006 /* AltitudeLogic.swift */; };
 		EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9559F262B573F0013E006 /* SettingsViewLogic.swift */; };
 		EFF955A7262B574E0013E006 /* EditUserViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955A6262B574E0013E006 /* EditUserViewLogic.swift */; };
-		EFF955AE262B575B0013E006 /* AppPermissionsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955AD262B575B0013E006 /* AppPermissionsLogic.swift */; };
+		EFF955AE262B575B0013E006 /* SettingsSensorsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955AD262B575B0013E006 /* SettingsSensorsLogic.swift */; };
 		EFF955B0262B57740013E006 /* NotificationPermissionsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955AF262B57740013E006 /* NotificationPermissionsLogic.swift */; };
 		F163FE6356C9E5C94B56C640 /* Pods_Fe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83804697FA3E96F445B2ED93 /* Pods_Fe.framework */; };
 /* End PBXBuildFile section */
@@ -184,7 +184,7 @@
 		CE082721262A4DE700558A32 /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
 		CE082755262A96EE00558A32 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE1E4A6525D4B6E300342238 /* Fe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fe.entitlements; sourceTree = "<group>"; };
-		CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppPermissionsViewController.swift; sourceTree = "<group>"; };
+		CE26588C25FD460D00437C97 /* SettingsSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSensorsViewController.swift; sourceTree = "<group>"; };
 		CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationPermissionsViewController.swift; sourceTree = "<group>"; };
 		CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSensorObject.swift; sourceTree = "<group>"; };
 		CE5E232D26E99AAC00C0360D /* DataAnalysisLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAnalysisLogic.swift; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 		EFF9558E262B56FE0013E006 /* AltitudeLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AltitudeLogic.swift; path = "Fe/Business Layer/SensorLogic/AltitudeLogic.swift"; sourceTree = SOURCE_ROOT; };
 		EFF9559F262B573F0013E006 /* SettingsViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewLogic.swift; path = "Fe/Business Layer/SettingsLogic/SettingsViewLogic.swift"; sourceTree = SOURCE_ROOT; };
 		EFF955A6262B574E0013E006 /* EditUserViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditUserViewLogic.swift; path = "Fe/Business Layer/SettingsLogic/EditUserViewLogic.swift"; sourceTree = SOURCE_ROOT; };
-		EFF955AD262B575B0013E006 /* AppPermissionsLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppPermissionsLogic.swift; path = "Fe/Business Layer/SettingsLogic/AppPermissionsLogic.swift"; sourceTree = SOURCE_ROOT; };
+		EFF955AD262B575B0013E006 /* SettingsSensorsLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsSensorsLogic.swift; path = "Fe/Business Layer/SettingsLogic/SettingsSensorsLogic.swift"; sourceTree = SOURCE_ROOT; };
 		EFF955AF262B57740013E006 /* NotificationPermissionsLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationPermissionsLogic.swift; path = "Fe/Business Layer/SettingsLogic/NotificationPermissionsLogic.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -393,7 +393,7 @@
 			children = (
 				CE62AF0525D84FDF00AA9665 /* SettingsViewController.swift */,
 				CE62AF2125DDC13600AA9665 /* EditUserViewController.swift */,
-				CE26588C25FD460D00437C97 /* SettingsAppPermissionsViewController.swift */,
+				CE26588C25FD460D00437C97 /* SettingsSensorsViewController.swift */,
 				CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */,
 			);
 			path = SettingsScreens;
@@ -504,7 +504,7 @@
 			children = (
 				EFF9559F262B573F0013E006 /* SettingsViewLogic.swift */,
 				EFF955A6262B574E0013E006 /* EditUserViewLogic.swift */,
-				EFF955AD262B575B0013E006 /* AppPermissionsLogic.swift */,
+				EFF955AD262B575B0013E006 /* SettingsSensorsLogic.swift */,
 				EFF955AF262B57740013E006 /* NotificationPermissionsLogic.swift */,
 			);
 			path = SettingsLogic;
@@ -1007,8 +1007,8 @@
 				CE62B2DB25E8870900AA9665 /* BloodOxygenViewController.swift in Sources */,
 				EFF9558F262B56FE0013E006 /* AltitudeLogic.swift in Sources */,
 				EFF955A7262B574E0013E006 /* EditUserViewLogic.swift in Sources */,
-				CE26588D25FD460D00437C97 /* SettingsAppPermissionsViewController.swift in Sources */,
-				EFF955AE262B575B0013E006 /* AppPermissionsLogic.swift in Sources */,
+				CE26588D25FD460D00437C97 /* SettingsSensorsViewController.swift in Sources */,
+				EFF955AE262B575B0013E006 /* SettingsSensorsLogic.swift in Sources */,
 				CEBEB3E92714B7B400576F3E /* UserDefaultKeys.swift in Sources */,
 				EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */,
 				CE9DD3432680E0C500D9D026 /* ProjectKeys.swift in Sources */,

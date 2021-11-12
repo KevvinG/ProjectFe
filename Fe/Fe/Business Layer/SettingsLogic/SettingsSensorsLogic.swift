@@ -12,7 +12,7 @@ import Foundation
  //MARK: Class AppPermissionsLogic
  - Description: Holds logic for the App Permissions Settings Screen.
  -----------------------------------------------------------------------*/
-class AppPermissionsLogic {
+class SettingsSensorsLogic {
     
     /*--------------------------------------------------------------------
      //MARK: setSwitchState()

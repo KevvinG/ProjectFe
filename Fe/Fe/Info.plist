@@ -34,9 +34,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Can this app use Bluetooth?</string>
+	<string>We require access to bluetooth to connect to the watch sensor device</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Can this app connect to Bluetooth peripheral?</string>
+	<string>We require access to bluetooth peripheral to connect to the watch sensor device</string>
 	<key>NSCameraUsageDescription</key>
 	<string>The application requires your permission to take a picture</string>
 	<key>NSHealthShareUsageDescription</key>
@@ -94,5 +94,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We require access to your location for obtaining your current altitude</string>
 </dict>
 </plist>

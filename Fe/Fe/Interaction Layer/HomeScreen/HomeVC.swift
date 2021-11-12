@@ -59,31 +59,46 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             self.setWelcomeTitle(title: "Welcome back, \(name)!")
         })
         
-        // Set off each method at start to fill UI
-        altTimerFire()
-        hrTimerfire()
-        bloodOxTimerfire()
+        // If Permission Granted, fire each sensor too fill UI
+        if let altimeterSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description), altimeterSensorSwitchState {
+            self.altTimerFire()
+        }
+        
+        if let hrSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description), hrSensorSwitchState {
+            self.hrTimerfire()
+        }
+        
+        if let bldOxSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description), bldOxSensorSwitchState {
+            self.bloodOxTimerfire()
+        }
         
         // Timer
         let timer = CustomTimer { (seconds) in
             
             if seconds % 300 == 0 { // Fire every 5 minutes (300 seconds)
-                if let hrSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), hrSwitchState {
+                if let hrNotificationSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), hrNotificationSwitchState {
                     self.DAObj.analyzeHeartRateData()
                 }
                 
-                if let bloodOxSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), bloodOxSwitchState {
+                if let bloodOxNotificationSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), bloodOxNotificationSwitchState {
                     self.DAObj.analyzeBloodOxygenData()
                 }
             }
             
             if seconds % 60 == 0 { // Fire every 60 seconds
-                self.altTimerFire()
+                if let altimeterSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description), altimeterSensorSwitchState {
+                    self.altTimerFire()
+                }
             }
             
-            if seconds % 5 == 0 { // Fire every 5 seconds - Watch sends messages in this interval
-                self.hrTimerfire()
-                self.bloodOxTimerfire()
+            if seconds % 5 == 0 { // Fire every 5 seconds
+                if let hrSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description), hrSensorSwitchState {
+                    self.hrTimerfire()
+                }
+                
+                if let bldOxSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description), bldOxSensorSwitchState {
+                    self.bloodOxTimerfire()
+                }
             }
         }
         timer.start()
@@ -346,7 +361,6 @@ extension HomeVC: CLLocationManagerDelegate {
      -------------------------------------------------------------------*/
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let lastLocation = locations.last {
-            // Elevation
             let elevation = round(lastLocation.altitude)
             CDObj.createElevationDataTableEntry(eleValue: Float(elevation))
         }

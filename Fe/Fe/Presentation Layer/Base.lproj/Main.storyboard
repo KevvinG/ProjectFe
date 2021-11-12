@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fm4-jh-6Hs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fm4-jh-6Hs">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1476,7 +1476,7 @@
                                                         <rect key="frame" x="10" y="221" width="394" height="42"/>
                                                         <color key="backgroundColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                        <state key="normal" title="Application Permissions">
+                                                        <state key="normal" title="Sensor Settings">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
@@ -2725,7 +2725,7 @@
         <!--Application Permissions-->
         <scene sceneID="ucK-zM-WGz">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="yYi-7H-opi" customClass="SettingsAppPermissionsViewController" customModule="Fe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="yYi-7H-opi" customClass="SettingsSensorsViewController" customModule="Fe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NX8-Po-EGd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2740,22 +2740,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0cM-99-YvH">
-                                                        <rect key="frame" x="355" y="96" width="51" height="31"/>
+                                                        <rect key="frame" x="355" y="45" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="swAltimeterStateChanged:" destination="yYi-7H-opi" eventType="valueChanged" id="EzQ-xw-pXz"/>
                                                         </connections>
                                                     </switch>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact 911 in Emergency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="na9-w8-yGZ">
-                                                        <rect key="frame" x="10" y="249" width="335" height="31"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="31" id="7j4-hy-KOl"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blood Oxygen Sensor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdF-Cz-aeH">
-                                                        <rect key="frame" x="10" y="198" width="335" height="31"/>
+                                                        <rect key="frame" x="10" y="147" width="335" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="mW7-L8-Sna"/>
                                                         </constraints>
@@ -2764,7 +2755,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optical Heart Sensor (Heart Rate)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ne-R8-HKd">
-                                                        <rect key="frame" x="10" y="147" width="335" height="31"/>
+                                                        <rect key="frame" x="10" y="96" width="335" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="mqZ-Cp-WFO"/>
                                                         </constraints>
@@ -2773,7 +2764,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altimeter Sensor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOI-4n-BuB">
-                                                        <rect key="frame" x="10" y="96" width="335" height="31"/>
+                                                        <rect key="frame" x="10" y="45" width="335" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="j8B-u7-ZZf"/>
                                                         </constraints>
@@ -2781,76 +2772,45 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GPS Sensor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccc-EO-9c2">
-                                                        <rect key="frame" x="10" y="45" width="335" height="31"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="31" id="AHM-eS-l4P"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor Permissions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi4-Ez-JYE">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which Sensors Do You Want To Use?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi4-Ez-JYE">
                                                         <rect key="frame" x="10" y="10" width="394" height="25"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IaL-mS-8kp">
-                                                        <rect key="frame" x="355" y="45" width="51" height="31"/>
-                                                        <connections>
-                                                            <action selector="swGPSStateChanged:" destination="yYi-7H-opi" eventType="valueChanged" id="Lxi-FJ-WfC"/>
-                                                        </connections>
-                                                    </switch>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="U5e-EC-me8">
-                                                        <rect key="frame" x="355" y="147" width="51" height="31"/>
+                                                        <rect key="frame" x="355" y="96" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="swHeartRateStateChanged:" destination="yYi-7H-opi" eventType="valueChanged" id="hcj-fn-0jd"/>
                                                         </connections>
                                                     </switch>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Bh7-fs-c8P">
-                                                        <rect key="frame" x="355" y="198" width="51" height="31"/>
+                                                        <rect key="frame" x="355" y="147" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="swBloodOxStateChanged:" destination="yYi-7H-opi" eventType="valueChanged" id="WNI-Iw-KHO"/>
-                                                        </connections>
-                                                    </switch>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4NJ-f3-olO">
-                                                        <rect key="frame" x="355" y="249" width="51" height="31"/>
-                                                        <connections>
-                                                            <action selector="sw911EmgcyStateChanged:" destination="yYi-7H-opi" eventType="valueChanged" id="y5W-ES-R8F"/>
                                                         </connections>
                                                     </switch>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="rdF-Cz-aeH" firstAttribute="leading" secondItem="XwV-ro-X0F" secondAttribute="leading" constant="10" id="1HF-Mv-58U"/>
-                                                    <constraint firstItem="4NJ-f3-olO" firstAttribute="leading" secondItem="na9-w8-yGZ" secondAttribute="trailing" constant="10" id="1ad-II-B67"/>
                                                     <constraint firstAttribute="trailing" secondItem="Bh7-fs-c8P" secondAttribute="trailing" constant="10" id="3BL-EQ-6cT"/>
                                                     <constraint firstItem="Oi4-Ez-JYE" firstAttribute="top" secondItem="XwV-ro-X0F" secondAttribute="top" constant="10" id="3LD-th-ZRf"/>
-                                                    <constraint firstAttribute="trailing" secondItem="4NJ-f3-olO" secondAttribute="trailing" constant="10" id="7W7-bk-NCw"/>
-                                                    <constraint firstItem="na9-w8-yGZ" firstAttribute="top" secondItem="rdF-Cz-aeH" secondAttribute="bottom" constant="20" id="Ach-d8-hWC"/>
-                                                    <constraint firstItem="IaL-mS-8kp" firstAttribute="leading" secondItem="ccc-EO-9c2" secondAttribute="trailing" constant="10" id="C5W-0C-xcE"/>
                                                     <constraint firstItem="jOI-4n-BuB" firstAttribute="leading" secondItem="XwV-ro-X0F" secondAttribute="leading" constant="10" id="DDv-Bs-5zs"/>
                                                     <constraint firstItem="U5e-EC-me8" firstAttribute="top" secondItem="0cM-99-YvH" secondAttribute="bottom" constant="20" id="DcT-vH-6UW"/>
                                                     <constraint firstItem="Oi4-Ez-JYE" firstAttribute="leading" secondItem="XwV-ro-X0F" secondAttribute="leading" constant="10" id="JHR-jk-86y"/>
                                                     <constraint firstItem="0ne-R8-HKd" firstAttribute="top" secondItem="jOI-4n-BuB" secondAttribute="bottom" constant="20" id="Kf3-Fn-Bbk"/>
                                                     <constraint firstAttribute="height" constant="800" id="Lw4-Wd-5tY"/>
-                                                    <constraint firstItem="0cM-99-YvH" firstAttribute="top" secondItem="IaL-mS-8kp" secondAttribute="bottom" constant="20" id="OYq-T2-23A"/>
-                                                    <constraint firstItem="ccc-EO-9c2" firstAttribute="top" secondItem="Oi4-Ez-JYE" secondAttribute="bottom" constant="10" id="OsV-UR-BPE"/>
                                                     <constraint firstAttribute="trailing" secondItem="0cM-99-YvH" secondAttribute="trailing" constant="10" id="Q8Z-Pd-ODw"/>
-                                                    <constraint firstItem="IaL-mS-8kp" firstAttribute="top" secondItem="Oi4-Ez-JYE" secondAttribute="bottom" constant="10" id="QrY-64-DQM"/>
                                                     <constraint firstItem="U5e-EC-me8" firstAttribute="leading" secondItem="0ne-R8-HKd" secondAttribute="trailing" constant="10" id="SXx-Yc-Tl1"/>
+                                                    <constraint firstItem="jOI-4n-BuB" firstAttribute="top" secondItem="Oi4-Ez-JYE" secondAttribute="bottom" constant="10" id="Srp-VK-W6C"/>
                                                     <constraint firstItem="0cM-99-YvH" firstAttribute="leading" secondItem="jOI-4n-BuB" secondAttribute="trailing" constant="10" id="XNB-dv-a43"/>
-                                                    <constraint firstItem="4NJ-f3-olO" firstAttribute="top" secondItem="Bh7-fs-c8P" secondAttribute="bottom" constant="20" id="YHK-cD-q0m"/>
-                                                    <constraint firstItem="ccc-EO-9c2" firstAttribute="leading" secondItem="XwV-ro-X0F" secondAttribute="leading" constant="10" id="YdM-x1-vIt"/>
-                                                    <constraint firstItem="na9-w8-yGZ" firstAttribute="leading" secondItem="XwV-ro-X0F" secondAttribute="leading" constant="10" id="elJ-Kr-qnw"/>
                                                     <constraint firstItem="Bh7-fs-c8P" firstAttribute="leading" secondItem="rdF-Cz-aeH" secondAttribute="trailing" constant="10" id="gtI-xZ-cTm"/>
                                                     <constraint firstAttribute="trailing" secondItem="U5e-EC-me8" secondAttribute="trailing" constant="10" id="gxV-oG-eHw"/>
-                                                    <constraint firstItem="jOI-4n-BuB" firstAttribute="top" secondItem="ccc-EO-9c2" secondAttribute="bottom" constant="20" id="hGO-fv-DcU"/>
                                                     <constraint firstItem="rdF-Cz-aeH" firstAttribute="top" secondItem="0ne-R8-HKd" secondAttribute="bottom" constant="20" id="i4Y-74-jPK"/>
+                                                    <constraint firstItem="0cM-99-YvH" firstAttribute="top" secondItem="Oi4-Ez-JYE" secondAttribute="bottom" constant="10" id="jJT-fj-Ct0"/>
                                                     <constraint firstItem="0ne-R8-HKd" firstAttribute="leading" secondItem="XwV-ro-X0F" secondAttribute="leading" constant="10" id="kA5-KQ-sgb"/>
-                                                    <constraint firstAttribute="trailing" secondItem="IaL-mS-8kp" secondAttribute="trailing" constant="10" id="qju-FA-MPD"/>
                                                     <constraint firstItem="Bh7-fs-c8P" firstAttribute="leading" secondItem="rdF-Cz-aeH" secondAttribute="trailing" constant="10" id="tLe-4S-jvi"/>
                                                     <constraint firstItem="Bh7-fs-c8P" firstAttribute="top" secondItem="U5e-EC-me8" secondAttribute="bottom" constant="20" id="uFt-Oi-AfL"/>
                                                     <constraint firstAttribute="trailing" secondItem="Oi4-Ez-JYE" secondAttribute="trailing" constant="10" id="wfa-CQ-jcT"/>
@@ -2881,10 +2841,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Application Permissions" id="bCa-FI-Sbt"/>
                     <connections>
-                        <outlet property="sw911Emgcy" destination="4NJ-f3-olO" id="G96-Gh-Rx9"/>
                         <outlet property="swAltimeter" destination="0cM-99-YvH" id="t6r-S8-Ac8"/>
                         <outlet property="swBloodOxygen" destination="Bh7-fs-c8P" id="GKF-sA-Kg1"/>
-                        <outlet property="swGPS" destination="IaL-mS-8kp" id="Dmq-Ub-fGI"/>
                         <outlet property="swHeartRate" destination="U5e-EC-me8" id="VvR-Uc-gHT"/>
                     </connections>
                 </viewController>
