@@ -551,10 +551,10 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="757"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4E-cy-CgJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="760"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ism-hU-Zbv">
-                                                <rect key="frame" x="10" y="708" width="394" height="42"/>
+                                                <rect key="frame" x="10" y="571" width="394" height="42"/>
                                                 <color key="backgroundColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="More Information">
@@ -575,17 +575,17 @@
                                                 <nil key="textColor"/>
                                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everything Looks Normal Today" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlC-LD-crQ">
-                                                <rect key="frame" x="10" y="51" width="394" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Djx-sd-eJQ" userLabel="BloodOxView">
-                                                <rect key="frame" x="234" y="101.5" width="150" height="150"/>
+                                                <rect key="frame" x="234" y="61" width="150" height="150"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcX-4h-uYD">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="btnBloodOxygenTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="fh2-Tf-16M"/>
                                                         </connections>
@@ -603,7 +603,6 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="htx-eY-3hs" secondAttribute="trailing" id="09T-S6-Nio"/>
                                                     <constraint firstItem="E8z-f8-TRG" firstAttribute="leading" secondItem="Djx-sd-eJQ" secondAttribute="leading" id="6IX-ft-55i"/>
@@ -624,20 +623,30 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhf-Mv-DFc" userLabel="HRView">
-                                                <rect key="frame" x="30" y="101.5" width="150" height="150"/>
+                                                <rect key="frame" x="30" y="61" width="150" height="150"/>
                                                 <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCv-Ot-nhe">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="btnHeartRateTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="THe-gT-pue"/>
+                                                        </connections>
+                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heart Rate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfW-n9-OWS">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCv-Ot-nhe">
-                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                                        <connections>
-                                                            <action selector="btnHeartRateTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="THe-gT-pue"/>
-                                                        </connections>
-                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIj-bf-Y0Z">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -648,7 +657,6 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="1I0-6O-M1Q"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZCv-Ot-nhe" secondAttribute="trailing" id="3c9-5i-Gmi"/>
@@ -666,10 +674,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hsg-9t-OJP" userLabel="AltView">
-                                                <rect key="frame" x="30" y="301.5" width="150" height="150"/>
+                                                <rect key="frame" x="30" y="231" width="150" height="150"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMh-CS-tsK">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="btnAltitudeTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="tAe-iR-Ytn"/>
                                                         </connections>
@@ -687,7 +701,6 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="Zqu-c6-1q9" secondAttribute="bottom" id="4G5-8F-XER"/>
                                                     <constraint firstAttribute="bottom" secondItem="XMh-CS-tsK" secondAttribute="bottom" id="CeW-G4-g7a"/>
@@ -705,22 +718,27 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcE-4U-hz4" userLabel="SymptomView">
-                                                <rect key="frame" x="234" y="301.5" width="150" height="150"/>
+                                                <rect key="frame" x="234" y="231" width="150" height="150"/>
                                                 <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhu-xq-NrZ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="btnSymptomsTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="BZx-h7-xuC"/>
+                                                        </connections>
+                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check Symptoms" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uu6-7s-cNw">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhu-xq-NrZ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                                        <connections>
-                                                            <action selector="btnSymptomsTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="BZx-h7-xuC"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="vhu-xq-NrZ" secondAttribute="trailing" id="0VG-sP-zFe"/>
                                                     <constraint firstAttribute="trailing" secondItem="Uu6-7s-cNw" secondAttribute="trailing" id="0hI-82-tRV"/>
@@ -734,24 +752,28 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RRC-W3-pld" userLabel="ChatbotView">
-                                                <rect key="frame" x="30" y="501.5" width="150" height="150"/>
+                                                <rect key="frame" x="30" y="401" width="150" height="150"/>
                                                 <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30R-Fx-fU7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="btnChatbotTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="BPp-2A-Y2O"/>
+                                                        </connections>
+                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chatbot" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQT-ol-zCe">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30R-Fx-fU7">
-                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain"/>
-                                                        <connections>
-                                                            <action selector="btnChatbotTapped:" destination="2NR-qE-kpl" eventType="touchUpInside" id="BPp-2A-Y2O"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                                 <constraints>
                                                     <constraint firstItem="SQT-ol-zCe" firstAttribute="leading" secondItem="RRC-W3-pld" secondAttribute="leading" id="257-n5-Lsa"/>
                                                     <constraint firstAttribute="trailing" secondItem="30R-Fx-fU7" secondAttribute="trailing" id="4CC-8a-2Nb"/>
@@ -768,26 +790,23 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="dP9-Qr-Fxa" firstAttribute="top" secondItem="E4E-cy-CgJ" secondAttribute="top" constant="10" id="0SE-Ah-ySG"/>
-                                            <constraint firstAttribute="trailing" secondItem="rlC-LD-crQ" secondAttribute="trailing" constant="10" id="80M-hj-NOr"/>
-                                            <constraint firstItem="rlC-LD-crQ" firstAttribute="leading" secondItem="E4E-cy-CgJ" secondAttribute="leading" constant="10" id="9uM-cg-CUr"/>
-                                            <constraint firstItem="Djx-sd-eJQ" firstAttribute="top" secondItem="rlC-LD-crQ" secondAttribute="bottom" constant="30" id="Agk-yX-Ida"/>
                                             <constraint firstAttribute="trailing" secondItem="Ism-hU-Zbv" secondAttribute="trailing" constant="10" id="EJ9-3q-YoV"/>
-                                            <constraint firstAttribute="height" constant="760" id="I48-Lt-sGL"/>
-                                            <constraint firstItem="rlC-LD-crQ" firstAttribute="top" secondItem="dP9-Qr-Fxa" secondAttribute="bottom" constant="10" id="Jdh-8Z-lM1"/>
-                                            <constraint firstItem="hcE-4U-hz4" firstAttribute="top" secondItem="Djx-sd-eJQ" secondAttribute="bottom" constant="50" id="JhY-tj-ZIH"/>
+                                            <constraint firstAttribute="height" constant="700" id="I48-Lt-sGL"/>
+                                            <constraint firstItem="hcE-4U-hz4" firstAttribute="top" secondItem="Djx-sd-eJQ" secondAttribute="bottom" constant="20" id="JhY-tj-ZIH"/>
                                             <constraint firstItem="vhf-Mv-DFc" firstAttribute="leading" secondItem="E4E-cy-CgJ" secondAttribute="leading" constant="30" id="L6K-NP-A31"/>
-                                            <constraint firstAttribute="bottom" secondItem="Ism-hU-Zbv" secondAttribute="bottom" constant="10" id="NW0-0g-0uR"/>
-                                            <constraint firstItem="vhf-Mv-DFc" firstAttribute="top" secondItem="rlC-LD-crQ" secondAttribute="bottom" constant="30" id="RJE-6B-9qh"/>
                                             <constraint firstItem="dP9-Qr-Fxa" firstAttribute="leading" secondItem="E4E-cy-CgJ" secondAttribute="leading" constant="10" id="Rq3-Ie-o6b"/>
-                                            <constraint firstItem="RRC-W3-pld" firstAttribute="top" secondItem="hsg-9t-OJP" secondAttribute="bottom" constant="50" id="S0l-WL-pva"/>
+                                            <constraint firstItem="RRC-W3-pld" firstAttribute="top" secondItem="hsg-9t-OJP" secondAttribute="bottom" constant="20" id="S0l-WL-pva"/>
                                             <constraint firstItem="Ism-hU-Zbv" firstAttribute="leading" secondItem="E4E-cy-CgJ" secondAttribute="leading" constant="10" id="SGs-oY-3jK"/>
+                                            <constraint firstItem="vhf-Mv-DFc" firstAttribute="top" secondItem="dP9-Qr-Fxa" secondAttribute="bottom" constant="20" id="VUs-Fh-GKZ"/>
                                             <constraint firstAttribute="trailing" secondItem="Djx-sd-eJQ" secondAttribute="trailing" constant="30" id="ZZh-Nm-Hk6"/>
                                             <constraint firstItem="hsg-9t-OJP" firstAttribute="leading" secondItem="E4E-cy-CgJ" secondAttribute="leading" constant="30" id="ceu-8g-MOm"/>
+                                            <constraint firstItem="Ism-hU-Zbv" firstAttribute="top" secondItem="RRC-W3-pld" secondAttribute="bottom" constant="20" id="dNA-CO-a3f"/>
                                             <constraint firstAttribute="trailing" secondItem="hcE-4U-hz4" secondAttribute="trailing" constant="30" id="eb4-dN-jFs"/>
                                             <constraint firstAttribute="trailing" secondItem="Ism-hU-Zbv" secondAttribute="trailing" constant="10" id="hoR-tF-bFz"/>
                                             <constraint firstAttribute="trailing" secondItem="dP9-Qr-Fxa" secondAttribute="trailing" constant="10" id="jLy-Lf-Vd9"/>
                                             <constraint firstItem="RRC-W3-pld" firstAttribute="leading" secondItem="E4E-cy-CgJ" secondAttribute="leading" constant="30" id="lhy-nt-QBi"/>
-                                            <constraint firstItem="hsg-9t-OJP" firstAttribute="top" secondItem="vhf-Mv-DFc" secondAttribute="bottom" constant="50" id="ybr-4l-EGV"/>
+                                            <constraint firstItem="Djx-sd-eJQ" firstAttribute="top" secondItem="dP9-Qr-Fxa" secondAttribute="bottom" constant="20" id="oda-Gn-ZLD"/>
+                                            <constraint firstItem="hsg-9t-OJP" firstAttribute="top" secondItem="vhf-Mv-DFc" secondAttribute="bottom" constant="20" id="ybr-4l-EGV"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -814,10 +833,14 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house.fill" id="gTj-YQ-TgZ"/>
                     <navigationItem key="navigationItem" title="Home" id="a9u-kb-Oqk"/>
                     <connections>
+                        <outlet property="btnAlt" destination="XMh-CS-tsK" id="Tmj-dh-S7C"/>
+                        <outlet property="btnBldOx" destination="YcX-4h-uYD" id="AZ3-Jk-ysF"/>
+                        <outlet property="btnChatbot" destination="30R-Fx-fU7" id="V7s-SC-SHs"/>
+                        <outlet property="btnHR" destination="ZCv-Ot-nhe" id="X6r-7a-Vtd"/>
+                        <outlet property="btnSymptoms" destination="vhu-xq-NrZ" id="i2Q-RL-y8A"/>
                         <outlet property="lblAltitudeValue" destination="Zqu-c6-1q9" id="yPl-fe-jeY"/>
                         <outlet property="lblBloodOxygenValue" destination="htx-eY-3hs" id="Tsb-aA-JyU"/>
                         <outlet property="lblHeartRateValue" destination="dIj-bf-Y0Z" id="zk4-c5-Hrg"/>
-                        <outlet property="lblSubtitle" destination="rlC-LD-crQ" id="Orw-pe-cVG"/>
                         <outlet property="lblTitle" destination="dP9-Qr-Fxa" id="q97-lP-SIo"/>
                         <segue destination="yw4-UD-Z7u" kind="show" identifier="GoToMoreInfoScreen" id="9Gg-LW-X18"/>
                         <segue destination="nvo-d2-GEQ" kind="show" identifier="GoToSymptomDizzy" id="EBz-Zy-cNc"/>
@@ -2068,20 +2091,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_document" id="rIB-mZ-29H" customClass="DocumentTableViewCell" customModule="Fe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="41"/>
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="41.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rIB-mZ-29H" id="oRC-t5-GNB">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyT-kL-KrN">
-                                            <rect key="frame" x="10" y="10" width="33" height="21"/>
+                                            <rect key="frame" x="10" y="10" width="33" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkt-ar-2W3">
-                                            <rect key="frame" x="368" y="10" width="36" height="21"/>
+                                            <rect key="frame" x="368" y="10" width="36" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -3201,9 +3224,6 @@
         <image name="shortbreath" width="1600" height="1689"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="placeholderTextColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

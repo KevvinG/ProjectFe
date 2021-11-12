@@ -34,8 +34,12 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     var rxCharacteristic: CBCharacteristic!
     
     // UI Variables
+    @IBOutlet var btnHR: UIButton!
+    @IBOutlet var btnBldOx: UIButton!
+    @IBOutlet var btnAlt: UIButton!
+    @IBOutlet var btnSymptoms: UIButton!
+    @IBOutlet var btnChatbot: UIButton!
     @IBOutlet var lblTitle: UILabel!
-    @IBOutlet var lblSubtitle: UILabel!
     @IBOutlet var lblHeartRateValue: UILabel!
     @IBOutlet var lblBloodOxygenValue: UILabel!
     @IBOutlet var lblAltitudeValue: UILabel!
@@ -102,6 +106,45 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             }
         }
         timer.start()
+        
+        setupButtonUI()
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setupButtonUI()
+     - Description: creeate pretty buttons
+     -------------------------------------------------------------------*/
+    func setupButtonUI() {
+        // Heart Rate Button
+        btnHR.layer.shadowColor = UIColor.black.cgColor
+        btnHR.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnHR.layer.shadowRadius = 5
+        btnHR.layer.shadowOpacity = 1.0
+        
+        // Blood Oxygen Button
+        btnBldOx.layer.shadowColor = UIColor.black.cgColor
+        btnBldOx.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnBldOx.layer.shadowRadius = 5
+        btnBldOx.layer.shadowOpacity = 1.0
+        
+        // Altitude Button
+        btnAlt.layer.shadowColor = UIColor.black.cgColor
+        btnAlt.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnAlt.layer.shadowRadius = 5
+        btnAlt.layer.shadowOpacity = 1.0
+        
+        // Symptoms Button
+        btnSymptoms.layer.shadowColor = UIColor.black.cgColor
+        btnSymptoms.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnSymptoms.layer.shadowRadius = 5
+        btnSymptoms.layer.shadowOpacity = 1.0
+        
+        // Chatbot Button
+        btnChatbot.layer.shadowColor = UIColor.black.cgColor
+        btnChatbot.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnChatbot.layer.shadowRadius = 5
+        btnChatbot.layer.shadowOpacity = 1.0
+        
     }
     
     /*--------------------------------------------------------------------
