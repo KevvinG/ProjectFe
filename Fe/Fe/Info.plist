@@ -43,6 +43,8 @@
 	<string>Access to sharing health records</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Access to updating health records</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We require access to your location for obtaining your current altitude</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>We require access to your location for obtaining your current altitude</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -94,7 +96,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We require access to your location for obtaining your current altitude</string>
 </dict>
 </plist>

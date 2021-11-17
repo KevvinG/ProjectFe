@@ -39,6 +39,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBOutlet var btnAlt: UIButton!
     @IBOutlet var btnSymptoms: UIButton!
     @IBOutlet var btnChatbot: UIButton!
+    @IBOutlet var btnSocialAndGamification: UIButton!
     @IBOutlet var lblTitle: UILabel!
     @IBOutlet var lblHeartRateValue: UILabel!
     @IBOutlet var lblBloodOxygenValue: UILabel!
@@ -145,6 +146,11 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnChatbot.layer.shadowRadius = 5
         btnChatbot.layer.shadowOpacity = 1.0
         
+        // Social and Gamification Button
+        btnSocialAndGamification.layer.shadowColor = UIColor.black.cgColor
+        btnSocialAndGamification.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnSocialAndGamification.layer.shadowRadius = 5
+        btnSocialAndGamification.layer.shadowOpacity = 1.0
     }
     
     /*--------------------------------------------------------------------
@@ -358,6 +364,14 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
      -------------------------------------------------------------------*/
     @IBAction func btnSymptomsTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToSymptomDizzy", sender: self)
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: checkSymptomsBtnTapped()
+     - Description: Segue to symptom Checking view
+     -------------------------------------------------------------------*/
+    @IBAction func btnSocialAndGamificationTapped(_ sender: Any) {
+        performSegue(withIdentifier: "GoToSocialAndGamification", sender: self)
     }
     
     /*--------------------------------------------------------------------

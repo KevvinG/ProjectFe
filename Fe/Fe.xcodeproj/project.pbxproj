@@ -64,6 +64,8 @@
 		CEBEB3EB2714B8D300576F3E /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3EA2714B8D300576F3E /* UserDefaults+Extension.swift */; };
 		CEBEB3ED27171F2100576F3E /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3EC27171F2100576F3E /* HomeVC.swift */; };
 		CEC3BB45271F4E9E0027E7B6 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC3BB44271F4E9E0027E7B6 /* Validation.swift */; };
+		CEDBACAD274562340072093A /* SocialAndGamificationHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACAC274562340072093A /* SocialAndGamificationHomeViewController.swift */; };
+		CEDBACAF274564AD0072093A /* SocialAndGamificationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */; };
 		CEE9E4BE26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
@@ -221,6 +223,8 @@
 		CEC3BB44271F4E9E0027E7B6 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		CEC690C92704ADD5003351F9 /* Fe-MiniDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fe-MiniDebug.entitlements"; sourceTree = "<group>"; };
 		CEC690CA2704B309003351F9 /* FeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeRelease.entitlements; sourceTree = "<group>"; };
+		CEDBACAC274562340072093A /* SocialAndGamificationHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAndGamificationHomeViewController.swift; sourceTree = "<group>"; };
+		CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAndGamificationLogic.swift; sourceTree = "<group>"; };
 		CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKeyExtension.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2544EF261F22E800069308 /* HKAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKAccessObject.swift; sourceTree = "<group>"; };
@@ -391,6 +395,7 @@
 				CE0825712620936A00558A32 /* SensorScreens */,
 				CE0825702620936300558A32 /* DocumentScreens */,
 				CE082711262A3F4800558A32 /* QuestionnaireScreens */,
+				CEDBACA9274561AB0072093A /* SocialAndGamificationScreens */,
 				CE08271E262A3FFF00558A32 /* MoreInfoScreen */,
 				CE08255F261FAE4E00558A32 /* SettingsScreens */,
 			);
@@ -580,6 +585,7 @@
 				CE082719262A3FCC00558A32 /* DocumentLogic */,
 				CE082718262A3FC500558A32 /* SensorLogic */,
 				CE082712262A3F5F00558A32 /* QuestionnaireLogic */,
+				CEDBACAB274561F90072093A /* SocialAndGamificationLogic */,
 				CE08271F262A404300558A32 /* SettingsLogic */,
 			);
 			path = "Business Layer";
@@ -623,6 +629,22 @@
 				CEC3BB44271F4E9E0027E7B6 /* Validation.swift */,
 			);
 			path = ValidationLogic;
+			sourceTree = "<group>";
+		};
+		CEDBACA9274561AB0072093A /* SocialAndGamificationScreens */ = {
+			isa = PBXGroup;
+			children = (
+				CEDBACAC274562340072093A /* SocialAndGamificationHomeViewController.swift */,
+			);
+			path = SocialAndGamificationScreens;
+			sourceTree = "<group>";
+		};
+		CEDBACAB274561F90072093A /* SocialAndGamificationLogic */ = {
+			isa = PBXGroup;
+			children = (
+				CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */,
+			);
+			path = SocialAndGamificationLogic;
 			sourceTree = "<group>";
 		};
 		CEE9E4BB26EC3FE3001BA3C8 /* Device Layer */ = {
@@ -1029,6 +1051,7 @@
 				EFF9558F262B56FE0013E006 /* AltitudeLogic.swift in Sources */,
 				EFF955A7262B574E0013E006 /* EditUserViewLogic.swift in Sources */,
 				CE26588D25FD460D00437C97 /* SettingsSensorsViewController.swift in Sources */,
+				CEDBACAD274562340072093A /* SocialAndGamificationHomeViewController.swift in Sources */,
 				EFF955AE262B575B0013E006 /* SettingsSensorsLogic.swift in Sources */,
 				CEBEB3E92714B7B400576F3E /* UserDefaultKeys.swift in Sources */,
 				EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */,
@@ -1050,6 +1073,7 @@
 				CE07433A26699CB000B97853 /* BloodOxygenData+CoreDataProperties.swift in Sources */,
 				EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */,
 				CE07433826699CB000B97853 /* AirPressureData+CoreDataProperties.swift in Sources */,
+				CEDBACAF274564AD0072093A /* SocialAndGamificationLogic.swift in Sources */,
 				CE01C2D925D438D100A08E2D /* AppDelegate.swift in Sources */,
 				CE62B28825E84F5C00AA9665 /* WebMoreInfoViewController.swift in Sources */,
 				CE01C2E325D438D100A08E2D /* Fe.xcdatamodeld in Sources */,
@@ -1297,7 +1321,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fe/Fe.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				INFOPLIST_FILE = Fe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1425,7 +1449,7 @@
 					"-weak_framework",
 					"\"UserNotifications\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1442,7 +1466,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fe/FeRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				INFOPLIST_FILE = Fe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1571,7 +1595,7 @@
 					"-weak_framework",
 					"\"UserNotifications\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1684,11 +1708,11 @@
 				CODE_SIGN_ENTITLEMENTS = "Fe-Mini/Fe-MiniDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/functions/*";
 				IBSC_MODULE = Fe_Mini_Extension;
 				INFOPLIST_FILE = "Fe-Mini/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1707,11 +1731,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/functions/*";
 				IBSC_MODULE = Fe_Mini_Extension;
 				INFOPLIST_FILE = "Fe-Mini/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1728,14 +1752,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Fe-Mini Extension/Fe-Mini Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				INFOPLIST_FILE = "Fe-Mini Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1752,14 +1776,14 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Fe-Mini Extension/Fe-Mini Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				INFOPLIST_FILE = "Fe-Mini Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
