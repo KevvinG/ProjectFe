@@ -43,28 +43,6 @@ class AltitudeViewController: UIViewController {
         
         initChartAirPressure()
         initChartElevation()
-        
-//        AltLogic.fetchElevationWithRange(dateRange : "week", completion: { [self] dateArray, elevationArray in
-//            elevationLineChart.data = AltLogic.chartData(dataPoints: dateArray, values: elevationArray)
-//            elevationLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
-//            elevationLineChart.xAxis.granularity = 0.05
-//            elevationLineChart.xAxis.labelPosition = .bottom
-//            elevationLineChart.xAxis.drawGridLinesEnabled = false
-//            elevationLineChart.rightAxis.enabled = false
-//            elevationLineChart.leftAxis.setLabelCount(6, force: false)
-//            elevationLineChart.xAxis.labelCount = 4
-//        })
-        
-//        AltLogic.fetchAirPressureWithRange(dateRange : "week", completion: { [self] dateArray, airPressureArray in
-//            apLineChart.data = AltLogic.chartData(dataPoints: dateArray, values: airPressureArray)
-//            apLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
-//            apLineChart.xAxis.granularity = 0.05
-//            apLineChart.xAxis.labelPosition = .bottom
-//            apLineChart.xAxis.drawGridLinesEnabled = false
-//            apLineChart.rightAxis.enabled = false
-//            apLineChart.leftAxis.setLabelCount(6, force: false)
-//            apLineChart.xAxis.labelCount = 4
-//        })
     }
     
     /*--------------------------------------------------------------------
@@ -84,16 +62,14 @@ class AltitudeViewController: UIViewController {
             cdAirPressureData.append(Double(item.airPressure))
         }
         
+        //Configure chart data
         apLineChart.data = AltLogic.chartData(dataPoints: cdDateData, values: cdAirPressureData)
         apLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: cdDateData)
         apLineChart.xAxis.granularity = 0.05
-        
         apLineChart.xAxis.labelPosition = .bottom
         apLineChart.xAxis.drawGridLinesEnabled = false
         apLineChart.xAxis.setLabelCount(6, force: false)
-
         apLineChart.legend.enabled = false
-        
         apLineChart.animate(xAxisDuration: 2)
         
         // Set up Stats
@@ -133,16 +109,14 @@ class AltitudeViewController: UIViewController {
             cdEleData.append(Double(item.elevation))
         }
         
+        //Configure chart
         elevationLineChart.data = AltLogic.chartData(dataPoints: cdDateData, values: cdEleData)
         elevationLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: cdDateData)
         elevationLineChart.xAxis.granularity = 0.05
-        
         elevationLineChart.xAxis.labelPosition = .bottom
         elevationLineChart.xAxis.drawGridLinesEnabled = false
         elevationLineChart.xAxis.setLabelCount(6, force: false)
-
         elevationLineChart.legend.enabled = false
-        
         elevationLineChart.animate(xAxisDuration: 2)
         
         // Set up Stats

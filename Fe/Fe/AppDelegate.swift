@@ -11,6 +11,7 @@ import CoreData
 import Firebase
 import GoogleSignIn
 import UserNotifications
+import Kommunicate
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Override point for customization after application launch.
         FirebaseApp.configure()
         WatchKitConnection.shared.startSession()
+        
+        Kommunicate.setup(applicationId: "32910ca4e4b590d1347a448c8d553c94b")
         
         // Code to allow Push Notifications on device
         if #available(iOS 10.0, *) {

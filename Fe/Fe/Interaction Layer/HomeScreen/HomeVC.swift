@@ -112,7 +112,6 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
      -------------------------------------------------------------------*/
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
 //            self.centralManager.stopScan()
-
         // Copy the peripheral instance
         self.peripheral = peripheral
         if self.peripheral.name == "BT05" {
@@ -120,8 +119,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             self.centralManager.stopScan()
         }
         self.peripheral.delegate = self
-
-        // Connect!
+        // Connect
         self.centralManager.connect(self.peripheral, options: nil)
     }
     
@@ -317,7 +315,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
      - Description: Segue to Chatbot Screen
      -------------------------------------------------------------------*/
     @IBAction func btnChatbotTapped(_ sender: Any) {
-//        performSegue(withIdentifier: "GoToChatbotScreen", sender: self)
+        performSegue(withIdentifier: "GoToChatbotScreen", sender: self)
         print("Chatbot button pressed")
     }
     

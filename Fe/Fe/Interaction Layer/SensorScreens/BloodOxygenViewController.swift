@@ -97,30 +97,20 @@ class BloodOxygenViewController: UIViewController {
             cdDateData.append(df.string(from: item.dateTime))
             cdSPO2Data.append(Double(item.bloodOxygen))
         }
-        
-        //if
-        
-//        BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg in
             
+        //Configure chart
         lineChartView.data = BldOxObj.chartData(dataPoints: cdDateData, values: cdSPO2Data)
         lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:cdDateData)
         lineChartView.xAxis.granularity = 0.05
-            
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.xAxis.drawGridLinesEnabled = false
-        //lineChartView.xAxis.labelRotationAngle = -30
         lineChartView.xAxis.setLabelCount(6, force: false)
-        //lineChartView.backgroundColor = .systemRed
-        
-        //lineChartView.data?.setDrawValues(false)
         lineChartView.legend.enabled = false
-        
         lineChartView.animate(xAxisDuration: 2)
         
         // Set Stats Values
         let bloodOxValue = BldOxObj.fetchLatestBloodOxReading()
         self.lblCurrentBldOx.text = "\(String(bloodOxValue)) %"
-        
         let bldOxMin = Int(cdSPO2Data.min() ?? -1)
         let bldOxMax = Int(cdSPO2Data.max() ?? -1)
         var spo2sum = 0.0
@@ -133,10 +123,8 @@ class BloodOxygenViewController: UIViewController {
             let bldOxAvg = Int(spo2sum/Double(cdSPO2Data.count))
             self.lblAvgBldOx.text = "\(bldOxAvg) %"
         }
-        
         self.lblMaxBldOx.text = "\(bldOxMax) %"
         self.lblMinBldOx.text = "\(bldOxMin) %"
-//        })
     }
     
     /*--------------------------------------------------------------------

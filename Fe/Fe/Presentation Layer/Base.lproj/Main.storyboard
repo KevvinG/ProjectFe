@@ -826,6 +826,7 @@
                         <segue destination="BHn-Bc-hsq" kind="show" identifier="GoToDocumentsScreen" id="xba-28-fVf"/>
                         <segue destination="XvI-IW-70E" kind="show" identifier="GoToUploadDocumentScreen" id="gQS-Er-MNw"/>
                         <segue destination="qQE-ig-zOR" kind="show" identifier="GoToAltitudeScreen" id="xwP-iS-61T"/>
+                        <segue destination="TwK-aZ-6VQ" kind="show" identifier="GoToChatbotScreen" id="oH4-vb-WRe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H3S-4Q-AwF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3222,6 +3223,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="41h-j2-Ofb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="775" y="69"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="iKf-a3-Cw0">
+            <objects>
+                <viewController storyboardIdentifier="ChatVC" id="TwK-aZ-6VQ" customClass="ChatViewController" customModule="Fe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bis-aL-Qb7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="QNT-S7-e9h"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Xpm-wb-APf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jac-tb-0ad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4216" y="-624"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

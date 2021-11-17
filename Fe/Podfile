@@ -23,6 +23,10 @@ target 'Fe' do
   pod 'CorePlot'
   pod 'Charts'
   pod 'TinyConstraints'
+  pod 'MessageKit'
+  pod 'ReverseExtension'
+  pod 'Toolbar'
+  pod 'Kommunicate'
 
   target 'FeTests' do
     inherit! :search_paths

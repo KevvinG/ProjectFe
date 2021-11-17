@@ -82,6 +82,10 @@
 		EF9DC0B12717ECB500ABEE4A /* SensorDeviceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9DC0B02717ECB500ABEE4A /* SensorDeviceObject.swift */; };
 		EF9DC0B32717ECE900ABEE4A /* CBUUIDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9DC0B22717ECE900ABEE4A /* CBUUIDS.swift */; };
 		EF9DC0B5271949DF00ABEE4A /* SensorDevicePackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9DC0B4271949DF00ABEE4A /* SensorDevicePackage.swift */; };
+		EFA91ABE273B3DDB001E6C50 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA91ABD273B3DDB001E6C50 /* Message.swift */; };
+		EFB2C99B273B584E00E72D9C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB2C99A273B584E00E72D9C /* Chat.swift */; };
+		EFB2C99D273B585900E72D9C /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB2C99C273B585900E72D9C /* ChatUser.swift */; };
+		EFF7381527391CD4002C81C7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF7381427391CD4002C81C7 /* ChatViewController.swift */; };
 		EFF95573262B56860013E006 /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95572262B56860013E006 /* LoginLogic.swift */; };
 		EFF9557F262B56B60013E006 /* HomeScreenLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9557E262B56B60013E006 /* HomeScreenLogic.swift */; };
 		EFF95586262B56D50013E006 /* HeartRateLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95585262B56D50013E006 /* HeartRateLogic.swift */; };
@@ -240,6 +244,10 @@
 		EF9DC0B02717ECB500ABEE4A /* SensorDeviceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDeviceObject.swift; sourceTree = "<group>"; };
 		EF9DC0B22717ECE900ABEE4A /* CBUUIDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBUUIDS.swift; sourceTree = "<group>"; };
 		EF9DC0B4271949DF00ABEE4A /* SensorDevicePackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDevicePackage.swift; sourceTree = "<group>"; };
+		EFA91ABD273B3DDB001E6C50 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		EFB2C99A273B584E00E72D9C /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		EFB2C99C273B585900E72D9C /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		EFF7381427391CD4002C81C7 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		EFF95572262B56860013E006 /* LoginLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginLogic.swift; path = "Fe/Business Layer/LoginLogic/LoginLogic.swift"; sourceTree = SOURCE_ROOT; };
 		EFF9557E262B56B60013E006 /* HomeScreenLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeScreenLogic.swift; path = "Fe/Business Layer/HomeLogic/HomeScreenLogic.swift"; sourceTree = SOURCE_ROOT; };
 		EFF95585262B56D50013E006 /* HeartRateLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HeartRateLogic.swift; path = "Fe/Business Layer/SensorLogic/HeartRateLogic.swift"; sourceTree = SOURCE_ROOT; };
@@ -377,6 +385,7 @@
 		CE082558261FAE4100558A32 /* Interaction Layer */ = {
 			isa = PBXGroup;
 			children = (
+				EFF7381327391CBD002C81C7 /* ChatScreens */,
 				CE08271C262A3FEC00558A32 /* loginScreens */,
 				CE08271D262A3FF600558A32 /* HomeScreen */,
 				CE0825712620936A00558A32 /* SensorScreens */,
@@ -554,6 +563,9 @@
 			children = (
 				CE6D7B062607E83000835756 /* Document.swift */,
 				CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */,
+				EFA91ABD273B3DDB001E6C50 /* Message.swift */,
+				EFB2C99A273B584E00E72D9C /* Chat.swift */,
+				EFB2C99C273B585900E72D9C /* ChatUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -661,6 +673,14 @@
 				EF97E9B125E6F37C0050F8B5 /* PushNotificationPayload.apns */,
 			);
 			path = "Fe-Mini Extension";
+			sourceTree = "<group>";
+		};
+		EFF7381327391CBD002C81C7 /* ChatScreens */ = {
+			isa = PBXGroup;
+			children = (
+				EFF7381427391CD4002C81C7 /* ChatViewController.swift */,
+			);
+			path = ChatScreens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1001,6 +1021,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEBEB3ED27171F2100576F3E /* HomeVC.swift in Sources */,
+				EFA91ABE273B3DDB001E6C50 /* Message.swift in Sources */,
 				EF9168EF262A5D3500DCCEEC /* CoreDataAccessObject.swift in Sources */,
 				CE6D7AD22607AFB600835756 /* FirebaseAccessObject.swift in Sources */,
 				CEBEB3EB2714B8D300576F3E /* UserDefaults+Extension.swift in Sources */,
@@ -1020,6 +1041,7 @@
 				CE62B2A825E856B800AA9665 /* CallDoctorViewController.swift in Sources */,
 				CE5E232E26E99AAC00C0360D /* DataAnalysisLogic.swift in Sources */,
 				EF9DC0B32717ECE900ABEE4A /* CBUUIDS.swift in Sources */,
+				EFB2C99D273B585900E72D9C /* ChatUser.swift in Sources */,
 				EF9DC0B5271949DF00ABEE4A /* SensorDevicePackage.swift in Sources */,
 				CE26589425FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift in Sources */,
 				EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */,
@@ -1058,7 +1080,9 @@
 				CE62AF0625D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
 				CE62B2A125E8566100AA9665 /* Symptom2BreathViewController.swift in Sources */,
 				CE4D26F6264570B6004629CC /* PhoneSensorObject.swift in Sources */,
+				EFF7381527391CD4002C81C7 /* ChatViewController.swift in Sources */,
 				CE07433C26699CB000B97853 /* ElevationData+CoreDataProperties.swift in Sources */,
+				EFB2C99B273B584E00E72D9C /* Chat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1273,7 +1297,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fe/Fe.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X46PTT568J;
+				DEVELOPMENT_TEAM = 7R65VE73FD;
 				INFOPLIST_FILE = Fe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1401,7 +1425,7 @@
 					"-weak_framework",
 					"\"UserNotifications\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1418,7 +1442,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fe/FeRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X46PTT568J;
+				DEVELOPMENT_TEAM = 7R65VE73FD;
 				INFOPLIST_FILE = Fe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1547,7 +1571,7 @@
 					"-weak_framework",
 					"\"UserNotifications\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1660,11 +1684,11 @@
 				CODE_SIGN_ENTITLEMENTS = "Fe-Mini/Fe-MiniDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X46PTT568J;
+				DEVELOPMENT_TEAM = 7R65VE73FD;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/functions/*";
 				IBSC_MODULE = Fe_Mini_Extension;
 				INFOPLIST_FILE = "Fe-Mini/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1683,11 +1707,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X46PTT568J;
+				DEVELOPMENT_TEAM = 7R65VE73FD;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/functions/*";
 				IBSC_MODULE = Fe_Mini_Extension;
 				INFOPLIST_FILE = "Fe-Mini/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1704,14 +1728,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Fe-Mini Extension/Fe-Mini Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X46PTT568J;
+				DEVELOPMENT_TEAM = 7R65VE73FD;
 				INFOPLIST_FILE = "Fe-Mini Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1728,14 +1752,14 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Fe-Mini Extension/Fe-Mini Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X46PTT568J;
+				DEVELOPMENT_TEAM = 7R65VE73FD;
 				INFOPLIST_FILE = "Fe-Mini Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
