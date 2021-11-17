@@ -7,22 +7,22 @@
 
 //MARK: Imports
 import UIKit
+import CoreLocation
 
 /*------------------------------------------------------------------------
- //MARK: SettingsAppPermissionsViewController : UIViewController
- - Description: Holds the logic to control what permissions are allowed.
+ //MARK: SettingsSensorsViewController : UIViewController
+ - Description: Holds the logic to control what sensors are allowed.
  -----------------------------------------------------------------------*/
-class SettingsAppPermissionsViewController: UIViewController {
+class SettingsSensorsViewController: UIViewController, CLLocationManagerDelegate {
     
     // Class Variables
-    let AppLogic = AppPermissionsLogic()
+    let AppLogic = SettingsSensorsLogic()
+    var locationManager: CLLocationManager?
     
     // UI Variables
-    @IBOutlet var swGPS: UISwitch!
     @IBOutlet var swAltimeter: UISwitch!
     @IBOutlet var swHeartRate: UISwitch!
     @IBOutlet var swBloodOxygen: UISwitch!
-    @IBOutlet var sw911Emgcy: UISwitch!
     
     /*--------------------------------------------------------------------
      //MARK: viewDidLoad()
@@ -30,22 +30,10 @@ class SettingsAppPermissionsViewController: UIViewController {
      -------------------------------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: swGPSStateChanged()
-     - Description: Logic for changing GPS Permission.
-     -------------------------------------------------------------------*/
-    @IBAction func swGPSStateChanged(_ sender: UISwitch) {
-        if swGPS.isOn {
-            print("GPS Switch is on.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swGPSSensorKey.description, value: true)
-            //TODO: Ask for permission
-        } else {
-            print("GPS Switch is off.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swGPSSensorKey.description, value: false)
-            //TODO: Change permission
-        }
+        
+        swAltimeter.setOn(AppLogic.setSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description), animated: false)
+        swHeartRate.setOn(AppLogic.setSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description), animated: false)
+        swBloodOxygen.setOn(AppLogic.setSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description), animated: false)
     }
     
     /*--------------------------------------------------------------------
@@ -56,11 +44,12 @@ class SettingsAppPermissionsViewController: UIViewController {
         if swAltimeter.isOn {
             print("Altimeter Switch is on.")
             AppLogic.updateSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description, value: true)
-            //TODO: Ask for permission
+            locationManager = CLLocationManager()
+            locationManager?.delegate = self
+            locationManager?.requestAlwaysAuthorization()
         } else {
             print("Altimeter Switch is off.")
             AppLogic.updateSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description, value: false)
-            //TODO: Change permission
         }
     }
     
@@ -72,11 +61,9 @@ class SettingsAppPermissionsViewController: UIViewController {
         if swHeartRate.isOn {
             print("Heart Rate Switch is on.")
             AppLogic.updateSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description, value: true)
-            //TODO: Ask for permission
         } else {
             print("Heart Rate Switch is off.")
             AppLogic.updateSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description, value: false)
-            //TODO: Change permission
         }
     }
     
@@ -87,27 +74,10 @@ class SettingsAppPermissionsViewController: UIViewController {
     @IBAction func swBloodOxStateChanged(_ sender: Any) {
         if swBloodOxygen.isOn {
             print("Blood Oxygen Switch is on.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swBloodOxygeenSensorKey.description, value: true)
-            //TODO: Ask for permission
+            AppLogic.updateSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: true)
         } else {
             print("Blood Oxygen Switch is off.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swBloodOxygeenSensorKey.description, value: false)
-            //TODO: Change permission
-        }
-    }
-    
-    /*--------------------------------------------------------------------
-     //MARK: sw911EmgcyStateChanged()
-     - Description: Logic for changing coontacting 911 in event
-     of emergency Permission.
-     -------------------------------------------------------------------*/
-    @IBAction func sw911EmgcyStateChanged(_ sender: Any) {
-        if sw911Emgcy.isOn {
-            print("Contact 911 in Emergency Switch is on.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swContact911EmergencyKey.description, value: true)
-        } else {
-            print("Contact 911 in Emergency Switch is off.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swContact911EmergencyKey.description, value: false)
+            AppLogic.updateSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: false)
         }
     }
 }

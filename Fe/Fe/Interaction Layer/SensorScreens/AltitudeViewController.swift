@@ -82,10 +82,10 @@ class AltitudeViewController: UIViewController {
             apSum+=item
         }
         if cdAirPressureData.count == 0 {
-            self.lblAvgPressure.text = "-1 BPM"
+            self.lblAvgPressure.text = "-1 hPa"
         } else {
             let apAvg = Int(apSum/Double(cdAirPressureData.count))
-            self.lblAvgPressure.text = "\(apAvg) BPM"
+            self.lblAvgPressure.text = "\(apAvg) hPa"
         }
         
         self.lblMaxPressure.text = "\(apMax) hPa"

@@ -17,7 +17,6 @@ class SettingsViewLogic {
     // Class Variables
     let FBObj = FirebaseAccessObject()
     let CDObj = CoreDataAccessObject()
-    let PhoneObj = PhoneSensorObject()
     
     /*--------------------------------------------------------------------
      //MARK: deleteFBSensorData()
@@ -51,8 +50,6 @@ class SettingsViewLogic {
      - Description: Call Firebase to log out.
      -------------------------------------------------------------------*/
     func logOut() {
-        PhoneObj.stopAltitudeUpdates()
-        
         FBObj.signOut()
     }
     

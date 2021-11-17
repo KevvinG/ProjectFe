@@ -34,8 +34,12 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     var rxCharacteristic: CBCharacteristic!
     
     // UI Variables
+    @IBOutlet var btnHR: UIButton!
+    @IBOutlet var btnBldOx: UIButton!
+    @IBOutlet var btnAlt: UIButton!
+    @IBOutlet var btnSymptoms: UIButton!
+    @IBOutlet var btnChatbot: UIButton!
     @IBOutlet var lblTitle: UILabel!
-    @IBOutlet var lblSubtitle: UILabel!
     @IBOutlet var lblHeartRateValue: UILabel!
     @IBOutlet var lblBloodOxygenValue: UILabel!
     @IBOutlet var lblAltitudeValue: UILabel!
@@ -59,34 +63,88 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             self.setWelcomeTitle(title: "Welcome back, \(name)!")
         })
         
-        // Set off each method at start to fill UI
-        altTimerFire()
-        hrTimerfire()
-        bloodOxTimerfire()
+        // If Permission Granted, fire each sensor too fill UI
+        if let altimeterSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description), altimeterSensorSwitchState {
+            self.altTimerFire()
+        }
+        
+        if let hrSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description), hrSensorSwitchState {
+            self.hrTimerfire()
+        }
+        
+        if let bldOxSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description), bldOxSensorSwitchState {
+            self.bloodOxTimerfire()
+        }
         
         // Timer
         let timer = CustomTimer { (seconds) in
             
             if seconds % 300 == 0 { // Fire every 5 minutes (300 seconds)
-                if let hrSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), hrSwitchState {
+                if let hrNotificationSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), hrNotificationSwitchState {
                     self.DAObj.analyzeHeartRateData()
                 }
                 
-                if let bloodOxSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), bloodOxSwitchState {
+                if let bloodOxNotificationSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), bloodOxNotificationSwitchState {
                     self.DAObj.analyzeBloodOxygenData()
                 }
             }
             
             if seconds % 60 == 0 { // Fire every 60 seconds
-                self.altTimerFire()
+                if let altimeterSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description), altimeterSensorSwitchState {
+                    self.altTimerFire()
+                }
             }
             
-            if seconds % 5 == 0 { // Fire every 5 seconds - Watch sends messages in this interval
-                self.hrTimerfire()
-                self.bloodOxTimerfire()
+            if seconds % 5 == 0 { // Fire every 5 seconds
+                if let hrSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description), hrSensorSwitchState {
+                    self.hrTimerfire()
+                }
+                
+                if let bldOxSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description), bldOxSensorSwitchState {
+                    self.bloodOxTimerfire()
+                }
             }
         }
         timer.start()
+        
+        setupButtonUI()
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setupButtonUI()
+     - Description: creeate pretty buttons
+     -------------------------------------------------------------------*/
+    func setupButtonUI() {
+        // Heart Rate Button
+        btnHR.layer.shadowColor = UIColor.black.cgColor
+        btnHR.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnHR.layer.shadowRadius = 5
+        btnHR.layer.shadowOpacity = 1.0
+        
+        // Blood Oxygen Button
+        btnBldOx.layer.shadowColor = UIColor.black.cgColor
+        btnBldOx.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnBldOx.layer.shadowRadius = 5
+        btnBldOx.layer.shadowOpacity = 1.0
+        
+        // Altitude Button
+        btnAlt.layer.shadowColor = UIColor.black.cgColor
+        btnAlt.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnAlt.layer.shadowRadius = 5
+        btnAlt.layer.shadowOpacity = 1.0
+        
+        // Symptoms Button
+        btnSymptoms.layer.shadowColor = UIColor.black.cgColor
+        btnSymptoms.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnSymptoms.layer.shadowRadius = 5
+        btnSymptoms.layer.shadowOpacity = 1.0
+        
+        // Chatbot Button
+        btnChatbot.layer.shadowColor = UIColor.black.cgColor
+        btnChatbot.layer.shadowOffset = CGSize(width: 5, height: 5)
+        btnChatbot.layer.shadowRadius = 5
+        btnChatbot.layer.shadowOpacity = 1.0
+        
     }
     
     /*--------------------------------------------------------------------
@@ -344,7 +402,6 @@ extension HomeVC: CLLocationManagerDelegate {
      -------------------------------------------------------------------*/
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let lastLocation = locations.last {
-            // Elevation
             let elevation = round(lastLocation.altitude)
             CDObj.createElevationDataTableEntry(eleValue: Float(elevation))
         }

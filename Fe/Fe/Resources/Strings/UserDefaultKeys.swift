@@ -11,11 +11,9 @@ import Foundation
 //MARK: Enum UserDefaultKeys
 enum UserDefaultKeys: String {
     
-    case swGPSSensorKey
     case swAltimeterSensorKey
     case swHeartRateSensorKey
-    case swBloodOxygeenSensorKey
-    case swContact911EmergencyKey
+    case swBloodOxygenSensorKey
     case swNotifyEmergencyContactKey
     case swNotificationHRKey
     case swNotificationBOKey
@@ -23,16 +21,12 @@ enum UserDefaultKeys: String {
     
     var description: String {
         switch self {
-        case .swGPSSensorKey:
-            return "Switch_Permission_Sensor_GPS_State"
         case .swAltimeterSensorKey:
             return "Switch_Permission_Sensor_Altimeter_State"
         case .swHeartRateSensorKey:
             return "Switch_Permission_Sensor_Heart_Rate_State"
-        case .swBloodOxygeenSensorKey:
+        case .swBloodOxygenSensorKey:
             return "Switch_Permission_Sensor_Blood_Oxygen_State"
-        case .swContact911EmergencyKey:
-            return "Switch_Permission_Contact_911_Emergency_State"
         case .swNotifyEmergencyContactKey:
             return "Switch_Permission_Contact_Emergency_State"
         case .swNotificationHRKey:
