@@ -389,12 +389,12 @@
 		CE082558261FAE4100558A32 /* Interaction Layer */ = {
 			isa = PBXGroup;
 			children = (
-				EFF7381327391CBD002C81C7 /* ChatScreens */,
 				CE08271C262A3FEC00558A32 /* loginScreens */,
 				CE08271D262A3FF600558A32 /* HomeScreen */,
 				CE0825712620936A00558A32 /* SensorScreens */,
 				CE0825702620936300558A32 /* DocumentScreens */,
 				CE082711262A3F4800558A32 /* QuestionnaireScreens */,
+				EFF7381327391CBD002C81C7 /* ChatScreens */,
 				CEDBACA9274561AB0072093A /* SocialAndGamificationScreens */,
 				CE08271E262A3FFF00558A32 /* MoreInfoScreen */,
 				CE08255F261FAE4E00558A32 /* SettingsScreens */,

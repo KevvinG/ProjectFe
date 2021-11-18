@@ -76,7 +76,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         
         // Set Name at top of UI
         FBObj.getUserName(completion: { name in
-            self.setWelcomeTitle(title: "Welcome back, \(name)!")
+            self.setWelcomeTitle(title: "Welcome Back,\n\(name)!")
         })
         
         // If Permission Granted, fire each sensor too fill UI
@@ -154,18 +154,24 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnSymptoms.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnSymptoms.layer.shadowRadius = 5
         btnSymptoms.layer.shadowOpacity = 1.0
+        btnSymptoms.setImage(UIImage(named: "checklist.png"), for: .normal)
+        btnSymptoms.imageEdgeInsets = UIEdgeInsets(top: 35, left: 40, bottom: 35, right: 30)
         
         // Chatbot Button
         btnChatbot.layer.shadowColor = UIColor.black.cgColor
         btnChatbot.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnChatbot.layer.shadowRadius = 5
         btnChatbot.layer.shadowOpacity = 1.0
+        btnChatbot.setImage(UIImage(named: "chatbot.png"), for: .normal)
+        btnChatbot.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
         // Social and Gamification Button
         btnSocialAndGamification.layer.shadowColor = UIColor.black.cgColor
         btnSocialAndGamification.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnSocialAndGamification.layer.shadowRadius = 5
         btnSocialAndGamification.layer.shadowOpacity = 1.0
+        btnSocialAndGamification.setImage(UIImage(named: "girlaward.png"), for: .normal)
+        btnSocialAndGamification.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
     }
     
     /*--------------------------------------------------------------------
