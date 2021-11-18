@@ -18,7 +18,7 @@ class HeartRateLogic {
     // Class Variables
     let HKObj = HKAccessObject()
     let CDObj = CoreDataAccessObject()
-    let FBOObj = FirebaseAccessObject()
+    let FBObj = FirebaseAccessObject()
     
     /*--------------------------------------------------------------------
      //MARK: getUserHrThresholds()
@@ -26,7 +26,7 @@ class HeartRateLogic {
      - each of the appropriate TextViews.
      -------------------------------------------------------------------*/
     func getUserHrThresholds(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
-        FBOObj.getUserHrThresholds(completion: { thresholds in
+        FBObj.getUserHrThresholds(completion: { thresholds in
             completion(thresholds)
          })
     }
@@ -36,7 +36,7 @@ class HeartRateLogic {
      - Description: Sends Threshold values to Firebase Access Object.
      -------------------------------------------------------------------*/
     func updateHrThresholds(lowThreshold: String, highThreshold: String, completion: @escaping (_ success: Bool) -> Void) {
-        FBOObj.updateHrThresholds(lowThreshold: lowThreshold, highThreshold: highThreshold, completion: { success in
+        FBObj.updateHrThresholds(lowThreshold: lowThreshold, highThreshold: highThreshold, completion: { success in
             if success {
                 completion(true)
             } else {

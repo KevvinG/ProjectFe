@@ -120,24 +120,30 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         
         lineChartView.animate(xAxisDuration: 2)
         
-        // Set Stats Values
-        self.lblCurrentHR.text = "\(String(HRLogic.fetchLatestHrReading())) BPM"
+        // Set Current HR Value
+        let hrVal = HRLogic.fetchLatestHrReading()
+        let currLabel = hrVal == -1 ? "- BPM" : "\(String(hrVal)) BPM"
+        self.lblCurrentHR.text = currLabel
         
+        // Get Stats
         let bpmMin = Int(cdBPMData.min() ?? -1)
         let bpmMax = Int(cdBPMData.max() ?? -1)
         var bpmSum = 0.0
         for item in cdBPMData {
             bpmSum+=item
         }
-        if cdBPMData.count == 0 {
-            self.lblAvgHR.text = "-1 BPM"
-        } else {
-            let bpmAvg = Int(bpmSum/Double(cdBPMData.count))
-            self.lblAvgHR.text = "\(bpmAvg) BPM"
-        }
         
-        self.lblMaxHR.text = "\(bpmMax) BPM"
-        self.lblMinHR.text = "\(bpmMin) BPM"
+        // Set Average BPM
+        let avgLabel = cdBPMData.count == 0 ? "- BPM" : "\(String(Int(bpmSum/Double(cdBPMData.count)))) BPM"
+        self.lblAvgHR.text = avgLabel
+        
+        // Set Max BPM
+        let maxLabel = bpmMax == -1 ? "- BPM" : "\(String(bpmMax)) BPM"
+        self.lblMaxHR.text = maxLabel
+        
+        // Set Min BPM
+        let minLabel = bpmMin == -1 ? "- BPM" : "\(String(bpmMin)) BPM"
+        self.lblMinHR.text = minLabel
 //        })
     }
     
@@ -189,6 +195,7 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
      -------------------------------------------------------------------*/
     @IBAction func btnUpdateHrThresholds(_ sender: Any) {
         if let hrLowThreshold = txtLowHrThreshold.text, hrLowThreshold.isEmpty  {
+            UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdLowKey.description, value: hrLowThreshold)
             let prompt = UIAlertController(title: "Missing Value", message: "Please enter a number for low threshold", preferredStyle: .alert)
             let confirm = UIAlertAction(title: "OK", style: .default)
             prompt.addAction(confirm)
@@ -196,12 +203,14 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
             return
         }
         if let hrHighThreshold = txtHighHrThreshold.text, hrHighThreshold.isEmpty {
+            UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdHighKey.description, value: hrHighThreshold)
             let prompt = UIAlertController(title: "Missing Value", message: "Please enter a number for high threshold", preferredStyle: .alert)
             let confirm = UIAlertAction(title: "OK", style: .default)
             prompt.addAction(confirm)
             self.present(prompt, animated: true, completion: nil)
             return
         }
+        
         // SAVE TO FIREBASE
         HRLogic.updateHrThresholds(lowThreshold: txtLowHrThreshold.text!, highThreshold: txtHighHrThreshold.text!, completion: { success in
             let prompt = UIAlertController(title: "Threshold Update Successful", message: "Your Heart Rate thresholds have been suuccessfully updated.", preferredStyle: .alert)

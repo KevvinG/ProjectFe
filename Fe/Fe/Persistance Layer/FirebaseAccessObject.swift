@@ -88,16 +88,18 @@ class FirebaseAccessObject {
      - Description: Checks if the user already exists in the Database.
      If the user doesn't exist, create a blank profile for them.
      -------------------------------------------------------------------*/
-    func checkIfNewUser() {
+    func checkIfNewUser(completion: @escaping (_ isNewUser: Bool) -> Void) {
         let user = Auth.auth().currentUser
         let usersRef = db.collection("users")
         usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
             .getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
+                completion(false)
             } else {
                 if querySnapshot!.documents.count == 0 {
                     self.addNewUser()
+                    completion(true)
                 } else {
                     // Verify Token is up to date
                     self.getUserMessagingToken(completion: { token in
@@ -111,6 +113,7 @@ class FirebaseAccessObject {
                             }
                         }
                     })
+                    completion(false)
                 }
             }
         }

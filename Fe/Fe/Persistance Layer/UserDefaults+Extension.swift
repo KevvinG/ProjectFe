@@ -30,4 +30,21 @@ extension UserDefaults {
         UserDefaults.standard.set(value, forKey: key)
         UserDefaults.standard.synchronize()
     }
+    
+    /*--------------------------------------------------------------------
+     //MARK: getValue()
+     - Description: Returns string value from User Defaults.
+     -------------------------------------------------------------------*/
+    func getValue(key: String) -> String? {
+        return UserDefaults.standard.string(forKey: key)
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setValue()
+     - Description: Sets string value in User Defaults.
+     -------------------------------------------------------------------*/
+    func setValue(key: String, value: String) {
+        UserDefaults.standard.set(value, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
 }

@@ -72,24 +72,30 @@ class AltitudeViewController: UIViewController {
         apLineChart.legend.enabled = false
         apLineChart.animate(xAxisDuration: 2)
         
-        // Set up Stats
-        lblCurrPressure.text = String(format: "\(fetchPressure()) hPa")
+        // Set Current Air Pressure Reading
+        let apVal = fetchPressure()
+        let currLabel = apVal == -1 ? "- hPa" : "\(String(apVal)) hPa"
+        self.lblCurrPressure.text = currLabel
         
+        // Get Stats
         let apMin = Int(cdAirPressureData.min() ?? -1)
         let apMax = Int(cdAirPressureData.max() ?? -1)
         var apSum = 0.0
         for item in cdAirPressureData {
             apSum+=item
         }
-        if cdAirPressureData.count == 0 {
-            self.lblAvgPressure.text = "-1 hPa"
-        } else {
-            let apAvg = Int(apSum/Double(cdAirPressureData.count))
-            self.lblAvgPressure.text = "\(apAvg) hPa"
-        }
         
-        self.lblMaxPressure.text = "\(apMax) hPa"
-        self.lblMinPressure.text = "\(apMin) hPa"
+        // Set Average Air Pressure
+        let avgLabel = cdAirPressureData.count == 0 ? "- hPa" : "\(String(Int(apSum/Double(cdAirPressureData.count)))) hPa"
+        self.lblAvgPressure.text = avgLabel
+        
+        // Set Max Air Pressure
+        let maxLabel = apMax == -1 ? "- hPa" : "\(String(apMax)) hPa"
+        self.lblMaxPressure.text = maxLabel
+        
+        // Set Min Air Pressure
+        let minLabel = apMin == -1 ? "- hpa" : "\(String(apMin)) hPa"
+        self.lblMinPressure.text = minLabel
     }
     
     /*--------------------------------------------------------------------
@@ -119,24 +125,30 @@ class AltitudeViewController: UIViewController {
         elevationLineChart.legend.enabled = false
         elevationLineChart.animate(xAxisDuration: 2)
         
-        // Set up Stats
-        lblCurrElevation.text = String(format: "\(fetchElevation()) meters")
+        // Set Current Elevation Reading
+        let eleVal = fetchElevation()
+        let currLabel = eleVal == -1 ? "- meters" : "\(String(Int(eleVal))) meters"
+        self.lblCurrElevation.text = currLabel
         
+        // Get Stats
         let eleMin = Int(cdEleData.min() ?? -1)
         let eleMax = Int(cdEleData.max() ?? -1)
         var eleSum = 0.0
         for item in cdEleData {
             eleSum+=item
         }
-        if cdEleData.count == 0 {
-            self.lblAvgElevation.text = "-1 meters"
-        } else {
-            let eleAvg = Int(eleSum/Double(cdEleData.count))
-            self.lblAvgElevation.text = "\(eleAvg) meters"
-        }
         
-        self.lblMaxElevation.text = "\(eleMax) meters"
-        self.lblMinElevation.text = "\(eleMin) meters"
+        // Set Average Elevation
+        let avgLabel = cdEleData.count == 0 ? "- meters" : "\(String(Int(eleSum/Double(cdEleData.count)))) meters"
+        self.lblAvgElevation.text = avgLabel
+        
+        // Set Max Elevation
+        let maxLabel = eleMax == -1 ? "- meters" : "\(String(eleMax)) meters"
+        self.lblMaxElevation.text = maxLabel
+        
+        // Set Min Elevation
+        let minLabel = eleMin == -1 ? "- meters" : "\(String(eleMin)) meters"
+        self.lblMinElevation.text = minLabel
     }
     
     /*--------------------------------------------------------------------

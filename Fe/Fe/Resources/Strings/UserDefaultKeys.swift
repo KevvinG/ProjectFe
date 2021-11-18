@@ -11,6 +11,13 @@ import Foundation
 //MARK: Enum UserDefaultKeys
 enum UserDefaultKeys: String {
     
+    // Threshold values
+    case hrThresholdLowKey
+    case hrThresholdHighKey
+    case bldOxThresholdLowKey
+    case bldOxThresholdHighKey
+    
+    // Switch Keys
     case swAltimeterSensorKey
     case swHeartRateSensorKey
     case swBloodOxygenSensorKey
@@ -21,6 +28,14 @@ enum UserDefaultKeys: String {
     
     var description: String {
         switch self {
+        case .hrThresholdLowKey:
+            return "Threshold_HR_Low"
+        case .hrThresholdHighKey:
+            return "Threshold_HR_High"
+        case .bldOxThresholdLowKey:
+            return "Threshold_Blood_Oxygen_Low"
+        case .bldOxThresholdHighKey:
+            return "Threshold_Blood_Oxygen_High"
         case .swAltimeterSensorKey:
             return "Switch_Permission_Sensor_Altimeter_State"
         case .swHeartRateSensorKey:

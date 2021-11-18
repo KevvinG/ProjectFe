@@ -108,23 +108,30 @@ class BloodOxygenViewController: UIViewController {
         lineChartView.legend.enabled = false
         lineChartView.animate(xAxisDuration: 2)
         
-        // Set Stats Values
-        let bloodOxValue = BldOxObj.fetchLatestBloodOxReading()
-        self.lblCurrentBldOx.text = "\(String(bloodOxValue)) %"
+        // Set Current Blood Oxygen Value
+        let bldOxVal = BldOxObj.fetchLatestBloodOxReading()
+        let currLabel = bldOxVal == -1 ? "- %" : "\(String(bldOxVal)) %"
+        self.lblCurrentBldOx.text = currLabel
+        
+        // Get Stats
         let bldOxMin = Int(cdSPO2Data.min() ?? -1)
         let bldOxMax = Int(cdSPO2Data.max() ?? -1)
         var spo2sum = 0.0
         for item in cdSPO2Data {
             spo2sum+=item
         }
-        if cdSPO2Data.count == 0 {
-            self.lblAvgBldOx.text = "-1 %"
-        } else {
-            let bldOxAvg = Int(spo2sum/Double(cdSPO2Data.count))
-            self.lblAvgBldOx.text = "\(bldOxAvg) %"
-        }
-        self.lblMaxBldOx.text = "\(bldOxMax) %"
-        self.lblMinBldOx.text = "\(bldOxMin) %"
+        
+        // set Average Blood Oxygen
+        let avgLabel = cdSPO2Data.count == 0 ? "- %" : "\(String(Int(spo2sum/Double(cdSPO2Data.count)))) %"
+        self.lblAvgBldOx.text = avgLabel
+        
+        // Set Max Blood Oxygen
+        let maxLabel = bldOxMax == -1 ? "- %" : "\(String(bldOxMax)) %"
+        self.lblMaxBldOx.text = maxLabel
+        
+        // Set Min Blood Oxygen
+        let minLabel = bldOxMin == -1 ? "- %" : "\(String(bldOxMin)) %"
+        self.lblMinBldOx.text = minLabel
     }
     
     /*--------------------------------------------------------------------
@@ -175,6 +182,7 @@ class BloodOxygenViewController: UIViewController {
      -------------------------------------------------------------------*/
     @IBAction func btnUpdateBldOxThresholds(_ sender: Any) {
         if let bldOxLowThreshold = txtLowBldOxThreshold.text, bldOxLowThreshold.isEmpty  {
+            UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdLowKey.description, value: bldOxLowThreshold)
             let prompt = UIAlertController(title: "Missing Value", message: "Please enter a number for low threshold", preferredStyle: .alert)
             let confirm = UIAlertAction(title: "OK", style: .default)
             prompt.addAction(confirm)
@@ -182,6 +190,7 @@ class BloodOxygenViewController: UIViewController {
             return
         }
         if let bldOxHighThreshold = txtHighBldOxThreshold.text, bldOxHighThreshold.isEmpty {
+            UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdHighKey.description, value: bldOxHighThreshold)
             let prompt = UIAlertController(title: "Missing Value", message: "Please enter a number for high threshold", preferredStyle: .alert)
             let confirm = UIAlertAction(title: "OK", style: .default)
             prompt.addAction(confirm)

@@ -57,7 +57,22 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
 //        HSLogic.homeScreenSetup() // Setup options once logged in.
         
         // Check if user already exists and add new user if not.
-        FBObj.checkIfNewUser()
+        HSLogic.checkIfNewUser(completion: { isNewUser in
+            if isNewUser {
+                UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdLowKey.description, value: "40")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdHighKey.description, value: "100")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdLowKey.description, value: "90")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdHighKey.description, value: "110")
+            } else {
+                self.HSLogic.getUserHrThresholds(completion: { thresholds in
+                    
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdLowKey.description, value: thresholds["hrLowThreshold"] ?? "40")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdHighKey.description, value: thresholds["hrHighThreshold"] ?? "100")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdLowKey.description, value: thresholds["bldOxLowThreshold"] ?? "90")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdHighKey.description, value: thresholds["bldOxHighThreshold"] ?? "110")
+                })
+            }
+        })
         
         // Set Name at top of UI
         FBObj.getUserName(completion: { name in
@@ -274,7 +289,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @objc func altTimerFire() {
         PhoneObj.startAltitudeUpdates()
         let airPressure = AltObj.fetchLatestPressureReading()
-        self.setAltitudeButtonValue(labelValue: "\(airPressure) hPa")
+        self.setAltitudeButtonValue(labelValue: "\(airPressure)")
         print("Air Pressure Timer Val: \(airPressure) hPa")
         
         let elevation = AltObj.fetchLatestElevationReading()
@@ -288,8 +303,28 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
      -------------------------------------------------------------------*/
     @objc func hrTimerfire() {
         let hrVal = HRObj.fetchLatestHrReading()
-        self.setHRButtonValue(labelValue: "\(hrVal) BPM")
-        print("HR Timer Val: \(hrVal)")
+        
+        // Verify theree is a recent reading.
+        if hrVal == -1 {
+            self.setHRButtonValue(labelValue: "-")
+            return
+        } else {
+            self.setHRButtonValue(labelValue: "\(hrVal)")
+        }
+        
+        // Retrieve Threshold values
+        let hrLowThreshold = UserDefaults.standard.getValue(key: UserDefaultKeys.hrThresholdLowKey.description)
+        let hrHighThreshold = UserDefaults.standard.getValue(key: UserDefaultKeys.hrThresholdHighKey.description)
+        
+        // Set color of Text in UI
+        if hrVal >= Int(hrHighThreshold ?? "100")! || hrVal <= Int(hrLowThreshold ?? "40")! {
+            self.lblHeartRateValue.textColor = UIColor.FeButtonRed
+        } else if (hrVal < Int(hrHighThreshold ?? "100")! && hrVal > Int(Double(Int(hrHighThreshold ?? "100")!) * 0.90)) || (hrVal < Int(hrLowThreshold ?? "40")! && hrVal < Int(Double(Int(hrLowThreshold ?? "40")!) * 1.10)) {
+            self.lblHeartRateValue.textColor = UIColor.FeButtonOrange
+        } else {
+            self.lblHeartRateValue.textColor = UIColor.FeButtonGreen
+        }
+        print("HR Timer Val: \(hrVal) BPM")
     }
     
     /*--------------------------------------------------------------------
@@ -298,8 +333,28 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
      -------------------------------------------------------------------*/
     @objc func bloodOxTimerfire() {
         let bloodOxygen = BldOxObj.fetchLatestBloodOxReading()
-        self.setBloodOxButtonValue(labelValue: "\(bloodOxygen) %")
-        print("Blood Ox Timer Val: \(bloodOxygen)")
+        
+        // Verify there is a recent reading
+        if bloodOxygen == -1 {
+            self.setBloodOxButtonValue(labelValue: "-")
+            return
+        } else {
+            self.setBloodOxButtonValue(labelValue: "\(bloodOxygen)")
+        }
+        
+        // Retrieve threshold values
+        let bldOxLowThreshold = UserDefaults.standard.getValue(key: UserDefaultKeys.bldOxThresholdLowKey.description)
+        let bldOxHighThreshold = UserDefaults.standard.getValue(key: UserDefaultKeys.bldOxThresholdHighKey.description)
+        
+        // Set color of text in UI
+        if bloodOxygen > Int(bldOxHighThreshold ?? "100")! || bloodOxygen <= Int(bldOxLowThreshold ?? "90")! {
+            self.lblBloodOxygenValue.textColor = UIColor.FeButtonRed
+        } else if bloodOxygen < Int(bldOxLowThreshold ?? "90")! && bloodOxygen < Int(Double(Int(bldOxLowThreshold ?? "90")!) * 1.05) {
+            self.lblBloodOxygenValue.textColor = UIColor.FeButtonOrange
+        } else {
+            self.lblBloodOxygenValue.textColor = UIColor.FeButtonGreen
+        }
+        print("Blood Ox Timer Val: \(bloodOxygen) %")
     }
     
     /*--------------------------------------------------------------------

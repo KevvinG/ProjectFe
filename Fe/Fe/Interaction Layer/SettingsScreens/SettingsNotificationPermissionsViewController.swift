@@ -185,7 +185,7 @@ class SettingsNotificationPermissionsViewController: UIViewController {
         // If Emergency switch is off, button and text fields are disabled
         if swEmergencyContactState.isOn {
             self.btnUpdateEmergencyContact.isEnabled = true
-            self.btnUpdateEmergencyContact.backgroundColor = UIColor.FeRed
+            self.btnUpdateEmergencyContact.backgroundColor = UIColor.FeButtonRed
             self.txtEmergencyName.isEnabled = true
             self.txtEmergencyName.backgroundColor = UIColor.white
             self.txtEmergencyPhone.isEnabled = true
