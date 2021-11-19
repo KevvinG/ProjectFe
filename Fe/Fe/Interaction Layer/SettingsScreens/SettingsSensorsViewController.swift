@@ -31,9 +31,9 @@ class SettingsSensorsViewController: UIViewController, CLLocationManagerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        swAltimeter.setOn(AppLogic.setSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description), animated: false)
-        swHeartRate.setOn(AppLogic.setSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description), animated: false)
-        swBloodOxygen.setOn(AppLogic.setSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description), animated: false)
+        swAltimeter.setOn(AppLogic.setSwitchStateInUI(key: UserDefaultKeys.swAltimeterSensorKey.description), animated: false)
+        swHeartRate.setOn(AppLogic.setSwitchStateInUI(key: UserDefaultKeys.swHeartRateSensorKey.description), animated: false)
+        swBloodOxygen.setOn(AppLogic.setSwitchStateInUI(key: UserDefaultKeys.swBloodOxygenSensorKey.description), animated: false)
     }
     
     /*--------------------------------------------------------------------
@@ -43,13 +43,15 @@ class SettingsSensorsViewController: UIViewController, CLLocationManagerDelegate
     @IBAction func swAltimeterStateChanged(_ sender: Any) {
         if swAltimeter.isOn {
             print("Altimeter Switch is on.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description, value: true)
+            AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swAltimeterSensorKey.description, value: true)
+            AppLogic.updateSwitchInFB(key: UserDefaultKeys.swAltimeterSensorKey.description, value: "true")
             locationManager = CLLocationManager()
             locationManager?.delegate = self
             locationManager?.requestAlwaysAuthorization()
         } else {
             print("Altimeter Switch is off.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description, value: false)
+            AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swAltimeterSensorKey.description, value: false)
+            AppLogic.updateSwitchInFB(key: UserDefaultKeys.swAltimeterSensorKey.description, value: "false")
         }
     }
     
@@ -60,10 +62,12 @@ class SettingsSensorsViewController: UIViewController, CLLocationManagerDelegate
     @IBAction func swHeartRateStateChanged(_ sender: Any) {
         if swHeartRate.isOn {
             print("Heart Rate Switch is on.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description, value: true)
+            AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swHeartRateSensorKey.description, value: true)
+            AppLogic.updateSwitchInFB(key: UserDefaultKeys.swHeartRateSensorKey.description, value: "true")
         } else {
             print("Heart Rate Switch is off.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description, value: false)
+            AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swHeartRateSensorKey.description, value: false)
+            AppLogic.updateSwitchInFB(key: UserDefaultKeys.swHeartRateSensorKey.description, value: "false")
         }
     }
     
@@ -74,10 +78,12 @@ class SettingsSensorsViewController: UIViewController, CLLocationManagerDelegate
     @IBAction func swBloodOxStateChanged(_ sender: Any) {
         if swBloodOxygen.isOn {
             print("Blood Oxygen Switch is on.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: true)
+            AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: true)
+            AppLogic.updateSwitchInFB(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: "true")
         } else {
             print("Blood Oxygen Switch is off.")
-            AppLogic.updateSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: false)
+            AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: false)
+            AppLogic.updateSwitchInFB(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: "false")
         }
     }
 }

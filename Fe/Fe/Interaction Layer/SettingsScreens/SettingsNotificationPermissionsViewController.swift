@@ -36,10 +36,10 @@ class SettingsNotificationPermissionsViewController: UIViewController {
         self.getEmergencyContactData()
         self.setupTextFields()
         
-        swHRNotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), animated: false)
-        swBONotification.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), animated: false)
-        swMedicationReminder.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description), animated: false)
-        swEmergencyContactState.setOn(NotificationLogic.setSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description), animated: false)
+        swHRNotification.setOn(NotificationLogic.setSwitchStateInUI(key: UserDefaultKeys.swNotificationHRKey.description), animated: false)
+        swBONotification.setOn(NotificationLogic.setSwitchStateInUI(key: UserDefaultKeys.swNotificationBOKey.description), animated: false)
+        swMedicationReminder.setOn(NotificationLogic.setSwitchStateInUI(key: UserDefaultKeys.swNotificationMedicationReminderKey.description), animated: false)
+        swEmergencyContactState.setOn(NotificationLogic.setSwitchStateInUI(key: UserDefaultKeys.swNotifyEmergencyContactKey.description), animated: false)
         modifyUIState() // Set Emergency Contact switch and textfields
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
@@ -123,10 +123,12 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBAction func swHRSensorStateChanged(_ sender: Any) {
         if swHRNotification.isOn {
             print("Notifications for Unusual HR Sensor Activity Switch is on.")
-            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationHRKey.description, value: true)
+            NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotificationHRKey.description, value: true)
+            NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotificationHRKey.description, value: "true")
         } else {
             print("Notifications for Unusual HR Sensor Activity Switch is off.")
-            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationHRKey.description, value: false)
+            NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotificationHRKey.description, value: false)
+            NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotificationHRKey.description, value: "false")
         }
     }
     
@@ -137,10 +139,12 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBAction func swBOSensorStateChanged(_ sender: Any) {
         if swBONotification.isOn {
             print("Notifications for Unusual Blood Oxygen Sensor Activity Switch is on.")
-            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationBOKey.description, value: true)
+            NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotificationBOKey.description, value: true)
+            NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotificationBOKey.description, value: "true")
         } else {
             print("Notifications for Unusual Blood Oxygen Sensor Activity Switch is off.")
-            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationBOKey.description, value: false)
+            NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotificationBOKey.description, value: false)
+            NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotificationBOKey.description, value: "false")
         }
     }
     
@@ -152,11 +156,13 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBAction func swMedicationReminderStateChanged(_ sender: Any) {
         if swMedicationReminder.isOn {
             print("Med Reminder On - Scheduled task")
-            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: true)
+            NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: true)
+            NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: "true")
             NotificationLogic.scheduleMedicationReminder()
         } else {
             print("Med Reminder Off - Removed all tasks")
-            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: false)
+            NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: false)
+            NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: "false")
             NotificationLogic.cancelAllScheduledNotifications()
         }
     }
@@ -168,11 +174,13 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBAction func swEmergencyContactStateChanged(_ sender: Any) {
         if swEmergencyContactState.isOn {
             print("Text to Emergency Contact On")
-            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: true)
+            NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: true)
+            NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: "true")
             modifyUIState()
         } else {
             print("Text to Emergency Contact Off")
-            NotificationLogic.updateSwitchState(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: false)
+            NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: false)
+            NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: "false")
             modifyUIState()
         }
     }
@@ -212,7 +220,7 @@ class SettingsNotificationPermissionsViewController: UIViewController {
             let emergencyName = txtEmergencyName.text ?? ""
             let emergencyPhone = txtEmergencyPhone.text ?? ""
 
-            NotificationLogic.updateEmergencyContact(emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: {success in
+            NotificationLogic.updateEmergencyContact(emergencyName: emergencyName, emergencyPhone: emergencyPhone, completion: { success in
                     var msg = ""
                     if success {
                         msg = "Successfully updated emergency contact details"

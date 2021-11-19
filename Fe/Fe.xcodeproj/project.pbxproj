@@ -578,8 +578,6 @@
 		CE6D7AC22607AEF800835756 /* Business Layer */ = {
 			isa = PBXGroup;
 			children = (
-				CEC3BB43271F4E8A0027E7B6 /* ValidationLogic */,
-				CE5E232C26E99A8F00C0360D /* DataAnalysisLogic */,
 				CE08271B262A3FDB00558A32 /* LoginLogic */,
 				CE08271A262A3FD400558A32 /* HomeLogic */,
 				CE082719262A3FCC00558A32 /* DocumentLogic */,
@@ -587,6 +585,8 @@
 				CE082712262A3F5F00558A32 /* QuestionnaireLogic */,
 				CEDBACAB274561F90072093A /* SocialAndGamificationLogic */,
 				CE08271F262A404300558A32 /* SettingsLogic */,
+				CEC3BB43271F4E8A0027E7B6 /* ValidationLogic */,
+				CE5E232C26E99A8F00C0360D /* DataAnalysisLogic */,
 			);
 			path = "Business Layer";
 			sourceTree = "<group>";

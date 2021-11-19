@@ -53,23 +53,35 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         super.viewDidLoad()
         obtainLocationAuth()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-
-//        HSLogic.homeScreenSetup() // Setup options once logged in.
         
-        // Check if user already exists and add new user if not.
+        // Check if user already exists and set switches.  Add new user if not.
         HSLogic.checkIfNewUser(completion: { isNewUser in
             if isNewUser {
                 UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdLowKey.description, value: "40")
                 UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdHighKey.description, value: "100")
                 UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdLowKey.description, value: "90")
                 UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdHighKey.description, value: "110")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swHeartRateSensorKey.description, value: "true")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: "true")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swAltimeterSensorKey.description, value: "true")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationHRKey.description, value: "true")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationBOKey.description, value: "true")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: "false")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: "false")
             } else {
-                self.HSLogic.getUserHrThresholds(completion: { thresholds in
+                self.HSLogic.getUserDefaults(completion: { dataDict in
                     
-                    UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdLowKey.description, value: thresholds["hrLowThreshold"] ?? "40")
-                    UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdHighKey.description, value: thresholds["hrHighThreshold"] ?? "100")
-                    UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdLowKey.description, value: thresholds["bldOxLowThreshold"] ?? "90")
-                    UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdHighKey.description, value: thresholds["bldOxHighThreshold"] ?? "110")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdLowKey.description, value: dataDict["hrLowThreshold"] ?? "40")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdHighKey.description, value: dataDict["hrHighThreshold"] ?? "100")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdLowKey.description, value: dataDict["bldOxLowThreshold"] ?? "90")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdHighKey.description, value: dataDict["bldOxHighThreshold"] ?? "110")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swHeartRateSensorKey.description, value: dataDict[UserDefaultKeys.swHeartRateSensorKey.description] ?? "true")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: dataDict[UserDefaultKeys.swBloodOxygenSensorKey.description] ?? "true")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swAltimeterSensorKey.description, value: dataDict[UserDefaultKeys.swAltimeterSensorKey.description] ?? "true")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationHRKey.description, value: dataDict[UserDefaultKeys.swNotificationHRKey.description] ?? "true")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationBOKey.description, value: dataDict[UserDefaultKeys.swNotificationBOKey.description] ?? "true")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: dataDict[UserDefaultKeys.swNotificationMedicationReminderKey.description] ?? "false")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: dataDict[UserDefaultKeys.swNotifyEmergencyContactKey.description] ?? "false")
                 })
             }
         })
