@@ -96,15 +96,24 @@
                                     <action selector="yesBtnTapped:" destination="nvo-d2-GEQ" eventType="touchUpInside" id="NK0-LI-MhB"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your body could be having trouble carrying ooxygenated blood to your brain resulting in your having headaches or feeling dizzy." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AI-9Q-Urg">
+                                <rect key="frame" x="30" y="496" width="354" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UUS-6a-QAf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="0AI-9Q-Urg" firstAttribute="top" secondItem="7jP-vk-Xwc" secondAttribute="bottom" constant="30" id="4gA-kD-LBj"/>
                             <constraint firstItem="7jP-vk-Xwc" firstAttribute="top" secondItem="aGM-36-UHn" secondAttribute="bottom" constant="50" id="8yH-n0-kPr"/>
                             <constraint firstItem="UUS-6a-QAf" firstAttribute="bottom" secondItem="LbG-fF-wmz" secondAttribute="bottom" constant="10" id="DSh-pF-S87"/>
                             <constraint firstItem="7jP-vk-Xwc" firstAttribute="centerY" secondItem="7kO-Ym-X0q" secondAttribute="centerY" id="JbC-Ji-dX1"/>
+                            <constraint firstItem="UUS-6a-QAf" firstAttribute="trailing" secondItem="0AI-9Q-Urg" secondAttribute="trailing" constant="30" id="Kb7-68-T62"/>
                             <constraint firstItem="UUS-6a-QAf" firstAttribute="trailing" secondItem="aGM-36-UHn" secondAttribute="trailing" constant="10" id="MyN-Lc-jnP"/>
                             <constraint firstItem="UUS-6a-QAf" firstAttribute="trailing" secondItem="upB-h0-6Oj" secondAttribute="trailing" constant="10" id="P2l-eL-w0J"/>
+                            <constraint firstItem="0AI-9Q-Urg" firstAttribute="leading" secondItem="UUS-6a-QAf" secondAttribute="leading" constant="30" id="Tn6-38-Xyq"/>
                             <constraint firstItem="UUS-6a-QAf" firstAttribute="trailing" secondItem="7jP-vk-Xwc" secondAttribute="trailing" constant="10" id="YM3-RV-wxQ"/>
                             <constraint firstItem="aGM-36-UHn" firstAttribute="leading" secondItem="UUS-6a-QAf" secondAttribute="leading" constant="10" id="dPB-Ws-yAT"/>
                             <constraint firstItem="7jP-vk-Xwc" firstAttribute="centerX" secondItem="7kO-Ym-X0q" secondAttribute="centerX" id="fGD-3Z-0lf"/>
@@ -176,17 +185,27 @@
                                     <constraint firstAttribute="height" constant="150" id="yQd-L3-qng"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9k-Bq-ZtQ">
+                                <rect key="frame" x="30" y="514" width="354" height="81.5"/>
+                                <string key="text">Your body may not be carrying enough oxygenated blood to the organs, which can cause an increase in heart rate and shoortness of breath.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z6F-nU-hS4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Z6F-nU-hS4" firstAttribute="bottom" secondItem="pMe-9Q-3u0" secondAttribute="bottom" constant="10" id="54z-8u-8t6"/>
                             <constraint firstItem="Z6F-nU-hS4" firstAttribute="trailing" secondItem="uII-29-xaa" secondAttribute="trailing" constant="10" id="ASg-i4-ENX"/>
+                            <constraint firstItem="d9k-Bq-ZtQ" firstAttribute="leading" secondItem="Z6F-nU-hS4" secondAttribute="leading" constant="30" id="EtY-Ei-bPM"/>
+                            <constraint firstItem="Z6F-nU-hS4" firstAttribute="trailing" secondItem="d9k-Bq-ZtQ" secondAttribute="trailing" constant="30" id="Ggf-C0-Vpn"/>
                             <constraint firstItem="pMe-9Q-3u0" firstAttribute="top" secondItem="vrP-lk-Iop" secondAttribute="bottom" constant="20" id="OJQ-bb-gKZ"/>
                             <constraint firstItem="Jfw-6L-19X" firstAttribute="centerX" secondItem="d4p-LB-eRR" secondAttribute="centerX" id="P5D-2z-d2r"/>
                             <constraint firstItem="Jfw-6L-19X" firstAttribute="centerY" secondItem="d4p-LB-eRR" secondAttribute="centerY" id="WPm-Wh-3H3"/>
                             <constraint firstItem="vrP-lk-Iop" firstAttribute="leading" secondItem="Z6F-nU-hS4" secondAttribute="leading" constant="10" id="XBi-wY-cEa"/>
                             <constraint firstItem="Z6F-nU-hS4" firstAttribute="trailing" secondItem="pMe-9Q-3u0" secondAttribute="trailing" constant="10" id="YXp-eg-Mxj"/>
+                            <constraint firstItem="d9k-Bq-ZtQ" firstAttribute="top" secondItem="Jfw-6L-19X" secondAttribute="bottom" constant="30" id="cCf-W6-ucV"/>
                             <constraint firstItem="Jfw-6L-19X" firstAttribute="top" secondItem="uII-29-xaa" secondAttribute="bottom" constant="50" id="eX0-Zn-Xvx"/>
                             <constraint firstAttribute="trailing" secondItem="Jfw-6L-19X" secondAttribute="trailing" constant="10" id="jIU-xM-AmJ"/>
                             <constraint firstItem="Z6F-nU-hS4" firstAttribute="trailing" secondItem="vrP-lk-Iop" secondAttribute="trailing" constant="10" id="rna-hT-PCQ"/>
@@ -256,20 +275,29 @@
                                     <constraint firstAttribute="height" constant="150" id="e8j-9D-Jzp"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theree could potentially be bleeding in your lower intestinal tract which also causes iron deficiiency." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ak6-k5-xhZ">
+                                <rect key="frame" x="30" y="514" width="354" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3yq-FL-alT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="3yq-FL-alT" firstAttribute="trailing" secondItem="ak6-k5-xhZ" secondAttribute="trailing" constant="30" id="4qL-G8-OVR"/>
                             <constraint firstAttribute="trailing" secondItem="Ffk-U9-QhA" secondAttribute="trailing" constant="10" id="65G-jV-8z0"/>
                             <constraint firstItem="2Jh-cL-PWy" firstAttribute="leading" secondItem="3yq-FL-alT" secondAttribute="leading" constant="10" id="6Mh-Zn-WJl"/>
                             <constraint firstItem="3yq-FL-alT" firstAttribute="bottom" secondItem="ozG-7T-hLP" secondAttribute="bottom" constant="10" id="IRR-HD-sB0"/>
                             <constraint firstItem="3yq-FL-alT" firstAttribute="trailing" secondItem="2Jh-cL-PWy" secondAttribute="trailing" constant="10" id="QEi-hI-gRZ"/>
+                            <constraint firstItem="ak6-k5-xhZ" firstAttribute="top" secondItem="Ffk-U9-QhA" secondAttribute="bottom" constant="30" id="TEh-Ub-IdC"/>
                             <constraint firstItem="ozG-7T-hLP" firstAttribute="top" secondItem="2Jh-cL-PWy" secondAttribute="bottom" constant="20" id="biO-iU-oa6"/>
                             <constraint firstItem="LSZ-3Z-Lle" firstAttribute="leading" secondItem="3yq-FL-alT" secondAttribute="leading" constant="10" id="d4j-XU-PE3"/>
                             <constraint firstItem="3yq-FL-alT" firstAttribute="trailing" secondItem="LSZ-3Z-Lle" secondAttribute="trailing" constant="10" id="iTB-P3-cLb"/>
                             <constraint firstItem="3yq-FL-alT" firstAttribute="trailing" secondItem="ozG-7T-hLP" secondAttribute="trailing" constant="10" id="iXD-TM-aAX"/>
                             <constraint firstItem="Ffk-U9-QhA" firstAttribute="centerX" secondItem="AZl-FQ-9GF" secondAttribute="centerX" id="mth-LR-zk4"/>
                             <constraint firstItem="Ffk-U9-QhA" firstAttribute="centerY" secondItem="AZl-FQ-9GF" secondAttribute="centerY" id="nIL-xI-vi5"/>
+                            <constraint firstItem="ak6-k5-xhZ" firstAttribute="leading" secondItem="3yq-FL-alT" secondAttribute="leading" constant="30" id="occ-HQ-CQE"/>
                             <constraint firstItem="ozG-7T-hLP" firstAttribute="leading" secondItem="3yq-FL-alT" secondAttribute="leading" constant="10" id="qY5-Nb-9Cb"/>
                             <constraint firstItem="Ffk-U9-QhA" firstAttribute="top" secondItem="LSZ-3Z-Lle" secondAttribute="bottom" constant="50" id="woq-Kk-r3l"/>
                         </constraints>
@@ -336,15 +364,25 @@
                                     <constraint firstAttribute="height" constant="150" id="umh-Xv-ht3"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNd-GS-1yg">
+                                <rect key="frame" x="30" y="514" width="354" height="61"/>
+                                <string key="text">If you notice your stool being black, there could be bleeding higher up in your intestinal tract which can cause iron deficiency.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eXS-FU-09q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sSq-T2-6wY" firstAttribute="leading" secondItem="eXS-FU-09q" secondAttribute="leading" constant="10" id="4jG-z3-ePL"/>
+                            <constraint firstItem="DNd-GS-1yg" firstAttribute="top" secondItem="DrS-f7-xne" secondAttribute="bottom" constant="30" id="4n7-e1-Zye"/>
                             <constraint firstItem="eXS-FU-09q" firstAttribute="trailing" secondItem="sSq-T2-6wY" secondAttribute="trailing" constant="10" id="7Lg-W4-8SI"/>
                             <constraint firstItem="DrS-f7-xne" firstAttribute="top" secondItem="ElH-rc-Z56" secondAttribute="bottom" constant="50" id="94V-Zk-VjO"/>
                             <constraint firstItem="ElH-rc-Z56" firstAttribute="leading" secondItem="eXS-FU-09q" secondAttribute="leading" constant="10" id="9ay-fd-bzB"/>
                             <constraint firstAttribute="trailing" secondItem="DrS-f7-xne" secondAttribute="trailing" constant="10" id="KBo-SR-PYV"/>
+                            <constraint firstItem="DNd-GS-1yg" firstAttribute="leading" secondItem="eXS-FU-09q" secondAttribute="leading" constant="30" id="MOZ-eq-znC"/>
+                            <constraint firstItem="eXS-FU-09q" firstAttribute="trailing" secondItem="DNd-GS-1yg" secondAttribute="trailing" constant="30" id="VsC-uk-CJQ"/>
                             <constraint firstItem="eXS-FU-09q" firstAttribute="trailing" secondItem="Wfj-XM-Azm" secondAttribute="trailing" constant="10" id="blJ-jz-tKL"/>
                             <constraint firstItem="eXS-FU-09q" firstAttribute="trailing" secondItem="ElH-rc-Z56" secondAttribute="trailing" constant="10" id="d7g-oF-lFh"/>
                             <constraint firstItem="eXS-FU-09q" firstAttribute="bottom" secondItem="sSq-T2-6wY" secondAttribute="bottom" constant="10" id="eKU-o4-Wo2"/>
@@ -3427,9 +3465,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EBz-Zy-cNc"/>
+        <segue reference="bWi-76-ifH"/>
         <segue reference="qeZ-Of-omU"/>
-        <segue reference="1Wq-S8-mbe"/>
+        <segue reference="wSP-O9-Az2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="alert" width="512" height="455"/>
