@@ -66,6 +66,7 @@
 		CEC3BB45271F4E9E0027E7B6 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC3BB44271F4E9E0027E7B6 /* Validation.swift */; };
 		CEDBACAD274562340072093A /* SocialAndGamificationHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACAC274562340072093A /* SocialAndGamificationHomeViewController.swift */; };
 		CEDBACAF274564AD0072093A /* SocialAndGamificationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */; };
+		CEDBACB2274E88BD0072093A /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACB1274E88BD0072093A /* UIImage+Extensions.swift */; };
 		CEE9E4BE26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
@@ -225,6 +226,7 @@
 		CEC690CA2704B309003351F9 /* FeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeRelease.entitlements; sourceTree = "<group>"; };
 		CEDBACAC274562340072093A /* SocialAndGamificationHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAndGamificationHomeViewController.swift; sourceTree = "<group>"; };
 		CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAndGamificationLogic.swift; sourceTree = "<group>"; };
+		CEDBACB1274E88BD0072093A /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKeyExtension.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2544EF261F22E800069308 /* HKAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKAccessObject.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				CEDBACA9274561AB0072093A /* SocialAndGamificationScreens */,
 				CE08271E262A3FFF00558A32 /* MoreInfoScreen */,
 				CE08255F261FAE4E00558A32 /* SettingsScreens */,
+				CEDBACB0274E88AB0072093A /* UIExtensions */,
 			);
 			path = "Interaction Layer";
 			sourceTree = "<group>";
@@ -645,6 +648,14 @@
 				CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */,
 			);
 			path = SocialAndGamificationLogic;
+			sourceTree = "<group>";
+		};
+		CEDBACB0274E88AB0072093A /* UIExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEDBACB1274E88BD0072093A /* UIImage+Extensions.swift */,
+			);
+			path = UIExtensions;
 			sourceTree = "<group>";
 		};
 		CEE9E4BB26EC3FE3001BA3C8 /* Device Layer */ = {
@@ -1057,6 +1068,7 @@
 				EFF955A0262B573F0013E006 /* SettingsViewLogic.swift in Sources */,
 				CE9DD3432680E0C500D9D026 /* ProjectKeys.swift in Sources */,
 				CEA4EBE2266A8D4100144C5F /* CustomTimer.swift in Sources */,
+				CEDBACB2274E88BD0072093A /* UIImage+Extensions.swift in Sources */,
 				CE6D7AFB2607D29100835756 /* DocumentviewViewController.swift in Sources */,
 				CE07433626699CB000B97853 /* HeartRateData+CoreDataProperties.swift in Sources */,
 				CE62B2AF25E856CE00AA9665 /* AOKViewController.swift in Sources */,

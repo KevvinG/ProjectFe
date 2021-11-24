@@ -148,8 +148,8 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnHR.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnHR.layer.shadowRadius = 5
         btnHR.layer.shadowOpacity = 1.0
-        btnHR.setImage(UIImage(named: "heart.png"), for: .normal)
-        btnHR.alpha = 0.4;
+        let hrImage = UIImage(named: "heart.png")!.alpha(0.4)
+        btnHR.setImage(hrImage, for: .normal)
         btnHR.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
         // Blood Oxygen Button
@@ -157,8 +157,8 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnBldOx.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnBldOx.layer.shadowRadius = 5
         btnBldOx.layer.shadowOpacity = 1.0
-        btnBldOx.setImage(UIImage(named: "red-blood-cells-1.png"), for: .normal)
-        btnBldOx.alpha = 0.4;
+        let bldOxImage = UIImage(named: "red-blood-cells-1.png")!.alpha(0.4)
+        btnBldOx.setImage(bldOxImage, for: .normal)
         btnBldOx.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
         // Altitude Button
@@ -166,8 +166,8 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnAlt.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnAlt.layer.shadowRadius = 5
         btnAlt.layer.shadowOpacity = 1.0
-        btnAlt.setImage(UIImage(named: "mountain.png"), for: .normal)
-        btnAlt.alpha = 0.4;
+        let altImage = UIImage(named: "mountain.png")!.alpha(0.4)
+        btnAlt.setImage(altImage, for: .normal)
         btnAlt.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
         // Symptoms Button
@@ -175,7 +175,8 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnSymptoms.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnSymptoms.layer.shadowRadius = 5
         btnSymptoms.layer.shadowOpacity = 1.0
-        btnSymptoms.setImage(UIImage(named: "checklist.png"), for: .normal)
+        let sympImage = UIImage(named: "checklist.png")!.alpha(0.6)
+        btnSymptoms.setImage(sympImage, for: .normal)
         btnSymptoms.imageEdgeInsets = UIEdgeInsets(top: 35, left: 40, bottom: 35, right: 30)
         
         // Chatbot Button
@@ -183,7 +184,8 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnChatbot.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnChatbot.layer.shadowRadius = 5
         btnChatbot.layer.shadowOpacity = 1.0
-        btnChatbot.setImage(UIImage(named: "chatbot.png"), for: .normal)
+        let chatbotImage = UIImage(named: "chatbot.png")!.alpha(0.7)
+        btnChatbot.setImage(chatbotImage, for: .normal)
         btnChatbot.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
         // Social and Gamification Button
@@ -191,7 +193,8 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnSocialAndGamification.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnSocialAndGamification.layer.shadowRadius = 5
         btnSocialAndGamification.layer.shadowOpacity = 1.0
-        btnSocialAndGamification.setImage(UIImage(named: "girlaward.png"), for: .normal)
+        let socialImage = UIImage(named: "girlaward.png")!.alpha(0.6)
+        btnSocialAndGamification.setImage(socialImage, for: .normal)
         btnSocialAndGamification.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
     }
     
