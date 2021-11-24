@@ -148,18 +148,27 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnHR.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnHR.layer.shadowRadius = 5
         btnHR.layer.shadowOpacity = 1.0
+        btnHR.setImage(UIImage(named: "heart.png"), for: .normal)
+        btnHR.alpha = 0.4;
+        btnHR.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
         // Blood Oxygen Button
         btnBldOx.layer.shadowColor = UIColor.black.cgColor
         btnBldOx.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnBldOx.layer.shadowRadius = 5
         btnBldOx.layer.shadowOpacity = 1.0
+        btnBldOx.setImage(UIImage(named: "red-blood-cells-1.png"), for: .normal)
+        btnBldOx.alpha = 0.4;
+        btnBldOx.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
         // Altitude Button
         btnAlt.layer.shadowColor = UIColor.black.cgColor
         btnAlt.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnAlt.layer.shadowRadius = 5
         btnAlt.layer.shadowOpacity = 1.0
+        btnAlt.setImage(UIImage(named: "mountain.png"), for: .normal)
+        btnAlt.alpha = 0.4;
+        btnAlt.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
         // Symptoms Button
         btnSymptoms.layer.shadowColor = UIColor.black.cgColor
