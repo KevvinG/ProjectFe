@@ -43,10 +43,10 @@ class NotificationPermissionsLogic {
     }
     
     /*--------------------------------------------------------------------
-     //MARK: setSwitchState()
+     //MARK: setSwitchStateInUI()
      - Description: Set on screen state of switch.
      -------------------------------------------------------------------*/
-    func setSwitchState(key: String) -> Bool {
+    func setSwitchStateInUI(key: String) -> Bool {
         if let switchValue = UserDefaults.standard.getSwitchState(key: key), switchValue {
             return true
         } else {
@@ -55,10 +55,10 @@ class NotificationPermissionsLogic {
     }
     
     /*--------------------------------------------------------------------
-     //MARK: updateSwitchState()
+     //MARK: updateSwitchStateinUserDefaults()
      - Description: Updates current state of switch.
      -------------------------------------------------------------------*/
-    func updateSwitchState(key: String, value: Bool) {
+    func updateSwitchStateinUserDefaults(key: String, value: Bool) {
         UserDefaults.standard.setSwitchState(key: key, value: value)
     }
     
@@ -100,5 +100,13 @@ class NotificationPermissionsLogic {
      -------------------------------------------------------------------*/
     func cancelAllScheduledNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: updateSwitchInFB()
+     - Description: send updated state of switch to Firebase.
+     -------------------------------------------------------------------*/
+    func updateSwitchInFB(key: String, value: String) {
+        FBObj.updateSwitchInFB(key: key, value: value)
     }
 }

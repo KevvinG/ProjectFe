@@ -56,8 +56,10 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "Fe-Mini Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Fe">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EF97E99425E6F3760050F8B5"
@@ -65,7 +67,7 @@
             BlueprintName = "Fe-Mini"
             ReferencedContainer = "container:Fe.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,8 +77,10 @@
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "Fe-Mini Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Fe">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EF97E99425E6F3760050F8B5"
@@ -84,7 +88,16 @@
             BlueprintName = "Fe-Mini"
             ReferencedContainer = "container:Fe.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EF97E99425E6F3760050F8B5"
+            BuildableName = "Fe-Mini.app"
+            BlueprintName = "Fe-Mini"
+            ReferencedContainer = "container:Fe.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

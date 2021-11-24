@@ -175,13 +175,82 @@ class FirebaseAccessObject {
                 "hrHighThreshold": "100",
                 "bldOxLowThreshold": "90",
                 "bldOxHighThreshold": "110",
-                "fcmToken": token
+                "fcmToken": token,
+                UserDefaultKeys.swHeartRateSensorKey.description: "true",
+                UserDefaultKeys.swBloodOxygenSensorKey.description: "true",
+                UserDefaultKeys.swAltimeterSensorKey.description: "true",
+                UserDefaultKeys.swNotificationHRKey.description: "true",
+                UserDefaultKeys.swNotificationBOKey.description: "true",
+                UserDefaultKeys.swNotificationMedicationReminderKey.description: "false",
+                UserDefaultKeys.swNotifyEmergencyContactKey.description: "false",
             ]) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
                 }
             }
         })
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: getUserDefaults() -> Dictionary
+     - Description: Fetches user defaults from Firebase.
+     -------------------------------------------------------------------*/
+    func getUserDefaults(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
+        var dataDict = [String:String]()
+        let usersRef = db.collection("users")
+        let user = Auth.auth().currentUser
+        
+        usersRef.whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.documents.count == 0 {
+                        print("There was a database error.  the user wasn't created in the Firebase DB in HomeViewController.")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            dataDict["hrLowThreshold"] = document.data()["hrLowThreshold"] as? String
+                            dataDict["hrHighThreshold"] = document.data()["hrHighThreshold"] as? String
+                            dataDict["bldOxLowThreshold"] = document.data()["bldOxLowThreshold"] as? String
+                            dataDict["bldOxHighThreshold"] = document.data()["bldOxHighThreshold"] as? String
+                            dataDict[UserDefaultKeys.swHeartRateSensorKey.description] = document.data()[UserDefaultKeys.swHeartRateSensorKey.description] as? String
+                            dataDict[UserDefaultKeys.swBloodOxygenSensorKey.description] = document.data()[UserDefaultKeys.swBloodOxygenSensorKey.description] as? String
+                            dataDict[UserDefaultKeys.swAltimeterSensorKey.description] = document.data()[UserDefaultKeys.swAltimeterSensorKey.description] as? String
+                            dataDict[UserDefaultKeys.swNotificationHRKey.description] = document.data()[UserDefaultKeys.swNotificationHRKey.description] as? String
+                            dataDict[UserDefaultKeys.swNotificationBOKey.description] = document.data()[UserDefaultKeys.swNotificationBOKey.description] as? String
+                            dataDict[UserDefaultKeys.swNotificationMedicationReminderKey.description] = document.data()[UserDefaultKeys.swNotificationMedicationReminderKey.description] as? String
+                            dataDict[UserDefaultKeys.swNotifyEmergencyContactKey.description] = document.data()[UserDefaultKeys.swNotifyEmergencyContactKey.description] as? String
+                        }
+                    }
+                }
+            completion(dataDict)
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: updateSwitchInFB()
+     - Description: Updates state of switch in FireBase.
+     -------------------------------------------------------------------*/
+    func updateSwitchInFB(key: String, value: String) {
+        let user = Auth.auth().currentUser
+        let userRef = db.collection("users").whereField("email", isEqualTo: user?.email ?? "NOEMAIL")
+        userRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if querySnapshot!.documents.count == 0 {
+                    print("No user found.")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let ref = document.reference
+                        ref.updateData([
+                            key : value,
+                        ]);
+                    }
+                    print("Updated Switch Status in FB.")
+                }
+            }
+        }
     }
     
     /*--------------------------------------------------------------------

@@ -17,7 +17,7 @@ import CoreBluetooth
  - Description: Holds UI Interactions for the Home Screen
  -----------------------------------------------------------------------*/
 class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  {
-    
+
     // Class Variables
     let HSLogic = HomeScreenLogic()
     let FBObj = FirebaseAccessObject()
@@ -32,7 +32,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     private var peripheral: CBPeripheral!
     var txCharacteristic: CBCharacteristic!
     var rxCharacteristic: CBCharacteristic!
-    
+
     // UI Variables
     @IBOutlet var btnHR: UIButton!
     @IBOutlet var btnBldOx: UIButton!
@@ -44,7 +44,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBOutlet var lblHeartRateValue: UILabel!
     @IBOutlet var lblBloodOxygenValue: UILabel!
     @IBOutlet var lblAltitudeValue: UILabel!
-    
+
     /*--------------------------------------------------------------------
      //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
@@ -53,83 +53,97 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         super.viewDidLoad()
         obtainLocationAuth()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        
+
         /*MARK: Developer temp data*/
         CDObj.createHeartRateTableEntry(hrValue: "98")
         CDObj.createBloodOxygenTableEntry(bloodOxValue: 99)
 
 //        HSLogic.homeScreenSetup() // Setup options once logged in.
-        
-        // Check if user already exists and add new user if not.
+
+        // Check if user already exists and set switches.  Add new user if not.
         HSLogic.checkIfNewUser(completion: { isNewUser in
             if isNewUser {
                 UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdLowKey.description, value: "40")
                 UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdHighKey.description, value: "100")
                 UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdLowKey.description, value: "90")
                 UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdHighKey.description, value: "110")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swHeartRateSensorKey.description, value: "true")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: "true")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swAltimeterSensorKey.description, value: "true")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationHRKey.description, value: "true")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationBOKey.description, value: "true")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: "false")
+                UserDefaults.standard.setValue(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: "false")
             } else {
-                self.HSLogic.getUserHrThresholds(completion: { thresholds in
-                    
-                    UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdLowKey.description, value: thresholds["hrLowThreshold"] ?? "40")
-                    UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdHighKey.description, value: thresholds["hrHighThreshold"] ?? "100")
-                    UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdLowKey.description, value: thresholds["bldOxLowThreshold"] ?? "90")
-                    UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdHighKey.description, value: thresholds["bldOxHighThreshold"] ?? "110")
+                self.HSLogic.getUserDefaults(completion: { dataDict in
+
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdLowKey.description, value: dataDict["hrLowThreshold"] ?? "40")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.hrThresholdHighKey.description, value: dataDict["hrHighThreshold"] ?? "100")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdLowKey.description, value: dataDict["bldOxLowThreshold"] ?? "90")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.bldOxThresholdHighKey.description, value: dataDict["bldOxHighThreshold"] ?? "110")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swHeartRateSensorKey.description, value: dataDict[UserDefaultKeys.swHeartRateSensorKey.description] ?? "true")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: dataDict[UserDefaultKeys.swBloodOxygenSensorKey.description] ?? "true")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swAltimeterSensorKey.description, value: dataDict[UserDefaultKeys.swAltimeterSensorKey.description] ?? "true")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationHRKey.description, value: dataDict[UserDefaultKeys.swNotificationHRKey.description] ?? "true")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationBOKey.description, value: dataDict[UserDefaultKeys.swNotificationBOKey.description] ?? "true")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: dataDict[UserDefaultKeys.swNotificationMedicationReminderKey.description] ?? "false")
+                    UserDefaults.standard.setValue(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: dataDict[UserDefaultKeys.swNotifyEmergencyContactKey.description] ?? "false")
                 })
             }
         })
-        
+
         // Set Name at top of UI
         FBObj.getUserName(completion: { name in
             self.setWelcomeTitle(title: "Welcome Back,\n\(name)!")
         })
-        
+
         // If Permission Granted, fire each sensor too fill UI
         if let altimeterSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description), altimeterSensorSwitchState {
             self.altTimerFire()
         }
-        
+
         if let hrSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description), hrSensorSwitchState {
             self.hrTimerfire()
         }
-        
+
         if let bldOxSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description), bldOxSensorSwitchState {
             self.bloodOxTimerfire()
         }
-        
+
         // Timer
         let timer = CustomTimer { (seconds) in
-            
+
             if seconds % 300 == 0 { // Fire every 5 minutes (300 seconds)
                 if let hrNotificationSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), hrNotificationSwitchState {
                     self.DAObj.analyzeHeartRateData()
                 }
-                
+
                 if let bloodOxNotificationSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationBOKey.description), bloodOxNotificationSwitchState {
                     self.DAObj.analyzeBloodOxygenData()
                 }
             }
-            
+
             if seconds % 60 == 0 { // Fire every 60 seconds
                 if let altimeterSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swAltimeterSensorKey.description), altimeterSensorSwitchState {
                     self.altTimerFire()
                 }
             }
-            
+
             if seconds % 5 == 0 { // Fire every 5 seconds
                 if let hrSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swHeartRateSensorKey.description), hrSensorSwitchState {
                     self.hrTimerfire()
                 }
-                
+
                 if let bldOxSensorSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swBloodOxygenSensorKey.description), bldOxSensorSwitchState {
                     self.bloodOxTimerfire()
                 }
             }
         }
         timer.start()
-        
+
         setupButtonUI()
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: setupButtonUI()
      - Description: creeate pretty buttons
@@ -140,19 +154,28 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnHR.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnHR.layer.shadowRadius = 5
         btnHR.layer.shadowOpacity = 1.0
-        
+        btnHR.setImage(UIImage(named: "heart.png"), for: .normal)
+        btnHR.alpha = 0.4;
+        btnHR.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
+
         // Blood Oxygen Button
         btnBldOx.layer.shadowColor = UIColor.black.cgColor
         btnBldOx.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnBldOx.layer.shadowRadius = 5
         btnBldOx.layer.shadowOpacity = 1.0
-        
+        btnBldOx.setImage(UIImage(named: "red-blood-cells-1.png"), for: .normal)
+        btnBldOx.alpha = 0.4;
+        btnBldOx.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
+
         // Altitude Button
         btnAlt.layer.shadowColor = UIColor.black.cgColor
         btnAlt.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnAlt.layer.shadowRadius = 5
         btnAlt.layer.shadowOpacity = 1.0
-        
+        btnAlt.setImage(UIImage(named: "mountain.png"), for: .normal)
+        btnAlt.alpha = 0.4;
+        btnAlt.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
+
         // Symptoms Button
         btnSymptoms.layer.shadowColor = UIColor.black.cgColor
         btnSymptoms.layer.shadowOffset = CGSize(width: 5, height: 5)
@@ -160,7 +183,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnSymptoms.layer.shadowOpacity = 1.0
         btnSymptoms.setImage(UIImage(named: "checklist.png"), for: .normal)
         btnSymptoms.imageEdgeInsets = UIEdgeInsets(top: 35, left: 40, bottom: 35, right: 30)
-        
+
         // Chatbot Button
         btnChatbot.layer.shadowColor = UIColor.black.cgColor
         btnChatbot.layer.shadowOffset = CGSize(width: 5, height: 5)
@@ -168,7 +191,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnChatbot.layer.shadowOpacity = 1.0
         btnChatbot.setImage(UIImage(named: "chatbot.png"), for: .normal)
         btnChatbot.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
-        
+
         // Social and Gamification Button
         btnSocialAndGamification.layer.shadowColor = UIColor.black.cgColor
         btnSocialAndGamification.layer.shadowOffset = CGSize(width: 5, height: 5)
@@ -177,7 +200,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnSocialAndGamification.setImage(UIImage(named: "girlaward.png"), for: .normal)
         btnSocialAndGamification.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: centralManagerDidUpdateState()
      - Description: If we're powered on, start scanning
@@ -193,7 +216,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             centralManager.scanForPeripherals(withServices: nil)
         }
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: centralManager()
      - Description: Handles the result of the scan.
@@ -211,7 +234,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         // Connect
         self.centralManager.connect(self.peripheral, options: nil)
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: centralManager()
      - Description: The handler if we do connect succesfully
@@ -222,7 +245,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             peripheral.discoverServices([SensorDeviceObject.deviceServiceUUID])
         }
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: peripheral()
      - Description: Handles discovery event
@@ -260,7 +283,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             }
         }
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: peripheral()
      - Description: Handle data receipt
@@ -275,9 +298,9 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
           characteristicASCIIValue = ASCIIstring
 
         print("Value Recieved: \((characteristicASCIIValue as String))")
-        
+
         let input = characteristicASCIIValue as String
-        
+
         let splitInput = input.split(separator: ",")
         print(splitInput)
         if splitInput.count == 2 {
@@ -301,19 +324,19 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         let airPressure = AltObj.fetchLatestPressureReading()
         self.setAltitudeButtonValue(labelValue: "\(airPressure)")
         print("Air Pressure Timer Val: \(airPressure) hPa")
-        
+
         let elevation = AltObj.fetchLatestElevationReading()
         print("Elevation Timer Val: \(elevation) meters")
         PhoneObj.stopAltitudeUpdates()
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: HRTimerfire()
      - Description: Method to update Heart Rate.
      -------------------------------------------------------------------*/
     @objc func hrTimerfire() {
         let hrVal = HRObj.fetchLatestHrReading()
-        
+
         // Verify theree is a recent reading.
         if hrVal == -1 {
             self.setHRButtonValue(labelValue: "-")
@@ -321,11 +344,11 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         } else {
             self.setHRButtonValue(labelValue: "\(hrVal)")
         }
-        
+
         // Retrieve Threshold values
         let hrLowThreshold = UserDefaults.standard.getValue(key: UserDefaultKeys.hrThresholdLowKey.description)
         let hrHighThreshold = UserDefaults.standard.getValue(key: UserDefaultKeys.hrThresholdHighKey.description)
-        
+
         // Set color of Text in UI
         if hrVal >= Int(hrHighThreshold ?? "100")! || hrVal <= Int(hrLowThreshold ?? "40")! {
             self.lblHeartRateValue.textColor = UIColor.FeButtonRed
@@ -336,14 +359,14 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         }
         print("HR Timer Val: \(hrVal) BPM")
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: BloodOxTimerfire()
      - Description: Method to update Blood Oxygen.
      -------------------------------------------------------------------*/
     @objc func bloodOxTimerfire() {
         let bloodOxygen = BldOxObj.fetchLatestBloodOxReading()
-        
+
         // Verify there is a recent reading
         if bloodOxygen == -1 {
             self.setBloodOxButtonValue(labelValue: "-")
@@ -351,11 +374,11 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         } else {
             self.setBloodOxButtonValue(labelValue: "\(bloodOxygen)")
         }
-        
+
         // Retrieve threshold values
         let bldOxLowThreshold = UserDefaults.standard.getValue(key: UserDefaultKeys.bldOxThresholdLowKey.description)
         let bldOxHighThreshold = UserDefaults.standard.getValue(key: UserDefaultKeys.bldOxThresholdHighKey.description)
-        
+
         // Set color of text in UI
         if bloodOxygen > Int(bldOxHighThreshold ?? "100")! || bloodOxygen <= Int(bldOxLowThreshold ?? "90")! {
             self.lblBloodOxygenValue.textColor = UIColor.FeButtonRed
@@ -366,7 +389,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         }
         print("Blood Ox Timer Val: \(bloodOxygen) %")
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: setWelcomeTitle()
      - Description: Set UI Welcome Title
@@ -374,7 +397,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     func setWelcomeTitle(title: String) {
         self.lblTitle.text = title
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: setHRButtonValue()
      - Description: Set HR Button Value
@@ -382,7 +405,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     func setHRButtonValue(labelValue: String) {
         self.lblHeartRateValue.text = labelValue
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: setBloodOxButtonValue()
      - Description: Set Blood Oxygen Button Value
@@ -390,7 +413,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     func setBloodOxButtonValue(labelValue: String) {
         self.lblBloodOxygenValue.text = labelValue
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: setAltitudeButtonValue()
      - Description: Set Altitude Button Value
@@ -398,7 +421,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     func setAltitudeButtonValue(labelValue: String) {
         self.lblAltitudeValue.text = labelValue
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: heartRateBtnTapped()
      - Description: Segue to heartRate Data View
@@ -406,7 +429,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBAction func btnHeartRateTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToHeartRateScreen", sender: self)
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: btnBloodOxygenTapped()
      - Description: Segue to blood oxygen Data View
@@ -414,7 +437,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBAction func btnBloodOxygenTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToBloodOxygenScreen", sender: self)
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: btnAltitudeTapped()
      - Description: Segue to altitude Data View
@@ -422,7 +445,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBAction func btnAltitudeTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToAltitudeScreen", sender: self)
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: checkSymptomsBtnTapped()
      - Description: Segue to symptom Checking view
@@ -430,7 +453,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBAction func btnSymptomsTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToSymptomDizzy", sender: self)
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: checkSymptomsBtnTapped()
      - Description: Segue to symptom Checking view
@@ -438,7 +461,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBAction func btnSocialAndGamificationTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToSocialAndGamification", sender: self)
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: btnMoreInfoTapped()
      - Description: Segue to more Information Webpage
@@ -446,7 +469,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @IBAction func btnMoreInfoTapped(_ sender: Any) {
         performSegue(withIdentifier: "GoToMoreInfoScreen", sender: self)
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: btnChatbotTapped()
      - Description: Segue to Chatbot Screen
@@ -455,7 +478,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         performSegue(withIdentifier: "GoToChatbotScreen", sender: self)
         print("Chatbot button pressed")
     }
-    
+
     /*--------------------------------------------------------------------
      //MARK: obtainLocationAuth()
      - Description: Requests access to location.
@@ -474,7 +497,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
  - Description: Methods for getting location for Elevation.
  -----------------------------------------------------------------------*/
 extension HomeVC: CLLocationManagerDelegate {
-    
+
     /*--------------------------------------------------------------------
      //MARK: locationManager()
      - Description: Gets last location altitude and displays on screen.

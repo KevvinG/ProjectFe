@@ -18,13 +18,6 @@ class HomeScreenLogic {
     let FBObj = FirebaseAccessObject()
     
     /*--------------------------------------------------------------------
-     //MARK: homeScreenSetup()
-     - Description: Set up home screen options once logged in.
-     -------------------------------------------------------------------*/
-    func homeScreenSetup() {
-    }
-    
-    /*--------------------------------------------------------------------
      //MARK: checkIfNewUser()
      - Description: Checks Firebase if the user logging in is new.
      -------------------------------------------------------------------*/
@@ -39,9 +32,9 @@ class HomeScreenLogic {
      - Description: Calls Firebase method and displays data in
      - each of the appropriate TextViews.
      -------------------------------------------------------------------*/
-    func getUserHrThresholds(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
-        FBObj.getUserHrThresholds(completion: { thresholds in
-            completion(thresholds)
+    func getUserDefaults(completion: @escaping (_ dataDict: Dictionary<String,String>) -> Void) {
+        FBObj.getUserDefaults(completion: { dataDict in
+            completion(dataDict)
          })
     }
 }
