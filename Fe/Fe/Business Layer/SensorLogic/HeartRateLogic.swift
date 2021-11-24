@@ -95,6 +95,44 @@ class HeartRateLogic {
         })
     }
     
+    
+   func fetchHrWithRangeCD(dateRange: String, completion: @escaping (_ dateArray: [String], _ bpmArray: [Double], _ maxBPM: Int, _ minBPM: Int, _ avgBPM: Int) -> Void) {
+       CDObj.getHrChartData(dateRange: dateRange, completion: { bpmDict in
+           DispatchQueue.main.async {
+               var testDict = bpmDict
+               let dictCount = testDict.count
+               var outputSpacing = dictCount/12
+               if outputSpacing == 0 {
+                   outputSpacing = 1
+               }
+               var i = 1
+               for element in testDict {
+                   if i % outputSpacing != 0 {
+                       testDict.removeValue(forKey: element.key)
+                       print("Item removed")
+                   }
+                   i+=1
+                   print(i)
+               }
+               let dateArray = Array(testDict.keys)
+               var newDateArray : [String] = []
+               for element in dateArray{
+                   newDateArray.append(self.convertDate(element, dateRange: dateRange))
+               }
+               let bpmArray = Array(testDict.values)
+               let bpmMax = Int(bpmArray.max() ?? 0)
+               let bpmMin = Int(bpmArray.min() ?? 0)
+               let sum = Int(bpmArray.reduce(0, +))
+               let count = bpmArray.count
+               var bpmAvg = 0
+               if count > 0 {
+                   bpmAvg = sum / count
+               }
+               
+               completion(newDateArray, bpmArray, bpmMax, bpmMin, bpmAvg)
+           }
+       })
+   }
     /*--------------------------------------------------------------------
      //MARK: convertDate()
      - Description: Converts the date stored in the database to one more user readable

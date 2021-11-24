@@ -402,4 +402,46 @@ class CoreDataAccessObject {
             print("Error saving the new data entry to \(tableName) Table: \(error.description)")
         }
     }
+    
+    func getHrChartData(dateRange: String, completion: @escaping (_ bpmDict: [String:Double]) -> Void) {
+        var bpmDict : [String:Double] = [:]
+            
+        let calendar = NSCalendar.current
+        var anchorComponents = calendar.dateComponents([.day, .month, .year, .weekday], from: NSDate() as Date)
+        let offset = (7 + anchorComponents.weekday! - 2) % 7
+        
+        anchorComponents.day! -= offset
+        anchorComponents.hour = 2
+        
+        guard let anchorDate = Calendar.current.date(from: anchorComponents) else {
+            fatalError("*** unable to create a valid date from the given components ***")
+        }
+        
+        let interval = NSDateComponents()
+        switch dateRange {
+            case "day":
+                interval.minute = 1
+            default:
+                interval.minute = 30
+        }
+                            
+        let endDate = Date()
+        
+        guard var startDate = calendar.date(byAdding: .month, value: -1, to: endDate) else {
+            fatalError("*** Unable to calculate the start date ***")
+        }
+        
+        switch dateRange {
+            case "month":
+                startDate = calendar.date(byAdding: .month, value: -1, to: endDate) ?? Date()
+                break
+            case "day":
+                startDate = calendar.date(byAdding: .day, value: -1, to: endDate) ?? Date()
+                break
+            default:
+                print("No DR Selected, default to month")
+                startDate = calendar.date(byAdding: .month, value: -1, to: endDate) ?? Date()
+        }
+    }
 }
+

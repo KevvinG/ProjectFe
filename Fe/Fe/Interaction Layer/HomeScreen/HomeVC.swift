@@ -53,6 +53,10 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         super.viewDidLoad()
         obtainLocationAuth()
         centralManager = CBCentralManager(delegate: self, queue: nil)
+        
+        /*MARK: Developer temp data*/
+        CDObj.createHeartRateTableEntry(hrValue: "98")
+        CDObj.createBloodOxygenTableEntry(bloodOxValue: 99)
 
 //        HSLogic.homeScreenSetup() // Setup options once logged in.
         
