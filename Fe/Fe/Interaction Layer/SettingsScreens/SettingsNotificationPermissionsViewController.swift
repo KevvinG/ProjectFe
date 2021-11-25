@@ -176,13 +176,12 @@ class SettingsNotificationPermissionsViewController: UIViewController {
             print("Text to Emergency Contact On")
             NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: true)
             NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: "true")
-            modifyUIState()
         } else {
             print("Text to Emergency Contact Off")
             NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: false)
             NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotifyEmergencyContactKey.description, value: "false")
-            modifyUIState()
         }
+        modifyUIState()
     }
     
     /*--------------------------------------------------------------------

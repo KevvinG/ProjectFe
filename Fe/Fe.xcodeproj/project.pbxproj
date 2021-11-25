@@ -67,6 +67,135 @@
 		CEDBACAD274562340072093A /* SocialAndGamificationHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACAC274562340072093A /* SocialAndGamificationHomeViewController.swift */; };
 		CEDBACAF274564AD0072093A /* SocialAndGamificationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */; };
 		CEDBACB2274E88BD0072093A /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACB1274E88BD0072093A /* UIImage+Extensions.swift */; };
+		CEDBACB9274EC08C0072093A /* EditUserViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACB6274EAA770072093A /* EditUserViewControllerTests.swift */; };
+		CEDBACBC274ED4580072093A /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC3BB44271F4E9E0027E7B6 /* Validation.swift */; };
+		CEDBACBD274ED4D80072093A /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC3BB44271F4E9E0027E7B6 /* Validation.swift */; };
+		CEDBACBE274ED7A30072093A /* EditUserViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955A6262B574E0013E006 /* EditUserViewLogic.swift */; };
+		CEDBACBF274ED7A50072093A /* EditUserViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955A6262B574E0013E006 /* EditUserViewLogic.swift */; };
+		CEDBACC0274ED7AA0072093A /* SettingsViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9559F262B573F0013E006 /* SettingsViewLogic.swift */; };
+		CEDBACC1274ED7AB0072093A /* SettingsViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9559F262B573F0013E006 /* SettingsViewLogic.swift */; };
+		CEDBACC2274ED7C10072093A /* SettingsSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26588C25FD460D00437C97 /* SettingsSensorsViewController.swift */; };
+		CEDBACC3274ED7C10072093A /* SettingsSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26588C25FD460D00437C97 /* SettingsSensorsViewController.swift */; };
+		CEDBACC4274ED7C50072093A /* SettingsNotificationPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */; };
+		CEDBACC5274ED7C60072093A /* SettingsNotificationPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26589325FD60DE00437C97 /* SettingsNotificationPermissionsViewController.swift */; };
+		CEDBACC6274ED7D40072093A /* FirebaseAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */; };
+		CEDBACC7274ED7D40072093A /* FirebaseAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AD12607AFB600835756 /* FirebaseAccessObject.swift */; };
+		CEDBACC8274ED7D90072093A /* CoreDataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */; };
+		CEDBACC9274ED7D90072093A /* CoreDataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168EE262A5D3500DCCEEC /* CoreDataAccessObject.swift */; };
+		CEDBACCA274ED8F80072093A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3EC27171F2100576F3E /* HomeVC.swift */; };
+		CEDBACCB274ED8F90072093A /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3EC27171F2100576F3E /* HomeVC.swift */; };
+		CEDBACCC274ED8FE0072093A /* HeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2D325E885F100AA9665 /* HeartRateViewController.swift */; };
+		CEDBACCD274ED8FE0072093A /* HeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2D325E885F100AA9665 /* HeartRateViewController.swift */; };
+		CEDBACCE274ED9060072093A /* BloodOxygenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2DA25E8870900AA9665 /* BloodOxygenViewController.swift */; };
+		CEDBACCF274ED9060072093A /* BloodOxygenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2DA25E8870900AA9665 /* BloodOxygenViewController.swift */; };
+		CEDBACD0274ED90C0072093A /* AltitudeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2E125E8887800AA9665 /* AltitudeViewController.swift */; };
+		CEDBACD1274ED90C0072093A /* AltitudeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2E125E8887800AA9665 /* AltitudeViewController.swift */; };
+		CEDBACD2274ED9120072093A /* DocumentTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2E825E88AAC00AA9665 /* DocumentTableTableViewController.swift */; };
+		CEDBACD3274ED9120072093A /* DocumentTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2E825E88AAC00AA9665 /* DocumentTableTableViewController.swift */; };
+		CEDBACD4274ED9160072093A /* DocumentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2EF25E88AC800AA9665 /* DocumentTableViewCell.swift */; };
+		CEDBACD5274ED9170072093A /* DocumentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2EF25E88AC800AA9665 /* DocumentTableViewCell.swift */; };
+		CEDBACD6274ED91B0072093A /* DocumentviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */; };
+		CEDBACD7274ED91C0072093A /* DocumentviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7AFA2607D29100835756 /* DocumentviewViewController.swift */; };
+		CEDBACD8274ED9210072093A /* UploadDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2FD25E88BCB00AA9665 /* UploadDocumentViewController.swift */; };
+		CEDBACD9274ED9210072093A /* UploadDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2FD25E88BCB00AA9665 /* UploadDocumentViewController.swift */; };
+		CEDBACDA274ED9260072093A /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
+		CEDBACDB274ED9260072093A /* UpdateDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB35ED2619265500993137 /* UpdateDocumentViewController.swift */; };
+		CEDBACDC274ED92D0072093A /* Symptom1DizzyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B28E25E8521900AA9665 /* Symptom1DizzyViewController.swift */; };
+		CEDBACDD274ED92E0072093A /* Symptom1DizzyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B28E25E8521900AA9665 /* Symptom1DizzyViewController.swift */; };
+		CEDBACDE274ED9320072093A /* Symptom2BreathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2A025E8566100AA9665 /* Symptom2BreathViewController.swift */; };
+		CEDBACDF274ED9320072093A /* Symptom2BreathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2A025E8566100AA9665 /* Symptom2BreathViewController.swift */; };
+		CEDBACE0274ED9360072093A /* Symptom3BloodStoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2B525E8718E00AA9665 /* Symptom3BloodStoolViewController.swift */; };
+		CEDBACE1274ED9360072093A /* Symptom3BloodStoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2B525E8718E00AA9665 /* Symptom3BloodStoolViewController.swift */; };
+		CEDBACE2274ED93A0072093A /* Symptom4BlackStoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2C125E871A100AA9665 /* Symptom4BlackStoolViewController.swift */; };
+		CEDBACE3274ED93B0072093A /* Symptom4BlackStoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2C125E871A100AA9665 /* Symptom4BlackStoolViewController.swift */; };
+		CEDBACE4274ED93F0072093A /* CallDoctorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2A725E856B800AA9665 /* CallDoctorViewController.swift */; };
+		CEDBACE5274ED93F0072093A /* CallDoctorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2A725E856B800AA9665 /* CallDoctorViewController.swift */; };
+		CEDBACE6274ED9430072093A /* AOKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2AE25E856CE00AA9665 /* AOKViewController.swift */; };
+		CEDBACE7274ED9440072093A /* AOKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B2AE25E856CE00AA9665 /* AOKViewController.swift */; };
+		CEDBACE8274ED9490072093A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF7381427391CD4002C81C7 /* ChatViewController.swift */; };
+		CEDBACE9274ED94A0072093A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF7381427391CD4002C81C7 /* ChatViewController.swift */; };
+		CEDBACEA274ED9510072093A /* SocialAndGamificationHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACAC274562340072093A /* SocialAndGamificationHomeViewController.swift */; };
+		CEDBACEB274ED9510072093A /* SocialAndGamificationHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACAC274562340072093A /* SocialAndGamificationHomeViewController.swift */; };
+		CEDBACEC274ED9570072093A /* WebMoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B28725E84F5C00AA9665 /* WebMoreInfoViewController.swift */; };
+		CEDBACED274ED9570072093A /* WebMoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62B28725E84F5C00AA9665 /* WebMoreInfoViewController.swift */; };
+		CEDBACEE274ED96E0072093A /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACB1274E88BD0072093A /* UIImage+Extensions.swift */; };
+		CEDBACEF274ED96E0072093A /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACB1274E88BD0072093A /* UIImage+Extensions.swift */; };
+		CEDBACF0274ED9770072093A /* ColorThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E233026EB8F2F00C0360D /* ColorThemes.swift */; };
+		CEDBACF1274ED9770072093A /* ColorThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E233026EB8F2F00C0360D /* ColorThemes.swift */; };
+		CEDBACF2274ED97C0072093A /* ProjectKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */; };
+		CEDBACF3274ED97C0072093A /* ProjectKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DD3422680E0C500D9D026 /* ProjectKeys.swift */; };
+		CEDBACF4274ED9810072093A /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3E82714B7B400576F3E /* UserDefaultKeys.swift */; };
+		CEDBACF5274ED9820072093A /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3E82714B7B400576F3E /* UserDefaultKeys.swift */; };
+		CEDBACF6274ED9870072093A /* CBUUIDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9DC0B22717ECE900ABEE4A /* CBUUIDS.swift */; };
+		CEDBACF7274ED9870072093A /* CBUUIDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9DC0B22717ECE900ABEE4A /* CBUUIDS.swift */; };
+		CEDBACF8274ED9CC0072093A /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95572262B56860013E006 /* LoginLogic.swift */; };
+		CEDBACF9274ED9CC0072093A /* LoginLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95572262B56860013E006 /* LoginLogic.swift */; };
+		CEDBACFA274ED9D20072093A /* HomeScreenLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9557E262B56B60013E006 /* HomeScreenLogic.swift */; };
+		CEDBACFB274ED9D30072093A /* HomeScreenLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9557E262B56B60013E006 /* HomeScreenLogic.swift */; };
+		CEDBACFC274ED9DA0072093A /* HeartRateLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95585262B56D50013E006 /* HeartRateLogic.swift */; };
+		CEDBACFD274ED9DB0072093A /* HeartRateLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF95585262B56D50013E006 /* HeartRateLogic.swift */; };
+		CEDBACFE274ED9DF0072093A /* BloodOxygenLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558C262B56F00013E006 /* BloodOxygenLogic.swift */; };
+		CEDBACFF274ED9E00072093A /* BloodOxygenLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558C262B56F00013E006 /* BloodOxygenLogic.swift */; };
+		CEDBAD00274ED9E40072093A /* AltitudeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558E262B56FE0013E006 /* AltitudeLogic.swift */; };
+		CEDBAD01274ED9E50072093A /* AltitudeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9558E262B56FE0013E006 /* AltitudeLogic.swift */; };
+		CEDBAD02274ED9EB0072093A /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE082721262A4DE700558A32 /* Questionnaire.swift */; };
+		CEDBAD03274ED9EB0072093A /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE082721262A4DE700558A32 /* Questionnaire.swift */; };
+		CEDBAD04274ED9F10072093A /* SocialAndGamificationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */; };
+		CEDBAD05274ED9F10072093A /* SocialAndGamificationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */; };
+		CEDBAD06274ED9FF0072093A /* DataAnalysisLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E232D26E99AAC00C0360D /* DataAnalysisLogic.swift */; };
+		CEDBAD07274EDA000072093A /* DataAnalysisLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E232D26E99AAC00C0360D /* DataAnalysisLogic.swift */; };
+		CEDBAD08274EDA930072093A /* Fe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2E125D438D100A08E2D /* Fe.xcdatamodeld */; };
+		CEDBAD09274EDA930072093A /* Fe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2E125D438D100A08E2D /* Fe.xcdatamodeld */; };
+		CEDBAD0A274EDAC50072093A /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
+		CEDBAD0B274EDAC50072093A /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
+		CEDBAD0C274EDAD10072093A /* CodingUserInfoKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */; };
+		CEDBAD0D274EDAD10072093A /* CodingUserInfoKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */; };
+		CEDBAD0E274EDAD90072093A /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3EA2714B8D300576F3E /* UserDefaults+Extension.swift */; };
+		CEDBAD0F274EDADA0072093A /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEB3EA2714B8D300576F3E /* UserDefaults+Extension.swift */; };
+		CEDBAD10274EDADF0072093A /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7B062607E83000835756 /* Document.swift */; };
+		CEDBAD11274EDADF0072093A /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D7B062607E83000835756 /* Document.swift */; };
+		CEDBAD12274EDAE60072093A /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */; };
+		CEDBAD13274EDAE60072093A /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EBE1266A8D4100144C5F /* CustomTimer.swift */; };
+		CEDBAD14274EDAEA0072093A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA91ABD273B3DDB001E6C50 /* Message.swift */; };
+		CEDBAD15274EDAEB0072093A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA91ABD273B3DDB001E6C50 /* Message.swift */; };
+		CEDBAD16274EDAEF0072093A /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB2C99C273B585900E72D9C /* ChatUser.swift */; };
+		CEDBAD17274EDAEF0072093A /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB2C99C273B585900E72D9C /* ChatUser.swift */; };
+		CEDBAD18274EDAF40072093A /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB2C99A273B584E00E72D9C /* Chat.swift */; };
+		CEDBAD19274EDAF50072093A /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB2C99A273B584E00E72D9C /* Chat.swift */; };
+		CEDBAD1A274EDB090072093A /* HeartRateData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07432D26699CB000B97853 /* HeartRateData+CoreDataClass.swift */; };
+		CEDBAD1B274EDB090072093A /* HeartRateData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07432D26699CB000B97853 /* HeartRateData+CoreDataClass.swift */; };
+		CEDBAD1C274EDB0D0072093A /* HeartRateData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07432E26699CB000B97853 /* HeartRateData+CoreDataProperties.swift */; };
+		CEDBAD1D274EDB0D0072093A /* HeartRateData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07432E26699CB000B97853 /* HeartRateData+CoreDataProperties.swift */; };
+		CEDBAD1E274EDB110072093A /* AirPressureData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07432F26699CB000B97853 /* AirPressureData+CoreDataClass.swift */; };
+		CEDBAD1F274EDB120072093A /* AirPressureData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07432F26699CB000B97853 /* AirPressureData+CoreDataClass.swift */; };
+		CEDBAD20274EDB160072093A /* AirPressureData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433026699CB000B97853 /* AirPressureData+CoreDataProperties.swift */; };
+		CEDBAD21274EDB160072093A /* AirPressureData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433026699CB000B97853 /* AirPressureData+CoreDataProperties.swift */; };
+		CEDBAD22274EDB1A0072093A /* BloodOxygenData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433126699CB000B97853 /* BloodOxygenData+CoreDataClass.swift */; };
+		CEDBAD23274EDB1B0072093A /* BloodOxygenData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433126699CB000B97853 /* BloodOxygenData+CoreDataClass.swift */; };
+		CEDBAD24274EDB1F0072093A /* BloodOxygenData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433226699CB000B97853 /* BloodOxygenData+CoreDataProperties.swift */; };
+		CEDBAD25274EDB1F0072093A /* BloodOxygenData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433226699CB000B97853 /* BloodOxygenData+CoreDataProperties.swift */; };
+		CEDBAD26274EDB230072093A /* ElevationData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433326699CB000B97853 /* ElevationData+CoreDataClass.swift */; };
+		CEDBAD27274EDB230072093A /* ElevationData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433326699CB000B97853 /* ElevationData+CoreDataClass.swift */; };
+		CEDBAD28274EDB270072093A /* ElevationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433426699CB000B97853 /* ElevationData+CoreDataProperties.swift */; };
+		CEDBAD29274EDB280072093A /* ElevationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07433426699CB000B97853 /* ElevationData+CoreDataProperties.swift */; };
+		CEDBAD2A274EDB930072093A /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
+		CEDBAD2B274EDB940072093A /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
+		CEDBAD2C274EDB980072093A /* PhoneSensorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */; };
+		CEDBAD2D274EDB990072093A /* PhoneSensorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D26F5264570B6004629CC /* PhoneSensorObject.swift */; };
+		CEDBAD2E274EDB9F0072093A /* SensorDeviceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9DC0B02717ECB500ABEE4A /* SensorDeviceObject.swift */; };
+		CEDBAD2F274EDB9F0072093A /* SensorDeviceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9DC0B02717ECB500ABEE4A /* SensorDeviceObject.swift */; };
+		CEDBAD30274EDBA30072093A /* SensorDevicePackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9DC0B4271949DF00ABEE4A /* SensorDevicePackage.swift */; };
+		CEDBAD31274EDBA40072093A /* SensorDevicePackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9DC0B4271949DF00ABEE4A /* SensorDevicePackage.swift */; };
+		CEDBAD32274EDBB10072093A /* SettingsSensorsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955AD262B575B0013E006 /* SettingsSensorsLogic.swift */; };
+		CEDBAD33274EDBB10072093A /* SettingsSensorsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955AD262B575B0013E006 /* SettingsSensorsLogic.swift */; };
+		CEDBAD34274EDBB50072093A /* NotificationPermissionsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955AF262B57740013E006 /* NotificationPermissionsLogic.swift */; };
+		CEDBAD35274EDBB60072093A /* NotificationPermissionsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF955AF262B57740013E006 /* NotificationPermissionsLogic.swift */; };
+		CEDBAD36274EDC020072093A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2D825D438D100A08E2D /* AppDelegate.swift */; };
+		CEDBAD37274EDC020072093A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2D825D438D100A08E2D /* AppDelegate.swift */; };
+		CEDBAD38274EDC070072093A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2DA25D438D100A08E2D /* SceneDelegate.swift */; };
+		CEDBAD39274EDC070072093A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2DA25D438D100A08E2D /* SceneDelegate.swift */; };
+		CEDBAD3A274EDD760072093A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE01C2DE25D438D100A08E2D /* Main.storyboard */; };
+		CEDBAD3B274EDD780072093A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE01C2DE25D438D100A08E2D /* Main.storyboard */; };
 		CEE9E4BE26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
@@ -227,6 +356,7 @@
 		CEDBACAC274562340072093A /* SocialAndGamificationHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAndGamificationHomeViewController.swift; sourceTree = "<group>"; };
 		CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAndGamificationLogic.swift; sourceTree = "<group>"; };
 		CEDBACB1274E88BD0072093A /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		CEDBACB6274EAA770072093A /* EditUserViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewControllerTests.swift; sourceTree = "<group>"; };
 		CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKeyExtension.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2544EF261F22E800069308 /* HKAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKAccessObject.swift; sourceTree = "<group>"; };
@@ -383,6 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				CE01C2FD25D438D100A08E2D /* FeUITests.swift */,
+				CEDBACB6274EAA770072093A /* EditUserViewControllerTests.swift */,
 				CE01C2FF25D438D100A08E2D /* Info.plist */,
 			);
 			path = FeUITests;
@@ -882,6 +1013,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDBAD3A274EDD760072093A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -889,6 +1021,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDBAD3B274EDD780072093A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1126,10 +1259,73 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDBAD36274EDC020072093A /* AppDelegate.swift in Sources */,
 				CE01C2F325D438D100A08E2D /* FeTests.swift in Sources */,
 				CE62AF1425DD6B0400AA9665 /* StartViewController.swift in Sources */,
+				CEDBACD4274ED9160072093A /* DocumentTableViewCell.swift in Sources */,
+				CEDBAD00274ED9E40072093A /* AltitudeLogic.swift in Sources */,
+				CEDBAD16274EDAEF0072093A /* ChatUser.swift in Sources */,
+				CEDBACC8274ED7D90072093A /* CoreDataAccessObject.swift in Sources */,
+				CEDBAD02274ED9EB0072093A /* Questionnaire.swift in Sources */,
+				CEDBAD38274EDC070072093A /* SceneDelegate.swift in Sources */,
+				CEDBAD04274ED9F10072093A /* SocialAndGamificationLogic.swift in Sources */,
+				CEDBACF0274ED9770072093A /* ColorThemes.swift in Sources */,
+				CEDBACF6274ED9870072093A /* CBUUIDS.swift in Sources */,
+				CEDBAD2A274EDB930072093A /* WatchKitConnection.swift in Sources */,
+				CEDBACF4274ED9810072093A /* UserDefaultKeys.swift in Sources */,
+				CEDBACCC274ED8FE0072093A /* HeartRateViewController.swift in Sources */,
+				CEDBACEA274ED9510072093A /* SocialAndGamificationHomeViewController.swift in Sources */,
+				CEDBACF8274ED9CC0072093A /* LoginLogic.swift in Sources */,
+				CEDBACDC274ED92D0072093A /* Symptom1DizzyViewController.swift in Sources */,
+				CEDBACC4274ED7C50072093A /* SettingsNotificationPermissionsViewController.swift in Sources */,
+				CEDBACDE274ED9320072093A /* Symptom2BreathViewController.swift in Sources */,
+				CEDBAD30274EDBA30072093A /* SensorDevicePackage.swift in Sources */,
+				CEDBACC6274ED7D40072093A /* FirebaseAccessObject.swift in Sources */,
+				CEDBAD1C274EDB0D0072093A /* HeartRateData+CoreDataProperties.swift in Sources */,
+				CEDBACBE274ED7A30072093A /* EditUserViewLogic.swift in Sources */,
+				CEDBAD18274EDAF40072093A /* Chat.swift in Sources */,
+				CEDBACCE274ED9060072093A /* BloodOxygenViewController.swift in Sources */,
+				CEDBACC2274ED7C10072093A /* SettingsSensorsViewController.swift in Sources */,
+				CEDBAD1A274EDB090072093A /* HeartRateData+CoreDataClass.swift in Sources */,
+				CEDBAD0C274EDAD10072093A /* CodingUserInfoKeyExtension.swift in Sources */,
 				CE62AF2325DDC13600AA9665 /* EditUserViewController.swift in Sources */,
+				CEDBACBD274ED4D80072093A /* Validation.swift in Sources */,
+				CEDBACD8274ED9210072093A /* UploadDocumentViewController.swift in Sources */,
+				CEDBAD12274EDAE60072093A /* CustomTimer.swift in Sources */,
+				CEDBACE4274ED93F0072093A /* CallDoctorViewController.swift in Sources */,
+				CEDBACEC274ED9570072093A /* WebMoreInfoViewController.swift in Sources */,
+				CEDBAD32274EDBB10072093A /* SettingsSensorsLogic.swift in Sources */,
+				CEDBAD20274EDB160072093A /* AirPressureData+CoreDataProperties.swift in Sources */,
+				CEDBAD14274EDAEA0072093A /* Message.swift in Sources */,
+				CEDBACCA274ED8F80072093A /* HomeVC.swift in Sources */,
+				CEDBACE0274ED9360072093A /* Symptom3BloodStoolViewController.swift in Sources */,
+				CEDBACE6274ED9430072093A /* AOKViewController.swift in Sources */,
+				CEDBACDA274ED9260072093A /* UpdateDocumentViewController.swift in Sources */,
 				CE62AF0725D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
+				CEDBAD34274EDBB50072093A /* NotificationPermissionsLogic.swift in Sources */,
+				CEDBAD08274EDA930072093A /* Fe.xcdatamodeld in Sources */,
+				CEDBACE2274ED93A0072093A /* Symptom4BlackStoolViewController.swift in Sources */,
+				CEDBACC0274ED7AA0072093A /* SettingsViewLogic.swift in Sources */,
+				CEDBACD0274ED90C0072093A /* AltitudeViewController.swift in Sources */,
+				CEDBAD1E274EDB110072093A /* AirPressureData+CoreDataClass.swift in Sources */,
+				CEDBACD7274ED91C0072093A /* DocumentviewViewController.swift in Sources */,
+				CEDBAD0A274EDAC50072093A /* HKAccessObject.swift in Sources */,
+				CEDBAD26274EDB230072093A /* ElevationData+CoreDataClass.swift in Sources */,
+				CEDBACFC274ED9DA0072093A /* HeartRateLogic.swift in Sources */,
+				CEDBAD2E274EDB9F0072093A /* SensorDeviceObject.swift in Sources */,
+				CEDBAD22274EDB1A0072093A /* BloodOxygenData+CoreDataClass.swift in Sources */,
+				CEDBAD2C274EDB980072093A /* PhoneSensorObject.swift in Sources */,
+				CEDBAD0E274EDAD90072093A /* UserDefaults+Extension.swift in Sources */,
+				CEDBACEE274ED96E0072093A /* UIImage+Extensions.swift in Sources */,
+				CEDBACE8274ED9490072093A /* ChatViewController.swift in Sources */,
+				CEDBACD2274ED9120072093A /* DocumentTableTableViewController.swift in Sources */,
+				CEDBAD10274EDADF0072093A /* Document.swift in Sources */,
+				CEDBACF2274ED97C0072093A /* ProjectKeys.swift in Sources */,
+				CEDBACFA274ED9D20072093A /* HomeScreenLogic.swift in Sources */,
+				CEDBAD24274EDB1F0072093A /* BloodOxygenData+CoreDataProperties.swift in Sources */,
+				CEDBAD28274EDB270072093A /* ElevationData+CoreDataProperties.swift in Sources */,
+				CEDBAD06274ED9FF0072093A /* DataAnalysisLogic.swift in Sources */,
+				CEDBACFE274ED9DF0072093A /* BloodOxygenLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,10 +1333,74 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDBAD27274EDB230072093A /* ElevationData+CoreDataClass.swift in Sources */,
+				CEDBAD0B274EDAC50072093A /* HKAccessObject.swift in Sources */,
+				CEDBAD0F274EDADA0072093A /* UserDefaults+Extension.swift in Sources */,
 				CE01C2FE25D438D100A08E2D /* FeUITests.swift in Sources */,
+				CEDBAD0D274EDAD10072093A /* CodingUserInfoKeyExtension.swift in Sources */,
+				CEDBACC9274ED7D90072093A /* CoreDataAccessObject.swift in Sources */,
+				CEDBACE3274ED93B0072093A /* Symptom4BlackStoolViewController.swift in Sources */,
+				CEDBAD39274EDC070072093A /* SceneDelegate.swift in Sources */,
+				CEDBAD2B274EDB940072093A /* WatchKitConnection.swift in Sources */,
+				CEDBACD1274ED90C0072093A /* AltitudeViewController.swift in Sources */,
+				CEDBAD15274EDAEB0072093A /* Message.swift in Sources */,
+				CEDBAD29274EDB280072093A /* ElevationData+CoreDataProperties.swift in Sources */,
+				CEDBAD13274EDAE60072093A /* CustomTimer.swift in Sources */,
+				CEDBAD03274ED9EB0072093A /* Questionnaire.swift in Sources */,
+				CEDBAD11274EDADF0072093A /* Document.swift in Sources */,
+				CEDBACCF274ED9060072093A /* BloodOxygenViewController.swift in Sources */,
+				CEDBACF3274ED97C0072093A /* ProjectKeys.swift in Sources */,
+				CEDBAD19274EDAF50072093A /* Chat.swift in Sources */,
 				CE62AF1525DD6B0400AA9665 /* StartViewController.swift in Sources */,
+				CEDBACDD274ED92E0072093A /* Symptom1DizzyViewController.swift in Sources */,
+				CEDBAD01274ED9E50072093A /* AltitudeLogic.swift in Sources */,
+				CEDBACBF274ED7A50072093A /* EditUserViewLogic.swift in Sources */,
+				CEDBACCB274ED8F90072093A /* HomeVC.swift in Sources */,
+				CEDBACFB274ED9D30072093A /* HomeScreenLogic.swift in Sources */,
+				CEDBACE5274ED93F0072093A /* CallDoctorViewController.swift in Sources */,
+				CEDBAD21274EDB160072093A /* AirPressureData+CoreDataProperties.swift in Sources */,
+				CEDBACE9274ED94A0072093A /* ChatViewController.swift in Sources */,
+				CEDBAD17274EDAEF0072093A /* ChatUser.swift in Sources */,
 				CE62AF2425DDC13600AA9665 /* EditUserViewController.swift in Sources */,
+				CEDBACD9274ED9210072093A /* UploadDocumentViewController.swift in Sources */,
+				CEDBAD37274EDC020072093A /* AppDelegate.swift in Sources */,
+				CEDBACC1274ED7AB0072093A /* SettingsViewLogic.swift in Sources */,
+				CEDBAD09274EDA930072093A /* Fe.xcdatamodeld in Sources */,
+				CEDBAD05274ED9F10072093A /* SocialAndGamificationLogic.swift in Sources */,
+				CEDBACD6274ED91B0072093A /* DocumentviewViewController.swift in Sources */,
+				CEDBACCD274ED8FE0072093A /* HeartRateViewController.swift in Sources */,
+				CEDBACD3274ED9120072093A /* DocumentTableTableViewController.swift in Sources */,
+				CEDBACF1274ED9770072093A /* ColorThemes.swift in Sources */,
+				CEDBACEB274ED9510072093A /* SocialAndGamificationHomeViewController.swift in Sources */,
+				CEDBACC7274ED7D40072093A /* FirebaseAccessObject.swift in Sources */,
+				CEDBACDB274ED9260072093A /* UpdateDocumentViewController.swift in Sources */,
+				CEDBAD07274EDA000072093A /* DataAnalysisLogic.swift in Sources */,
+				CEDBAD1D274EDB0D0072093A /* HeartRateData+CoreDataProperties.swift in Sources */,
+				CEDBACFF274ED9E00072093A /* BloodOxygenLogic.swift in Sources */,
+				CEDBAD31274EDBA40072093A /* SensorDevicePackage.swift in Sources */,
+				CEDBACFD274ED9DB0072093A /* HeartRateLogic.swift in Sources */,
+				CEDBACC5274ED7C60072093A /* SettingsNotificationPermissionsViewController.swift in Sources */,
+				CEDBACDF274ED9320072093A /* Symptom2BreathViewController.swift in Sources */,
 				CE62AF0825D84FDF00AA9665 /* SettingsViewController.swift in Sources */,
+				CEDBACBC274ED4580072093A /* Validation.swift in Sources */,
+				CEDBACF9274ED9CC0072093A /* LoginLogic.swift in Sources */,
+				CEDBAD33274EDBB10072093A /* SettingsSensorsLogic.swift in Sources */,
+				CEDBACEF274ED96E0072093A /* UIImage+Extensions.swift in Sources */,
+				CEDBAD23274EDB1B0072093A /* BloodOxygenData+CoreDataClass.swift in Sources */,
+				CEDBACF7274ED9870072093A /* CBUUIDS.swift in Sources */,
+				CEDBAD2F274EDB9F0072093A /* SensorDeviceObject.swift in Sources */,
+				CEDBACB9274EC08C0072093A /* EditUserViewControllerTests.swift in Sources */,
+				CEDBACF5274ED9820072093A /* UserDefaultKeys.swift in Sources */,
+				CEDBAD1F274EDB120072093A /* AirPressureData+CoreDataClass.swift in Sources */,
+				CEDBACE1274ED9360072093A /* Symptom3BloodStoolViewController.swift in Sources */,
+				CEDBAD2D274EDB990072093A /* PhoneSensorObject.swift in Sources */,
+				CEDBACED274ED9570072093A /* WebMoreInfoViewController.swift in Sources */,
+				CEDBACD5274ED9170072093A /* DocumentTableViewCell.swift in Sources */,
+				CEDBAD1B274EDB090072093A /* HeartRateData+CoreDataClass.swift in Sources */,
+				CEDBAD35274EDBB60072093A /* NotificationPermissionsLogic.swift in Sources */,
+				CEDBACE7274ED9440072093A /* AOKViewController.swift in Sources */,
+				CEDBAD25274EDB1F0072093A /* BloodOxygenData+CoreDataProperties.swift in Sources */,
+				CEDBACC3274ED7C10072093A /* SettingsSensorsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1259,7 +1519,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1314,7 +1574,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

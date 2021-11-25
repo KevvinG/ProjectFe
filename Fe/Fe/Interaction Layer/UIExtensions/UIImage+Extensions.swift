@@ -13,7 +13,7 @@ import UIKit
  //MARK: UIImage
  - Description: Extended method for image opacity
  -----------------------------------------------------------------------*/
-extension UIImage {
+public extension UIImage {
     
     /*--------------------------------------------------------------------
      //MARK: alpha()

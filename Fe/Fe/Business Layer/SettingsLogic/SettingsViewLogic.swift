@@ -12,7 +12,7 @@ import Foundation
  //MARK: Class SettingsViewLogic
  - Description: Holds logic for the Settings Screen.
  -----------------------------------------------------------------------*/
-class SettingsViewLogic {
+public class SettingsViewLogic {
     
     // Class Variables
     let FBObj = FirebaseAccessObject()

@@ -9,7 +9,7 @@
 import Foundation
 
 //MARK: Enum UserDefaultKeys
-enum UserDefaultKeys: String {
+public enum UserDefaultKeys: String {
     
     // Threshold values
     case hrThresholdLowKey

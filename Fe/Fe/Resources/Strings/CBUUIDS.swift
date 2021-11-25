@@ -5,12 +5,12 @@
 //  Created by Kevin Grzela on 2021-10-14.
 //
 
-import Foundation
-
+//MARK: Imports
 import Foundation
 import CoreBluetooth
 
-struct CBUUIDs{
+//MARK: CBUUIDs
+public struct CBUUIDs{
 
     static let kBLEService_UUID = "FFE0"
 //    static let kBLEService_UUID = "d69855f7-eeb5-0294-7545-2ce5408de60f"
