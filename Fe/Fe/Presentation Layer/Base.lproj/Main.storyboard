@@ -2334,20 +2334,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_document" id="rIB-mZ-29H" customClass="DocumentTableViewCell" customModule="Fe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="41"/>
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="41.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rIB-mZ-29H" id="oRC-t5-GNB">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyT-kL-KrN">
-                                            <rect key="frame" x="10" y="10" width="33" height="21"/>
+                                            <rect key="frame" x="10" y="10" width="33" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkt-ar-2W3">
-                                            <rect key="frame" x="368" y="10" width="36" height="21"/>
+                                            <rect key="frame" x="368" y="10" width="36" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -2422,10 +2422,10 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="757"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Uye-2Q-hRD">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3f-Sd-lGZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor Anomaly Notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWA-9W-2yH">
                                                         <rect key="frame" x="10" y="10" width="394" height="21.5"/>
@@ -2484,14 +2484,14 @@
                                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emergency Contact" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDa-gH-Z4i">
-                                                        <rect key="frame" x="10" y="235" width="394" height="21.5"/>
+                                                        <rect key="frame" x="10" y="350" width="394" height="21.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First and Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="1Q7-2V-Vlv">
-                                                        <rect key="frame" x="10" y="327.5" width="394" height="34"/>
+                                                        <rect key="frame" x="10" y="442.5" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="done" textContentType="name"/>
                                                         <connections>
@@ -2499,7 +2499,7 @@
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Emergency Contant Phone Number" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="pB0-zi-0vt">
-                                                        <rect key="frame" x="10" y="371.5" width="394" height="34"/>
+                                                        <rect key="frame" x="10" y="486.5" width="394" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="tel"/>
                                                         <connections>
@@ -2507,7 +2507,7 @@
                                                         </connections>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocB-mO-t1q">
-                                                        <rect key="frame" x="10" y="415.5" width="394" height="42"/>
+                                                        <rect key="frame" x="10" y="530.5" width="394" height="42"/>
                                                         <color key="backgroundColor" red="0.49416053300000001" green="0.05899881572" blue="0.050831951200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -2524,22 +2524,30 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send text to Emergency Contact when Anomaly Detected" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfE-sq-X4J">
-                                                        <rect key="frame" x="10" y="276.5" width="335" height="41"/>
+                                                        <rect key="frame" x="10" y="391.5" width="335" height="41"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xkH-11-0yd">
-                                                        <rect key="frame" x="355" y="286" width="51" height="31"/>
+                                                        <rect key="frame" x="355" y="401" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="swEmergencyContactStateChanged:" destination="wOC-5z-hqt" eventType="valueChanged" id="5Lq-IF-Viz"/>
                                                         </connections>
                                                     </switch>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="xsE-mF-Row">
+                                                        <rect key="frame" x="10" y="230" width="394" height="100"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="100" id="Iau-b5-v2t"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="onMedTimePickerChange:" destination="wOC-5z-hqt" eventType="valueChanged" id="GzT-Hx-FMy"/>
+                                                        </connections>
+                                                    </datePicker>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="500" id="1Uq-EW-bsI"/>
-                                                    <constraint firstItem="QDa-gH-Z4i" firstAttribute="top" secondItem="Xjf-mw-Clw" secondAttribute="bottom" constant="20.5" id="38j-Le-H4s"/>
+                                                    <constraint firstAttribute="height" constant="600" id="1Uq-EW-bsI"/>
                                                     <constraint firstItem="Xjf-mw-Clw" firstAttribute="top" secondItem="cj2-cF-7ha" secondAttribute="bottom" constant="20" id="4UL-7Z-VMf"/>
                                                     <constraint firstItem="l31-RB-t1y" firstAttribute="top" secondItem="Jya-iu-1nT" secondAttribute="bottom" constant="12.5" id="58V-x3-9mV"/>
                                                     <constraint firstItem="pB0-zi-0vt" firstAttribute="leading" secondItem="b3f-Sd-lGZ" secondAttribute="leading" constant="10" id="6lb-3X-58S"/>
@@ -2548,16 +2556,19 @@
                                                     <constraint firstAttribute="trailing" secondItem="VWA-9W-2yH" secondAttribute="trailing" constant="10" id="8U3-RW-y5O"/>
                                                     <constraint firstItem="4vy-Ye-tLp" firstAttribute="centerY" secondItem="l31-RB-t1y" secondAttribute="centerY" id="8YG-eF-VH0"/>
                                                     <constraint firstItem="sfE-sq-X4J" firstAttribute="top" secondItem="QDa-gH-Z4i" secondAttribute="bottom" constant="20" id="AHl-gD-3qW"/>
+                                                    <constraint firstItem="QDa-gH-Z4i" firstAttribute="top" secondItem="xsE-mF-Row" secondAttribute="bottom" constant="20" id="ASp-OA-I4A"/>
                                                     <constraint firstItem="Xjf-mw-Clw" firstAttribute="leading" secondItem="b3f-Sd-lGZ" secondAttribute="leading" constant="10" id="AtZ-Iu-Ubq"/>
                                                     <constraint firstItem="4vy-Ye-tLp" firstAttribute="leading" secondItem="cj2-cF-7ha" secondAttribute="leading" constant="-2" id="BK8-Fr-aoN"/>
                                                     <constraint firstItem="xkH-11-0yd" firstAttribute="leading" secondItem="sfE-sq-X4J" secondAttribute="trailing" constant="10" id="ERu-ih-Frh"/>
                                                     <constraint firstItem="Jya-iu-1nT" firstAttribute="leading" secondItem="gpX-QM-Unh" secondAttribute="trailing" constant="10" id="ETO-iJ-hds"/>
+                                                    <constraint firstItem="xsE-mF-Row" firstAttribute="top" secondItem="p4D-mN-Kum" secondAttribute="bottom" constant="15" id="Edv-Zx-Kf7"/>
                                                     <constraint firstItem="ocB-mO-t1q" firstAttribute="leading" secondItem="b3f-Sd-lGZ" secondAttribute="leading" constant="10" id="ItL-gE-uaj"/>
                                                     <constraint firstItem="QDa-gH-Z4i" firstAttribute="leading" secondItem="Xjf-mw-Clw" secondAttribute="leading" id="Qnu-VC-6KV"/>
                                                     <constraint firstAttribute="trailing" secondItem="1Q7-2V-Vlv" secondAttribute="trailing" constant="10" id="R64-Qz-27S"/>
                                                     <constraint firstItem="ocB-mO-t1q" firstAttribute="top" secondItem="pB0-zi-0vt" secondAttribute="bottom" constant="10" id="Tgz-Hm-RVr"/>
                                                     <constraint firstAttribute="trailing" secondItem="ocB-mO-t1q" secondAttribute="trailing" constant="10" id="UvO-Fs-wEE"/>
                                                     <constraint firstItem="VWA-9W-2yH" firstAttribute="top" secondItem="b3f-Sd-lGZ" secondAttribute="top" constant="10" id="WN2-I6-1Rh"/>
+                                                    <constraint firstItem="xsE-mF-Row" firstAttribute="leading" secondItem="b3f-Sd-lGZ" secondAttribute="leading" constant="10" id="bTi-bh-fsA"/>
                                                     <constraint firstItem="l31-RB-t1y" firstAttribute="leading" secondItem="Jya-iu-1nT" secondAttribute="leading" id="ddu-Vj-j2T"/>
                                                     <constraint firstItem="xkH-11-0yd" firstAttribute="top" secondItem="QDa-gH-Z4i" secondAttribute="bottom" constant="29.5" id="efL-oe-USC"/>
                                                     <constraint firstItem="cj2-cF-7ha" firstAttribute="leading" secondItem="b3f-Sd-lGZ" secondAttribute="leading" constant="10" id="fAN-E8-soc"/>
@@ -2575,6 +2586,7 @@
                                                     <constraint firstItem="gpX-QM-Unh" firstAttribute="leading" secondItem="b3f-Sd-lGZ" secondAttribute="leading" constant="10" id="uKf-Yy-t65"/>
                                                     <constraint firstAttribute="trailing" secondItem="xkH-11-0yd" secondAttribute="trailing" constant="10" id="uLf-pB-Epp"/>
                                                     <constraint firstItem="gpX-QM-Unh" firstAttribute="top" secondItem="VWA-9W-2yH" secondAttribute="bottom" constant="20" id="v1t-wz-ISL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xsE-mF-Row" secondAttribute="trailing" constant="10" id="xHL-TG-aur"/>
                                                     <constraint firstAttribute="trailing" secondItem="Jya-iu-1nT" secondAttribute="trailing" constant="10" id="y9K-KR-8Sx"/>
                                                     <constraint firstItem="QDa-gH-Z4i" firstAttribute="trailing" secondItem="p4D-mN-Kum" secondAttribute="trailing" id="zkD-XG-gL2"/>
                                                 </constraints>
@@ -2605,6 +2617,7 @@
                     <navigationItem key="navigationItem" title="Notification Settings" id="6PD-ep-cw8"/>
                     <connections>
                         <outlet property="btnUpdateEmergencyContact" destination="ocB-mO-t1q" id="lXt-xL-pgA"/>
+                        <outlet property="medicationTimePicker" destination="xsE-mF-Row" id="w5G-SR-qtE"/>
                         <outlet property="swBONotification" destination="l31-RB-t1y" id="pTR-yP-2wl"/>
                         <outlet property="swEmergencyContactState" destination="xkH-11-0yd" id="PRw-mQ-UoB"/>
                         <outlet property="swHRNotification" destination="Jya-iu-1nT" id="w4l-ve-YBd"/>

@@ -43,14 +43,26 @@ class NotificationPermissionsLogic {
     }
     
     /*--------------------------------------------------------------------
-     //MARK: setSwitchStateInUI()
+     //MARK: getSwitchStateForUI()
      - Description: Set on screen state of switch.
      -------------------------------------------------------------------*/
-    func setSwitchStateInUI(key: String) -> Bool {
+    func getSwitchStateForUI(key: String) -> Bool {
         if let switchValue = UserDefaults.standard.getSwitchState(key: key), switchValue {
             return true
         } else {
             return false
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: getTimeValueForUI()
+     - Description: Set on screen time for Time Picker.
+     -------------------------------------------------------------------*/
+    func getTimeValueForUI(key: String) -> String {
+        if let timeValue = UserDefaults.standard.getValue(key: key) {
+            return timeValue
+        } else {
+            return "12"
         }
     }
     
@@ -63,10 +75,19 @@ class NotificationPermissionsLogic {
     }
     
     /*--------------------------------------------------------------------
+     //MARK: updateValueStateinUserDefaults()
+     - Description: Updates current state of time value.
+     -------------------------------------------------------------------*/
+    func updateValueStateinUserDefaults(keyHour: String, valueHour: String, keyMinute: String, valueMinute: String) {
+        UserDefaults.standard.setValue(key: keyHour, value: valueHour)
+        UserDefaults.standard.setValue(key: keyMinute, value: valueMinute)
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: scheduleMedicationReminder()
      - Description: Set up reminder notification for medication.
      -------------------------------------------------------------------*/
-    func scheduleMedicationReminder() {
+    func scheduleMedicationReminder(hour: String, minute: String) {
         let content = UNMutableNotificationContent()
         content.title = "Medication Reminder"
         content.body = "Have you taken your medication today?"
@@ -75,8 +96,8 @@ class NotificationPermissionsLogic {
         
         // Configure the recurring date.
         var dateComponents = DateComponents()
-        dateComponents.hour = 8   // 8 AM
-        dateComponents.minute = 0 // 0 minutes
+        dateComponents.hour = Int(hour) ?? 8
+        dateComponents.minute = Int(minute) ?? 0
            
         // Create the trigger as a repeating event.
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)

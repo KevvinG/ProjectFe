@@ -26,6 +26,8 @@ class SettingsNotificationPermissionsViewController: UIViewController {
     @IBOutlet var txtEmergencyPhone: UITextField!
     @IBOutlet var swEmergencyContactState: UISwitch!
     @IBOutlet var btnUpdateEmergencyContact: UIButton!
+    @IBOutlet var medicationTimePicker: UIDatePicker!
+    
     
     /*--------------------------------------------------------------------
      //MARK: viewDidLoad()
@@ -36,10 +38,11 @@ class SettingsNotificationPermissionsViewController: UIViewController {
         self.getEmergencyContactData()
         self.setupTextFields()
         
-        swHRNotification.setOn(NotificationLogic.setSwitchStateInUI(key: UserDefaultKeys.swNotificationHRKey.description), animated: false)
-        swBONotification.setOn(NotificationLogic.setSwitchStateInUI(key: UserDefaultKeys.swNotificationBOKey.description), animated: false)
-        swMedicationReminder.setOn(NotificationLogic.setSwitchStateInUI(key: UserDefaultKeys.swNotificationMedicationReminderKey.description), animated: false)
-        swEmergencyContactState.setOn(NotificationLogic.setSwitchStateInUI(key: UserDefaultKeys.swNotifyEmergencyContactKey.description), animated: false)
+        swHRNotification.setOn(NotificationLogic.getSwitchStateForUI(key: UserDefaultKeys.swNotificationHRKey.description), animated: false)
+        swBONotification.setOn(NotificationLogic.getSwitchStateForUI(key: UserDefaultKeys.swNotificationBOKey.description), animated: false)
+        swMedicationReminder.setOn(NotificationLogic.getSwitchStateForUI(key: UserDefaultKeys.swNotificationMedicationReminderKey.description), animated: false)
+        setTimePickerValuesInUI()
+        swEmergencyContactState.setOn(NotificationLogic.getSwitchStateForUI(key: UserDefaultKeys.swNotifyEmergencyContactKey.description), animated: false)
         modifyUIState() // Set Emergency Contact switch and textfields
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
@@ -158,13 +161,65 @@ class SettingsNotificationPermissionsViewController: UIViewController {
             print("Med Reminder On - Scheduled task")
             NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: true)
             NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: "true")
-            NotificationLogic.scheduleMedicationReminder()
+            let (hour, minute) = getTimePickerValues()
+            NotificationLogic.scheduleMedicationReminder(hour: hour, minute: minute)
         } else {
             print("Med Reminder Off - Removed all tasks")
             NotificationLogic.updateSwitchStateinUserDefaults(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: false)
             NotificationLogic.updateSwitchInFB(key: UserDefaultKeys.swNotificationMedicationReminderKey.description, value: "false")
             NotificationLogic.cancelAllScheduledNotifications()
         }
+        modifyUIState()
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: onMedTimePickerChange()
+     - Description: update User Defaults for time when changed.
+     -------------------------------------------------------------------*/
+    @IBAction func onMedTimePickerChange(_ sender: Any) {
+        if swMedicationReminder.isOn {
+            setTimePickerValuesInUserDefaults()
+            NotificationLogic.cancelAllScheduledNotifications()
+            let (hour, minute) = getTimePickerValues()
+            NotificationLogic.scheduleMedicationReminder(hour: hour, minute: minute)
+        }
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: getTimePickerValues() -> (String, String)
+     - Description: get and return hour and minute from time picker.
+     -------------------------------------------------------------------*/
+    func getTimePickerValues() -> (String, String) {
+        let date = medicationTimePicker.date
+        let components = Calendar.current.dateComponents([.hour, .minute], from: date)
+        let hour = String(components.hour!)
+        let minute = String(components.minute!)
+        return (hour, minute)
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setTimePickerValuesInUserDefaults()
+     - Description: get hour and minute from time picker and set in UD.
+     -------------------------------------------------------------------*/
+    func setTimePickerValuesInUserDefaults() {
+        let (hour, minute) = getTimePickerValues()
+        let hourKey = UserDefaultKeys.medReminderPickerHourKey.description
+        let minuteKey = UserDefaultKeys.medReminderPickerMinuteKey.description
+        NotificationLogic.updateValueStateinUserDefaults(keyHour: hourKey, valueHour: hour, keyMinute: minuteKey, valueMinute: minute)
+    }
+    
+    /*--------------------------------------------------------------------
+     //MARK: setTimePickerValuesInUI()
+     - Description: Get Time from User Defaults and fill in Time Picker.
+     -------------------------------------------------------------------*/
+    func setTimePickerValuesInUI() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "HH:mm"
+        
+        let hour = NotificationLogic.getTimeValueForUI(key: UserDefaultKeys.medReminderPickerHourKey.description)
+        let minute = NotificationLogic.getTimeValueForUI(key: UserDefaultKeys.medReminderPickerMinuteKey.description)
+        let date = dateFormatter.date(from: "\(hour):\(minute)")
+        medicationTimePicker.date = date!
     }
     
     /*--------------------------------------------------------------------
@@ -205,6 +260,15 @@ class SettingsNotificationPermissionsViewController: UIViewController {
             self.txtEmergencyName.backgroundColor = UIColor.FeDisabledGrey
             self.txtEmergencyPhone.isEnabled = false
             self.txtEmergencyPhone.backgroundColor = UIColor.FeDisabledGrey
+        }
+        
+        // If Medication Reminder switch is off, disable time picker
+        if swMedicationReminder.isOn {
+            self.medicationTimePicker.isEnabled = true
+            self.medicationTimePicker.backgroundColor = UIColor.white
+        } else {
+            self.medicationTimePicker.isEnabled = false
+            self.medicationTimePicker.backgroundColor = UIColor.FeDisabledGrey
         }
     }
     
