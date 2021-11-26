@@ -148,7 +148,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnHR.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnHR.layer.shadowRadius = 5
         btnHR.layer.shadowOpacity = 1.0
-        let hrImage = UIImage(named: "heart.png")!.alpha(0.4)
+        let hrImage = UIImage(named: "heart.png")!.alpha(0.3)
         btnHR.setImage(hrImage, for: .normal)
         btnHR.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
@@ -157,7 +157,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnBldOx.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnBldOx.layer.shadowRadius = 5
         btnBldOx.layer.shadowOpacity = 1.0
-        let bldOxImage = UIImage(named: "red-blood-cells-1.png")!.alpha(0.4)
+        let bldOxImage = UIImage(named: "red-blood-cells-1.png")!.alpha(0.3)
         btnBldOx.setImage(bldOxImage, for: .normal)
         btnBldOx.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
@@ -166,7 +166,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         btnAlt.layer.shadowOffset = CGSize(width: 5, height: 5)
         btnAlt.layer.shadowRadius = 5
         btnAlt.layer.shadowOpacity = 1.0
-        let altImage = UIImage(named: "mountain.png")!.alpha(0.4)
+        let altImage = UIImage(named: "mountain.png")!.alpha(0.3)
         btnAlt.setImage(altImage, for: .normal)
         btnAlt.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         
@@ -319,7 +319,14 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     @objc func altTimerFire() {
         PhoneObj.startAltitudeUpdates()
         let airPressure = AltObj.fetchLatestPressureReading()
-        self.setAltitudeButtonValue(labelValue: "\(airPressure)")
+        
+        // Verify theree is a recent reading.
+        if airPressure == -1 {
+            self.setAltitudeButtonValue(labelValue: "-")
+            return
+        } else {
+            self.setAltitudeButtonValue(labelValue: "\(airPressure)")
+        }
         print("Air Pressure Timer Val: \(airPressure) hPa")
         
         let elevation = AltObj.fetchLatestElevationReading()
