@@ -9,7 +9,7 @@
 import Foundation
 
 //MARK: Enum ProjectKeys
-enum ProjectKeys: String {
+public enum ProjectKeys: String {
     
     //MARK: Login Screen
     case loginTitle = "Project Fe - Anemia Support"

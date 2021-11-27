@@ -9,7 +9,7 @@
 import Foundation
 
 //MARK: Enum UserDefaultKeys
-enum UserDefaultKeys: String {
+public enum UserDefaultKeys: String {
     
     // Threshold values
     case hrThresholdLowKey
@@ -25,6 +25,10 @@ enum UserDefaultKeys: String {
     case swNotificationHRKey
     case swNotificationBOKey
     case swNotificationMedicationReminderKey
+    
+    // Time Picker Keys
+    case medReminderPickerHourKey
+    case medReminderPickerMinuteKey
     
     var description: String {
         switch self {
@@ -49,7 +53,11 @@ enum UserDefaultKeys: String {
         case .swNotificationBOKey:
             return "Switch_Notification_Blood_Oxygen_State"
         case .swNotificationMedicationReminderKey:
-            return "Switch_Notification_Medication_Reminnder_State"
+            return "Switch_Notification_Medication_Reminder_State"
+        case .medReminderPickerHourKey:
+            return "Picker_Notification_Medication_Hour"
+        case .medReminderPickerMinuteKey:
+            return "Picker_Notification_Medication_Minute"
         }
     }
 }

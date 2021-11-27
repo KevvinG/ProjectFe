@@ -12,7 +12,7 @@ import Foundation
  //MARK: Class EditUserViewLogic
  - Description: Holds logic for the Edit User Screen.
  -----------------------------------------------------------------------*/
-class EditUserViewLogic {
+public class EditUserViewLogic {
     
     // Class Variables
     let FBObj = FirebaseAccessObject()

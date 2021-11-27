@@ -12,7 +12,7 @@ import UIKit
  //MARK: AOKViewController : UIViewController
  - Description: Holds logic for the Everything OK view controller.
  -----------------------------------------------------------------------*/
-class AOKViewController: UIViewController {
+public class AOKViewController: UIViewController {
     
     // Class Variables
     let QuestLogic = Questionnaire()
@@ -21,7 +21,7 @@ class AOKViewController: UIViewController {
      //MARK: viewDidLoad()
      - Description: Initialize some logic here if needed
      -------------------------------------------------------------------*/
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
     }
     

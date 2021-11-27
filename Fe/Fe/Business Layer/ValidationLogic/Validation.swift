@@ -12,7 +12,7 @@ import Foundation
  //MARK: validation
  - Description: Validation Functions for different inputs in the app.
  -----------------------------------------------------------------------*/
-class Validation {
+internal class Validation {
     
     /*--------------------------------------------------------------------
      //MARK: validateName()

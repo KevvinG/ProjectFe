@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 //MARK: ColorThemes for the Application
-extension UIColor {
+public extension UIColor {
 
     static var FeDisabledRed: UIColor { return UIColor(red: 125/255, green: 85/255, blue: 85/255, alpha: 1) }
     static var FeDisabledGrey: UIColor { return UIColor(red: 160/255, green: 160/255, blue: 160/255, alpha: 1) }
