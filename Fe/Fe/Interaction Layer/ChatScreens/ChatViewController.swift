@@ -31,7 +31,7 @@ class ChatViewController: UIViewController {
     func initAccount() {
         let kmUser = KMUser()
         kmUser.userId = Kommunicate.randomId()
-        kmUser.displayName = "Testing"
+        kmUser.displayName = "Fe User"
         kmUser.applicationId = "32910ca4e4b590d1347a448c8d553c94b"
         
         Kommunicate.registerUser(kmUser, completion: { [self]

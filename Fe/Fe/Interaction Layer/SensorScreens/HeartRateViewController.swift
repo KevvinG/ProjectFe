@@ -91,33 +91,25 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         var cdHRData = [HeartRateData]()
         var cdBPMData = [Double]()
         var cdDateData = [String]()
-        cdHRData = CDLogic.fetchHeartRateData()!
+        cdHRData = CDLogic.fetchHeartRateDataWithRange(dateRange: "day")!
         
         for item in cdHRData {
             let df = DateFormatter()
+            df.dateFormat = "hh:mm"
             cdDateData.append(df.string(from: item.dateTime))
+            print(df.string(from: item.dateTime))
             cdBPMData.append(Double(item.heartRate))
         }
         //if
-        
-//        HRLogic.fetchHrWithRange(dateRange : "day", completion: { [self] dateArray, bpmArray, bpmMax, bpmMin, bpmAvg in
             
-//        lineChartView.data = HRLogic.chartData(dataPoints: dateArray, values: bpmArray)
         lineChartView.data = HRLogic.chartData(dataPoints: cdDateData, values: cdBPMData)
-
-//        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
-        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: cdDateData)
-        lineChartView.xAxis.granularity = 0.05
         
+        let customFormatter = CustomFormatter()
+        customFormatter.labels = cdDateData
+        lineChartView.xAxis.valueFormatter = customFormatter
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.xAxis.drawGridLinesEnabled = false
-        //lineChartView.xAxis.labelRotationAngle = -30
-        lineChartView.xAxis.setLabelCount(6, force: false)
-        //lineChartView.backgroundColor = .systemRed
-        
-        //lineChartView.data?.setDrawValues(false)
         lineChartView.legend.enabled = false
-        
         lineChartView.animate(xAxisDuration: 2)
         
         // Set Current HR Value
@@ -146,6 +138,7 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         self.lblMinHR.text = minLabel
 //        })
     }
+    
     
     /*--------------------------------------------------------------------
      //MARK: populateChart(dateRange: String)

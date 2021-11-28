@@ -90,18 +90,21 @@ class BloodOxygenViewController: UIViewController {
         var cdBldOxData = [BloodOxygenData]()
         var cdSPO2Data = [Double]()
         var cdDateData = [String]()
-        cdBldOxData = CDLogic.fetchBloodOxygenData()!
+        cdBldOxData = CDLogic.fetchBloodOxygenDataWithRange(dateRange: "day")!
         
         for item in cdBldOxData {
             let df = DateFormatter()
+            df.dateFormat = "hh:mm"
             cdDateData.append(df.string(from: item.dateTime))
+            print(df.string(from: item.dateTime))
             cdSPO2Data.append(Double(item.bloodOxygen))
         }
             
         //Configure chart
         lineChartView.data = BldOxObj.chartData(dataPoints: cdDateData, values: cdSPO2Data)
-        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:cdDateData)
-        lineChartView.xAxis.granularity = 0.05
+        let customFormatter = CustomFormatter()
+        customFormatter.labels = cdDateData
+        lineChartView.xAxis.valueFormatter = customFormatter
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.xAxis.drawGridLinesEnabled = false
         lineChartView.xAxis.setLabelCount(6, force: false)
@@ -142,7 +145,9 @@ class BloodOxygenViewController: UIViewController {
         BldOxObj.fetchBloodOxWithRange(dateRange : "day", completion: { [self] dateArray, bldOxArray, bldOxMax, bldOxMin, bldOxAvg in
             
             lineChartView.data = BldOxObj.chartData(dataPoints: dateArray, values: bldOxArray)
-            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dateArray)
+            let customFormatter = CustomFormatter()
+            customFormatter.labels = dateArray
+            lineChartView.xAxis.valueFormatter = customFormatter
             lineChartView.xAxis.granularity = 0.05
             
             lineChartView.xAxis.labelPosition = .bottom

@@ -14,6 +14,7 @@ import UIKit
  //MARK: CoreDataAccessObject
  - Description: Access Core Data
  -----------------------------------------------------------------------*/
+
 class CoreDataAccessObject {
     
     // Class Variables
@@ -64,21 +65,62 @@ class CoreDataAccessObject {
      //MARK: fetchHeartRateDataWithRange()
      - Description:
      -------------------------------------------------------------------*/
-    func fetchHeartRateDataWithRange(dateRange: String) {
-        // Get the current calendar with local time zone
-        var calendar = Calendar.current
-        calendar.timeZone = NSTimeZone.local
+    func fetchHeartRateDataWithRange(dateRange: String) -> [HeartRateData]? {
+        let yesterday = Date().addingTimeInterval(-86400)
+        let fetchPredicate = NSPredicate(format: "dateTime > %@", yesterday as NSDate, #keyPath(HeartRateData.dateTime))
+        
+        var request = NSFetchRequest<HeartRateData>(entityName: "HeartRateData")
+        request.predicate = fetchPredicate
+        
+        do {
+            self.hrItems = try context.fetch(request)
+        } catch let error as NSError {
+            print("Heart Rate Data read failed: \(error.description)")
+        }
+        print(self.hrItems)
+        return self.hrItems
+    }//fetchheartRateDataWithRange
+    
+    /*--------------------------------------------------------------------
+     //MARK: setupTempValues()
+     - Description: Sets up testing data for when the device is unavailable.
+     -------------------------------------------------------------------*/
+    func setupTempValues() {
+        self.deleteAllHREntries()
+        var timeOffset = -18000
+        var initBPM = 58
+        var i = 0
+        while i<5 {
+            let newHRentry = HeartRateData(context: self.context)
+            newHRentry.dateTime = Date().addingTimeInterval(Double(timeOffset))
+            newHRentry.heartRate = Int64(initBPM)
+            saveContext(tableName: "HeartRateData")
+            initBPM = initBPM + 2
+            timeOffset = timeOffset + 3600
+            i+=1
+        }
+        let newHRentry = HeartRateData(context: self.context)
+        newHRentry.dateTime = Date()
+        newHRentry.heartRate = Int64(61)
+        saveContext(tableName: "HeartRateData")
 
-        // Get today's beginning & end
-        let dateFrom = calendar.startOfDay(for: Date()) // eg. 2016-10-10 00:00:00
-        let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)
-        // Note: Times are printed in UTC. Depending on where you live it won't print 00:00:00 but it will work with UTC times which can be converted to local time
-
-        // Set predicate as date being today's date
-        let fromPredicate = NSPredicate(format: "%@ >= %K", dateFrom as NSDate, #keyPath(HeartRateData.dateTime))
-        let toPredicate = NSPredicate(format: "%K < %@", #keyPath(HeartRateData.dateTime), dateTo! as NSDate)
-        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
-//        fetchRequest.predicate = datePredicate
+        self.deleteAllBloodOxygenEntries()
+        timeOffset = -18000
+        var initO2 = 99
+        i = 0
+        while i<5 {
+            let newO2entry = BloodOxygenData(context: self.context)
+            newO2entry.bloodOxygen = Int64(initO2)
+            newO2entry.dateTime = Date().addingTimeInterval(Double(timeOffset))
+            saveContext(tableName: "BloodOxygenData")
+            initO2 = initO2 - 1
+            timeOffset = timeOffset + 3600
+            i+=1
+        }
+        let newO2entry = BloodOxygenData(context: self.context)
+        newO2entry.dateTime = Date()
+        newO2entry.bloodOxygen = Int64(98)
+        saveContext(tableName: "BloodOxygenData")
     }
     
     /*--------------------------------------------------------------------
@@ -177,19 +219,20 @@ class CoreDataAccessObject {
      //MARK: fetchBloodOxygenData()
      - Description: Fetch Blood Oxygen from table (only today's data).
      -------------------------------------------------------------------*/
-    func fetchBloodOxygenData() -> [BloodOxygenData]? {
+    func fetchBloodOxygenDataWithRange(dateRange: String) -> [BloodOxygenData]? {
+        let yesterday = Date().addingTimeInterval(-89400)
+        let fetchPredicate = NSPredicate(format: "dateTime > %@", yesterday as NSDate, #keyPath(BloodOxygenData.dateTime))
+        
+        var request = NSFetchRequest<BloodOxygenData>(entityName: "BloodOxygenData")
+        request.predicate = fetchPredicate
+        
         do {
-            let today = Date()
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "mm.dd"
-            //Filtering for today is not working, needs to be reworked
-            self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest())
-//            self.bldOxItems = try context.fetch(BloodOxygenData.fetchRequest()).filter( { dateFormatter.string(from: $0.dateTime) == dateFormatter.string(from: today) } )
+            self.bldOxItems = try context.fetch(request)
         } catch let error as NSError{
             print("BloodOxygenData Read Fetch Failed: \(error.description)")
         }
         return self.bldOxItems
-    }
+    }//fetchBloodOxygenDataWithRange
     
     /*--------------------------------------------------------------------
      //MARK: fetchbloodOxygenDataForAnalysis()

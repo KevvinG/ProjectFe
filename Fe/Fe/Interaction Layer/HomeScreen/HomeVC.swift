@@ -11,6 +11,7 @@ import CoreLocation
 import CoreMotion
 import CoreData
 import CoreBluetooth
+import Kommunicate
 
 /*------------------------------------------------------------------------
  //MARK: HomeVC : UIViewController
@@ -55,8 +56,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         centralManager = CBCentralManager(delegate: self, queue: nil)
 
         /*MARK: Developer temp data*/
-        CDObj.createHeartRateTableEntry(hrValue: "98")
-        CDObj.createBloodOxygenTableEntry(bloodOxValue: 99)
+        CDObj.setupTempValues()
 
 //        HSLogic.homeScreenSetup() // Setup options once logged in.
 
@@ -338,7 +338,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         let elevation = AltObj.fetchLatestElevationReading()
         print("Elevation Timer Val: \(elevation) meters")
         PhoneObj.stopAltitudeUpdates()
-    }
+    }//altTimerFire
 
     /*--------------------------------------------------------------------
      //MARK: HRTimerfire()
@@ -368,7 +368,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             self.lblHeartRateValue.textColor = UIColor.FeButtonGreen
         }
         print("HR Timer Val: \(hrVal) BPM")
-    }
+    }//hrTimerFire
 
     /*--------------------------------------------------------------------
      //MARK: BloodOxTimerfire()
@@ -398,7 +398,42 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             self.lblBloodOxygenValue.textColor = UIColor.FeButtonGreen
         }
         print("Blood Ox Timer Val: \(bloodOxygen) %")
-    }
+    }//bloodOxTimerFire
+    
+    /*--------------------------------------------------------------------
+     //MARK: initAccount()
+     - Description: Prepares the user for conversation
+     -------------------------------------------------------------------*/
+    func initAccount() {
+        let kmUser = KMUser()
+        kmUser.userId = Kommunicate.randomId()
+        kmUser.displayName = "Fe User"
+        kmUser.applicationId = "32910ca4e4b590d1347a448c8d553c94b"
+        
+        Kommunicate.registerUser(kmUser, completion: { [self]
+            response, error in guard error == nil else {return}
+            print ("login success")
+            startConversation()
+        })//registerUser
+    }//initAccount
+    
+    /*--------------------------------------------------------------------
+     //MARK: startConversation()
+     - Description: Initializes and begins the conversation with the chatbot
+     -------------------------------------------------------------------*/
+    func startConversation() {
+        Kommunicate.defaultConfiguration.hideFaqButtonInConversationList = true // Hide from Conversation List screen
+        Kommunicate.defaultConfiguration.hideFaqButtonInConversationView = true // Hide from Conversation screen
+        Kommunicate.defaultConfiguration.chatBar.optionsToShow = .none
+        Kommunicate.defaultConfiguration.hideAudioOptionInChatBar = true
+        Kommunicate.createAndShowConversation(from: self) { error in
+            guard error == nil else {
+                print("Conversation error: \(error.debugDescription)")
+                return
+            }//guard
+            //Success
+        }//createAndShowConversation
+    }//startConversation
 
     /*--------------------------------------------------------------------
      //MARK: setWelcomeTitle()
@@ -485,8 +520,9 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
      - Description: Segue to Chatbot Screen
      -------------------------------------------------------------------*/
     @IBAction func btnChatbotTapped(_ sender: Any) {
-        performSegue(withIdentifier: "GoToChatbotScreen", sender: self)
-        print("Chatbot button pressed")
+//        performSegue(withIdentifier: "GoToChatbotScreen", sender: self)
+//        print("Chatbot button pressed")
+        initAccount()
     }
 
     /*--------------------------------------------------------------------

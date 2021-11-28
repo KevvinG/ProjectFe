@@ -58,13 +58,16 @@ class AltitudeViewController: UIViewController {
         
         for item in cdAPData {
             let df = DateFormatter()
+            df.dateFormat = "hh:mm"
             cdDateData.append(df.string(from: item.dateTime))
             cdAirPressureData.append(Double(item.airPressure))
         }
         
         //Configure chart data
         apLineChart.data = AltLogic.chartData(dataPoints: cdDateData, values: cdAirPressureData)
-        apLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: cdDateData)
+        let customFormatter = CustomFormatter()
+        customFormatter.labels = cdDateData
+        apLineChart.xAxis.valueFormatter = customFormatter
         apLineChart.xAxis.granularity = 0.05
         apLineChart.xAxis.labelPosition = .bottom
         apLineChart.xAxis.drawGridLinesEnabled = false
@@ -111,13 +114,16 @@ class AltitudeViewController: UIViewController {
         
         for item in cdElevationData {
             let df = DateFormatter()
+            df.dateFormat = "hh:mm"
             cdDateData.append(df.string(from: item.dateTime))
             cdEleData.append(Double(item.elevation))
         }
         
         //Configure chart
         elevationLineChart.data = AltLogic.chartData(dataPoints: cdDateData, values: cdEleData)
-        elevationLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: cdDateData)
+        let customFormatter = CustomFormatter()
+        customFormatter.labels = cdDateData
+        elevationLineChart.xAxis.valueFormatter = customFormatter
         elevationLineChart.xAxis.granularity = 0.05
         elevationLineChart.xAxis.labelPosition = .bottom
         elevationLineChart.xAxis.drawGridLinesEnabled = false

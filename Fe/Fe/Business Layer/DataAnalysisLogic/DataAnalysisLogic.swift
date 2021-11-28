@@ -117,7 +117,7 @@ class DataAnalysisLogic {
                 emergencySwitch = String(emergencySwitchState!)
             }
             
-            if let bloodOxygenData = self.CDObj.fetchBloodOxygenData(), !bloodOxygenData.isEmpty {
+            if let bloodOxygenData = self.CDObj.fetchBloodOxygenDataWithRange(dateRange: "day"), !bloodOxygenData.isEmpty {
             
                 // Encode data to send
                 let encoder = JSONEncoder()

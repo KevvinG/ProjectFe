@@ -95,7 +95,10 @@ class HeartRateLogic {
         })
     }
     
-    
+    /*--------------------------------------------------------------------
+     //MARK: fetchHrWithRangeCD
+     - Description: CoreData fetching of data with a range
+     -------------------------------------------------------------------*/
    func fetchHrWithRangeCD(dateRange: String, completion: @escaping (_ dateArray: [String], _ bpmArray: [Double], _ maxBPM: Int, _ minBPM: Int, _ avgBPM: Int) -> Void) {
        CDObj.getHrChartData(dateRange: dateRange, completion: { bpmDict in
            DispatchQueue.main.async {
