@@ -70,6 +70,7 @@ class SettingsViewController: UIViewController {
         // Set up log out action and check for errors
         let logOutAction = UIAlertAction(title: "Log Out", style: .destructive ) { action in
             self.settingsLogic.logOut()
+            NotificationCenter.default.post(name: Notification.Name("StopTimerNotification"), object: nil)
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let startViewController = storyBoard.instantiateViewController(withIdentifier: "StartScreen") as! StartViewController
             startViewController.modalPresentationStyle = .fullScreen

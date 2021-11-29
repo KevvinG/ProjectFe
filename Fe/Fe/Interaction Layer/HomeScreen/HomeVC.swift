@@ -28,6 +28,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     let DAObj = DataAnalysisLogic()
     let CDObj = CoreDataAccessObject()
     let PhoneObj = PhoneSensorObject()
+    var timer: CustomTimer?
     let locationManager = CLLocationManager()
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral!
@@ -111,7 +112,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         }
 
         // Timer
-        let timer = CustomTimer { (seconds) in
+        timer = CustomTimer { (seconds) in
 
             if seconds % 300 == 0 { // Fire every 5 minutes (300 seconds)
                 if let hrNotificationSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), hrNotificationSwitchState {
@@ -139,9 +140,14 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
                 }
             }
         }
-        timer.start()
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeVC.stopTimerNotification), name: Notification.Name("StopTimerNotification"), object: nil)
+        timer?.start()
 
         setupButtonUI()
+    }
+    
+    @objc func stopTimerNotification(notification: NSNotification) {
+        timer?.stop()
     }
 
     /*--------------------------------------------------------------------
