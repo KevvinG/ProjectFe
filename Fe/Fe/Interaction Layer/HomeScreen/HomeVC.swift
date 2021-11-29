@@ -56,7 +56,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         centralManager = CBCentralManager(delegate: self, queue: nil)
 
         /*MARK: Developer temp data*/
-        CDObj.setupTempValues()
+//        CDObj.setupTempValues()
 
 //        HSLogic.homeScreenSetup() // Setup options once logged in.
 

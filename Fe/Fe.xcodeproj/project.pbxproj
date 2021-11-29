@@ -1589,7 +1589,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fe/Fe.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				INFOPLIST_FILE = Fe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1717,7 +1717,7 @@
 					"-weak_framework",
 					"\"UserNotifications\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1734,7 +1734,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fe/FeRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				INFOPLIST_FILE = Fe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1976,11 +1976,11 @@
 				CODE_SIGN_ENTITLEMENTS = "Fe-Mini/Fe-MiniDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/functions/*";
 				IBSC_MODULE = Fe_Mini_Extension;
 				INFOPLIST_FILE = "Fe-Mini/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -1999,11 +1999,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/functions/*";
 				IBSC_MODULE = Fe_Mini_Extension;
 				INFOPLIST_FILE = "Fe-Mini/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2020,14 +2020,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Fe-Mini Extension/Fe-Mini Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				INFOPLIST_FILE = "Fe-Mini Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -2044,14 +2044,14 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Fe-Mini Extension/Fe-Mini Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R65VE73FD;
+				DEVELOPMENT_TEAM = X46PTT568J;
 				INFOPLIST_FILE = "Fe-Mini Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe5.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.KJHealthCare.Fe3.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
