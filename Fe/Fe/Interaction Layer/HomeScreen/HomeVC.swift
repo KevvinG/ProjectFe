@@ -12,6 +12,7 @@ import CoreMotion
 import CoreData
 import CoreBluetooth
 import Kommunicate
+import AVFoundation
 
 /*------------------------------------------------------------------------
  //MARK: HomeVC : UIViewController
@@ -34,6 +35,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
     private var peripheral: CBPeripheral!
     var txCharacteristic: CBCharacteristic!
     var rxCharacteristic: CBCharacteristic!
+    var silence: AVAudioPlayer? = nil // HACK FOR BACKGROUND
 
     // UI Variables
     @IBOutlet var btnHR: UIButton!
@@ -112,8 +114,21 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         }
 
         // Timer
+        /** This is a Dirty hack to keep the app running in the background permantently **/
+        let path = Bundle.main.path(forResource:"silence", ofType: "mp3")
+        let url = URL(fileURLWithPath: path!)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            try AVAudioSession.sharedInstance().setActive(true)
+            silence = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            print(error)
+        }
+        silence?.numberOfLoops = -1
+        silence?.play() // HACK FOR BACKGROUND
+        
+        // Actual Timer
         timer = CustomTimer { (seconds) in
-
             if seconds % 300 == 0 { // Fire every 5 minutes (300 seconds)
                 if let hrNotificationSwitchState = UserDefaults.standard.getSwitchState(key: UserDefaultKeys.swNotificationHRKey.description), hrNotificationSwitchState {
                     self.DAObj.analyzeHeartRateData()
