@@ -12,13 +12,22 @@ import Firebase
 import GoogleSignIn
 import UserNotifications
 import Kommunicate
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
-
-
+    //MARK: DidFinishLaunchingWithOptions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        do { // FOR BACKGROOUND HACK
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.mixWithOthers, .allowAirPlay])
+            try AVAudioSession.sharedInstance().setActive(true)
+            print("Session is Active")
+        } catch {
+            print(error)
+        } // FOR BACKGROOUND HACK
+        
         // Override point for customization after application launch.
         FirebaseApp.configure()
         WatchKitConnection.shared.startSession()
@@ -48,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    // Notify if token changes
+    //MARK: messaging - Receive Reg Token
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
 //      print("Firebase registration token: \(String(describing: fcmToken))")
 
@@ -62,26 +71,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FirebaseAccessObject().updateUserMessagingToken(fcmToken: fcmToken!)
     }
     
+    //MARK: App - ReceiveRemoteNotif
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult)
                        -> Void) {
-      // If you are receiving a notification message while your app is in the background,
-      // this callback will not be fired till the user taps on the notification launching the application.
-      // TODO: Handle data of notification
-
-      // With swizzling disabled you must let Messaging know about the message, for Analytics
-      // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-      // Print message ID.
-//      if let messageID = userInfo[gcmMessageIDKey] {
-//        print("Message ID: \(messageID)")
-//      }
-
       // Print full message.
       print(userInfo)
 
       completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        
     }
 
     
@@ -92,9 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                   -> Void) {
       let userInfo = notification.request.content.userInfo
 
-      // ...
-        
-      // Print full message.
       print(userInfo)
 
       // Change this to your preferred presentation option
@@ -106,9 +105,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
       let userInfo = response.notification.request.content.userInfo
 
-      // ...
-
-      // Print full message.
       print(userInfo)
 
       completionHandler()
@@ -159,7 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - Core Data Saving support
 
-    func saveContext () {
+    func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -172,5 +168,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
-
 }

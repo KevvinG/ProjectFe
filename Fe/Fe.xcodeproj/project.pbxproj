@@ -196,6 +196,9 @@
 		CEDBAD39274EDC070072093A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01C2DA25D438D100A08E2D /* SceneDelegate.swift */; };
 		CEDBAD3A274EDD760072093A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE01C2DE25D438D100A08E2D /* Main.storyboard */; };
 		CEDBAD3B274EDD780072093A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE01C2DE25D438D100A08E2D /* Main.storyboard */; };
+		CEDBAD3E2755A6820072093A /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEDBAD3D2755A6820072093A /* silence.mp3 */; };
+		CEDBAD3F2755A6830072093A /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEDBAD3D2755A6820072093A /* silence.mp3 */; };
+		CEDBAD402755A6830072093A /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEDBAD3D2755A6820072093A /* silence.mp3 */; };
 		CEE9E4BE26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */; };
 		EF2544F0261F22E900069308 /* HKAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2544EF261F22E800069308 /* HKAccessObject.swift */; };
 		EF9168E326256F0F00DCCEEC /* WatchKitConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9168E226256F0F00DCCEEC /* WatchKitConnection.swift */; };
@@ -358,6 +361,7 @@
 		CEDBACAE274564AD0072093A /* SocialAndGamificationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAndGamificationLogic.swift; sourceTree = "<group>"; };
 		CEDBACB1274E88BD0072093A /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		CEDBACB6274EAA770072093A /* EditUserViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewControllerTests.swift; sourceTree = "<group>"; };
+		CEDBAD3D2755A6820072093A /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		CEE9E4BD26F2CA9D001BA3C8 /* CodingUserInfoKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKeyExtension.swift; sourceTree = "<group>"; };
 		CF59E0BD864FAB9BDA52346F /* Pods_Fe_FeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fe_FeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2544EF261F22E800069308 /* HKAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKAccessObject.swift; sourceTree = "<group>"; };
@@ -736,6 +740,7 @@
 		CE9DD33E2680DD9400D9D026 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEDBAD3C2755A6630072093A /* Sounds */,
 				CE5E232F26EB8F1B00C0360D /* Themes */,
 				CE9DD33F2680DD9F00D9D026 /* Strings */,
 			);
@@ -782,6 +787,14 @@
 				CEDBACB1274E88BD0072093A /* UIImage+Extensions.swift */,
 			);
 			path = UIExtensions;
+			sourceTree = "<group>";
+		};
+		CEDBAD3C2755A6630072093A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				CEDBAD3D2755A6820072093A /* silence.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		CEE9E4BB26EC3FE3001BA3C8 /* Device Layer */ = {
@@ -997,6 +1010,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDBAD3E2755A6820072093A /* silence.mp3 in Resources */,
 				CE01C2E825D438D100A08E2D /* LaunchScreen.storyboard in Resources */,
 				CE082756262A96EE00558A32 /* GoogleService-Info.plist in Resources */,
 				CE01C2E525D438D100A08E2D /* Assets.xcassets in Resources */,
@@ -1008,6 +1022,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDBAD3F2755A6830072093A /* silence.mp3 in Resources */,
 				CEDBAD3A274EDD760072093A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1016,6 +1031,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDBAD402755A6830072093A /* silence.mp3 in Resources */,
 				CEDBAD3B274EDD780072093A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
