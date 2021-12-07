@@ -43,7 +43,7 @@ class BloodOxygenViewController: UIViewController {
         setupTextFields()
         getUserBldOxThresholds()
         
-        initChart()
+        asyncChartInitHelper()
         
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapChart))
         self.lineChartView.addGestureRecognizer(gesture)
@@ -82,15 +82,31 @@ class BloodOxygenViewController: UIViewController {
     }
     
     /*--------------------------------------------------------------------
+     //MARK: asyncChartInitHelper()
+     - Description: Asynchronous chart helper
+     -------------------------------------------------------------------*/
+    
+    func asyncChartInitHelper() {
+        var cdSPO2Data = [BloodOxygenData]()
+
+        DispatchQueue.global(qos: .background).async {
+            cdSPO2Data = self.CDLogic.fetchBloodOxygenDataWithRange(dateRange: "day")!
+            DispatchQueue.main.async {
+                self.initChart(bldOxData: cdSPO2Data)
+            }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: initChart()
      - Description: Code to inialize and load chart data
      -------------------------------------------------------------------*/
-    func initChart() {
-        
-        var cdBldOxData = [BloodOxygenData]()
+    func initChart(bldOxData: [BloodOxygenData]) {
+
+        let cdBldOxData = bldOxData
         var cdSPO2Data = [Double]()
         var cdDateData = [String]()
-        cdBldOxData = CDLogic.fetchBloodOxygenDataWithRange(dateRange: "day")!
+       // cdBldOxData = CDLogic.fetchBloodOxygenDataWithRange(dateRange: "day")!
         
         for item in cdBldOxData {
             let df = DateFormatter()

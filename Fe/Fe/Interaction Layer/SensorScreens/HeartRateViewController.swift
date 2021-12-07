@@ -40,10 +40,10 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         txtLowHrThreshold.delegate = self
         txtHighHrThreshold.returnKeyType = .done
         txtHighHrThreshold.delegate = self
+        
         setupTextFields()
         getUserHrThresholds()
-        
-        initChart()
+        asyncChartInitHelper()
         
         //Setup tap handling on chart
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapChart))
@@ -83,15 +83,32 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
     }
     
     /*--------------------------------------------------------------------
+     //MARK: asyncChartInitHelper()
+     - Description: Asynchronous chart helper
+     -------------------------------------------------------------------*/
+    
+    func asyncChartInitHelper() {
+        var cdHRData = [HeartRateData]()
+
+        DispatchQueue.global(qos: .background).async {
+            cdHRData = self.CDLogic.fetchHeartRateDataWithRange(dateRange: "day")!
+            DispatchQueue.main.async {
+                self.initChart(hrData: cdHRData)
+            }
+        }
+    }
+    
+    /*--------------------------------------------------------------------
      //MARK: initChart()
      - Description: Initializes chart with data
      -------------------------------------------------------------------*/
-    func initChart() {
+    func initChart(hrData: [HeartRateData]) {
         
-        var cdHRData = [HeartRateData]()
+        let cdHRData = hrData
         var cdBPMData = [Double]()
         var cdDateData = [String]()
-        cdHRData = CDLogic.fetchHeartRateDataWithRange(dateRange: "day")!
+        
+
         
         for item in cdHRData {
             let df = DateFormatter()
