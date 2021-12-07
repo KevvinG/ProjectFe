@@ -10,6 +10,9 @@ GND - GND
 #include <Wire.h>
 #include "MAX30105.h"
 #include "spo2_algorithm.h"
+#include "SoftwareSerial.h"
+
+SoftwareSerial mySerial (2,3);
 
 MAX30105 particleSensor;
 
@@ -104,7 +107,14 @@ void loop()
 
     }
 
-    //After gathering 25 new samples recalculate HR and SP02
+    //After gathering 25 new samples recalculate HR and SP02 and push to iOS Device
+    if (validHeartRate == 1 && validSPO2 == 1) {
+      String outputStr = heartRate + "," + spo2;
+      int str_len = outputStr.length() + 1;
+      char s[str_len];
+      outputStr.toCharArray(s, str_len);
+      mySerial.write(s);
+    }
     maxim_heart_rate_and_oxygen_saturation(irBuffer, 50, redBuffer, &spo2, &validSPO2, &heartRate, &validHeartRate);
   }
 }
