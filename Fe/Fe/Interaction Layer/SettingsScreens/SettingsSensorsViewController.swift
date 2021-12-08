@@ -42,14 +42,12 @@ class SettingsSensorsViewController: UIViewController, CLLocationManagerDelegate
      -------------------------------------------------------------------*/
     @IBAction func swAltimeterStateChanged(_ sender: Any) {
         if swAltimeter.isOn {
-            print("Altimeter Switch is on.")
             AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swAltimeterSensorKey.description, value: true)
             AppLogic.updateSwitchInFB(key: UserDefaultKeys.swAltimeterSensorKey.description, value: "true")
             locationManager = CLLocationManager()
             locationManager?.delegate = self
             locationManager?.requestAlwaysAuthorization()
         } else {
-            print("Altimeter Switch is off.")
             AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swAltimeterSensorKey.description, value: false)
             AppLogic.updateSwitchInFB(key: UserDefaultKeys.swAltimeterSensorKey.description, value: "false")
         }
@@ -61,11 +59,9 @@ class SettingsSensorsViewController: UIViewController, CLLocationManagerDelegate
      -------------------------------------------------------------------*/
     @IBAction func swHeartRateStateChanged(_ sender: Any) {
         if swHeartRate.isOn {
-            print("Heart Rate Switch is on.")
             AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swHeartRateSensorKey.description, value: true)
             AppLogic.updateSwitchInFB(key: UserDefaultKeys.swHeartRateSensorKey.description, value: "true")
         } else {
-            print("Heart Rate Switch is off.")
             AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swHeartRateSensorKey.description, value: false)
             AppLogic.updateSwitchInFB(key: UserDefaultKeys.swHeartRateSensorKey.description, value: "false")
         }
@@ -77,11 +73,9 @@ class SettingsSensorsViewController: UIViewController, CLLocationManagerDelegate
      -------------------------------------------------------------------*/
     @IBAction func swBloodOxStateChanged(_ sender: Any) {
         if swBloodOxygen.isOn {
-            print("Blood Oxygen Switch is on.")
             AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: true)
             AppLogic.updateSwitchInFB(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: "true")
         } else {
-            print("Blood Oxygen Switch is off.")
             AppLogic.updateSwitchInUserDefaults(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: false)
             AppLogic.updateSwitchInFB(key: UserDefaultKeys.swBloodOxygenSensorKey.description, value: "false")
         }

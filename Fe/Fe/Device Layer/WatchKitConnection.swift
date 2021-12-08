@@ -11,7 +11,7 @@ import WatchConnectivity
 
 /*------------------------------------------------------------------------
  //MARK: WatchKitConnectionDelegate : class
- - Description:
+ - Description: Connection for Apple Watch
  -----------------------------------------------------------------------*/
 protocol WatchKitConnectionDelegate: AnyObject {
     func didFinishedActiveSession()
@@ -97,7 +97,7 @@ extension WatchKitConnection: WatchKitConnectionProtocol {
 }
 
 /*------------------------------------------------------------------------
- //MARK: WatchKitConnection : WCSessionDelegate
+ //MARK: WatchKitConnection: WCSessionDelegate
  - Description:
  -----------------------------------------------------------------------*/
 extension WatchKitConnection: WCSessionDelegate {

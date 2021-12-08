@@ -86,7 +86,6 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
      //MARK: asyncChartInitHelper()
      - Description: Asynchronous chart helper
      -------------------------------------------------------------------*/
-    
     func asyncChartInitHelper() {
         var cdHRData = [HeartRateData]()
 
@@ -108,8 +107,6 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         var cdBPMData = [Double]()
         var cdDateData = [String]()
         
-
-        
         for item in cdHRData {
             let df = DateFormatter()
             df.dateFormat = "hh:mm"
@@ -117,7 +114,6 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
             print(df.string(from: item.dateTime))
             cdBPMData.append(Double(item.heartRate))
         }
-        //if
             
         lineChartView.data = HRLogic.chartData(dataPoints: cdDateData, values: cdBPMData)
         
@@ -153,7 +149,6 @@ class HeartRateViewController: UIViewController, ChartViewDelegate {
         // Set Min BPM
         let minLabel = bpmMin == -1 ? "- BPM" : "\(String(bpmMin)) BPM"
         self.lblMinHR.text = minLabel
-//        })
     }
     
     

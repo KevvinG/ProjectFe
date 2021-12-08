@@ -70,10 +70,8 @@ class HeartRateLogic {
                 for element in testDict {
                     if i % outputSpacing != 0 {
                         testDict.removeValue(forKey: element.key)
-                        print("Item removed")
                     }
                     i+=1
-                    print(i)
                 }
                 let dateArray = Array(testDict.keys)
                 var newDateArray : [String] = []
@@ -89,7 +87,6 @@ class HeartRateLogic {
                 if count > 0 {
                     bpmAvg = sum / count
                 }
-                
                 completion(newDateArray, bpmArray, bpmMax, bpmMin, bpmAvg)
             }
         })
@@ -112,10 +109,8 @@ class HeartRateLogic {
                for element in testDict {
                    if i % outputSpacing != 0 {
                        testDict.removeValue(forKey: element.key)
-                       print("Item removed")
                    }
                    i+=1
-                   print(i)
                }
                let dateArray = Array(testDict.keys)
                var newDateArray : [String] = []
@@ -131,7 +126,6 @@ class HeartRateLogic {
                if count > 0 {
                    bpmAvg = sum / count
                }
-               
                completion(newDateArray, bpmArray, bpmMax, bpmMin, bpmAvg)
            }
        })
@@ -152,7 +146,6 @@ class HeartRateLogic {
         }
         
         let currentDate = Date()
-        // Convert Date to String
         return dateFormatter.string(from: formatDate ?? currentDate)
         }
     

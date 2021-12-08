@@ -9,6 +9,10 @@
 import Foundation
 import CoreBluetooth
 
+/*------------------------------------------------------------------------
+ //MARK: struct CBUUIDs
+ - Description: struct for bluetooth device IDs.
+ -----------------------------------------------------------------------*/
 //MARK: CBUUIDs
 public struct CBUUIDs{
 

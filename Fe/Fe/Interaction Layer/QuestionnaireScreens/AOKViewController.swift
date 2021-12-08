@@ -49,5 +49,4 @@ public class AOKViewController: UIViewController {
     @IBAction func returnBtnTapped(_ sender: UIButton) {
         navigationController?.popToRootViewController(animated: false)
     }
-    
 }

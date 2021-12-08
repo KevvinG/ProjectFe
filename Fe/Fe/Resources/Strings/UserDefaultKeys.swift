@@ -8,6 +8,10 @@
 //MARK: Imports
 import Foundation
 
+/*------------------------------------------------------------------------
+ //MARK: enum UserDefaultKeys
+ - Description: Holds keys for local persistence.
+ -----------------------------------------------------------------------*/
 //MARK: Enum UserDefaultKeys
 public enum UserDefaultKeys: String {
     

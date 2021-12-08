@@ -49,5 +49,4 @@ class CallDoctorViewController: UIViewController {
     @IBAction func returnBtnTapped(_ sender: UIButton) {
         navigationController?.popToRootViewController(animated: false)
     }
-    
 }

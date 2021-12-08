@@ -5,9 +5,14 @@
 //  Created by Kevin Grzela on 2021-10-15.
 //
 
+//MARK: Imports
 import Foundation
 import CoreBluetooth
 
+/*--------------------------------------------------------------------
+ //MARK: SensorDevicePackage: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate
+ - Description: class for connecting sensor device to mobile phone.
+ -------------------------------------------------------------------*/
 class SensorDevicePackage: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate {
     let CDObj = CoreDataAccessObject()
     private var centralManager: CBCentralManager!
@@ -15,6 +20,10 @@ class SensorDevicePackage: NSObject, CBPeripheralDelegate, CBCentralManagerDeleg
     var txCharacteristic: CBCharacteristic!
     var rxCharacteristic: CBCharacteristic!
     
+    /*--------------------------------------------------------------------
+     //MARK: init()
+     - Description: initializer
+     -------------------------------------------------------------------*/
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
@@ -116,7 +125,7 @@ class SensorDevicePackage: NSObject, CBPeripheralDelegate, CBCentralManagerDeleg
 
           characteristicASCIIValue = ASCIIstring
 
-        print("Value Recieved: \((characteristicASCIIValue as String))")
+//        print("Value Recieved: \((characteristicASCIIValue as String))")
 
         let input = characteristicASCIIValue as String
 
@@ -124,14 +133,13 @@ class SensorDevicePackage: NSObject, CBPeripheralDelegate, CBCentralManagerDeleg
         print(splitInput)
         if splitInput.count == 2 {
             if let number = Int(splitInput[0].components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
-                print("HR value \(number)")
+//                print("HR value \(number)")
                     CDObj.createHeartRateTableEntry(hrValue: String(number))
             }
             if let number2 = Int(splitInput[1].components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
-                print("Blood ox value \(number2)")
+//                print("Blood ox value \(number2)")
                 CDObj.createBloodOxygenTableEntry(bloodOxValue: number2)
             }
         }
     }
-    
 }

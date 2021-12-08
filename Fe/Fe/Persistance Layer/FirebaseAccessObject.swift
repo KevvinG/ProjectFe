@@ -247,7 +247,6 @@ class FirebaseAccessObject {
                             key : value,
                         ]);
                     }
-                    print("Updated Switch Status in FB.")
                 }
             }
         }
@@ -693,15 +692,12 @@ class FirebaseAccessObject {
                     if querySnapshot!.documents.count == 0 {
                         print("The user cannot be found")
                     } else {
-                        print("We found the user.")
                         for document in querySnapshot!.documents {
-                            print(document)
                             // DELETE THE USER DOCUMENT
                             self.db.collection("users").document(document.documentID).delete() { err in
                                 if let err = err {
                                     print("Error removing the document: \(err)")
                                 } else {
-                                    print("Document successfully deleted.")
                                 }
                             }
                         }
@@ -725,10 +721,8 @@ class FirebaseAccessObject {
                     if querySnapshot!.documents.count == 0 {
                         print("The user cannot be found")
                     } else {
-                        print("We found the user.")
-                        for document in querySnapshot!.documents {
-                            print(document)
-                        }
+//                        for document in querySnapshot!.documents {
+//                        }
                     }
                 }
             }
@@ -778,7 +772,6 @@ class FirebaseAccessObject {
      - Description: Gets user from Firestore using email and updates data.
      -------------------------------------------------------------------*/
     func updateUserData(fname: String, lname: String, age: String, email: String, password: String, phone: String, st_address1: String, st_address2: String, postal: String, province: String, city: String, country: String, symptoms: String, completion: @escaping (_ success: Bool) -> Void) {
-        print("Updating existing user...")
         let usersRef = db.collection("users")
         let user = Auth.auth().currentUser
         
@@ -793,7 +786,6 @@ class FirebaseAccessObject {
                         completion(false)
                     } else {
                         for document in querySnapshot!.documents {
-                            print("\(document.documentID) => \(document.data())")
                             let ref = document.reference
                             
                             ref.updateData([

@@ -5,11 +5,12 @@
 //  Created by Kevin Grzela on 2021-11-27.
 //
 
+//MARK: Imports
 import Foundation
 import Charts
 
 /*--------------------------------------------------------------------
- //MARK: CustomFormatter class
+ //MARK: CustomFormatter
  - Description: Custom Chart Formatter that overrides the existing x axis data formatter
  -------------------------------------------------------------------*/
 final class CustomFormatter: IAxisValueFormatter {
@@ -17,7 +18,7 @@ final class CustomFormatter: IAxisValueFormatter {
     
     /*--------------------------------------------------------------------
      //MARK: stringForValue(value: Double, axis: AxisBase
-     - Description: -
+     - Description:
      -------------------------------------------------------------------*/
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         let count = self.labels.count

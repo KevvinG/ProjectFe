@@ -85,7 +85,6 @@ class BloodOxygenViewController: UIViewController {
      //MARK: asyncChartInitHelper()
      - Description: Asynchronous chart helper
      -------------------------------------------------------------------*/
-    
     func asyncChartInitHelper() {
         var cdSPO2Data = [BloodOxygenData]()
 
@@ -115,8 +114,7 @@ class BloodOxygenViewController: UIViewController {
             print(df.string(from: item.dateTime))
             cdSPO2Data.append(Double(item.bloodOxygen))
         }
-            
-        //Configure chart
+
         lineChartView.data = BldOxObj.chartData(dataPoints: cdDateData, values: cdSPO2Data)
         let customFormatter = CustomFormatter()
         customFormatter.labels = cdDateData
@@ -140,7 +138,7 @@ class BloodOxygenViewController: UIViewController {
             spo2sum+=item
         }
         
-        // set Average Blood Oxygen
+        // Set Average Blood Oxygen
         let avgLabel = cdSPO2Data.count == 0 ? "- %" : "\(String(Int(spo2sum/Double(cdSPO2Data.count)))) %"
         self.lblAvgBldOx.text = avgLabel
         

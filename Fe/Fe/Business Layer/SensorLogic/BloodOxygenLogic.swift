@@ -72,10 +72,8 @@ class BloodOxygenLogic {
                 for element in outputDict {
                     if i % outputSpacing != 0 {
                         outputDict.removeValue(forKey: element.key)
-                        print("Item removed")
                     }
                     i+=1
-                    print(i)
                 }
                 let dateArray = Array(outputDict.keys)
                 var outputDates : [String] = []
@@ -113,7 +111,6 @@ class BloodOxygenLogic {
         }
 
         let currentDate = Date()
-        // Convert Date to String
         return dateFormatter.string(from: formatDate ?? currentDate)
         }
 

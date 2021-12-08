@@ -61,8 +61,6 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         /*MARK: Developer temp data*/
         CDObj.setupTempValues()
 
-//        HSLogic.homeScreenSetup() // Setup options once logged in.
-
         // Check if user already exists and set switches.  Add new user if not.
         HSLogic.checkIfNewUser(completion: { isNewUser in
             if isNewUser {
@@ -114,7 +112,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         }
 
         // Timer
-        /** This is a Dirty hack to keep the app running in the background permantently **/
+        /** This is a  hack to keep the app running in the background permantently **/
         let path = Bundle.main.path(forResource:"silence", ofType: "mp3")
         let url = URL(fileURLWithPath: path!)
         do {
@@ -155,12 +153,17 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
                 }
             }
         }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(HomeVC.stopTimerNotification), name: Notification.Name("StopTimerNotification"), object: nil)
         timer?.start()
 
         setupButtonUI()
     }
     
+    /*--------------------------------------------------------------------
+     //MARK: stopTimerNotification()
+     - Description: Stop timer.
+     -------------------------------------------------------------------*/
     @objc func stopTimerNotification(notification: NSNotification) {
         timer?.stop()
     }
@@ -321,7 +324,7 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
 
           characteristicASCIIValue = ASCIIstring
 
-        print("Value Recieved: \((characteristicASCIIValue as String))")
+//        print("Value Recieved: \((characteristicASCIIValue as String))")
 
         let input = characteristicASCIIValue as String
 
@@ -329,11 +332,11 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         print(splitInput)
         if splitInput.count == 2 {
             if let number = Int(splitInput[0].components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
-                print("HR value \(number)")
+                print("HR value: \(number) BPm")
                     CDObj.createHeartRateTableEntry(hrValue: String(number))
             }
             if let number2 = Int(splitInput[1].components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
-                print("Blood ox value \(number2)")
+                print("Blood ox value: \(number2) %")
                 CDObj.createBloodOxygenTableEntry(bloodOxValue: number2)
             }
         }
@@ -354,12 +357,12 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         } else {
             self.setAltitudeButtonValue(labelValue: "\(airPressure)")
         }
-        print("Air Pressure Timer Val: \(airPressure) hPa")
+        print("Air Pressure Timer Value: \(airPressure) hPa")
 
         let elevation = AltObj.fetchLatestElevationReading()
-        print("Elevation Timer Val: \(elevation) meters")
+        print("Elevation Timer Value: \(elevation) meters")
         PhoneObj.stopAltitudeUpdates()
-    }//altTimerFire
+    }
 
     /*--------------------------------------------------------------------
      //MARK: HRTimerfire()
@@ -388,8 +391,8 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         } else {
             self.lblHeartRateValue.textColor = UIColor.FeButtonGreen
         }
-        print("HR Timer Val: \(hrVal) BPM")
-    }//hrTimerFire
+        print("HR Timer Value: \(hrVal) BPM")
+    }
 
     /*--------------------------------------------------------------------
      //MARK: BloodOxTimerfire()
@@ -418,8 +421,8 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
         } else {
             self.lblBloodOxygenValue.textColor = UIColor.FeButtonGreen
         }
-        print("Blood Ox Timer Val: \(bloodOxygen) %")
-    }//bloodOxTimerFire
+        print("Blood Ox Timer Value: \(bloodOxygen) %")
+    }
     
     /*--------------------------------------------------------------------
      //MARK: initAccount()
@@ -435,8 +438,8 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             response, error in guard error == nil else {return}
             print ("login success")
             startConversation()
-        })//registerUser
-    }//initAccount
+        })
+    }
     
     /*--------------------------------------------------------------------
      //MARK: startConversation()
@@ -451,10 +454,9 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
             guard error == nil else {
                 print("Conversation error: \(error.debugDescription)")
                 return
-            }//guard
-            //Success
-        }//createAndShowConversation
-    }//startConversation
+            }
+        }
+    }
 
     /*--------------------------------------------------------------------
      //MARK: setWelcomeTitle()
@@ -541,8 +543,6 @@ class HomeVC: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate  
      - Description: Segue to Chatbot Screen
      -------------------------------------------------------------------*/
     @IBAction func btnChatbotTapped(_ sender: Any) {
-//        performSegue(withIdentifier: "GoToChatbotScreen", sender: self)
-//        print("Chatbot button pressed")
         initAccount()
     }
 

@@ -16,7 +16,7 @@ import WebKit
 class WebMoreInfoViewController: UIViewController, WKUIDelegate {
     
     // UI Variables
-    @IBOutlet var mWebView : WKWebView!
+    @IBOutlet var mWebView: WKWebView!
     
     /*--------------------------------------------------------------------
      //MARK: viewDidLoad()

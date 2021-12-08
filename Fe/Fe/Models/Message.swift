@@ -5,11 +5,16 @@
 //  Created by Kevin Grzela on 2021-11-09.
 //
 
+//MARK: Imports
 import Foundation
 import UIKit
 import Firebase
 import MessageKit
 
+/*------------------------------------------------------------------------
+ //MARK: struct Message
+ - Description: Message from bluetooth device to mobile phone.
+ -----------------------------------------------------------------------*/
 struct Message {
     var id: String
     var content: String
@@ -26,6 +31,10 @@ struct Message {
     }
 }
 
+/*------------------------------------------------------------------------
+ //MARK: extension Message
+ - Description: initializer
+ -----------------------------------------------------------------------*/
 extension Message {
     init?(dictionary: [String: Any]) {
         guard let id = dictionary["id"] as? String,
@@ -38,6 +47,10 @@ extension Message {
     }
 }
 
+/*------------------------------------------------------------------------
+ //MARK: extension Message: MessageType
+ - Description: Returns sender types for message.
+ -----------------------------------------------------------------------*/
 extension Message: MessageType {
     var sender: SenderType {
         return ChatUser(senderId: senderID, displayName: senderName)

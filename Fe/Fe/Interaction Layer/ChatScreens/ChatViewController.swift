@@ -5,14 +5,14 @@
 //  Created by Kevin Grzela on 2021-11-08.
 //
 
+//MARK: Imports
 import UIKit
-//import InputBarAccessoryView
-//import FirebaseFirestore
-//import FirebaseAuth
-//import MessageKit
-//import SDWebImage
 import Kommunicate
 
+/*------------------------------------------------------------------------
+ //MARK: ChatViewController: UIViewController
+ - Description: Holds UI initializers for chatbot on screen.
+ -----------------------------------------------------------------------*/
 class ChatViewController: UIViewController {
     
     /*--------------------------------------------------------------------
@@ -22,7 +22,7 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initAccount()
-    }//viewDidLoad
+    }
     
     /*--------------------------------------------------------------------
      //MARK: initAccount()
@@ -38,8 +38,8 @@ class ChatViewController: UIViewController {
             response, error in guard error == nil else {return}
             print ("login success")
             startConversation()
-        })//registerUser
-    }//initAccount
+        })
+    }
     
     /*--------------------------------------------------------------------
      //MARK: startConversation()
@@ -54,8 +54,7 @@ class ChatViewController: UIViewController {
             guard error == nil else {
                 print("Conversation error: \(error.debugDescription)")
                 return
-            }//guard
-            //Success
-        }//createAndShowConversation
-    }//startConversation
-}//chatViewController
+            }
+        }
+    }
+}

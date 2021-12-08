@@ -53,7 +53,6 @@ class AltitudeLogic {
             var i=1
             for item in 0..<(apItems!.count-1) {
                 let df = DateFormatter()
-//                df.dateFormat = "HH:mm E, d MMM y"
                 df.dateFormat = "dd/MM/YY"
                 let date = df.string(from: apItems![item].dateTime)
                 if i % outputSpacing != 0 {

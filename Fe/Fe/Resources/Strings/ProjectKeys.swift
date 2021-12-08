@@ -8,7 +8,10 @@
 //MARK: Imports
 import Foundation
 
-//MARK: Enum ProjectKeys
+/*------------------------------------------------------------------------
+ //MARK: enum ProjectKeys
+ - Description: Holds all strings used for the project.
+ -----------------------------------------------------------------------*/
 public enum ProjectKeys: String {
     
     //MARK: Login Screen

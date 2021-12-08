@@ -5,9 +5,14 @@
 //  Created by Kevin Grzela on 2021-10-14.
 //
 
+//MARK: Imports
 import Foundation
 import CoreBluetooth
 
+/*--------------------------------------------------------------------
+ //MARK: SensorDeviceObject: NSObject
+ - Description: identifiers for Sensor.
+ -------------------------------------------------------------------*/
 class SensorDeviceObject: NSObject {
 
     /// MARK: - Particle LED services and charcteristics Identifiers

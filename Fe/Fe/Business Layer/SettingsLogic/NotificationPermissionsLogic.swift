@@ -90,7 +90,7 @@ class NotificationPermissionsLogic {
     func scheduleMedicationReminder(hour: String, minute: String) {
         let content = UNMutableNotificationContent()
         content.title = "Medication Reminder"
-        content.body = "Have you taken your medication today?"
+        content.body = "Here is your friendly reminder to take your medication!"
         content.badge = NSNumber(value: 1)
         content.sound = .default
         

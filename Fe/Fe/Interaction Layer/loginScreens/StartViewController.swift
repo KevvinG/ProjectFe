@@ -57,7 +57,6 @@ class StartViewController: UIViewController {
       if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
         return true
       }
-      // other URL handling goes here.
       return false
     }
 }

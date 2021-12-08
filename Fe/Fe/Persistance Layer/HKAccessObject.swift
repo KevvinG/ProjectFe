@@ -12,6 +12,7 @@ import HealthKit
 /*------------------------------------------------------------------------
  //MARK: HKAccessObject
  - Description: Holds methods for accessing HealtthKit Data
+ - ** NO LONGER USING HEALTHKIT **
  -----------------------------------------------------------------------*/
 class HKAccessObject {
     
@@ -270,7 +271,5 @@ class HKAccessObject {
         } else {
             print("Healthkit not available.")
         }
-        
-        
     }
 }

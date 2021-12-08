@@ -119,7 +119,6 @@ class AltitudeViewController: UIViewController {
             cdEleData.append(Double(item.elevation))
         }
         
-        //Configure chart
         elevationLineChart.data = AltLogic.chartData(dataPoints: cdDateData, values: cdEleData)
         let customFormatter = CustomFormatter()
         customFormatter.labels = cdDateData

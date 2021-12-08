@@ -14,7 +14,6 @@ import UIKit
  //MARK: CoreDataAccessObject
  - Description: Access Core Data
  -----------------------------------------------------------------------*/
-
 class CoreDataAccessObject {
     
     // Class Variables
@@ -57,13 +56,12 @@ class CoreDataAccessObject {
         } catch let error as NSError {
             print("HeartRateData Read Fetch Failed: \(error.description)")
         }
-        print(self.hrItems)
         return self.hrItems
     }
     
     /*--------------------------------------------------------------------
      //MARK: fetchHeartRateDataWithRange()
-     - Description:
+     - Description: Fetch for charts.
      -------------------------------------------------------------------*/
     func fetchHeartRateDataWithRange(dateRange: String) -> [HeartRateData]? {
         let yesterday = Date().addingTimeInterval(-86400)
@@ -77,9 +75,8 @@ class CoreDataAccessObject {
         } catch let error as NSError {
             print("Heart Rate Data read failed: \(error.description)")
         }
-        print(self.hrItems)
         return self.hrItems
-    }//fetchheartRateDataWithRange
+    }
     
     /*--------------------------------------------------------------------
      //MARK: setupTempValues()
@@ -169,10 +166,7 @@ class CoreDataAccessObject {
      - Description: Delete all HR Entries from Core Data
      -------------------------------------------------------------------*/
     func deleteAllHREntries() -> Bool {
-        // Create Fetch Request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "HeartRateData")
-
-        // Create Batch Delete Request
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {
@@ -232,7 +226,7 @@ class CoreDataAccessObject {
             print("BloodOxygenData Read Fetch Failed: \(error.description)")
         }
         return self.bldOxItems
-    }//fetchBloodOxygenDataWithRange
+    }
     
     /*--------------------------------------------------------------------
      //MARK: fetchbloodOxygenDataForAnalysis()
@@ -261,10 +255,7 @@ class CoreDataAccessObject {
      - Description: Delete all Blood Oxygen Entries from Core Data
      -------------------------------------------------------------------*/
     func deleteAllBloodOxygenEntries() -> Bool {
-        // Create Fetch Request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BloodOxygenData")
-
-        // Create Batch Delete Request
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {
@@ -328,10 +319,7 @@ class CoreDataAccessObject {
      - Description: Delete all Elevation Entries from Core Data
      -------------------------------------------------------------------*/
     func deleteAllElevationEntries() -> Bool {
-        // Create Fetch Request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ElevationData")
-
-        // Create Batch Delete Request
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {
@@ -418,10 +406,7 @@ class CoreDataAccessObject {
      - Description: Delete all Air Pressure Entries from Core Data
      -------------------------------------------------------------------*/
     func deleteAllairPressureEntries() -> Bool {
-        // Create Fetch Request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AirPressureData")
-
-        // Create Batch Delete Request
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {
@@ -446,8 +431,12 @@ class CoreDataAccessObject {
         }
     }
     
+    /*--------------------------------------------------------------------
+     //MARK: getHrChartData()
+     - Description: New functino for HR chart.
+     -------------------------------------------------------------------*/
     func getHrChartData(dateRange: String, completion: @escaping (_ bpmDict: [String:Double]) -> Void) {
-        var bpmDict : [String:Double] = [:]
+        var bpmDict: [String:Double] = [:]
             
         let calendar = NSCalendar.current
         var anchorComponents = calendar.dateComponents([.day, .month, .year, .weekday], from: NSDate() as Date)
@@ -487,4 +476,3 @@ class CoreDataAccessObject {
         }
     }
 }
-
